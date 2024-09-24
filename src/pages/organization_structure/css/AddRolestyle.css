@@ -1,0 +1,80 @@
+/* AddRolestyle.css */
+.checkbox-container {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .checkbox-container input[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+    left: 0;
+  }
+  
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #ffffff21;
+    border: 1px solid #15b0fb;
+    border-radius: 5px;
+  }
+  
+  .checkbox-container input[type="checkbox"]:checked + .checkmark:after {
+    content: "";
+    position: absolute;
+    display: block;
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid #000;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+  }
+  
+  .checkbox-label {
+    padding-left: 35px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  /* -------------------------------------- */
+  .checklist__container{
+    padding: 20px 30px 0px 30px;
+  }
+
+  .list__colum{
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+  }
+  .list__title{
+    font-weight: 700;
+    white-space: nowrap;
+   
+  }
+  .checklist__submit__btn:hover{
+    background: white;
+    color: #0d6efd;
+
+  }
+  .checklist__cancel__btn{
+    background: white;
+    color: #0d6efd;
+  }
+  .checklist{
+    background: #ffffff3d;
+    padding: 35px 45px;
+    box-shadow: 0px 0px 10px rgb(0 0 0 / 43%);
+  }
+
+  .headingcolor {
+    background: linear-gradient(to right, #17bafc, #0a63f1);
+    -webkit-background-clip: text; /* For Safari and Chrome */
+    background-clip: text; /* Standard property */
+    -webkit-text-fill-color: transparent; /* For Safari and Chrome */
+  }

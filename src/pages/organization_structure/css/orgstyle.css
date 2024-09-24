@@ -1,0 +1,68 @@
+
+.p-organizationchart .p-organizationchart-line-top{
+    border-top: 1px solid #030303;
+    border-color: #030303;
+}
+.p-organizationchart .p-organizationchart-line-left{
+    border-right: 1px solid #030303;
+    border-color: #030303;
+}
+
+.p-node-toggler {
+    display: none;
+}
+
+
+.h-3rem {
+    height: 4rem !important;
+    object-fit: cover;
+    border: 3px solid white;
+}
+.w-3rem {
+    width: 4rem !important;
+}
+
+.mb-3{
+    margin-bottom: 1rem !important;
+}
+
+.align-items-center{
+    align-items: center !important;
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 20px;
+}
+.name__title{
+    display: flex;
+    flex-direction: column;
+}
+
+.bg-indigo-500 {
+    background-color: #00275C !important;
+}
+
+.bg-purple-500 {
+    background-color: #00275C !important;
+}
+
+
+.p-organizationchart .p-organizationchart-line-down{
+    background: #11385f;
+    
+}
+.p-organizationchart .p-organizationchart-node-content{
+    padding: 10px 20px 0px 20px;
+}
+
+/* 
+.p-organizationchart .p-organizationchart-line-top {
+    background: #11385f;
+}
+
+.p-organizationchart .p-organizationchart-line-left {
+    background: #11385f;
+}
+
+.p-organizationchart .p-organizationchart-line-right {
+    background: #11385f;
+} */

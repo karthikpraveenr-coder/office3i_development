@@ -1,0 +1,18 @@
+.viewjob__container {
+    background: rgb(255, 255, 255);
+    padding: 35px 40px 40px;
+    box-shadow: rgba(0, 0, 0, 0.43) 0px 0px 10px;
+    margin: 2px;
+    word-break: break-word;
+}
+
+.viewjob__header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit__delete {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}

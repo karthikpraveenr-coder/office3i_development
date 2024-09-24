@@ -1,0 +1,89 @@
+/* OTPPage.css */
+.OTP__container__contact {
+    background-color: #F3F3F3;
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.OTP__container__contact {
+    /* background-image: url(http://localhost:3000/static/media/bg.58da44e7d232e4b6fa80.jpg); */
+    background: white;
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.otpcontact-container {
+    max-width: 400px;
+    padding: 60px 40px 20px;
+    border-radius: 5px;
+    background: white;
+    /* border-color: #3D85A4; */
+    border: 1px solid #3D85A4;
+
+}
+
+.otp-freetrial-container {
+    max-width: 400px;
+    padding: 60px 40px 20px;
+    border-radius: 5px;
+    background: white;
+}
+
+.otp-input {
+    text-align: center;
+    font-size: 20px;
+    letter-spacing: 15px;
+}
+
+.otp-form-row {
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.resend-btn-customer {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.resend-btn-customer.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.OTP__freetrial__container {
+    /* background-image: url('../../../assets/images/bg.jpg'); */
+    background-color: #F3F3F3;
+    background-size: cover;
+    background-position: center;
+    /* min-height: 100vh; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-bottom-padding {
+    padding-bottom: 45px;
+}
+
+.resend-btn-customer .btn {
+    color: #004A78;
+    text-decoration: none;
+}
+
+.btn-link {
+    color: #004A78;
+}
+
+.Verify {
+    padding: 8px 35px;
+    font-weight: 600;
+}

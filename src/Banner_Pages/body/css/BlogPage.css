@@ -1,0 +1,31 @@
+.blogpage__row{
+    display: flex;
+    align-items: flex-end;
+}
+
+.blogpage{
+    padding-bottom: 10vh;
+    padding-left: 5vh;
+    padding-right: 5vh;
+}
+.BlogPage-text h1 {
+    color: #00275C;
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 45px;
+}
+
+.BlogPage-text p {
+    color: #00275C;
+    line-height: 1.6;
+    font-size: 20px;
+}
+
+.Rectangle {
+    height: 45vh;
+    max-width: 100%;
+}
+
+
+
+

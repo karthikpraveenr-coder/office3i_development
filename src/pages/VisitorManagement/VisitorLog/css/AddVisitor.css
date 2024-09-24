@@ -1,0 +1,32 @@
+.webcam{
+    position: relative;
+}
+
+.capture__btn{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgb(17, 15, 15);
+    border-color: black;
+}
+
+.webcamclear{
+    position: relative;
+}
+.captureclear__btn{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgb(17, 15, 15);
+    border-color: black;
+}
+.faTrash__captured{
+    font-size: 26px;
+    background: white;
+    border-radius: -27px;
+    padding: 11px 14px;
+    border-radius: 30px;
+    color: #ed5e68;
+}

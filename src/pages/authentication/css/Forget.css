@@ -1,0 +1,35 @@
+.Forget__container {
+    background-image: url('../../../assets/images/bg.jpg');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Forgot {
+    width: 300px;
+    height: auto;
+    margin-bottom: -45px;
+  }
+  
+  .back-link {
+    color: #007bff;
+    text-decoration: none;
+  }
+  .bg-light{
+    background-color: #77d2fea6 !important;
+  }
+  
+  /* .back-link:hover {
+    text-decoration: underline;
+  } */
+  .forget-form-container{
+    max-width: 400px;
+    padding: 60px 40px 20px;
+    border-radius: 5px;
+    background: #77d2fea6;
+    position: relative;
+  }
+  

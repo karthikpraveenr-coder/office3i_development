@@ -1,0 +1,91 @@
+/* h3, h5 {
+    font-weight: bold;
+  } */
+  
+  .list-group-item {
+    font-size: 14px;
+  }
+
+  
+  /* Styling for the label to create a custom checkbox */
+.custom-checkbox {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding-left: 40px; /* Adjust padding to fit the custom checkbox */
+  cursor: pointer;
+  font-size: 16px;
+  user-select: none;
+}
+
+/* Hide the default checkbox */
+.custom-checkbox input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Custom checkmark styling */
+.custom-checkbox .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 24px; /* Increased size for better visibility */
+  width: 24px; /* Increased size for better visibility */
+  background-color: #f0f0f0; /* Light grey background */
+  border-radius: 4px;
+  transition: background-color 0.3s, border-color 0.3s;
+  border: 2px solid #d0d0d0; /* Border color */
+}
+
+/* Change background color and border color when checked */
+.custom-checkbox input:checked ~ .checkmark {
+  background-color: #004A78; /* Dark blue background */
+  border-color: #004A78;
+}
+
+/* Checkmark inside the custom checkbox */
+.custom-checkbox .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.custom-checkbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark */
+.custom-checkbox .checkmark:after {
+  left: 8px;
+  top: 4px;
+  width: 8px;
+  height: 14px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+/* ------------------------------------------- */
+  
+  .bg-secondary {
+    background-color: #17bafc !important;
+  }
+  
+  .bg-title{
+    background-color: #17bafc;
+    color: white;
+  }
+  .market__container {
+    padding: 20px 30px 0px 30px;
+    
+  }
+
+  .market{
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.43);
+    padding: 30px 43px;
+  }
+
+

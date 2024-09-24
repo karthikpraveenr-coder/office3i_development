@@ -1,0 +1,60 @@
+.addemployee__container{
+    padding: 20px 30px 0px 30px;   
+}
+.form-label{
+  font-weight: 600;
+}
+.next{
+  font-weight: 500;
+}
+.next:hover{
+  background-color: white;
+  color: #0d6efd;
+  font-weight: 500;
+  border-color: #0d6efd;
+}
+.previous{
+  background-color: white;
+  color: #0d6efd;
+  font-weight: 500;
+  border-color: #0d6efd;
+}
+.previous:hover{
+  background-color: #0d6efd;
+  color: white;
+  font-weight: 500;
+  border-color: #0d6efd;
+}
+
+
+/* nav bar styles */
+
+   .steps{
+    display: flex;
+    
+   }
+
+   .navimg{
+    width: 60%;
+   }
+   .z-index1{
+    z-index: 10;
+    margin-right: -150px;
+   }
+   .z-index2{
+    z-index: 9;
+    margin-right: -180px;
+   }
+   .z-index3{
+    z-index: 8;
+    margin-right: -190px;
+   }
+   .z-index4{
+    z-index: 7;
+    margin-right: -190px;
+   }
+   .z-index5{
+    z-index: 6;
+    margin-right: -150px;
+   }
+   

@@ -1,0 +1,96 @@
+.login-container {
+    background-image: url('../../../assets/images/bg.jpg');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* .logo {
+    width: 150px;
+    height: auto;
+} */
+
+.login-form {
+    max-width: 400px;
+    padding: 60px 40px 20px;
+    border-radius: 5px;
+    background: #77d2fea6;
+    position: relative;
+}
+
+.form-input {
+    margin-bottom: 3px;
+   
+}
+.pwd_eye{
+    position: relative;  
+}
+.password-toggle-btn{
+    position: absolute;
+    top: 5px;
+    right: 0px;
+}
+
+.login-button {
+    width: 100%;
+}
+
+.forget-password {
+    font-size: 14px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.powered-by-logo {
+    width: 100px;
+    height: auto;
+}
+
+.footer-links {
+    margin-top: 80px;
+    font-size: 14px;
+    color: white;
+}
+
+.footer-link {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+    color: #000;
+}
+
+.login__title {
+    padding: 13px 0px;
+    color: white;
+}
+
+.text-muted {
+    width: 100%;
+}
+
+.login-button {
+    width: 50%;
+}
+
+.justify-content-md-center {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 25px 0px;
+}
+
+.Cookie_Policy {
+    padding: 0;
+}
+.error-text {
+    color: red;
+    margin-bottom: 10px;
+}

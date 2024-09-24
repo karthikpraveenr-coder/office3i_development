@@ -1,0 +1,71 @@
+.calendar__container{
+    padding: 40px 25px;
+}
+.calendar__container{
+    padding: 50px 25px;
+}
+.fc-direction-ltr .fc-daygrid-event.fc-event-end, .fc-direction-rtl .fc-daygrid-event.fc-event-start{
+    margin-right: 15px;
+}
+.fc-direction-ltr .fc-daygrid-event.fc-event-start, .fc-direction-rtl .fc-daygrid-event.fc-event-end{
+    margin-left: 15px;
+}
+.fc .fc-daygrid-day-top{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+.fc .fc-daygrid-day-number{
+    padding: 4px;
+    position: relative;
+    z-index: 4;
+    text-decoration: none;
+    font-weight: 700;
+    color: #05637B;
+    font-size: 20px;
+}
+.fc-col-header-cell-cushion{
+    color: #00546A;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 20px;
+}
+/* ========================== */
+
+
+.fc-daygrid-event {
+    border: none !important;
+}
+
+.fc-daygrid-event {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.fc-h-event .fc-event-main{
+color: #3A3A3A;
+}
+.fc-h-event{
+    background-color: white;
+}
+.event-detail{
+  font-weight: 700;
+  font-size: 14px;
+  /* text-align: center; */
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.fc-daygrid-day-frame{
+  background: '#ebdfff'
+  
+}
+
+
+
+
+
+  

@@ -1,0 +1,135 @@
+.full-card-container {
+    /* display:flex;
+    width: 100%; */
+    height: auto;
+    justify-content: center;
+    padding-bottom: 23px;
+}
+
+.Empcard {
+    width: 300px;
+    height: auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 1px black;
+}
+
+.Tenantcard {
+    width: 300px;
+    height: 335px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 1px black;
+}
+
+.upper-container {
+    height: 100px;
+    background: linear-gradient(to right, #17bafc, #0a63f1);
+    border-radius: 10px 10px 0px 0px;
+}
+
+.image-container .empprofile {
+    background-color: white;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    padding: 5px;
+    transform: translate(0px, 45px);
+    object-fit: cover;
+}
+
+.empprofile {
+    border: 2px solid #2f2f2f;
+}
+
+.lower-contaier {
+    margin-top: 25px;
+    height: 150px;
+    /* background: white; */
+    text-align: left;
+    margin: 17px 10px 0px;
+    border: 2px solid #0e7cf4;
+    border-radius: 13px;
+    padding: 13px;
+
+
+}
+
+.lower-contaier h4,
+h5,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+.lower-contaier h4 {
+    color: #2f2d2e;
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.lower-contaier h5 {
+    color: #2f2d2e;
+    font-weight: 800;
+    font-size: 1.1rem;
+    line-height: 1.5;
+
+    empty-cells: hide;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: 28px;
+    text-transform: uppercase;
+}
+
+.bt1 {
+    margin: 1rem;
+    font-weight: bold;
+    color: white;
+    font: bold;
+    background: linear-gradient(to right, #17bafc, #0a63f1);
+    border: 2px solid #d1d1d1;
+    padding: 0.6rem;
+    border-radius: 6px;
+    transition-duration: 0.5s;
+    animation: ease-in-out;
+}
+
+.bt1:hover {
+    background-image: linear-gradient(to left, #2951d3, #6267aa);
+    transition: scale(1.2);
+    border: none;
+    color: white;
+}
+
+/* ------------------ */
+
+.Employee__name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 50px;
+    color: #00275c;
+    font-weight: bold;
+}
+
+.Employee__role {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #3a3a3a;
+}
+
+.Employee__department__id {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 15px;
+}
+.Employee__btn{
+    display: flex;
+    justify-content: center;
+}

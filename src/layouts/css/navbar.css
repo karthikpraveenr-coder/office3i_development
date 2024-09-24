@@ -1,0 +1,27 @@
+#navbarDropdown {
+    color: white;
+    /* background: white; */
+    border-radius: 25px;
+    padding: 7px 10px;
+    margin-left: 19px;
+    font-size: 20px;
+}
+
+.Notification_bell {
+    font-size: 21px;
+    background: white;
+    padding: 7px 14px;
+    /* border: 7px; */
+    border-radius: 25px;
+    color: #0a60f1
+}
+.dropdown-toggle:after {
+    border-bottom: 0;
+    border-left: .3em solid #0000;
+    border-right: .3em solid #0000;
+    border-top: .3em solid;
+    content: "";
+    display: inline-block;
+    margin-left: .255em;
+    vertical-align: .255em;
+}

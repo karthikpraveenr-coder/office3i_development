@@ -1,0 +1,40 @@
+.Ellipse1 {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.image-container {
+    position: relative;
+    width: 100%;
+}
+
+.Features-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #00275C;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    padding: 0 20px; /* Optional: Add padding to prevent text from touching the edges */
+}
+
+.Features h1 {
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.feature__card{
+    box-shadow: 0px 0px 10px rgb(0 0 0 / 43%);
+    padding: 20px;
+    height: 18vh;
+    width: 70%;
+    border-radius: 15px;
+}
+.feature__card__col{
+    display: flex;
+    justify-content: center;
+}
+

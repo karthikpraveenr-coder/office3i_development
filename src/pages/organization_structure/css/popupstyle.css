@@ -1,0 +1,81 @@
+.image__name {
+    display: flex;
+    gap: 17px;
+}
+
+.header__image {
+    width: 17%;
+    height: 60px;
+    object-fit: cover;
+}
+
+.header__names {
+    display: flex;
+    flex-direction: column;
+}
+
+.org__username {
+    color: #00275C;
+    font-weight: bold;
+}
+
+.org__Designation {
+    color: #00275C;
+}
+
+.position__container {
+    padding-left: 25%;
+}
+
+.position__item {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+.current__Designation-wrapper {
+    display: flex;
+    position: relative;
+    align-items: center;
+}
+
+.current__Designation {
+    color: #0A62F1; 
+    padding-left: 10px;
+    padding-bottom: 3%;
+    display: flex;
+    align-items: center;
+}
+
+.current__Designation::before {
+    content: '•';
+    font-size: 62px;
+    position: absolute;
+    left: -18px;
+    top: -38px;
+    color: #0A62F1;
+}
+
+.vertical-line {
+    width: 2px;
+    background: repeating-linear-gradient(
+        to bottom,
+        #0A62F1,
+        #0A62F1 5px,
+        transparent 5px,
+        transparent 10px
+    );
+    height: 100%;
+    position: absolute;
+    left: -6px;
+    top: 17px;
+}
+
+.position__history {
+    padding-left: 33px;
+}
+
+.position__item.last-position .vertical-line {
+    display: none;
+}

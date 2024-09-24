@@ -1,0 +1,38 @@
+
+.community-content {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.community-text {
+  padding: 30px;
+  border-radius: 8px;
+  max-width: 700px;
+  text-align: left;
+}
+
+.community-text h1 {
+  color: #00275C;
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 45px;
+}
+
+.community-text p {
+  color: #00275C;
+  line-height: 1.6;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+.Request_demo{
+  background-color: #00275C;
+  color: white;
+  padding: 10px 25px;
+  border-radius: 10px;
+  font-size: 22px;
+  font-weight: 500;
+}

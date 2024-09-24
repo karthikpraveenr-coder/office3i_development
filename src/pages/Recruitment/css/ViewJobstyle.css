@@ -1,0 +1,25 @@
+.card-body{
+    padding: 50px;
+}
+.card-title{
+    color: #00275C;
+    font-weight: 700;
+}
+.card-body strong{
+    color: #00275C;
+    font-weight: 700;
+}
+.card-body p{
+    color: #3A3A3A;
+}
+
+.lh {
+    line-height: 2.5;
+  }
+
+  .back__btn {
+    color: #0A62F1;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  
