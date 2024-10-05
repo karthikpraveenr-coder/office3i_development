@@ -457,7 +457,7 @@ export default function EditOfferLetter() {
                             <div className="mb-3">
                                 <label htmlFor="annualCTC" className="form-label">Annual CTC</label>
                                 <input
-                                    type="text"
+                                    type="number"
                                     className="form-control"
                                     id="annualCTC"
                                     value={annualCTC}

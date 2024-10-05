@@ -147,6 +147,7 @@ const Documents = ({ formData, handleChangedoc, fileSets, setFileSets, handleSub
 
     const getFilteredDocumentTypes = (currentIndex) => {
         const selectedDocumentTypes = fileSets
+       
             .filter((_, index) => index !== currentIndex)
             .map(fileSet => fileSet.selecteddocumentType);
 

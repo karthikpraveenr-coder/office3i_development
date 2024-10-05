@@ -224,7 +224,7 @@ function EmployeeConfirmation() {
 
 
     const [showModal, setShowModal] = useState(false);
-    
+
     const handleClosemoodboard = () => {
         setShowModal(false)
         setFormErrors({});
@@ -329,6 +329,30 @@ function EmployeeConfirmation() {
         fetchData();
     }, [refreshKey]);
 
+    // ---------------------------------------------------------------------------------------------
+
+    const conf_reason = {
+        maxWidth: '200px',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
+        wordBreak: 'break-word',
+        cursor: 'pointer',
+    };
+
+    const [showModalreason, setShowModalreason] = useState(false);
+    const [modalContent, setModalContent] = useState('');
+
+    const handleOpenModal = (content) => {
+        setModalContent(content);
+        setShowModalreason(true);
+    };
+
+    const handleCloseModal = () => {
+        setShowModalreason(false);
+        setModalContent('');
+    };
+
     return (
         <>
             <style>
@@ -416,7 +440,7 @@ display: none !important;
                                                 <td>{row.doj}</td>
                                                 <td>{row.confirmation_date || "-"}</td>
                                                 <td>{row.con_status}</td>
-                                                <td>{row.conf_reason}</td>
+                                                <td style={conf_reason} onClick={() => handleOpenModal(row.conf_reason)}>{row.conf_reason}</td>
                                                 <td className='no-print'>{row.con_status ?
 
                                                     <button className="btn-edit" onClick={() => { handleUpdateClick(row.id, row.con_status, row.conf_reason, row.employee_category_id) }}>
@@ -445,6 +469,25 @@ display: none !important;
                     </table>
 
                 </div>
+
+
+                {/* ---------------------------------------------------------------------------------------- */}
+
+                <Modal show={showModalreason} onHide={handleCloseModal}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Reason</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body style={{ wordBreak: 'break-word' }}>
+                        {modalContent}
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleCloseModal}>
+                            Close
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+                {/* ---------------------------------------------------------------------------------------- */}
+
 
                 <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
                     <ReactPaginate

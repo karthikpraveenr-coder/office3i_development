@@ -39,6 +39,7 @@ function Supervisorlist() {
     // Add Shift Slot submit
 
     const [department, setDepartment] = useState([]);
+    console.log("department", department)
     const [supervisorOptions, setSupervisorOptions] = useState([]);
 
     const [selectedDepartment, setSelectedDepartment] = useState('');
@@ -396,6 +397,7 @@ function Supervisorlist() {
 
     const handleDepartmentChange = (e) => {
         const selectedDepartmentId = e.target.value;
+        console.log("selectedDepartmentId", selectedDepartmentId)
         setSelectedDepartment(selectedDepartmentId);
 
         // Filter supervisor options based on selected department

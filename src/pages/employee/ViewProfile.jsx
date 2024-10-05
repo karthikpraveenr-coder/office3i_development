@@ -220,6 +220,15 @@ export default function ViewProfile() {
                                             <hr style={horizontalRule} />
                                             <MDBRow>
                                                 <MDBCol sm="3">
+                                                    <MDBCardText>Gender</MDBCardText>
+                                                </MDBCol>
+                                                <MDBCol sm="9">
+                                                    <MDBCardText className="text-muted">{employeeData.gender}</MDBCardText>
+                                                </MDBCol>
+                                            </MDBRow>
+                                            <hr style={horizontalRule} />
+                                            <MDBRow>
+                                                <MDBCol sm="3">
                                                     <MDBCardText>Status</MDBCardText>
                                                 </MDBCol>
                                                 <MDBCol sm="9">

@@ -207,7 +207,7 @@ export default function AppointmentLetter() {
     return (
         <div className="container mt-5" style={{ padding: '0px 70px 0px' }}>
             <h3 className='mb-5' style={{ fontWeight: 'bold', color: '#00275c' }}>Add Appointment Letter</h3>
-            <div style={{ boxShadow: '#0000007d 0px 0px 10px 1px', padding: '35px 50px' }}>
+            <div style={{ boxShadow: '#0000007d 0px 0px 10px 1px', padding: '35px 50px' }} className='mb-5'>
                 <form onSubmit={handleSubmit}>
                     <Row className="mb-3">
                         <Col md={6}>
@@ -350,7 +350,7 @@ export default function AppointmentLetter() {
                             <div className="mb-3">
                                 <label className="form-label">Gross Salary</label>
                                 <input
-                                    type="text"
+                                    type="number"
                                     className="form-control"
                                     value={grossSalary}
                                     onChange={(e) => setGrossSalary(e.target.value)}

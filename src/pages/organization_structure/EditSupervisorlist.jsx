@@ -31,6 +31,7 @@ function EditSupervisorlist() {
     // Edit Shift Slot Save
 
     const [departmentOptions, setDepartmentOptions] = useState([]);
+    console.log("departmentOptions", departmentOptions)
     const [supervisorOptions, setSupervisorOptions] = useState([]);
     const [selectedDepartment, setSelectedDepartment] = useState('');
     const [selectedSupervisor, setSelectedSupervisor] = useState('');
@@ -60,10 +61,10 @@ function EditSupervisorlist() {
             });
     }, []);
 
-    const handleDepartmentChange = (e) => {
-        setSelectedDepartment(e.target.value);
+    // const handleDepartmentChange = (e) => {
+    //     setSelectedDepartment(e.target.value);
 
-    };
+    // };
 
     const handleSupervisorChange = (e) => {
         setSelectedSupervisor(e.target.value);
@@ -75,7 +76,7 @@ function EditSupervisorlist() {
 
     const handleSave = (e) => {
         e.preventDefault();
-    
+
         const requestData = {
             id: id,
             departmentrole_id: selectedDepartment,
@@ -83,44 +84,44 @@ function EditSupervisorlist() {
             status: status,
             updated_by: userempid
         };
-    
+
         axios.put('https://office3i.com/user/api/public/api/update_supervisor', requestData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
             }
         })
-        .then(response => {
-            const { status, message } = response.data;
-            if (status === 'success') {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Success',
-                    text: message,
-                });
-                // Assuming handleVisitsupervisorlist is a function defined elsewhere
-                handleVisitsupervisorlist();
-            } else if (status === 'error') {
+            .then(response => {
+                const { status, message } = response.data;
+                if (status === 'success') {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: message,
+                    });
+                    // Assuming handleVisitsupervisorlist is a function defined elsewhere
+                    handleVisitsupervisorlist();
+                } else if (status === 'error') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: message,
+                    });
+                } else {
+                    throw new Error('Unexpected response status');
+                }
+            })
+            .catch(error => {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
-                    text: message,
+                    text: 'There was an error updating the Supervisor list. Please try again later.',
                 });
-            } else {
-                throw new Error('Unexpected response status');
-            }
-        })
-        .catch(error => {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'There was an error updating the Supervisor list. Please try again later.',
+
+                console.error('There was an error with the API:', error);
             });
-    
-            console.error('There was an error with the API:', error);
-        });
     };
-    
+
 
     const handleCancel = () => {
         handleVisitsupervisorlist()
@@ -155,6 +156,15 @@ function EditSupervisorlist() {
 
     // ------------------------------------------------------------------------------------------------
 
+    useEffect(() => {
+        // Filter supervisor options based on the initially selected department
+        if (selectedDepartment) {
+            const filteredSupervisors = departmentOptions.filter(option => option.id !== parseInt(selectedDepartment));
+            setSupervisorOptions(filteredSupervisors);
+        } else {
+            setSupervisorOptions(departmentOptions); // Show all supervisors when no department is selected
+        }
+    }, [selectedDepartment, departmentOptions]);
 
 
 
@@ -183,7 +193,7 @@ function EditSupervisorlist() {
                             <Col>
                                 <Form.Group controlId="formDepartmentName">
                                     <Form.Label style={{ fontWeight: 'bold' }}>Department Name</Form.Label>
-                                    <Form.Control as="select" onChange={handleDepartmentChange} value={selectedDepartment} disabled>
+                                    <Form.Control as="select" value={selectedDepartment} onChange={(e) => setSelectedDepartment(e.target.value)} disabled>
                                         <option value="">Select Department</option>
                                         {departmentOptions.map(option => (
                                             <option key={option.id} value={option.id}>{option.role_name}</option>

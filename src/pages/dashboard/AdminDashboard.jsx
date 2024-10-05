@@ -93,7 +93,7 @@ const DashboardPage = () => {
             try {
                 const response = await api.get('/adminIndexTodayCount', {
                     headers: {
-                        'Authorization': `Bearer ${usertoken}`
+                        'Authorization': `Bearer ${usertoken}` 
                     }
                 });
                 const data = response.data;

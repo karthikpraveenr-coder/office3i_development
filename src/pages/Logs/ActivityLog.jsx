@@ -10,6 +10,7 @@ import 'jspdf-autotable';
 import ReactPaginate from 'react-paginate';
 import { ScaleLoader } from 'react-spinners';
 import { FaCheck, FaTimes } from 'react-icons/fa';
+import api from '../../api';
 
 
 function ActivityLog() {
@@ -41,7 +42,7 @@ function ActivityLog() {
     const fetchData = async () => {
         setLoading(true);
         try {
-            const response = await fetch('https://office3i.com/user/api/public/api/activity_logs', {
+            const response = await api.fetch('https://office3i.com/user/api/public/api/activity_logs', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

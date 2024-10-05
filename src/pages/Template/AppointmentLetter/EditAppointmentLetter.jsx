@@ -432,7 +432,7 @@ export default function EditAppointmentLetter() {
                             <div className="mb-3">
                                 <label className="form-label">Gross Salary</label>
                                 <input
-                                    type="text"
+                                    type="number"
                                     className="form-control"
                                     value={grossSalary}
                                     onChange={(e) => setGrossSalary(e.target.value)}

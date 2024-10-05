@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import './css/navbar.css'
 import Swal from 'sweetalert2';
 import logo from '../assets/images/Office3iLogo.jpg'
+import axios from 'axios';
+import { useState } from 'react';
 
 function Navbar() {
 
@@ -15,6 +17,9 @@ function Navbar() {
     const userData = JSON.parse(localStorage.getItem('userData'));
 
     const usertoken = userData?.token || '';
+    const token = usertoken.slice(usertoken.indexOf('|') + 1);
+    console.log("usertoken-------------------------------------->", token)
+    const token_user_id = userData?.token_user_id || '';
     const userimage = userData?.userimage || '';
     const userempid = userData?.userempid || '';
 
@@ -115,6 +120,61 @@ function Navbar() {
 
 
     // ===========================================================================================================
+
+    const [isSession, setIsSession] = useState('')
+
+    const validateToken = async () => {
+        const data = {
+            login_id: token_user_id,
+            token: token
+        };
+
+        try {
+            const response = await axios.post(`https://office3i.com/user/api/public/api/auth_valid_checking`, data,
+                {
+                    headers: {
+                        'Authorization': `Bearer ${usertoken}`
+                    }
+                });
+            console.log(response.data);
+
+
+            if (response.data.status === 'success') {
+                console.log(response.data.message);
+                setIsSession(true)
+            } else if (response.data.status === 'error' && response.data.message === 'Your token has expired.') {
+                setIsSession(false)
+                Swal.fire({
+                    title: 'Session Expireddddd',
+                    text: 'Your session has expired. Please log in again.',
+                    icon: 'warning',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Redirect to login page after user confirmation
+                        window.location.href = '/user/login';
+                    }
+                });
+            } else {
+                console.log('Unexpected response:', response.data.message);
+            }
+        } catch (error) {
+            console.error('Error validating token:', error);
+            // Handle error
+            Swal.fire({
+                title: 'Error',
+                text: 'An error occurred while validating your token. Please try again.',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        }
+    };
+
+    useEffect(() => {
+        validateToken();
+    }, [isSession]);
+
+
 
     const imgstyle = {
         width: '80%',

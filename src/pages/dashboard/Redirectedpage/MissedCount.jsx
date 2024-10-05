@@ -90,6 +90,7 @@ function MissedCount() {
 
                     setSelectedDepartment(responseData.data[0].role);
                     setSelectedMember(responseData.data[0].id);
+                    console.log("selectedMember----------------->", responseData.data[0].id)
                 } else {
                     throw new Error('No data found');
                 }
@@ -417,7 +418,7 @@ function MissedCount() {
 
 
     const checkShiftSlot = async () => {
-        if (toDate || toTime || missedcounuserid) {
+        if (toDate) {
             try {
                 const response = await fetch('https://office3i.com/user/api/public/api/shift_slot_checking', {
                     method: 'POST',
@@ -462,7 +463,7 @@ function MissedCount() {
 
     useEffect(() => {
         checkShiftSlot();
-    }, [toDate, toTime, missedcounuserid]);
+    }, [toDate, missedcounuserid]);
 
     // ----------------------------------------------------------------------------------------------------
 
