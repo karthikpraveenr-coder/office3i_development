@@ -63,7 +63,7 @@ const ForgetPasswordPage = () => {
       setError('');
 
       try {
-        const response = await fetch('https://office3i.com/user/api/public/api/forgot_password', {
+        const response = await fetch('https://office3i.com/development/api/public/api/forgot_password', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

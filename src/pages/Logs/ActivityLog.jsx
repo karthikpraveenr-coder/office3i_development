@@ -42,7 +42,7 @@ function ActivityLog() {
     const fetchData = async () => {
         setLoading(true);
         try {
-            const response = await api.fetch('https://office3i.com/user/api/public/api/activity_logs', {
+            const response = await api.fetch('https://office3i.com/development/api/public/api/activity_logs', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

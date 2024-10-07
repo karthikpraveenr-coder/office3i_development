@@ -100,7 +100,7 @@ export default function EditPurchaseInvoice() {
 
         console.log("Fetching invoice data...");
 
-        axios.get(`https://office3i.com/user/api/public/api/editview_purchaseinvoice/${id}`, {
+        axios.get(`https://office3i.com/development/api/public/api/editview_purchaseinvoice/${id}`, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -305,7 +305,7 @@ export default function EditPurchaseInvoice() {
         });
 
         try {
-            const response = await fetch('https://office3i.com/user/api/public/api/updatepurchaseinvoice', {
+            const response = await fetch('https://office3i.com/development/api/public/api/updatepurchaseinvoice', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
@@ -355,7 +355,7 @@ export default function EditPurchaseInvoice() {
 
     useEffect(() => {
 
-        fetch('https://office3i.com/user/api/public/api/sales_company_list', {
+        fetch('https://office3i.com/development/api/public/api/sales_company_list', {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -381,7 +381,7 @@ export default function EditPurchaseInvoice() {
 
     // useEffect(() => {
 
-    //     fetch('https://office3i.com/user/api/public/api/autogeneratesaleinvoiceid', {
+    //     fetch('https://office3i.com/development/api/public/api/autogeneratesaleinvoiceid', {
     //         headers: {
     //             'Authorization': `Bearer ${usertoken}`
     //         }
@@ -402,7 +402,7 @@ export default function EditPurchaseInvoice() {
 
     // Fetch descriptional goods options
     useEffect(() => {
-        fetch('https://office3i.com/user/api/public/api/sales_item_list', {
+        fetch('https://office3i.com/development/api/public/api/sales_item_list', {
             headers: { 'Authorization': `Bearer ${usertoken}` }
         })
             .then(response => response.json())
@@ -425,7 +425,7 @@ export default function EditPurchaseInvoice() {
             for (const [index, item] of items.entries()) {
                 if (item.descriptionalGoods) {
                     try {
-                        const response = await fetch(`https://office3i.com/user/api/public/api/sales_hsn_sac/${item.descriptionalGoods}`, {
+                        const response = await fetch(`https://office3i.com/development/api/public/api/sales_hsn_sac/${item.descriptionalGoods}`, {
                             headers: { 'Authorization': `Bearer ${usertoken}` }
                         });
                         const data = await response.json();
@@ -552,7 +552,7 @@ export default function EditPurchaseInvoice() {
             const selectedOption = descriptionalGoodsOptions.find(option => option.value === value);
             if (selectedOption) {
                 try {
-                    const response = await fetch(`https://office3i.com/user/api/public/api/sales_hsn_sac/${value}`, {
+                    const response = await fetch(`https://office3i.com/development/api/public/api/sales_hsn_sac/${value}`, {
                         headers: { 'Authorization': `Bearer ${usertoken}` }
                     });
                     const data = await response.json();

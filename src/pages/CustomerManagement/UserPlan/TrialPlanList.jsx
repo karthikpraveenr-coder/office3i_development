@@ -57,7 +57,7 @@ function TrialPlanList() {
     const fetchData = async () => {
         setLoading(true);
         try {
-            const response = await fetch('https://office3i.com/user/api/public/api/cus_trial_package_List', {
+            const response = await fetch('https://office3i.com/development/api/public/api/cus_trial_package_List', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

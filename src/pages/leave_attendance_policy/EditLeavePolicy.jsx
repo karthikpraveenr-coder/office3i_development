@@ -63,7 +63,7 @@ function LeavePolicy() {
 
     useEffect(() => {
         // Fetch Leave Types from API
-        axios.get('https://office3i.com/user/api/public/api/leave_type_list', {
+        axios.get('https://office3i.com/development/api/public/api/leave_type_list', {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
@@ -88,7 +88,7 @@ function LeavePolicy() {
     useEffect(() => {
         const fetchRoles = async () => {
             try {
-                const response = await axios.get('https://office3i.com/user/api/public/api/userrolelist', {
+                const response = await axios.get('https://office3i.com/development/api/public/api/userrolelist', {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }
@@ -130,7 +130,7 @@ function LeavePolicy() {
     // --------------------------------------- Employee Dropdown ------------------------------------------------
 
     useEffect(() => {
-        const apiUrl = `https://office3i.com/user/api/public/api/employee_dropdown_list/${formattedSelectedRole}`;
+        const apiUrl = `https://office3i.com/development/api/public/api/employee_dropdown_list/${formattedSelectedRole}`;
         const fetchData = async () => {
             try {
                 const response = await axios.get(apiUrl,
@@ -222,7 +222,7 @@ function LeavePolicy() {
         };
 
 
-        axios.put(`https://office3i.com/user/api/public/api/update_leavepolicy`, requestData, {
+        axios.put(`https://office3i.com/development/api/public/api/update_leavepolicy`, requestData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
@@ -282,7 +282,7 @@ function LeavePolicy() {
 
     useEffect(() => {
         console.log("This is is-->", id)
-        axios.get(`https://office3i.com/user/api/public/api/editview_leavepolicy/${id}`, {
+        axios.get(`https://office3i.com/development/api/public/api/editview_leavepolicy/${id}`, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }

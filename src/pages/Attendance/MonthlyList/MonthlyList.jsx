@@ -54,7 +54,7 @@ function MonthlyList() {
     const fetchData = async () => {
         setLoading(true); // Ensure loading is set before fetching
         try {
-            const response = await fetch('https://office3i.com/user/api/public/api/get_allmonthlyAttendanceList', {
+            const response = await fetch('https://office3i.com/development/api/public/api/get_allmonthlyAttendanceList', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

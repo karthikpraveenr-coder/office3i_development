@@ -58,7 +58,7 @@ const Jobopening = () => {
     formData.append('created_by', userempid);
 
 
-    axios.post('https://office3i.com/user/api/public/api/add_jobopening', formData, {
+    axios.post('https://office3i.com/development/api/public/api/add_jobopening', formData, {
       headers: {
         'Authorization': `Bearer ${usertoken}`
       }
@@ -113,7 +113,7 @@ const Jobopening = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch('https://office3i.com/user/api/public/api/jobopening_list', {
+      const response = await fetch('https://office3i.com/development/api/public/api/jobopening_list', {
         headers: {
           'Authorization': `Bearer ${usertoken}`
         }

@@ -56,7 +56,7 @@ function LeaveRequest() {
 
         console.log("formData", formData)
 
-        fetch('https://office3i.com/user/api/public/api/approval_leave_request', {
+        fetch('https://office3i.com/development/api/public/api/approval_leave_request', {
             method: 'POST',
             body: formData,
             headers: {
@@ -140,7 +140,7 @@ function LeaveRequest() {
     const fetchData = async () => {
         setLoading(true); // Ensure loading is set before fetching
         try {
-            const response = await fetch('https://office3i.com/user/api/public/api/hr_leave_approvallist', {
+            const response = await fetch('https://office3i.com/development/api/public/api/hr_leave_approvallist', {
                 method: 'POST', // Set the method to POST
                 headers: {
                     'Content-Type': 'application/json',
@@ -413,7 +413,7 @@ function LeaveRequest() {
                                                 <td>{row.from_date}</td>
                                                 <td>{row.to_date}</td>
                                                 <td>{row.proof !== null ?
-                                                    <button className="btn-view" onClick={() => { window.open(`https://office3i.com/user/api/storage/app/${row.proof}`, '_blank') }}>
+                                                    <button className="btn-view" onClick={() => { window.open(`https://office3i.com/development/api/storage/app/${row.proof}`, '_blank') }}>
                                                         <FontAwesomeIcon icon={faEye} /> View
                                                     </button>
 

@@ -849,7 +849,7 @@ export const AddEmployee = () => {
 
 
     try {
-      const response = await fetch('https://office3i.com/user/api/public/api/add_employee', {
+      const response = await fetch('https://office3i.com/development/api/public/api/add_employee', {
         method: 'POST',
         body: formDataToSend,
         headers: {
@@ -915,7 +915,7 @@ export const AddEmployee = () => {
   useEffect(() => {
     const fetchEmployeeId = async () => {
       try {
-        const response = await axios.get('https://office3i.com/user/api/public/api/employee_uid', {
+        const response = await axios.get('https://office3i.com/development/api/public/api/employee_uid', {
           headers: {
             'Authorization': `Bearer ${usertoken}`
           }
@@ -945,7 +945,7 @@ export const AddEmployee = () => {
   useEffect(() => {
     const fetchUserRoleDropdown = async () => {
       try {
-        const response = await axios.get('https://office3i.com/user/api/public/api/userrolelist', {
+        const response = await axios.get('https://office3i.com/development/api/public/api/userrolelist', {
           headers: {
             'Authorization': `Bearer ${usertoken}`
           }
@@ -974,7 +974,7 @@ export const AddEmployee = () => {
   useEffect(() => {
     const fetchUserRoleDropdown = async () => {
       try {
-        const response = await axios.get(`https://office3i.com/user/api/public/api/supervisor_list/${formData.selectedRoleId}`, {
+        const response = await axios.get(`https://office3i.com/development/api/public/api/supervisor_list/${formData.selectedRoleId}`, {
           headers: {
             'Authorization': `Bearer ${usertoken}`
           }
@@ -1004,7 +1004,7 @@ export const AddEmployee = () => {
   // useEffect(() => {
   //   const fetchUserRoleDropdown = async () => {
   //     try {
-  //       const response = await axios.get(`https://office3i.com/user/api/public/api/shiftslotlist`, {
+  //       const response = await axios.get(`https://office3i.com/development/api/public/api/shiftslotlist`, {
   //         headers: {
   //           'Authorization': `Bearer ${usertoken}`
   //         }
@@ -1033,7 +1033,7 @@ export const AddEmployee = () => {
   useEffect(() => {
     const fetchUserRoleDropdown = async () => {
       try {
-        const response = await axios.get(`https://office3i.com/user/api/public/api/employee_document_typelist`, {
+        const response = await axios.get(`https://office3i.com/development/api/public/api/employee_document_typelist`, {
           headers: {
             'Authorization': `Bearer ${usertoken}`
           }
@@ -1062,7 +1062,7 @@ export const AddEmployee = () => {
   useEffect(() => {
     const fetchUserRoleDropdown = async () => {
       try {
-        const response = await axios.get(`https://office3i.com/user/api/public/api/employee_categorylist`, {
+        const response = await axios.get(`https://office3i.com/development/api/public/api/employee_categorylist`, {
           headers: {
             'Authorization': `Bearer ${usertoken}`
           }
@@ -1091,7 +1091,7 @@ export const AddEmployee = () => {
   useEffect(() => {
     const fetchUserRoleDropdown = async () => {
       try {
-        const response = await axios.get(`https://office3i.com/user/api/public/api/getjobtype`, {
+        const response = await axios.get(`https://office3i.com/development/api/public/api/getjobtype`, {
           headers: {
             'Authorization': `Bearer ${usertoken}`
           }

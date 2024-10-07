@@ -42,7 +42,7 @@ function OnlineTrialPackList() {
     const fetchData = async () => {
         setLoading(true);
         try {
-            const response = await fetch('https://office3i.com/user/api/public/api/getonline_trialpacklist', {
+            const response = await fetch('https://office3i.com/development/api/public/api/getonline_trialpacklist', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -244,7 +244,7 @@ function OnlineTrialPackList() {
 
         console.log('payload', payload);
 
-        axios.post('https://office3i.com/user/api/public/api/trialpack_active', payload, {
+        axios.post('https://office3i.com/development/api/public/api/trialpack_active', payload, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`,

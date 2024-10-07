@@ -43,7 +43,7 @@ function OverTimeCalculationList() {
     const fetchData = async () => {
         setLoading(true); // Ensure loading is set before fetching
         try {
-            const response = await fetch('https://office3i.com/user/api/public/api/get_overtimelist', {
+            const response = await fetch('https://office3i.com/development/api/public/api/get_overtimelist', {
                 method: 'POST', // Set the method to POST
                 headers: {
                     'Content-Type': 'application/json',
@@ -92,7 +92,7 @@ function OverTimeCalculationList() {
     const handleovertimeedit = async (id) => {
         setCurrentId(id);
         handleShowovertime();
-        axios.get(`https://office3i.com/user/api/public/api/view_overtime/${id}`, {
+        axios.get(`https://office3i.com/development/api/public/api/view_overtime/${id}`, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -159,7 +159,7 @@ function OverTimeCalculationList() {
             updated_by: userempid
         };
 
-        axios.post('https://office3i.com/user/api/public/api/update_overtime', requestData, {
+        axios.post('https://office3i.com/development/api/public/api/update_overtime', requestData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
@@ -214,7 +214,7 @@ function OverTimeCalculationList() {
     useEffect(() => {
         const fetchDepartments = async () => {
             try {
-                const response = await axios.get('https://office3i.com/user/api/public/api/userrolelist', {
+                const response = await axios.get('https://office3i.com/development/api/public/api/userrolelist', {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }
@@ -245,7 +245,7 @@ function OverTimeCalculationList() {
         if (selectedDepartment) {
             const fetchMembers = async () => {
                 try {
-                    const response = await axios.get(`https://office3i.com/user/api/public/api/employee_dropdown_list/${selectedDepartment}`, {
+                    const response = await axios.get(`https://office3i.com/development/api/public/api/employee_dropdown_list/${selectedDepartment}`, {
                         headers: {
                             'Authorization': `Bearer ${usertoken}`
                         }
@@ -274,7 +274,7 @@ function OverTimeCalculationList() {
 
 
     useEffect(() => {
-        const apiUrl = 'https://office3i.com/user/api/public/api/overtime_type_list';
+        const apiUrl = 'https://office3i.com/development/api/public/api/overtime_type_list';
         const fetchData = async () => {
             try {
                 const response = await axios.get(apiUrl, {
@@ -302,7 +302,7 @@ function OverTimeCalculationList() {
 
 
     useEffect(() => {
-        const apiUrl = 'https://office3i.com/user/api/public/api/attendance_location_list';
+        const apiUrl = 'https://office3i.com/development/api/public/api/attendance_location_list';
         const fetchData = async () => {
             try {
                 const response = await axios.get(apiUrl, {

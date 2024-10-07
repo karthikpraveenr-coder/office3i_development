@@ -82,7 +82,7 @@ function AddGoodsServices() {
             created_by: userempid
         };
 
-        axios.post('https://office3i.com/user/api/public/api/addgood_service', requestData, {
+        axios.post('https://office3i.com/development/api/public/api/addgood_service', requestData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
@@ -150,7 +150,7 @@ function AddGoodsServices() {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('https://office3i.com/user/api/public/api/view_goodservice', {
+            const response = await fetch('https://office3i.com/development/api/public/api/view_goodservice', {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -196,7 +196,7 @@ function AddGoodsServices() {
             });
 
             if (reason) {
-                const response = await fetch('https://office3i.com/user/api/public/api/delete_goodservice', {
+                const response = await fetch('https://office3i.com/development/api/public/api/delete_goodservice', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

@@ -167,7 +167,7 @@ const EditProjectList = () => {
         };
 
         try {
-            const response = await fetch('https://office3i.com/user/api/public/api/update_project', {
+            const response = await fetch('https://office3i.com/development/api/public/api/update_project', {
                 method: 'PUT',
                 body: JSON.stringify(ProjectData),
                 headers: {
@@ -228,7 +228,7 @@ const EditProjectList = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get(`https://office3i.com/user/api/public/api/edit_projectlist/${id}`, {
+        axios.get(`https://office3i.com/development/api/public/api/edit_projectlist/${id}`, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -285,7 +285,7 @@ const EditProjectList = () => {
     useEffect(() => {
         const fetchrole = async () => {
             try {
-                const response = await axios.get('https://office3i.com/user/api/public/api/userrolelist', {
+                const response = await axios.get('https://office3i.com/development/api/public/api/userrolelist', {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }
@@ -320,7 +320,7 @@ const EditProjectList = () => {
     // --------------------------------------- Employee Dropdown ------------------------------------------------
 
     useEffect(() => {
-        const apiUrl = `https://office3i.com/user/api/public/api/employee_dropdown_list/${formattedSelectedDepartment}`;
+        const apiUrl = `https://office3i.com/development/api/public/api/employee_dropdown_list/${formattedSelectedDepartment}`;
         const fetchData = async () => {
             try {
                 const response = await axios.get(apiUrl,

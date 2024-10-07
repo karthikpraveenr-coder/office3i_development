@@ -61,7 +61,7 @@ function SalesBuyPackList() {
     const fetchData = async () => {
         setLoading(true);
         try {
-            const response = await fetch('https://office3i.com/user/api/public/api/getsales_buynowpacklist', {
+            const response = await fetch('https://office3i.com/development/api/public/api/getsales_buynowpacklist', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

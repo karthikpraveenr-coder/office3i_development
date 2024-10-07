@@ -55,7 +55,7 @@ function TLAssignedTaskList() {
     const fetchData = async () => {
         setLoading(true);
         try {
-            const response = await fetch('https://office3i.com/user/api/public/api/view_assigntask_list', {
+            const response = await fetch('https://office3i.com/development/api/public/api/view_assigntask_list', {
                 method: 'POST', // Set the method to POST
                 headers: {
                     'Content-Type': 'application/json',
@@ -112,7 +112,7 @@ function TLAssignedTaskList() {
         formData.append('status', status);
 
         try {
-            const response = await fetch('https://office3i.com/user/api/public/api/filter_tasklist', {
+            const response = await fetch('https://office3i.com/development/api/public/api/filter_tasklist', {
                 method: 'POST',
                 body: formData,
                 headers: {
@@ -325,7 +325,7 @@ function TLAssignedTaskList() {
     useEffect(() => {
         const fetchrole = async () => {
             try {
-                const response = await axios.get(`https://office3i.com/user/api/public/api/supervisor_department_list/${userempid}`, {
+                const response = await axios.get(`https://office3i.com/development/api/public/api/supervisor_department_list/${userempid}`, {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }
@@ -359,7 +359,7 @@ function TLAssignedTaskList() {
     useEffect(() => {
         const fetchData = async () => {
             if (!formattedSelectedDepartment) return;
-            const apiUrl = `https://office3i.com/user/api/public/api/employee_dropdown_list/${formattedSelectedDepartment}`;
+            const apiUrl = `https://office3i.com/development/api/public/api/employee_dropdown_list/${formattedSelectedDepartment}`;
             try {
                 const response = await axios.get(apiUrl, {
                     headers: {
@@ -438,7 +438,7 @@ function TLAssignedTaskList() {
         };
 
         try {
-            const response = await fetch('https://office3i.com/user/api/public/api/task_update_status', {
+            const response = await fetch('https://office3i.com/development/api/public/api/task_update_status', {
                 method: 'PUT',
                 body: JSON.stringify(ProjectData),
                 headers: {
@@ -679,7 +679,7 @@ function TLAssignedTaskList() {
 
 
                                                 <td className='no-print'>{row.attachment !== null ?
-                                                    <button style={{ padding: '6px' }} className="btn-view" onClick={() => { window.open(`https://office3i.com/user/api/storage/app/${row.attachment}`, '_blank') }}>
+                                                    <button style={{ padding: '6px' }} className="btn-view" onClick={() => { window.open(`https://office3i.com/development/api/storage/app/${row.attachment}`, '_blank') }}>
                                                         <FontAwesomeIcon icon={faEye} /> View
                                                     </button>
 

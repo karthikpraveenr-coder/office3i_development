@@ -59,7 +59,7 @@ function TicketsList() {
             emp_id: userempid
         };
         try {
-            const response = await fetch('https://office3i.com/user/api/public/api/view_raiseticket_list', {
+            const response = await fetch('https://office3i.com/development/api/public/api/view_raiseticket_list', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -110,7 +110,7 @@ function TicketsList() {
             });
 
             if (reason) {
-                const response = await fetch('https://office3i.com/user/api/public/api/delete_raiseticket', {
+                const response = await fetch('https://office3i.com/development/api/public/api/delete_raiseticket', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -365,7 +365,7 @@ function TicketsList() {
 
                                                 <td className='no-print'>
                                                     {row.attachment !== '-' ?
-                                                        <button className="btn-view" onClick={() => { window.open(`https://office3i.com/user/api/storage/app/${row.attachment}`, '_blank') }}>
+                                                        <button className="btn-view" onClick={() => { window.open(`https://office3i.com/development/api/storage/app/${row.attachment}`, '_blank') }}>
                                                             <FontAwesomeIcon icon={faEye} /> View
                                                         </button>
 

@@ -16,7 +16,7 @@ const AppointmentLetterView = () => {
     // --------------------------------------------------------------------------------------------
     const [relievingletter, setRelievingletter] = useState()
     useEffect(() => {
-        axios.get(`https://office3i.com/user/api/public/api/edit_appointment_list/${id}`, {
+        axios.get(`https://office3i.com/development/api/public/api/edit_appointment_list/${id}`, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -79,7 +79,7 @@ const AppointmentLetterView = () => {
                 <div className="a4-container-appointment">
                     <div className="content" ref={pdfContainerRef}>
                         <div className="d-flex justify-content-between align-items-center mb-5 header">
-                            <img src={`https://office3i.com/user/api/storage/app/${relievingletter.header_attachment}`} alt="Appointment_letter" className="logo" />
+                            <img src={`https://office3i.com/development/api/storage/app/${relievingletter.header_attachment}`} alt="Appointment_letter" className="logo" />
                         </div>
                         <div className='appointment__letter__boday'>
                             <h4 className="text-center mb-4 appointment__letter">EMPLOYEE APPOINTMENT LETTER</h4>
@@ -155,7 +155,7 @@ const AppointmentLetterView = () => {
                         </div>
 
                         <div className="d-flex justify-content-between align-items-center footer">
-                            <img src={`https://office3i.com/user/api/storage/app/${relievingletter.footer_attached}`} alt="Offerletter_Footer" className="logo" />
+                            <img src={`https://office3i.com/development/api/storage/app/${relievingletter.footer_attached}`} alt="Offerletter_Footer" className="logo" />
                         </div>
 
                     </div>

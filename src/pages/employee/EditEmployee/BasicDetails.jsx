@@ -48,7 +48,7 @@ const BasicDetails = ({ formData, handleChange, handlePictureChange, formErrors,
                             )}
                             {!imagePreviewUrl && oldProfileImg && (
                                 <div style={{ marginTop: '10px' }}>
-                                    <img src={`https://office3i.com/user/api/storage/app/${oldProfileImg}`} alt="Employee Preview" style={{ width: '25%', height: 'auto' }} />
+                                    <img src={`https://office3i.com/development/api/storage/app/${oldProfileImg}`} alt="Employee Preview" style={{ width: '25%', height: 'auto' }} />
                                 </div>
                             )}
                         </Form.Group>

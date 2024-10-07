@@ -91,7 +91,7 @@ const SalesInvoiceView = () => {
 
 
     useEffect(() => {
-        axios.get(`https://office3i.com/user/api/public/api/pdfview_saleinvoice/${id}`, {
+        axios.get(`https://office3i.com/development/api/public/api/pdfview_saleinvoice/${id}`, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }

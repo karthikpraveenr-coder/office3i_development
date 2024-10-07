@@ -98,7 +98,7 @@ function MonthlyAttendanceCount(props) {
 
   useEffect(() => {
     // Fetch request types
-    fetch('https://office3i.com/user/api/public/api/attendance_type_list', {
+    fetch('https://office3i.com/development/api/public/api/attendance_type_list', {
       headers: {
         'Authorization': `Bearer ${usertoken}`
       }
@@ -118,7 +118,7 @@ function MonthlyAttendanceCount(props) {
 
   useEffect(() => {
     // Fetch locations
-    fetch('https://office3i.com/user/api/public/api/attendance_location_list', {
+    fetch('https://office3i.com/development/api/public/api/attendance_location_list', {
       headers: {
         'Authorization': `Bearer ${usertoken}`
       }
@@ -140,7 +140,7 @@ function MonthlyAttendanceCount(props) {
   const [selectedshift, setSelectedshift] = useState('');
 
   useEffect(() => {
-    const apiUrl = 'https://office3i.com/user/api/public/api/shiftslotlist';
+    const apiUrl = 'https://office3i.com/development/api/public/api/shiftslotlist';
     const fetchData = async () => {
       try {
         const response = await axios.get(apiUrl, {
@@ -259,7 +259,7 @@ function MonthlyAttendanceCount(props) {
     formDataToSend.append('shift_slot', selectedshift);
 
     try {
-      const response = await fetch('https://office3i.com/user/api/public/api/add_employee_attendance_request', {
+      const response = await fetch('https://office3i.com/development/api/public/api/add_employee_attendance_request', {
         method: 'POST',
         body: formDataToSend,
         headers: {
@@ -347,7 +347,7 @@ function MonthlyAttendanceCount(props) {
 
 
   useEffect(() => {
-    const apiUrl = 'https://office3i.com/user/api/public/api/leave_category_list';
+    const apiUrl = 'https://office3i.com/development/api/public/api/leave_category_list';
     const fetchData = async () => {
       try {
         const response = await axios.get(apiUrl, {
@@ -373,7 +373,7 @@ function MonthlyAttendanceCount(props) {
   const [isLeave, setIsLeave] = useState([{ "cid": "0", "leave_type_name": "Select Type" }]);
 
   useEffect(() => {
-    const apiUrl = 'https://office3i.com/user/api/public/api/leave_type_list';
+    const apiUrl = 'https://office3i.com/development/api/public/api/leave_type_list';
     const fetchData = async () => {
       try {
         const response = await axios.get(apiUrl, {
@@ -436,7 +436,7 @@ function MonthlyAttendanceCount(props) {
   const checkShiftSlot = async () => {
     if (leaveFormData.to_date || leaveFormData.permission_timeto) {
       try {
-        const response = await fetch('https://office3i.com/user/api/public/api/shift_slot_checking', {
+        const response = await fetch('https://office3i.com/development/api/public/api/shift_slot_checking', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -557,7 +557,7 @@ function MonthlyAttendanceCount(props) {
 
     try {
 
-      const response = await fetch('https://office3i.com/user/api/public/api/add_employee_leave_request', {
+      const response = await fetch('https://office3i.com/development/api/public/api/add_employee_leave_request', {
         method: 'POST',
         body: formDataToSend,
         headers: {
@@ -638,7 +638,7 @@ function MonthlyAttendanceCount(props) {
 
 
   useEffect(() => {
-    const apiUrl = 'https://office3i.com/user/api/public/api/overtime_type_list';
+    const apiUrl = 'https://office3i.com/development/api/public/api/overtime_type_list';
     const fetchData = async () => {
       try {
         const response = await axios.get(apiUrl, {
@@ -666,7 +666,7 @@ function MonthlyAttendanceCount(props) {
 
 
   useEffect(() => {
-    const apiUrl = 'https://office3i.com/user/api/public/api/attendance_location_list';
+    const apiUrl = 'https://office3i.com/development/api/public/api/attendance_location_list';
     const fetchData = async () => {
       try {
         const response = await axios.get(apiUrl, {
@@ -774,7 +774,7 @@ function MonthlyAttendanceCount(props) {
     formDataToSend.append('shift_slot', selectedshift);
 
     try {
-      const response = await fetch('https://office3i.com/user/api/public/api/add_employee_ot_request', {
+      const response = await fetch('https://office3i.com/development/api/public/api/add_employee_ot_request', {
         method: 'POST',
         body: formDataToSend,
         headers: {

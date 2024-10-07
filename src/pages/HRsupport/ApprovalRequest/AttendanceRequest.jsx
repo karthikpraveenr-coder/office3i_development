@@ -49,7 +49,7 @@ function AttendanceRequest() {
 
         console.log("formData", formData)
 
-        fetch('https://office3i.com/user/api/public/api/approval_attendance_request', {
+        fetch('https://office3i.com/development/api/public/api/approval_attendance_request', {
             method: 'POST',
             body: formData,
             headers: {
@@ -134,7 +134,7 @@ function AttendanceRequest() {
     const fetchData = async () => {
         setLoading(true); // Ensure loading is set before fetching
         try {
-            const response = await fetch('https://office3i.com/user/api/public/api/hr_attendance_approvallist', {
+            const response = await fetch('https://office3i.com/development/api/public/api/hr_attendance_approvallist', {
                 method: 'POST', // Set the method to POST
                 headers: {
                     'Content-Type': 'application/json',

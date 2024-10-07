@@ -39,7 +39,7 @@ const ViewSalesLeadList = () => {
 
     // Fetch data from the API
     useEffect(() => {
-        axios.get(`https://office3i.com/user/api/public/api/viewedit_leadlist/${id}`, {
+        axios.get(`https://office3i.com/development/api/public/api/viewedit_leadlist/${id}`, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -176,7 +176,7 @@ const ViewSalesLeadList = () => {
                                 /></Col>
                             <Col style={key__value}><strong>Attached Link</strong>
                                 {resumeData.consultfee_document !== '-' ? (
-                                    <button style={{ width: '75px', height: '35px' }} className="btn-view" onClick={() => { window.open(`https://office3i.com/user/api/storage/app/${resumeData.consultfee_document}`, '_blank') }}>
+                                    <button style={{ width: '75px', height: '35px' }} className="btn-view" onClick={() => { window.open(`https://office3i.com/development/api/storage/app/${resumeData.consultfee_document}`, '_blank') }}>
                                         <FontAwesomeIcon icon={faEye} /> View
                                     </button>
                                 ) : (

@@ -83,7 +83,7 @@ const AddCustomerOTP = () => {
         }
 
         try {                                                  
-            const response = await axios.post('https://office3i.com/user/api/public/api/office3i_singup_otpverification', {
+            const response = await axios.post('https://office3i.com/development/api/public/api/office3i_singup_otpverification', {
                 email_id: email,
                 first_name: firstName,
                 last_name: lastName,
@@ -162,7 +162,7 @@ const AddCustomerOTP = () => {
             setError('');
 
             try {
-                const response = await fetch('https://office3i.com/user/api/public/api/office3i_singup_resentotp', {
+                const response = await fetch('https://office3i.com/development/api/public/api/office3i_singup_resentotp', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

@@ -74,7 +74,7 @@ function Navbar() {
             });
 
             if (confirmed.isConfirmed) {
-                const response = await fetch('https://office3i.com/user/api/public/api/logout', {
+                const response = await fetch('https://office3i.com/development/api/public/api/logout', {
                     method: 'POST',
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
@@ -130,7 +130,7 @@ function Navbar() {
         };
 
         try {
-            const response = await axios.post(`https://office3i.com/user/api/public/api/auth_valid_checking`, data,
+            const response = await axios.post(`https://office3i.com/development/api/public/api/auth_valid_checking`, data,
                 {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
@@ -152,7 +152,7 @@ function Navbar() {
                 }).then((result) => {
                     if (result.isConfirmed) {
                         // Redirect to login page after user confirmation
-                        window.location.href = '/user/login';
+                        window.location.href = '/development/login';
                     }
                 });
             } else {
@@ -208,7 +208,7 @@ function Navbar() {
                 <li className="nav-item dropdown">
                     <Link className="nav-link dropdown-toggle" id="navbarDropdown" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 
-                        {/* <img src={`https://office3i.com/user/api/storage/app/${userimage}`} alt='user-profile' 
+                        {/* <img src={`https://office3i.com/development/api/storage/app/${userimage}`} alt='user-profile' 
                     
                     style={{
                         width:'56px',
@@ -219,7 +219,7 @@ function Navbar() {
                     /> */}
 
                         {userimage ? (
-                            <img src={`https://office3i.com/user/api/storage/app/${userimage}`} alt="User" className="user-image"
+                            <img src={`https://office3i.com/development/api/storage/app/${userimage}`} alt="User" className="user-image"
 
                                 style={{
                                     width: '56px',

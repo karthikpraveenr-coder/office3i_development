@@ -52,7 +52,7 @@ function AssetsType() {
     useEffect(() => {
         const fetchAssetId = async () => {
             try {
-                const response = await axios.get('https://office3i.com/user/api/public/api/asset_id', {
+                const response = await axios.get('https://office3i.com/development/api/public/api/asset_id', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${usertoken}` // Assuming usertoken is defined somewhere
@@ -101,7 +101,7 @@ function AssetsType() {
         };
 
 
-        axios.post('https://office3i.com/user/api/public/api/add_asset_type', requestData, {
+        axios.post('https://office3i.com/development/api/public/api/add_asset_type', requestData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
@@ -165,7 +165,7 @@ function AssetsType() {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('https://office3i.com/user/api/public/api/asset_type_list', {
+            const response = await fetch('https://office3i.com/development/api/public/api/asset_type_list', {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -211,7 +211,7 @@ function AssetsType() {
             });
 
             if (reason) {
-                const response = await fetch('https://office3i.com/user/api/public/api/delete_asset_type', {
+                const response = await fetch('https://office3i.com/development/api/public/api/delete_asset_type', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

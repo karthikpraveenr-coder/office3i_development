@@ -80,7 +80,7 @@ const EditLead = () => {
 
     // ------------------------------------------------------------------------------------------------------------
     useEffect(() => {
-        axios.get('https://office3i.com/user/api/public/api/country_list', {
+        axios.get('https://office3i.com/development/api/public/api/country_list', {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -100,7 +100,7 @@ const EditLead = () => {
 
     useEffect(() => {
         if (selectedCountry) {
-            axios.get(`https://office3i.com/user/api/public/api/state_list/${selectedCountry.value || selectedCountry}`, {
+            axios.get(`https://office3i.com/development/api/public/api/state_list/${selectedCountry.value || selectedCountry}`, {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -122,7 +122,7 @@ const EditLead = () => {
 
     useEffect(() => {
         if (selectedState) {
-            axios.get(`https://office3i.com/user/api/public/api/city_list/${selectedState.value || selectedState}`, {
+            axios.get(`https://office3i.com/development/api/public/api/city_list/${selectedState.value || selectedState}`, {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -194,7 +194,7 @@ const EditLead = () => {
         // Fetch city list from the API
         const fetchCities = async () => {
             try {
-                const response = await axios.get('https://office3i.com/user/api/public/api/all_city_list', {
+                const response = await axios.get('https://office3i.com/development/api/public/api/all_city_list', {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }
@@ -334,7 +334,7 @@ const EditLead = () => {
         formData.append('comments', leadComments);
         formData.append('updated_by', userempid);
 
-        axios.post('https://office3i.com/user/api/public/api/editpresale_leadlist', formData, {
+        axios.post('https://office3i.com/development/api/public/api/editpresale_leadlist', formData, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -404,7 +404,7 @@ const EditLead = () => {
     // useEffect(() => {
     //     const fetchAssetId = async () => {
     //         try {
-    //             const response = await axios.get('https://office3i.com/user/api/public/api/getautogenerateLeadId', {
+    //             const response = await axios.get('https://office3i.com/development/api/public/api/getautogenerateLeadId', {
     //                 headers: {
     //                     'Content-Type': 'application/json',
     //                     'Authorization': `Bearer ${usertoken}` // Assuming usertoken is defined somewhere
@@ -429,7 +429,7 @@ const EditLead = () => {
 
     // Fetch data from the API
     useEffect(() => {
-        axios.get(`https://office3i.com/user/api/public/api/viewedit_leadlist/${id}`, {
+        axios.get(`https://office3i.com/development/api/public/api/viewedit_leadlist/${id}`, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -484,7 +484,7 @@ const EditLead = () => {
     useEffect(() => {
         const fetchDepartments = async () => {
             try {
-                const response = await axios.get('https://office3i.com/user/api/public/api/userrolelist', {
+                const response = await axios.get('https://office3i.com/development/api/public/api/userrolelist', {
                     headers: {
                         Authorization: `Bearer ${usertoken}`
                     }
@@ -508,7 +508,7 @@ const EditLead = () => {
     // Fetch employee dropdown options based on selected department
     useEffect(() => {
         if (department) {
-            const apiUrl = `https://office3i.com/user/api/public/api/employee_dropdown_list/${department}`;
+            const apiUrl = `https://office3i.com/development/api/public/api/employee_dropdown_list/${department}`;
             const fetchEmployees = async () => {
                 try {
                     const response = await axios.get(apiUrl, {
@@ -865,7 +865,7 @@ const EditLead = () => {
                                 {consultDocument !== '-' && (
                                     <>
                                         <strong style={{ margin: '10px' }}>Attached Link</strong>
-                                        <button style={{}} className="btn-view" onClick={() => { window.open(`https://office3i.com/user/api/storage/app/${consultDocument}`, '_blank') }}>
+                                        <button style={{}} className="btn-view" onClick={() => { window.open(`https://office3i.com/development/api/storage/app/${consultDocument}`, '_blank') }}>
                                             <FontAwesomeIcon icon={faEye} />
                                         </button>
                                     </>

@@ -237,7 +237,7 @@ function AttendancePolicy() {
 
         // console.log("requestData--->", requestData)
 
-        axios.post('https://office3i.com/user/api/public/api/attendancepolicyinsert', requestData, {
+        axios.post('https://office3i.com/development/api/public/api/attendancepolicyinsert', requestData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
@@ -342,7 +342,7 @@ function AttendancePolicy() {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('https://office3i.com/user/api/public/api/view_attendancepolicy', {
+            const response = await fetch('https://office3i.com/development/api/public/api/view_attendancepolicy', {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -388,7 +388,7 @@ function AttendancePolicy() {
             });
 
             if (reason) {
-                const response = await fetch('https://office3i.com/user/api/public/api/delete_attendancepolicy', {
+                const response = await fetch('https://office3i.com/development/api/public/api/delete_attendancepolicy', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -430,7 +430,7 @@ function AttendancePolicy() {
 
     const fetchShiftSlot = async () => {
         try {
-            const response = await axios.get('https://office3i.com/user/api/public/api/shiftslotlist', {
+            const response = await axios.get('https://office3i.com/development/api/public/api/shiftslotlist', {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }

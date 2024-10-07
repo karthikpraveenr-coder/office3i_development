@@ -63,7 +63,7 @@ function EditLeavepolicycategory() {
         };
 
 
-        axios.put(`https://office3i.com/user/api/public/api/update_leavecategory`, requestData, {
+        axios.put(`https://office3i.com/development/api/public/api/update_leavecategory`, requestData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
@@ -115,7 +115,7 @@ function EditLeavepolicycategory() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get(`https://office3i.com/user/api/public/api/editview_leavecategory/${id}`, {
+        axios.get(`https://office3i.com/development/api/public/api/editview_leavecategory/${id}`, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }

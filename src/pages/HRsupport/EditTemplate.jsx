@@ -64,7 +64,7 @@ function EditTemplate() {
 
     // useEffect(() => {
     //     if (file) {
-    //         document.querySelector("#img").setAttribute("src", `https://office3i.com/user/api/storage/app/${file}`);
+    //         document.querySelector("#img").setAttribute("src", `https://office3i.com/development/api/storage/app/${file}`);
     //     }
     // }, [file]);
 
@@ -83,7 +83,7 @@ function EditTemplate() {
     //     formData.append('updated_by', userempid); 
 
 
-    //     axios.post(`https://office3i.com/user/api/public/api/hr_template_update`, formData, {
+    //     axios.post(`https://office3i.com/development/api/public/api/hr_template_update`, formData, {
     //         headers: {
     //             'Content-Type': 'application/json',
     //             'Authorization': `Bearer ${usertoken}`
@@ -134,7 +134,7 @@ function EditTemplate() {
 
 
 
-        axios.post('https://office3i.com/user/api/public/api/hr_template_update', formData, {
+        axios.post('https://office3i.com/development/api/public/api/hr_template_update', formData, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -179,7 +179,7 @@ function EditTemplate() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get(`https://office3i.com/user/api/public/api/hr_edit_templatelist/${id}`, {
+        axios.get(`https://office3i.com/development/api/public/api/hr_edit_templatelist/${id}`, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -264,11 +264,11 @@ function EditTemplate() {
                                     />
                                     {/* File Preview */}
                                     {file && file.endsWith('.pdf') ? (
-                                        <a id="fileLink" href={`https://office3i.com/user/api/storage/app/${file}`} target="_blank" rel="noopener noreferrer">
+                                        <a id="fileLink" href={`https://office3i.com/development/api/storage/app/${file}`} target="_blank" rel="noopener noreferrer">
                                             View Current PDF
                                         </a>
                                     ) : (
-                                        <img id="img" src={file ? `https://office3i.com/user/api/storage/app/${file}` : ''} alt="file" style={{ height: '150px' }} />
+                                        <img id="img" src={file ? `https://office3i.com/development/api/storage/app/${file}` : ''} alt="file" style={{ height: '150px' }} />
                                     )}
                                     <img src="" alt="file" id="img" style={{ height: '150px', display: 'none' }} />
                                     <a id="fileLink" href="" target="_blank" rel="noopener noreferrer" style={{ display: 'none' }}>

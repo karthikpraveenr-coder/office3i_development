@@ -52,7 +52,7 @@ function SearchResume() {
 
     // ------------------------------------------------------------------------------------------------------------
     useEffect(() => {
-        axios.get('https://office3i.com/user/api/public/api/country_list', {
+        axios.get('https://office3i.com/development/api/public/api/country_list', {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -72,7 +72,7 @@ function SearchResume() {
 
     useEffect(() => {
         if (selectedCountry) {
-            axios.get(`https://office3i.com/user/api/public/api/state_list/${selectedCountry.value}`, {
+            axios.get(`https://office3i.com/development/api/public/api/state_list/${selectedCountry.value}`, {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -94,7 +94,7 @@ function SearchResume() {
 
     useEffect(() => {
         if (selectedState) {
-            axios.get(`https://office3i.com/user/api/public/api/city_list/${selectedState.value}`, {
+            axios.get(`https://office3i.com/development/api/public/api/city_list/${selectedState.value}`, {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -156,7 +156,7 @@ function SearchResume() {
         // Fetch city list from the API
         const fetchCities = async () => {
             try {
-                const response = await axios.get('https://office3i.com/user/api/public/api/all_city_list', {
+                const response = await axios.get('https://office3i.com/development/api/public/api/all_city_list', {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }
@@ -192,7 +192,7 @@ function SearchResume() {
 
     // Fetch Functional Areas
     useEffect(() => {
-        fetch('https://office3i.com/user/api/public/api/functional_list', {
+        fetch('https://office3i.com/development/api/public/api/functional_list', {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -211,7 +211,7 @@ function SearchResume() {
     // Fetch Area of Specialization based on selected Functional Area
     useEffect(() => {
         if (functionalArea) {
-            fetch(`https://office3i.com/user/api/public/api/area_specialization_list/${functionalArea.value}`, {
+            fetch(`https://office3i.com/development/api/public/api/area_specialization_list/${functionalArea.value}`, {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -241,7 +241,7 @@ function SearchResume() {
 
     useEffect(() => {
 
-        fetch('https://office3i.com/user/api/public/api/industry_list', {
+        fetch('https://office3i.com/development/api/public/api/industry_list', {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -320,7 +320,7 @@ function SearchResume() {
         formData.append('salary_max', salaryMax);
         formData.append('key_skills', keySkills);
 
-        axios.post('https://office3i.com/user/api/public/api/search_resume_list', formData, {
+        axios.post('https://office3i.com/development/api/public/api/search_resume_list', formData, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
