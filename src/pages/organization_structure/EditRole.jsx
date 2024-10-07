@@ -207,7 +207,7 @@ const EditRole = () => {
 
         try {
             const response = await axios.put(
-                'https://office3i.com/development/api/public/api/update_role',
+                'https://office3i.com/user/api/public/api/update_role',
                 {
                     id: id,
                     role_name: role,
@@ -357,7 +357,7 @@ const EditRole = () => {
     // //  console.log("rolename--->", rolename)
 
     // useEffect(() => {
-    //     axios.get(`https://office3i.com/development/api/public/api/editview_role/${id}`, {
+    //     axios.get(`https://office3i.com/user/api/public/api/editview_role/${id}`, {
     //         headers: {
     //             'Authorization': `Bearer ${usertoken}`
     //         }
@@ -392,7 +392,7 @@ const EditRole = () => {
     // }, [id, usertoken]);
 
     useEffect(() => {
-        axios.get(`https://office3i.com/development/api/public/api/editview_role/${id}`, {
+        axios.get(`https://office3i.com/user/api/public/api/editview_role/${id}`, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }

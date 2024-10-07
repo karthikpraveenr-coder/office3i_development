@@ -99,7 +99,7 @@ function AddDailyAccounts() {
             created_by: userempid
         };
 
-        axios.post('https://office3i.com/development/api/public/api/add_dailyaccounts', requestData, {
+        axios.post('https://office3i.com/user/api/public/api/add_dailyaccounts', requestData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
@@ -179,7 +179,7 @@ function AddDailyAccounts() {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('https://office3i.com/development/api/public/api/view_dailyaccounts', {
+            const response = await fetch('https://office3i.com/user/api/public/api/view_dailyaccounts', {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -225,7 +225,7 @@ function AddDailyAccounts() {
             });
 
             if (reason) {
-                const response = await fetch('https://office3i.com/development/api/public/api/delete_goodservice', {
+                const response = await fetch('https://office3i.com/user/api/public/api/delete_goodservice', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -362,7 +362,7 @@ function AddDailyAccounts() {
     useEffect(() => {
         const fetchAssetId = async () => {
             try {
-                const response = await axios.get('https://office3i.com/development/api/public/api/balance_cash', {
+                const response = await axios.get('https://office3i.com/user/api/public/api/balance_cash', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${usertoken}` // Assuming usertoken is defined somewhere

@@ -80,7 +80,7 @@ const Documents = ({ formData, handleChangedoc, fileSets, setFileSets, handleSub
             });
 
             if (reason) {
-                const response = await fetch('https://office3i.com/development/api/public/api/employee_single_docmentdelete', {
+                const response = await fetch('https://office3i.com/user/api/public/api/employee_single_docmentdelete', {
                     method: 'POST',
                     headers: {
                         'Authorization': `Bearer ${usertoken}`,

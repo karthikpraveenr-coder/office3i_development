@@ -58,7 +58,7 @@ function PurchaseInvoiceList() {
     const fetchData = async () => {
         setLoading(true);
         try {
-            const response = await fetch('https://office3i.com/development/api/public/api/view_purchaseinvoice', {
+            const response = await fetch('https://office3i.com/user/api/public/api/view_purchaseinvoice', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -84,7 +84,7 @@ function PurchaseInvoiceList() {
 
 
     useEffect(() => {
-        fetch('https://office3i.com/development/api/public/api/view_saleinvoice', {
+        fetch('https://office3i.com/user/api/public/api/view_saleinvoice', {
             headers: {
 
                 'Authorization': `Bearer ${usertoken}`,
@@ -271,7 +271,7 @@ function PurchaseInvoiceList() {
             });
 
             if (reason) {
-                const response = await fetch('https://office3i.com/development/api/public/api/delete_purchaseinvoice', {
+                const response = await fetch('https://office3i.com/user/api/public/api/delete_purchaseinvoice', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

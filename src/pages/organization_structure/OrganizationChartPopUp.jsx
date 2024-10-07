@@ -13,7 +13,7 @@ const OrganizationChartPopUp = ({ handleCloseannouncement, announcementModel, or
         <Modal show={announcementModel} onHide={handleCloseannouncement}>
             <Modal.Header closeButton>
                 <div className='image__name'>
-                    <img src={`https://office3i.com/development/api/storage/app/${employee_details.profile_img}`} alt={employee_details.first_name} className='header__image' />
+                    <img src={`https://office3i.com/user/api/storage/app/${employee_details.profile_img}`} alt={employee_details.first_name} className='header__image' />
                     <div className='header__names'>
                         <h3 className='org__username'>{employee_details.first_name} {employee_details.last_name}</h3>
                         <p className='org__Designation'>

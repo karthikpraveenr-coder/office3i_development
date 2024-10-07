@@ -71,7 +71,7 @@ function EditGoodsServices() {
         };
 
 
-        axios.put(`https://office3i.com/development/api/public/api/update_goodservice`, requestData, {
+        axios.put(`https://office3i.com/user/api/public/api/update_goodservice`, requestData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
@@ -123,7 +123,7 @@ function EditGoodsServices() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get(`https://office3i.com/development/api/public/api/editview_goodservice/${id}`, {
+        axios.get(`https://office3i.com/user/api/public/api/editview_goodservice/${id}`, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }

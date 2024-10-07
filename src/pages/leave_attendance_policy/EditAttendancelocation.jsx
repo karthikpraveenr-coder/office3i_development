@@ -63,7 +63,7 @@ function EditAttendancelocation() {
         };
 
 
-        axios.put(`https://office3i.com/development/api/public/api/update_attendancelocation`, requestData, {
+        axios.put(`https://office3i.com/user/api/public/api/update_attendancelocation`, requestData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
@@ -114,7 +114,7 @@ function EditAttendancelocation() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get(`https://office3i.com/development/api/public/api/editview_attendancelocation/${id}`, {
+        axios.get(`https://office3i.com/user/api/public/api/editview_attendancelocation/${id}`, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }

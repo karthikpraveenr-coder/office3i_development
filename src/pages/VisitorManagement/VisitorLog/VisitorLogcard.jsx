@@ -37,7 +37,7 @@ function VisitorLogcard({ id, visitor_name, profile_img, mobile_number, id_proof
             updated_by: userempid,
         };
 
-        axios.put('https://office3i.com/development/api/public/api/visitor_checkout', requestData, {
+        axios.put('https://office3i.com/user/api/public/api/visitor_checkout', requestData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
@@ -81,7 +81,7 @@ function VisitorLogcard({ id, visitor_name, profile_img, mobile_number, id_proof
 
                 <div className='visitorlog__header'>
 
-                    <img src={`https://office3i.com/development/api/storage/app/${profile_img}`} alt='Visitor_profile' className='Visitor_profile' />
+                    <img src={`https://office3i.com/user/api/storage/app/${profile_img}`} alt='Visitor_profile' className='Visitor_profile' />
 
                     <h4 className='Visitor_name'>{visitor_name}</h4>
                 </div>

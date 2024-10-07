@@ -75,7 +75,7 @@ const EditTLAssignedTaskList = () => {
 
     useEffect(() => {
         if (attachment) {
-            document.querySelector("#img").setAttribute("src", `https://office3i.com/development/api/storage/app/${attachment}`);
+            document.querySelector("#img").setAttribute("src", `https://office3i.com/user/api/storage/app/${attachment}`);
         }
     }, [attachment]);
 
@@ -164,7 +164,7 @@ const EditTLAssignedTaskList = () => {
 
 
 
-        axios.post('https://office3i.com/development/api/public/api/update_task_list', formData, {
+        axios.post('https://office3i.com/user/api/public/api/update_task_list', formData, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -208,7 +208,7 @@ const EditTLAssignedTaskList = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get(`https://office3i.com/development/api/public/api/edit_tasklist/${id}`, {
+        axios.get(`https://office3i.com/user/api/public/api/edit_tasklist/${id}`, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -262,7 +262,7 @@ const EditTLAssignedTaskList = () => {
     useEffect(() => {
         const fetchrole = async () => {
             try {
-                const response = await axios.get('https://office3i.com/development/api/public/api/userrolelist', {
+                const response = await axios.get('https://office3i.com/user/api/public/api/userrolelist', {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }
@@ -297,7 +297,7 @@ const EditTLAssignedTaskList = () => {
     // --------------------------------------- Employee Dropdown ------------------------------------------------
 
     useEffect(() => {
-        const apiUrl = `https://office3i.com/development/api/public/api/employee_dropdown_list/${formattedSelectedDepartment}`;
+        const apiUrl = `https://office3i.com/user/api/public/api/employee_dropdown_list/${formattedSelectedDepartment}`;
         const fetchData = async () => {
             try {
                 const response = await axios.get(apiUrl,
@@ -339,7 +339,7 @@ const EditTLAssignedTaskList = () => {
     useEffect(() => {
         const fetchProjectNames = async () => {
             try {
-                const response = await axios.get('https://office3i.com/development/api/public/api/project_name_list', {
+                const response = await axios.get('https://office3i.com/user/api/public/api/project_name_list', {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }

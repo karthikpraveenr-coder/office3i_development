@@ -152,7 +152,7 @@ export default function EditAppointmentLetter() {
         formData.append('updated_by', userData.userempid);
 
         try {
-            const response = await axios.post('https://office3i.com/development/api/public/api/update_appointment_letter', formData, {
+            const response = await axios.post('https://office3i.com/user/api/public/api/update_appointment_letter', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'Authorization': `Bearer ${usertoken}`
@@ -184,7 +184,7 @@ export default function EditAppointmentLetter() {
     // --------------------------------------------------------------------------------------------
 
     useEffect(() => {
-        axios.get(`https://office3i.com/development/api/public/api/edit_appointment_list/${id}`, {
+        axios.get(`https://office3i.com/user/api/public/api/edit_appointment_list/${id}`, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -232,7 +232,7 @@ export default function EditAppointmentLetter() {
         if (headerAttachment && headerAttachment instanceof File) {
             setImagePreviewUrl(URL.createObjectURL(headerAttachment));
         } else if (headerAttachment) {
-            setImagePreviewUrl(`https://office3i.com/development/api/storage/app/${headerAttachment}`);
+            setImagePreviewUrl(`https://office3i.com/user/api/storage/app/${headerAttachment}`);
         }
         // Cleanup URL when component unmounts or file changes
         return () => {
@@ -248,7 +248,7 @@ export default function EditAppointmentLetter() {
         if (footerAttachment && footerAttachment instanceof File) {
             setFooterImagePreviewUrl(URL.createObjectURL(footerAttachment));
         } else if (footerAttachment) {
-            setFooterImagePreviewUrl(`https://office3i.com/development/api/storage/app/${footerAttachment}`);
+            setFooterImagePreviewUrl(`https://office3i.com/user/api/storage/app/${footerAttachment}`);
         }
         // Cleanup URL when component unmounts or file changes
         return () => {

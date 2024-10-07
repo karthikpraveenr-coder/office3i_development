@@ -77,7 +77,7 @@ function EditPresalesBuyPackList() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`https://office3i.com/development/api/public/api/getbuybowpackpresalesviewlist/${id}`, {
+                const response = await axios.get(`https://office3i.com/user/api/public/api/getbuybowpackpresalesviewlist/${id}`, {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }
@@ -143,7 +143,7 @@ function EditPresalesBuyPackList() {
 
     useEffect(() => {
         // Fetch Plan options
-        axios.get('https://office3i.com/development/api/public/api/webproduct_list')
+        axios.get('https://office3i.com/user/api/public/api/webproduct_list')
             .then(response => {
                 if (response.data && response.data.data) {
                     setPlans(response.data.data);
@@ -154,7 +154,7 @@ function EditPresalesBuyPackList() {
             .catch(error => console.error('Error fetching plans:', error));
 
         // Fetch Module options
-        axios.get('https://office3i.com/development/api/public/api/webmodule_list')
+        axios.get('https://office3i.com/user/api/public/api/webmodule_list')
             .then(response => {
 
 
@@ -223,7 +223,7 @@ function EditPresalesBuyPackList() {
 
         };
 
-        axios.post('https://office3i.com/development/api/public/api/getbuybowpackupdatestatuslist', payload, {
+        axios.post('https://office3i.com/user/api/public/api/getbuybowpackupdatestatuslist', payload, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -275,7 +275,7 @@ function EditPresalesBuyPackList() {
     useEffect(() => {
         const fetchrole = async () => {
             try {
-                const response = await axios.get('https://office3i.com/development/api/public/api/userrolelist', {
+                const response = await axios.get('https://office3i.com/user/api/public/api/userrolelist', {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }
@@ -303,7 +303,7 @@ function EditPresalesBuyPackList() {
 
     // Fetch Employees
     useEffect(() => {
-        const apiUrl = `https://office3i.com/development/api/public/api/employee_dropdown_list/${formattedSelectedDepartment}`;
+        const apiUrl = `https://office3i.com/user/api/public/api/employee_dropdown_list/${formattedSelectedDepartment}`;
         const fetchData = async () => {
             try {
                 const response = await axios.get(apiUrl, {
@@ -344,7 +344,7 @@ function EditPresalesBuyPackList() {
 
     // ------------------------------------------------------------------------------------------------------------
     useEffect(() => {
-        axios.get('https://office3i.com/development/api/public/api/office3i_country_list', {
+        axios.get('https://office3i.com/user/api/public/api/office3i_country_list', {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -361,7 +361,7 @@ function EditPresalesBuyPackList() {
 
     useEffect(() => {
         if (selectedCountry) {
-            axios.get(`https://office3i.com/development/api/public/api/office3i_state_list/${selectedCountry.value || selectedCountry}`, {
+            axios.get(`https://office3i.com/user/api/public/api/office3i_state_list/${selectedCountry.value || selectedCountry}`, {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -381,7 +381,7 @@ function EditPresalesBuyPackList() {
 
     useEffect(() => {
         if (selectedState) {
-            axios.get(`https://office3i.com/development/api/public/api/office3i_city_list/${selectedState.value || selectedState}`, {
+            axios.get(`https://office3i.com/user/api/public/api/office3i_city_list/${selectedState.value || selectedState}`, {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -437,7 +437,7 @@ function EditPresalesBuyPackList() {
 
     useEffect(() => {
         // Fetching data from the API
-        axios.get(`https://office3i.com/development/api/public/api/webproductmodule_list/${selectedPlan}`)
+        axios.get(`https://office3i.com/user/api/public/api/webproductmodule_list/${selectedPlan}`)
             .then(response => {
                 // console.log("setProducts----->", response.data.data);
                 // console.log("First Product Price----->", response.data.data[0].price);
@@ -507,7 +507,7 @@ function EditPresalesBuyPackList() {
 
 
     useEffect(() => {
-        axios.get('https://office3i.com/development/api/public/api/payment_method_status', {
+        axios.get('https://office3i.com/user/api/public/api/payment_method_status', {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -546,7 +546,7 @@ function EditPresalesBuyPackList() {
 
 
     useEffect(() => {
-        axios.get('https://office3i.com/development/api/public/api/payment_type_status', {
+        axios.get('https://office3i.com/user/api/public/api/payment_type_status', {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }

@@ -51,7 +51,7 @@ const EditJobopening = () => {
 
 
 
-        axios.put('https://office3i.com/development/api/public/api/update_job_opening', requestData, {
+        axios.put('https://office3i.com/user/api/public/api/update_job_opening', requestData, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -92,7 +92,7 @@ const EditJobopening = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`https://office3i.com/development/api/public/api/edit_jobopening_list/${id}`, {
+                const response = await axios.get(`https://office3i.com/user/api/public/api/edit_jobopening_list/${id}`, {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }

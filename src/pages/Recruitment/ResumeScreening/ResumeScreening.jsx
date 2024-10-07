@@ -44,7 +44,7 @@ function ResumeScreening() {
     const fetchData = async () => {
         setLoading(true);
         try {
-            const response = await fetch('https://office3i.com/development/api/public/api/career_inboxdetails', {
+            const response = await fetch('https://office3i.com/user/api/public/api/career_inboxdetails', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -238,7 +238,7 @@ function ResumeScreening() {
             });
 
             if (reason) {
-                const response = await fetch('https://office3i.com/development/api/public/api/single_delete', {
+                const response = await fetch('https://office3i.com/user/api/public/api/single_delete', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -293,7 +293,7 @@ function ResumeScreening() {
 
             if (reason) {
                 const idsString = selectedIds.join(',');
-                const response = await fetch('https://office3i.com/development/api/public/api/bulk_delete', {
+                const response = await fetch('https://office3i.com/user/api/public/api/bulk_delete', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -325,7 +325,7 @@ function ResumeScreening() {
     const Markasread = async (id) => {
         try {
             const response = await axios.post(
-                'https://office3i.com/development/api/public/api/read_countupdate',
+                'https://office3i.com/user/api/public/api/read_countupdate',
                 {
                     id: id,
                     updated_by: userempid
@@ -348,7 +348,7 @@ function ResumeScreening() {
     const Markasunread = async (id) => {
         try {
             const response = await axios.post(
-                'https://office3i.com/development/api/public/api/un_read_countupdate',
+                'https://office3i.com/user/api/public/api/un_read_countupdate',
                 {
                     id: id,
                     updated_by: userempid
@@ -371,7 +371,7 @@ function ResumeScreening() {
     const BulkMarkasread = async () => {
         try {
             const response = await axios.post(
-                'https://office3i.com/development/api/public/api/bulk_read_countupdate',
+                'https://office3i.com/user/api/public/api/bulk_read_countupdate',
                 {
                     id: selectedIds.join(','),
                     updated_by: userempid
@@ -395,7 +395,7 @@ function ResumeScreening() {
     const BulkMarkasunread = async () => {
         try {
             const response = await axios.post(
-                'https://office3i.com/development/api/public/api/bulk_unread_countupdate',
+                'https://office3i.com/user/api/public/api/bulk_unread_countupdate',
                 {
                     id: selectedIds.join(','),
                     updated_by: userempid
@@ -645,7 +645,7 @@ function ResumeScreening() {
                                                             color: '#000000'
                                                         }}
                                                         onClick={() => {
-                                                            const url = `https://office3i.com/development/api/storage/app/${row.attachment}`;
+                                                            const url = `https://office3i.com/user/api/storage/app/${row.attachment}`;
                                                             console.log("Opening URL:", url);
                                                             window.open(url, '_blank');
                                                         }}

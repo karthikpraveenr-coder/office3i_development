@@ -99,7 +99,7 @@ export default function ViewProfile() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`https://office3i.com/development/api/public/api/employee_detailslitshow/${id}`, {
+                const response = await axios.get(`https://office3i.com/user/api/public/api/employee_detailslitshow/${id}`, {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }
@@ -151,7 +151,7 @@ export default function ViewProfile() {
                         <MDBCard className="mb-4">
                             <MDBCardBody className="text-center">
                                 <MDBCardImage
-                                    src={`https://office3i.com/development/api/storage/app/${employeeData.profile_img}`}
+                                    src={`https://office3i.com/user/api/storage/app/${employeeData.profile_img}`}
                                     alt="avatar"
                                     className="rounded-circle"
                                     style={{ width: '400px', height: '20vh', objectFit: 'contain', marginBottom: '30px' }}

@@ -58,7 +58,7 @@ const EditCompany = () => {
 
     // ------------------------------------------------------------------------------------------------------------
     useEffect(() => {
-        axios.get('https://office3i.com/development/api/public/api/country_list', {
+        axios.get('https://office3i.com/user/api/public/api/country_list', {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -78,7 +78,7 @@ const EditCompany = () => {
 
     useEffect(() => {
         if (selectedCountry) {
-            axios.get(`https://office3i.com/development/api/public/api/state_list/${selectedCountry.value || selectedCountry}`, {
+            axios.get(`https://office3i.com/user/api/public/api/state_list/${selectedCountry.value || selectedCountry}`, {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -100,7 +100,7 @@ const EditCompany = () => {
 
     useEffect(() => {
         if (selectedState) {
-            axios.get(`https://office3i.com/development/api/public/api/city_list/${selectedState.value || selectedState}`, {
+            axios.get(`https://office3i.com/user/api/public/api/city_list/${selectedState.value || selectedState}`, {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -172,7 +172,7 @@ const EditCompany = () => {
         // Fetch city list from the API
         const fetchCities = async () => {
             try {
-                const response = await axios.get('https://office3i.com/development/api/public/api/all_city_list', {
+                const response = await axios.get('https://office3i.com/user/api/public/api/all_city_list', {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }
@@ -293,7 +293,7 @@ const EditCompany = () => {
 
 
 
-        axios.put(`https://office3i.com/development/api/public/api/update_company_information`, requestData, {
+        axios.put(`https://office3i.com/user/api/public/api/update_company_information`, requestData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
@@ -339,7 +339,7 @@ const EditCompany = () => {
 
     // Fetch data from the API
     useEffect(() => {
-        axios.get(`https://office3i.com/development/api/public/api/editview_company_information/${id}`, {
+        axios.get(`https://office3i.com/user/api/public/api/editview_company_information/${id}`, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }

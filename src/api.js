@@ -3,7 +3,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 
 const api = axios.create({
-    baseURL: 'https://office3i.com/development/api/public/api',
+    baseURL: 'https://office3i.com/user/api/public/api',
     headers: {
         'Content-Type': 'application/json',
     },
@@ -23,7 +23,7 @@ const handleSessionExpiration = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 // Redirect to login page after user confirmation
-                window.location.href = '/development/login';
+                window.location.href = '/user/login';
             }
             isRefreshing = false;
         });

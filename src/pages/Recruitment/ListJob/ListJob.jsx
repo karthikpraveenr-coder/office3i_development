@@ -59,7 +59,7 @@ function ListJob() {
     // const fetchData = async () => {
     //     setLoading(true);
     //     try {
-    //         const response = await fetch('https://office3i.com/development/api/public/api/employee_logs', {
+    //         const response = await fetch('https://office3i.com/user/api/public/api/employee_logs', {
     //             method: 'GET',
     //             headers: {
     //                 'Content-Type': 'application/json',
@@ -92,7 +92,7 @@ function ListJob() {
         const fetchData = async () => {
             try {
                 const response = await axios.get(
-                    `https://office3i.com/development/api/public/api/post_job_list/${activeStatus}`, {
+                    `https://office3i.com/user/api/public/api/post_job_list/${activeStatus}`, {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }

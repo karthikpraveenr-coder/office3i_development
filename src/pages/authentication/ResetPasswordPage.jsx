@@ -58,7 +58,7 @@ const ResetPasswordPage = () => {
         }
 
         try {
-            const response = await axios.post('https://office3i.com/development/api/public/api/forgot_change_password', {
+            const response = await axios.post('https://office3i.com/user/api/public/api/forgot_change_password', {
                 email: userEmail,
                 change_password: password // assuming password state contains the new password
             });

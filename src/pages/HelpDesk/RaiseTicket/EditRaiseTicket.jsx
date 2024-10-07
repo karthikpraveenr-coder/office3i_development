@@ -61,7 +61,7 @@ const EditRaiseTicket = () => {
 
     useEffect(() => {
         if (attachment) {
-            document.querySelector("#img").setAttribute("src", `https://office3i.com/development/api/storage/app/${attachment}`);
+            document.querySelector("#img").setAttribute("src", `https://office3i.com/user/api/storage/app/${attachment}`);
         }
     }, [attachment]);
 
@@ -72,7 +72,7 @@ const EditRaiseTicket = () => {
     useEffect(() => {
         const fetchAssetId = async () => {
             try {
-                const response = await axios.get(`https://office3i.com/development/api/public/api/editview_raiselist/${id}`, {
+                const response = await axios.get(`https://office3i.com/user/api/public/api/editview_raiselist/${id}`, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${usertoken}` // Assuming usertoken is defined somewhere
@@ -147,7 +147,7 @@ const EditRaiseTicket = () => {
             updated_by: userempid
         }
 
-        axios.put('https://office3i.com/development/api/public/api/update_raiseticket', formData, {
+        axios.put('https://office3i.com/user/api/public/api/update_raiseticket', formData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
@@ -200,7 +200,7 @@ const EditRaiseTicket = () => {
     useEffect(() => {
         const fetchDepartments = async () => {
             try {
-                const response = await axios.get('https://office3i.com/development/api/public/api/userrolelist', {
+                const response = await axios.get('https://office3i.com/user/api/public/api/userrolelist', {
                     headers: {
                         Authorization: `Bearer ${usertoken}`
                     }
@@ -224,7 +224,7 @@ const EditRaiseTicket = () => {
     // Fetch employee dropdown options based on selected department
     useEffect(() => {
         if (department) {
-            const apiUrl = `https://office3i.com/development/api/public/api/employee_dropdown_list/${department}`;
+            const apiUrl = `https://office3i.com/user/api/public/api/employee_dropdown_list/${department}`;
             const fetchEmployees = async () => {
                 try {
                     const response = await axios.get(apiUrl, {
@@ -251,7 +251,7 @@ const EditRaiseTicket = () => {
     useEffect(() => {
         const fetchDepartments = async () => {
             try {
-                const response = await axios.get('https://office3i.com/development/api/public/api/userrolelist', {
+                const response = await axios.get('https://office3i.com/user/api/public/api/userrolelist', {
                     headers: {
                         Authorization: `Bearer ${usertoken}`
                     }
@@ -275,7 +275,7 @@ const EditRaiseTicket = () => {
     // Fetch employee dropdown options based on selected department
     useEffect(() => {
         if (assignDepartment) {
-            const apiUrl = `https://office3i.com/development/api/public/api/employee_dropdown_list/${assignDepartment}`;
+            const apiUrl = `https://office3i.com/user/api/public/api/employee_dropdown_list/${assignDepartment}`;
             const fetchEmployees = async () => {
                 try {
                     const response = await axios.get(apiUrl, {
@@ -301,7 +301,7 @@ const EditRaiseTicket = () => {
     useEffect(() => {
         const fetchDepartments = async () => {
             try {
-                const response = await axios.get('https://office3i.com/development/api/public/api/issue_type_list', {
+                const response = await axios.get('https://office3i.com/user/api/public/api/issue_type_list', {
                     headers: {
                         Authorization: `Bearer ${usertoken}`
                     }

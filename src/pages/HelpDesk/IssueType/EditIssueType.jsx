@@ -62,7 +62,7 @@ function EditIssueType() {
         };
 
 
-        axios.put(`https://office3i.com/development/api/public/api/update_issuetype`, requestData, {
+        axios.put(`https://office3i.com/user/api/public/api/update_issuetype`, requestData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
@@ -112,7 +112,7 @@ function EditIssueType() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get(`https://office3i.com/development/api/public/api/editview_issuetype/${id}`, {
+        axios.get(`https://office3i.com/user/api/public/api/editview_issuetype/${id}`, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }

@@ -66,7 +66,7 @@ const Loginpage = () => {
         setPasswordError('');
       }
 
-      const apiUrl = `https://office3i.com/development/api/public/api/login`;
+      const apiUrl = `https://office3i.com/user/api/public/api/login`;
 
       const response = await axios.post(apiUrl, {
         user_login: employeeId,

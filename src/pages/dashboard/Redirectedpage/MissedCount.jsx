@@ -38,7 +38,7 @@ function MissedCount() {
     const fetchData = async () => {
         setLoading(true);
         try {
-            const response = await fetch('https://office3i.com/development/api/public/api/missedcount_Details', {
+            const response = await fetch('https://office3i.com/user/api/public/api/missedcount_Details', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -75,7 +75,7 @@ function MissedCount() {
     const fetchindividualuserData = async () => {
         setLoading(true);
         try {
-            const response = await fetch(`https://office3i.com/development/api/public/api/get_missedcount_Details/${missedcounuserid}`, {
+            const response = await fetch(`https://office3i.com/user/api/public/api/get_missedcount_Details/${missedcounuserid}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -254,7 +254,7 @@ function MissedCount() {
     useEffect(() => {
         const fetchDepartments = async () => {
             try {
-                const response = await axios.get('https://office3i.com/development/api/public/api/userrolelist', {
+                const response = await axios.get('https://office3i.com/user/api/public/api/userrolelist', {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }
@@ -285,7 +285,7 @@ function MissedCount() {
         if (selectedDepartment) {
             const fetchMembers = async () => {
                 try {
-                    const response = await axios.get(`https://office3i.com/development/api/public/api/employee_dropdown_list/${selectedDepartment}`, {
+                    const response = await axios.get(`https://office3i.com/user/api/public/api/employee_dropdown_list/${selectedDepartment}`, {
                         headers: {
                             'Authorization': `Bearer ${usertoken}`
                         }
@@ -312,7 +312,7 @@ function MissedCount() {
 
 
     useEffect(() => {
-        const apiUrl = 'https://office3i.com/development/api/public/api/leave_category_list';
+        const apiUrl = 'https://office3i.com/user/api/public/api/leave_category_list';
         const fetchData = async () => {
             try {
                 const response = await axios.get(apiUrl, {
@@ -337,7 +337,7 @@ function MissedCount() {
     const [isLeave, setIsLeave] = useState([{ "cid": "0", "leave_type_name": "Select Type" }]);
 
     useEffect(() => {
-        const apiUrl = 'https://office3i.com/development/api/public/api/leave_type_list';
+        const apiUrl = 'https://office3i.com/user/api/public/api/leave_type_list';
         const fetchData = async () => {
             try {
                 const response = await axios.get(apiUrl, {
@@ -420,7 +420,7 @@ function MissedCount() {
     const checkShiftSlot = async () => {
         if (toDate) {
             try {
-                const response = await fetch('https://office3i.com/development/api/public/api/shift_slot_checking', {
+                const response = await fetch('https://office3i.com/user/api/public/api/shift_slot_checking', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -490,7 +490,7 @@ function MissedCount() {
         console.log("formData----->", formData);
 
         try {
-            const response = await fetch('https://office3i.com/development/api/public/api/add_menualentry', {
+            const response = await fetch('https://office3i.com/user/api/public/api/add_menualentry', {
                 method: 'POST',
                 body: formData,
                 headers: {

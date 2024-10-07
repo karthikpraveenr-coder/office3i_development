@@ -113,7 +113,7 @@ export default function ApprovalRequest() {
     useEffect(() => {
         const fetchDepartments = async () => {
             try {
-                const response = await axios.get('https://office3i.com/development/api/public/api/userrolelist', {
+                const response = await axios.get('https://office3i.com/user/api/public/api/userrolelist', {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }
@@ -144,7 +144,7 @@ export default function ApprovalRequest() {
         if (selectedDepartment) {
             const fetchMembers = async () => {
                 try {
-                    const response = await axios.get(`https://office3i.com/development/api/public/api/employee_dropdown_list/${selectedDepartment}`, {
+                    const response = await axios.get(`https://office3i.com/user/api/public/api/employee_dropdown_list/${selectedDepartment}`, {
                         headers: {
                             'Authorization': `Bearer ${usertoken}`
                         }
@@ -172,7 +172,7 @@ export default function ApprovalRequest() {
 
 
     useEffect(() => {
-        const apiUrl = 'https://office3i.com/development/api/public/api/leave_category_list';
+        const apiUrl = 'https://office3i.com/user/api/public/api/leave_category_list';
         const fetchData = async () => {
             try {
                 const response = await axios.get(apiUrl, {
@@ -197,7 +197,7 @@ export default function ApprovalRequest() {
     const [isLeave, setIsLeave] = useState([{ "cid": "0", "leave_type_name": "Select Type" }]);
 
     useEffect(() => {
-        const apiUrl = 'https://office3i.com/development/api/public/api/leave_type_list';
+        const apiUrl = 'https://office3i.com/user/api/public/api/leave_type_list';
         const fetchData = async () => {
             try {
                 const response = await axios.get(apiUrl, {
@@ -225,7 +225,7 @@ export default function ApprovalRequest() {
 
 
     useEffect(() => {
-        const apiUrl = 'https://office3i.com/development/api/public/api/attendance_type_list';
+        const apiUrl = 'https://office3i.com/user/api/public/api/attendance_type_list';
         const fetchData = async () => {
             try {
                 const response = await axios.get(apiUrl, {
@@ -254,7 +254,7 @@ export default function ApprovalRequest() {
 
 
     useEffect(() => {
-        const apiUrl = 'https://office3i.com/development/api/public/api/attendance_location_list';
+        const apiUrl = 'https://office3i.com/user/api/public/api/attendance_location_list';
         const fetchData = async () => {
             try {
                 const response = await axios.get(apiUrl, {
@@ -283,7 +283,7 @@ export default function ApprovalRequest() {
 
 
     useEffect(() => {
-        const apiUrl = 'https://office3i.com/development/api/public/api/shiftslotlist';
+        const apiUrl = 'https://office3i.com/user/api/public/api/shiftslotlist';
         const fetchData = async () => {
             try {
                 const response = await axios.get(apiUrl, {
@@ -312,7 +312,7 @@ export default function ApprovalRequest() {
 
 
     useEffect(() => {
-        const apiUrl = 'https://office3i.com/development/api/public/api/overtime_type_list';
+        const apiUrl = 'https://office3i.com/user/api/public/api/overtime_type_list';
         const fetchData = async () => {
             try {
                 const response = await axios.get(apiUrl, {
@@ -364,7 +364,7 @@ export default function ApprovalRequest() {
         console.log("formData----->", formData);
 
         try {
-            const response = await fetch('https://office3i.com/development/api/public/api/add_menualentry', {
+            const response = await fetch('https://office3i.com/user/api/public/api/add_menualentry', {
                 method: 'POST',
                 body: formData,
                 headers: {
@@ -613,7 +613,7 @@ export default function ApprovalRequest() {
         formDataToSend.append('request_reason', formData.attendance_reason);
 
         try {
-            const response = await fetch('https://office3i.com/development/api/public/api/add_attendancemenualentry', {
+            const response = await fetch('https://office3i.com/user/api/public/api/add_attendancemenualentry', {
                 method: 'POST',
                 body: formDataToSend,
                 headers: {
@@ -781,7 +781,7 @@ export default function ApprovalRequest() {
         formDataToSend.append('request_reason', formDataOT.attendance_reason);
 
         try {
-            const response = await fetch('https://office3i.com/development/api/public/api/add_otmenualentry', {
+            const response = await fetch('https://office3i.com/user/api/public/api/add_otmenualentry', {
                 method: 'POST',
                 body: formDataToSend,
                 headers: {
@@ -833,7 +833,7 @@ export default function ApprovalRequest() {
     const checkShiftSlot = async () => {
         if (toDate || toTime) {
             try {
-                const response = await fetch('https://office3i.com/development/api/public/api/shift_slot_checking', {
+                const response = await fetch('https://office3i.com/user/api/public/api/shift_slot_checking', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

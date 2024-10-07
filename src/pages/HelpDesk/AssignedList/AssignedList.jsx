@@ -55,7 +55,7 @@ function AssignedList() {
             assign_empid: userempid
         };
         try {
-            const response = await fetch('https://office3i.com/development/api/public/api/view_raiseassign_list', {
+            const response = await fetch('https://office3i.com/user/api/public/api/view_raiseassign_list', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -106,7 +106,7 @@ function AssignedList() {
             });
 
             if (reason) {
-                const response = await fetch('https://office3i.com/development/api/public/api/delete_raiseticket', {
+                const response = await fetch('https://office3i.com/user/api/public/api/delete_raiseticket', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -354,7 +354,7 @@ function AssignedList() {
                                                 <td >{row.Assigned_empname !== null ? row.Assigned_empname : '-'}</td>
                                                 <td className='no-print'>
                                                     {row.attachment !== '-' ?
-                                                        <button className="btn-view" onClick={() => { window.open(`https://office3i.com/development/api/storage/app/${row.attachment}`, '_blank') }}>
+                                                        <button className="btn-view" onClick={() => { window.open(`https://office3i.com/user/api/storage/app/${row.attachment}`, '_blank') }}>
                                                             <FontAwesomeIcon icon={faEye} /> View
                                                         </button>
 

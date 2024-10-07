@@ -84,7 +84,7 @@ function Templates() {
             formData.append('template_file', file);
         }
 
-        axios.post('https://office3i.com/development/api/public/api/hr_addtemplates', formData, {
+        axios.post('https://office3i.com/user/api/public/api/hr_addtemplates', formData, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -148,7 +148,7 @@ function Templates() {
         };
 
         try {
-            const response = await fetch('https://office3i.com/development/api/public/api/hr_templatelist', {
+            const response = await fetch('https://office3i.com/user/api/public/api/hr_templatelist', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -198,7 +198,7 @@ function Templates() {
             });
     
             if (reason) {
-                const response = await fetch('https://office3i.com/development/api/public/api/hr_template_delete', {
+                const response = await fetch('https://office3i.com/user/api/public/api/hr_template_delete', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -514,18 +514,18 @@ function Templates() {
                                                     <th scope="row">{serialNumber}</th>
                                                     <td>{row.title}</td>
                                                     <td>{row.status}</td>
-                                                    {/* <td><img src={`https://office3i.com/development/api/storage/app/${row.template_file}`} alt='template-image' style={{ width: '30%' }} /></td> */}
+                                                    {/* <td><img src={`https://office3i.com/user/api/storage/app/${row.template_file}`} alt='template-image' style={{ width: '30%' }} /></td> */}
 
                                                     <td style={{ display: 'flex', gap: '10px' }} className="no-print">
 
-                                                        <button className="btn-view" onClick={() => { window.open(`https://office3i.com/development/api/storage/app/${row.template_file}`, '_blank') }}>
+                                                        <button className="btn-view" onClick={() => { window.open(`https://office3i.com/user/api/storage/app/${row.template_file}`, '_blank') }}>
                                                             <FontAwesomeIcon icon={faEye} /> View
                                                         </button>
 
 
                                                         <button
                                                             className="btn-download"
-                                                            onClick={() => handleDownload(`https://office3i.com/development/api/storage/app/${row.template_file}`, row.template_file.split('/').pop())}
+                                                            onClick={() => handleDownload(`https://office3i.com/user/api/storage/app/${row.template_file}`, row.template_file.split('/').pop())}
                                                         >
                                                             <FontAwesomeIcon icon={faDownload} /> Download
                                                         </button>

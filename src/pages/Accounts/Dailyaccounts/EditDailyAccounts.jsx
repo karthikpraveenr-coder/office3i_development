@@ -93,7 +93,7 @@ function EditDailyAccounts() {
         };
 
 
-        axios.post(`https://office3i.com/development/api/public/api/updatedailyaccounts`, requestData, {
+        axios.post(`https://office3i.com/user/api/public/api/updatedailyaccounts`, requestData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
@@ -150,7 +150,7 @@ function EditDailyAccounts() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get(`https://office3i.com/development/api/public/api/editview_dailyaccounts/${id}`, {
+        axios.get(`https://office3i.com/user/api/public/api/editview_dailyaccounts/${id}`, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }

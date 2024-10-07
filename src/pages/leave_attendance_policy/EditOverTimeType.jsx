@@ -65,7 +65,7 @@ function EditOverTimeType() {
         };
 
 
-        axios.put(`https://office3i.com/development/api/public/api/update_ot_requesttype`, requestData, {
+        axios.put(`https://office3i.com/user/api/public/api/update_ot_requesttype`, requestData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
@@ -118,7 +118,7 @@ function EditOverTimeType() {
     console.log("data=-=-=-=-", data)
 
     useEffect(() => {
-        axios.get(`https://office3i.com/development/api/public/api/editview_ot_requesttype/${id}`, {
+        axios.get(`https://office3i.com/user/api/public/api/editview_ot_requesttype/${id}`, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }

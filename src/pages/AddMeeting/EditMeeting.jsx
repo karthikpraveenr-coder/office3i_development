@@ -51,7 +51,7 @@ export default function EditMeeting() {
     useEffect(() => {
         const fetchrole = async () => {
             try {
-                const response = await axios.get('https://office3i.com/development/api/public/api/userrolelist', {
+                const response = await axios.get('https://office3i.com/user/api/public/api/userrolelist', {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }
@@ -86,7 +86,7 @@ export default function EditMeeting() {
     // --------------------------------------- Employee Dropdown ------------------------------------------------
 
     useEffect(() => {
-        const apiUrl = `https://office3i.com/development/api/public/api/employee_dropdown_list/${formattedSelectedDepartment}`;
+        const apiUrl = `https://office3i.com/user/api/public/api/employee_dropdown_list/${formattedSelectedDepartment}`;
         const fetchData = async () => {
             try {
                 const response = await axios.get(apiUrl,
@@ -182,7 +182,7 @@ export default function EditMeeting() {
         };
 
         try {
-            const response = await fetch('https://office3i.com/development/api/public/api/update_meeting', {
+            const response = await fetch('https://office3i.com/user/api/public/api/update_meeting', {
                 method: 'PUT',
                 body: JSON.stringify(meetingData),
                 headers: {
@@ -228,7 +228,7 @@ export default function EditMeeting() {
     // DATA FETCH FFROM API TO INITIAL DATA SET TO THE STATE
 
     useEffect(() => {
-        axios.get(`https://office3i.com/development/api/public/api/view_editmeeting/${id}`, {
+        axios.get(`https://office3i.com/user/api/public/api/view_editmeeting/${id}`, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }

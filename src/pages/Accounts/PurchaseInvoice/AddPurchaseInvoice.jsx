@@ -195,7 +195,7 @@ export default function AddPurchaseInvoice() {
         });
 
         try {
-            const response = await fetch('https://office3i.com/development/api/public/api/addpurchaseinvoice', {
+            const response = await fetch('https://office3i.com/user/api/public/api/addpurchaseinvoice', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
@@ -302,7 +302,7 @@ export default function AddPurchaseInvoice() {
 
     useEffect(() => {
 
-        fetch('https://office3i.com/development/api/public/api/sales_company_list', {
+        fetch('https://office3i.com/user/api/public/api/sales_company_list', {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -327,7 +327,7 @@ export default function AddPurchaseInvoice() {
 
     // useEffect(() => {
 
-    //     fetch('https://office3i.com/development/api/public/api/autogeneratesaleinvoiceid', {
+    //     fetch('https://office3i.com/user/api/public/api/autogeneratesaleinvoiceid', {
     //         headers: {
     //             'Authorization': `Bearer ${usertoken}`
     //         }
@@ -348,7 +348,7 @@ export default function AddPurchaseInvoice() {
 
     // Fetch Descriptional Goods
     useEffect(() => {
-        fetch('https://office3i.com/development/api/public/api/sales_item_list', {
+        fetch('https://office3i.com/user/api/public/api/sales_item_list', {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -369,7 +369,7 @@ export default function AddPurchaseInvoice() {
     // Fetch HSN/SAC based on selected Descriptional Goods
     // useEffect(() => {
     //     if (descriptionalGoods) {
-    //         fetch(`https://office3i.com/development/api/public/api/sales_hsn_sac/${descriptionalGoods.value}`, {
+    //         fetch(`https://office3i.com/user/api/public/api/sales_hsn_sac/${descriptionalGoods.value}`, {
     //             headers: {
     //                 'Authorization': `Bearer ${usertoken}`
     //             }
@@ -395,7 +395,7 @@ export default function AddPurchaseInvoice() {
     useEffect(() => {
         items.forEach((item, index) => {
             if (item.descriptionalGoods) {
-                fetch(`https://office3i.com/development/api/public/api/sales_hsn_sac/${item.descriptionalGoods.value}`, {
+                fetch(`https://office3i.com/user/api/public/api/sales_hsn_sac/${item.descriptionalGoods.value}`, {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }

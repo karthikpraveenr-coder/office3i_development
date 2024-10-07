@@ -71,7 +71,7 @@ function IssueType() {
             created_by: userempid
         };
 
-        axios.post('https://office3i.com/development/api/public/api/add_issue_type', requestData, {
+        axios.post('https://office3i.com/user/api/public/api/add_issue_type', requestData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
@@ -141,7 +141,7 @@ function IssueType() {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('https://office3i.com/development/api/public/api/view_issuetype', {
+            const response = await fetch('https://office3i.com/user/api/public/api/view_issuetype', {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -187,7 +187,7 @@ function IssueType() {
             });
 
             if (reason) {
-                const response = await fetch('https://office3i.com/development/api/public/api/delete_issuetype', {
+                const response = await fetch('https://office3i.com/user/api/public/api/delete_issuetype', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

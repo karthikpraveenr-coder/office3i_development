@@ -125,7 +125,7 @@ const GeneratePayslip = () => {
         formData.append('created_by', userempid);
 
 
-        axios.post('https://office3i.com/development/api/public/api/add_generate_payslip', formData, {
+        axios.post('https://office3i.com/user/api/public/api/add_generate_payslip', formData, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -193,7 +193,7 @@ const GeneratePayslip = () => {
     useEffect(() => {
         if (month && selectedEmployee) {
             const yearMonth = month; // assuming month is already in the correct format 'YYYY-MM'
-            axios.post('https://office3i.com/development/api/public/api/get_emp_yearmonth_details', {
+            axios.post('https://office3i.com/user/api/public/api/get_emp_yearmonth_details', {
                 emp_id: selectedEmployee,
                 yearmonth: yearMonth,
             }, {
@@ -239,7 +239,7 @@ const GeneratePayslip = () => {
     useEffect(() => {
         if (month && selectedEmployee && lossOfPay) {
             const yearMonth = month;
-            axios.post('https://office3i.com/development/api/public/api/ot_emp_salary_details', {
+            axios.post('https://office3i.com/user/api/public/api/ot_emp_salary_details', {
                 emp_id: selectedEmployee,
                 yearmonth: yearMonth,
                 lop: lossOfPay,
@@ -288,7 +288,7 @@ const GeneratePayslip = () => {
     useEffect(() => {
         const fetchrole = async () => {
             try {
-                const response = await axios.get('https://office3i.com/development/api/public/api/userrolelist', {
+                const response = await axios.get('https://office3i.com/user/api/public/api/userrolelist', {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }
@@ -322,7 +322,7 @@ const GeneratePayslip = () => {
     useEffect(() => {
         const fetchData = async () => {
             if (!formattedSelectedDepartment) return;
-            const apiUrl = `https://office3i.com/development/api/public/api/employee_dropdown_list/${formattedSelectedDepartment}`;
+            const apiUrl = `https://office3i.com/user/api/public/api/employee_dropdown_list/${formattedSelectedDepartment}`;
             try {
                 const response = await axios.get(apiUrl, {
                     headers: {

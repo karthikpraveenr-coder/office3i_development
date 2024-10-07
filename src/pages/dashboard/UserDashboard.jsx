@@ -80,7 +80,7 @@ const UserDashboard = () => {
     };
 
     try {
-      const response = await fetch('https://office3i.com/development/api/public/api/employeeIndexinouttime', {
+      const response = await fetch('https://office3i.com/user/api/public/api/employeeIndexinouttime', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -146,7 +146,7 @@ const UserDashboard = () => {
 
     let successMessage;
 
-    axios.post('https://office3i.com/development/api/public/api/addmoodboard', requestData, {
+    axios.post('https://office3i.com/user/api/public/api/addmoodboard', requestData, {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${usertoken}`
@@ -221,7 +221,7 @@ const UserDashboard = () => {
 
   const fetchDatamood = async () => {
     try {
-      const response = await fetch(`https://office3i.com/development/api/public/api/editview_moodboard/${userempid}`, {
+      const response = await fetch(`https://office3i.com/user/api/public/api/editview_moodboard/${userempid}`, {
         headers: {
           'Authorization': `Bearer ${usertoken}`
         }
@@ -288,7 +288,7 @@ const UserDashboard = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch('https://office3i.com/development/api/public/api/view_announcement', {
+      const response = await fetch('https://office3i.com/user/api/public/api/view_announcement', {
         headers: {
           'Authorization': `Bearer ${usertoken}`
         }
@@ -366,7 +366,7 @@ const UserDashboard = () => {
       created_by: userempid,
     };
 
-    fetch('https://office3i.com/development/api/public/api/insertwebcheckin', {
+    fetch('https://office3i.com/user/api/public/api/insertwebcheckin', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -419,7 +419,7 @@ const UserDashboard = () => {
       updated_by: userempid
     };
 
-    fetch('https://office3i.com/development/api/public/api/insertcheckout', {
+    fetch('https://office3i.com/user/api/public/api/insertcheckout', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

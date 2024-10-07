@@ -44,7 +44,7 @@ export default function MeetingList() {
 
     const fetchTableData = async () => {
 
-        const apiUrl = `https://office3i.com/development/api/public/api/view_meeting_list`;
+        const apiUrl = `https://office3i.com/user/api/public/api/view_meeting_list`;
         try {
             const response = await axios.post(apiUrl,
                 {
@@ -101,7 +101,7 @@ export default function MeetingList() {
             });
 
             if (reason) {
-                const response = await fetch('https://office3i.com/development/api/public/api/delete_meeting', {
+                const response = await fetch('https://office3i.com/user/api/public/api/delete_meeting', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -301,7 +301,7 @@ export default function MeetingList() {
             formData.append('meeting_status', approvalType);
             formData.append('meeting_remarks', reason);
 
-            const response = await fetch('https://office3i.com/development/api/public/api/approval_meeting', {
+            const response = await fetch('https://office3i.com/user/api/public/api/approval_meeting', {
                 method: 'POST',
                 body: formData,
                 headers: {
@@ -385,7 +385,7 @@ export default function MeetingList() {
         setShow(true);
         try {
 
-            const response = await axios.get(`https://office3i.com/development/api/public/api/meeting_status_list/${item.id}/${status}`, {
+            const response = await axios.get(`https://office3i.com/user/api/public/api/meeting_status_list/${item.id}/${status}`, {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }

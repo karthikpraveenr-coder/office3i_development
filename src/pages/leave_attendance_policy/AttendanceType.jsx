@@ -72,7 +72,7 @@ function AttendanceType() {
         // console.log("shift--->", attendancetype)
         // console.log("status--->", status)
 
-        axios.post('https://office3i.com/development/api/public/api/attendancetypeinsert', requestData, {
+        axios.post('https://office3i.com/user/api/public/api/attendancetypeinsert', requestData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
@@ -142,7 +142,7 @@ function AttendanceType() {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('https://office3i.com/development/api/public/api/view_attendancetype', {
+            const response = await fetch('https://office3i.com/user/api/public/api/view_attendancetype', {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -188,7 +188,7 @@ function AttendanceType() {
             });
 
             if (reason) {
-                const response = await fetch('https://office3i.com/development/api/public/api/delete_attendancetype', {
+                const response = await fetch('https://office3i.com/user/api/public/api/delete_attendancetype', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

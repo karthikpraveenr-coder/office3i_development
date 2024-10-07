@@ -47,7 +47,7 @@ function TLHalfDayRequest() {
 
         // console.log("formData", formData)
 
-        fetch('https://office3i.com/development/api/public/api/tl_approval_halfday_request', {
+        fetch('https://office3i.com/user/api/public/api/tl_approval_halfday_request', {
             method: 'POST',
             body: formData,
             headers: {
@@ -130,7 +130,7 @@ function TLHalfDayRequest() {
     const fetchData = async () => {
         setLoading(true);
         try {
-            const response = await fetch('https://office3i.com/development/api/public/api/tl_halfdayrequest_list', {
+            const response = await fetch('https://office3i.com/user/api/public/api/tl_halfdayrequest_list', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

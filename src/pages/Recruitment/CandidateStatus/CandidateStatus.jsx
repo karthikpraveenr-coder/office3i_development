@@ -36,7 +36,7 @@ const CandidateStatus = () => {
         const fetchData = async () => {
             try {
                 const response = await axios.get(
-                    `https://office3i.com/development/api/public/api/resume_status_list/${selectedTab}`, {
+                    `https://office3i.com/user/api/public/api/resume_status_list/${selectedTab}`, {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }

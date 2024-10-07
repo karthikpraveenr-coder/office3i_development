@@ -71,7 +71,7 @@ const EditJob = () => {
     useEffect(() => {
         const fetchJobDetails = async () => {
             try {
-                const response = await axios.get(`https://office3i.com/development/api/public/api/post_job_editlist/${id}`, {
+                const response = await axios.get(`https://office3i.com/user/api/public/api/post_job_editlist/${id}`, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${usertoken}`
@@ -243,7 +243,7 @@ const EditJob = () => {
             updated_by: userempid
         };
 
-        axios.put('https://office3i.com/development/api/public/api/update_post_job', postData, {
+        axios.put('https://office3i.com/user/api/public/api/update_post_job', postData, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -299,7 +299,7 @@ const EditJob = () => {
 
     // ------------------------------------------------------------------------------------------------------------
     useEffect(() => {
-        axios.get('https://office3i.com/development/api/public/api/country_list', {
+        axios.get('https://office3i.com/user/api/public/api/country_list', {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -319,7 +319,7 @@ const EditJob = () => {
 
     useEffect(() => {
         if (selectedCountry) {
-            axios.get(`https://office3i.com/development/api/public/api/state_list/${selectedCountry.value || selectedCountry}`, {
+            axios.get(`https://office3i.com/user/api/public/api/state_list/${selectedCountry.value || selectedCountry}`, {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -341,7 +341,7 @@ const EditJob = () => {
 
     useEffect(() => {
         if (selectedState) {
-            axios.get(`https://office3i.com/development/api/public/api/city_list/${selectedState.value || selectedState}`, {
+            axios.get(`https://office3i.com/user/api/public/api/city_list/${selectedState.value || selectedState}`, {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }

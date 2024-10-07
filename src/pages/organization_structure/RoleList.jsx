@@ -50,7 +50,7 @@ function RoleList() {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('https://office3i.com/development/api/public/api/view_addrole', {
+            const response = await fetch('https://office3i.com/user/api/public/api/view_addrole', {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -97,7 +97,7 @@ function RoleList() {
             });
 
             if (reason) {
-                const response = await fetch('https://office3i.com/development/api/public/api/delete_role', {
+                const response = await fetch('https://office3i.com/user/api/public/api/delete_role', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

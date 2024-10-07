@@ -24,7 +24,7 @@ export default function EmployeeListCard(props) {
 
                 <div className='upper-container'>
                     <div className='image-container'>
-                        <img src={`https://office3i.com/development/api/storage/app/${picture}`} alt="" style={{ width: '100px', height: '100px' }} className='empprofile' />
+                        <img src={`https://office3i.com/user/api/storage/app/${picture}`} alt="" style={{ width: '100px', height: '100px' }} className='empprofile' />
                     </div>
                 </div>
 

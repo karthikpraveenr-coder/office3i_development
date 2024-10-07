@@ -48,7 +48,7 @@ const EditAssets = () => {
     useEffect(() => {
         const fetchAssetId = async () => {
             try {
-                const response = await axios.get(`https://office3i.com/development/api/public/api/edit_assign_assetlist/${id}`, {
+                const response = await axios.get(`https://office3i.com/user/api/public/api/edit_assign_assetlist/${id}`, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${usertoken}` // Assuming usertoken is defined somewhere
@@ -149,7 +149,7 @@ const EditAssets = () => {
         };
 
         try {
-            const response = await fetch('https://office3i.com/development/api/public/api/update_assign_asset', {
+            const response = await fetch('https://office3i.com/user/api/public/api/update_assign_asset', {
                 method: 'PUT',
                 body: JSON.stringify(formData),
                 headers: {
@@ -196,7 +196,7 @@ const EditAssets = () => {
     useEffect(() => {
         const fetchDepartments = async () => {
             try {
-                const response = await axios.get('https://office3i.com/development/api/public/api/userrolelist', {
+                const response = await axios.get('https://office3i.com/user/api/public/api/userrolelist', {
                     headers: {
                         Authorization: `Bearer ${usertoken}`
                     }
@@ -220,7 +220,7 @@ const EditAssets = () => {
     // Fetch employee dropdown options based on selected department
     useEffect(() => {
         if (department) {
-            const apiUrl = `https://office3i.com/development/api/public/api/employee_dropdown_list/${department}`;
+            const apiUrl = `https://office3i.com/user/api/public/api/employee_dropdown_list/${department}`;
             const fetchEmployees = async () => {
                 try {
                     const response = await axios.get(apiUrl, {
@@ -248,7 +248,7 @@ const EditAssets = () => {
     useEffect(() => {
         const fetchAssetTypes = async () => {
             try {
-                const response = await axios.get('https://office3i.com/development/api/public/api/asset_name', {
+                const response = await axios.get('https://office3i.com/user/api/public/api/asset_name', {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }

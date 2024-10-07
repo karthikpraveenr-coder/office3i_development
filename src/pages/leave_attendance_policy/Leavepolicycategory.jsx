@@ -72,7 +72,7 @@ function Leavepolicycategory() {
         // console.log("shift--->", leavepolicycategory)
         // console.log("status--->", status)
 
-        axios.post('https://office3i.com/development/api/public/api/leavecategoryinsert', requestData, {
+        axios.post('https://office3i.com/user/api/public/api/leavecategoryinsert', requestData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
@@ -142,7 +142,7 @@ function Leavepolicycategory() {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('https://office3i.com/development/api/public/api/view_leavecategory', {
+            const response = await fetch('https://office3i.com/user/api/public/api/view_leavecategory', {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -188,7 +188,7 @@ function Leavepolicycategory() {
             });
 
             if (reason) {
-                const response = await fetch('https://office3i.com/development/api/public/api/delete_leavecategory', {
+                const response = await fetch('https://office3i.com/user/api/public/api/delete_leavecategory', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

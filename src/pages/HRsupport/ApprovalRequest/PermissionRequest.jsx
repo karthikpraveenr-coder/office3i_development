@@ -48,7 +48,7 @@ function PermissionRequest() {
 
         console.log("formData", formData)
 
-        fetch('https://office3i.com/development/api/public/api/approval_permission_request', {
+        fetch('https://office3i.com/user/api/public/api/approval_permission_request', {
             method: 'POST',
             body: formData,
             headers: {
@@ -132,7 +132,7 @@ function PermissionRequest() {
     const fetchData = async () => {
         setLoading(true); // Ensure loading is set before fetching
         try {
-            const response = await fetch('https://office3i.com/development/api/public/api/hr_permission_approvallist', {
+            const response = await fetch('https://office3i.com/user/api/public/api/hr_permission_approvallist', {
                 method: 'POST', // Set the method to POST
                 headers: {
                     'Content-Type': 'application/json',
@@ -423,7 +423,7 @@ function PermissionRequest() {
                                                 <td>{row.permission_timefrom}</td>
                                                 <td>{row.permission_timeto}</td>
                                                 <td>{row.proof !== null ?
-                                                    <button className="btn-view" onClick={() => { window.open(`https://office3i.com/development/api/storage/app/${row.proof}`, '_blank') }}>
+                                                    <button className="btn-view" onClick={() => { window.open(`https://office3i.com/user/api/storage/app/${row.proof}`, '_blank') }}>
                                                         <FontAwesomeIcon icon={faEye} /> View
                                                     </button>
 

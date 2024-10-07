@@ -212,7 +212,7 @@ const EditEmployeeSalary = () => {
         formData.append('updated_by', userempid);
 
 
-        axios.post('https://office3i.com/development/api/public/api/update_define_emp_salarylist', formData, {
+        axios.post('https://office3i.com/user/api/public/api/update_define_emp_salarylist', formData, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -259,7 +259,7 @@ const EditEmployeeSalary = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get(`https://office3i.com/development/api/public/api/show_define_emp_salary/${id}`, {
+        axios.get(`https://office3i.com/user/api/public/api/show_define_emp_salary/${id}`, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -314,7 +314,7 @@ const EditEmployeeSalary = () => {
     useEffect(() => {
         const fetchrole = async () => {
             try {
-                const response = await axios.get('https://office3i.com/development/api/public/api/userrolelist', {
+                const response = await axios.get('https://office3i.com/user/api/public/api/userrolelist', {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }
@@ -348,7 +348,7 @@ const EditEmployeeSalary = () => {
     useEffect(() => {
         const fetchData = async () => {
             if (!formattedSelectedDepartment) return;
-            const apiUrl = `https://office3i.com/development/api/public/api/employee_dropdown_list/${formattedSelectedDepartment}`;
+            const apiUrl = `https://office3i.com/user/api/public/api/employee_dropdown_list/${formattedSelectedDepartment}`;
             try {
                 const response = await axios.get(apiUrl, {
                     headers: {

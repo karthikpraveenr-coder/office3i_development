@@ -55,7 +55,7 @@ function TaskList() {
     const fetchData = async () => {
         setLoading(true);
         try {
-            const response = await fetch('https://office3i.com/development/api/public/api/view_task_list', {
+            const response = await fetch('https://office3i.com/user/api/public/api/view_task_list', {
                 method: 'POST', // Set the method to POST
                 headers: {
                     'Content-Type': 'application/json',
@@ -113,7 +113,7 @@ function TaskList() {
             });
 
             if (reason) {
-                const response = await fetch('https://office3i.com/development/api/public/api/delete_task', {
+                const response = await fetch('https://office3i.com/user/api/public/api/delete_task', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -168,7 +168,7 @@ function TaskList() {
         formData.append('status', status);
 
         try {
-            const response = await fetch('https://office3i.com/development/api/public/api/filter_tasklist', {
+            const response = await fetch('https://office3i.com/user/api/public/api/filter_tasklist', {
                 method: 'POST',
                 body: formData,
                 headers: {
@@ -381,7 +381,7 @@ function TaskList() {
     useEffect(() => {
         const fetchrole = async () => {
             try {
-                const response = await axios.get('https://office3i.com/development/api/public/api/userrolelist', {
+                const response = await axios.get('https://office3i.com/user/api/public/api/userrolelist', {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }
@@ -415,7 +415,7 @@ function TaskList() {
     useEffect(() => {
         const fetchData = async () => {
             if (!formattedSelectedDepartment) return;
-            const apiUrl = `https://office3i.com/development/api/public/api/employee_dropdown_list/${formattedSelectedDepartment}`;
+            const apiUrl = `https://office3i.com/user/api/public/api/employee_dropdown_list/${formattedSelectedDepartment}`;
             try {
                 const response = await axios.get(apiUrl, {
                     headers: {
@@ -494,7 +494,7 @@ function TaskList() {
         };
 
         try {
-            const response = await fetch('https://office3i.com/development/api/public/api/task_update_status', {
+            const response = await fetch('https://office3i.com/user/api/public/api/task_update_status', {
                 method: 'PUT',
                 body: JSON.stringify(ProjectData),
                 headers: {
@@ -736,7 +736,7 @@ function TaskList() {
 
 
                                                 <td className='no-print'>{row.attachment !== null ?
-                                                    <button style={{ padding: '6px' }} className="btn-view" onClick={() => { window.open(`https://office3i.com/development/api/storage/app/${row.attachment}`, '_blank') }}>
+                                                    <button style={{ padding: '6px' }} className="btn-view" onClick={() => { window.open(`https://office3i.com/user/api/storage/app/${row.attachment}`, '_blank') }}>
                                                         <FontAwesomeIcon icon={faEye} /> View
                                                     </button>
 

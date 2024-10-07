@@ -53,7 +53,7 @@ function TLOverTimeRequest() {
 
         // console.log("formData", formData)
 
-        fetch('https://office3i.com/development/api/public/api/tl_approval_ot_request', {
+        fetch('https://office3i.com/user/api/public/api/tl_approval_ot_request', {
             method: 'POST',
             body: formData,
             headers: {
@@ -136,7 +136,7 @@ function TLOverTimeRequest() {
     const fetchData = async () => {
         setLoading(true);
         try {
-            const response = await fetch('https://office3i.com/development/api/public/api/tl_otrequest_list', {
+            const response = await fetch('https://office3i.com/user/api/public/api/tl_otrequest_list', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

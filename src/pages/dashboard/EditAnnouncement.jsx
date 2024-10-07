@@ -74,7 +74,7 @@ function EditAnnouncement() {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get('https://office3i.com/development/api/public/api/view_announcement', {
+            const response = await axios.get('https://office3i.com/user/api/public/api/view_announcement', {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -116,7 +116,7 @@ function EditAnnouncement() {
             });
 
             if (reason) {
-                const response = await fetch('https://office3i.com/development/api/public/api/delete_announcement', {
+                const response = await fetch('https://office3i.com/user/api/public/api/delete_announcement', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -155,7 +155,7 @@ function EditAnnouncement() {
 
     const handleedit = async (id) => {
         handleShowannouncement();
-        axios.get(`https://office3i.com/development/api/public/api/editview_announcement/${id}`, {
+        axios.get(`https://office3i.com/user/api/public/api/editview_announcement/${id}`, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -217,7 +217,7 @@ function EditAnnouncement() {
         };
 
 
-        axios.put(`https://office3i.com/development/api/public/api/update_announcement`, requestData, {
+        axios.put(`https://office3i.com/user/api/public/api/update_announcement`, requestData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`

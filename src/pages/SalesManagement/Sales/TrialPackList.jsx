@@ -57,7 +57,7 @@ function SalesTrialPackList() {
     const fetchData = async () => {
         setLoading(true);
         try {
-            const response = await fetch('https://office3i.com/development/api/public/api/getsales_trialpacklist', {
+            const response = await fetch('https://office3i.com/user/api/public/api/getsales_trialpacklist', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

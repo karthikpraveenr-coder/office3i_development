@@ -102,7 +102,7 @@ const ProformaInvoiceView = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`https://office3i.com/development/api/public/api/getbuybowpackproformainvoiceviewlist/${id}`, {
+                const response = await axios.get(`https://office3i.com/user/api/public/api/getbuybowpackproformainvoiceviewlist/${id}`, {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }

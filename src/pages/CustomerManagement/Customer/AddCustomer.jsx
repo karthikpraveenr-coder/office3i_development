@@ -76,7 +76,7 @@ function AddCustomer() {
 
     useEffect(() => {
         // Fetch Plan options
-        axios.get('https://office3i.com/development/api/public/api/webproduct_list')
+        axios.get('https://office3i.com/user/api/public/api/webproduct_list')
             .then(response => {
                 if (response.data && response.data.data) {
                     setPlans(response.data.data);
@@ -87,7 +87,7 @@ function AddCustomer() {
             .catch(error => console.error('Error fetching plans:', error));
 
         // Fetch Module options
-        axios.get('https://office3i.com/development/api/public/api/webmodule_list')
+        axios.get('https://office3i.com/user/api/public/api/webmodule_list')
             .then(response => {
 
 
@@ -177,7 +177,7 @@ function AddCustomer() {
             overall_amt: overallAmount,
         };
 
-        axios.post('https://office3i.com/development/api/public/api/office3i_add_lead', payload, {
+        axios.post('https://office3i.com/user/api/public/api/office3i_add_lead', payload, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -232,7 +232,7 @@ function AddCustomer() {
     useEffect(() => {
         const fetchrole = async () => {
             try {
-                const response = await axios.get('https://office3i.com/development/api/public/api/userrolelist', {
+                const response = await axios.get('https://office3i.com/user/api/public/api/userrolelist', {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }
@@ -260,7 +260,7 @@ function AddCustomer() {
 
     // Fetch Employees
     useEffect(() => {
-        const apiUrl = `https://office3i.com/development/api/public/api/employee_dropdown_list/${formattedSelectedDepartment}`;
+        const apiUrl = `https://office3i.com/user/api/public/api/employee_dropdown_list/${formattedSelectedDepartment}`;
         const fetchData = async () => {
             try {
                 const response = await axios.get(apiUrl, {
@@ -301,7 +301,7 @@ function AddCustomer() {
 
     // ------------------------------------------------------------------------------------------------------------
     useEffect(() => {
-        axios.get('https://office3i.com/development/api/public/api/office3i_country_list', {
+        axios.get('https://office3i.com/user/api/public/api/office3i_country_list', {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -319,7 +319,7 @@ function AddCustomer() {
 
     useEffect(() => {
         if (selectedCountry) {
-            axios.get(`https://office3i.com/development/api/public/api/office3i_state_list/${selectedCountry.value}`, {
+            axios.get(`https://office3i.com/user/api/public/api/office3i_state_list/${selectedCountry.value}`, {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -339,7 +339,7 @@ function AddCustomer() {
 
     useEffect(() => {
         if (selectedState) {
-            axios.get(`https://office3i.com/development/api/public/api/office3i_city_list/${selectedState.value}`, {
+            axios.get(`https://office3i.com/user/api/public/api/office3i_city_list/${selectedState.value}`, {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -394,7 +394,7 @@ function AddCustomer() {
 
     useEffect(() => {
         // Fetching data from the API
-        axios.get(`https://office3i.com/development/api/public/api/webproductmodule_list/${selectedPlan}`)
+        axios.get(`https://office3i.com/user/api/public/api/webproductmodule_list/${selectedPlan}`)
             .then(response => {
                 console.log("setProducts----->", response.data.data);
                 console.log("First Product Price----->", response.data.data[0].price);
@@ -465,7 +465,7 @@ function AddCustomer() {
 
 
     useEffect(() => {
-        axios.get('https://office3i.com/development/api/public/api/payment_method_status', {
+        axios.get('https://office3i.com/user/api/public/api/payment_method_status', {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }

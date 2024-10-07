@@ -54,7 +54,7 @@ function AssetsList() {
       emp_id: userempid
     };
     try {
-      const response = await fetch('https://office3i.com/development/api/public/api/assign_assetlist', {
+      const response = await fetch('https://office3i.com/user/api/public/api/assign_assetlist', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -105,7 +105,7 @@ function AssetsList() {
       });
 
       if (reason) {
-        const response = await fetch('https://office3i.com/development/api/public/api/delete_assign_asset', {
+        const response = await fetch('https://office3i.com/user/api/public/api/delete_assign_asset', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

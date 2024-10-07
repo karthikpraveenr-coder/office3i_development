@@ -150,7 +150,7 @@ export const EditEmployee = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://office3i.com/development/api/public/api/employee_detailslitshow/${id}`, {
+        const response = await axios.get(`https://office3i.com/user/api/public/api/employee_detailslitshow/${id}`, {
           headers: {
             'Authorization': `Bearer ${usertoken}`
           }
@@ -237,7 +237,7 @@ export const EditEmployee = () => {
 
 
           setOldProfileImg(data.employee_details.profile_img);
-          setImagePreviewUrl(`https://office3i.com/development/api/storage/app/${data.employee_details.profile_img}`);
+          setImagePreviewUrl(`https://office3i.com/user/api/storage/app/${data.employee_details.profile_img}`);
 
           setEmpdocument(data.employee_documents[0]);
 
@@ -251,7 +251,7 @@ export const EditEmployee = () => {
             documentType: doc.document_type_id,
             selecteddocumentType: doc.document_type_id,
             documentName: doc.document_name,
-            // selectedFile: `https://office3i.com/development/api/storage/app/${doc.document_img}`,
+            // selectedFile: `https://office3i.com/user/api/storage/app/${doc.document_img}`,
             selectedFile: `${doc.document_img}`,
           }));
 
@@ -259,7 +259,7 @@ export const EditEmployee = () => {
 
 
           setFileSets(documents);
-          setFilePreviews(data.employee_documents.map(doc => `https://office3i.com/development/api/storage/app/${doc.document_img}`));
+          setFilePreviews(data.employee_documents.map(doc => `https://office3i.com/user/api/storage/app/${doc.document_img}`));
 
           console.log("viratttttttttttttttt---------------------->", documents)
           setLoading(false);
@@ -564,7 +564,7 @@ export const EditEmployee = () => {
 
 
   // useEffect(() => {
-  //   setImagePreviewUrl(`https://office3i.com/development/api/storage/app/${formData.employeePicture}`);
+  //   setImagePreviewUrl(`https://office3i.com/user/api/storage/app/${formData.employeePicture}`);
   // }, [formData.employeePicture]);
 
   const handlePictureChange = (e) => {
@@ -696,7 +696,7 @@ export const EditEmployee = () => {
     formData.append('updated_by', userempid);
 
     try {
-      const response = await axios.post('https://office3i.com/development/api/public/api/update_employee_document', formData, {
+      const response = await axios.post('https://office3i.com/user/api/public/api/update_employee_document', formData, {
         headers: {
           'Authorization': `Bearer ${usertoken}`,
           'Content-Type': 'multipart/form-data'
@@ -1128,7 +1128,7 @@ export const EditEmployee = () => {
 
 
     try {
-      const response = await fetch('https://office3i.com/development/api/public/api/update_employee_details', {
+      const response = await fetch('https://office3i.com/user/api/public/api/update_employee_details', {
         method: 'POST',
         body: formDataToSend,
         headers: {
@@ -1185,7 +1185,7 @@ export const EditEmployee = () => {
   // useEffect(() => {
   //   const fetchEmployeeId = async () => {
   //     try {
-  //       const response = await axios.get('https://office3i.com/development/api/public/api/employee_uid', {
+  //       const response = await axios.get('https://office3i.com/user/api/public/api/employee_uid', {
   //         headers: {
   //           'Authorization': `Bearer ${usertoken}`
   //         }
@@ -1215,7 +1215,7 @@ export const EditEmployee = () => {
   useEffect(() => {
     const fetchUserRoleDropdown = async () => {
       try {
-        const response = await axios.get('https://office3i.com/development/api/public/api/userrolelist', {
+        const response = await axios.get('https://office3i.com/user/api/public/api/userrolelist', {
           headers: {
             'Authorization': `Bearer ${usertoken}`
           }
@@ -1244,7 +1244,7 @@ export const EditEmployee = () => {
   useEffect(() => {
     const fetchUserRoleDropdown = async () => {
       try {
-        const response = await axios.get(`https://office3i.com/development/api/public/api/supervisor_list/${formData.selectedRoleId}`, {
+        const response = await axios.get(`https://office3i.com/user/api/public/api/supervisor_list/${formData.selectedRoleId}`, {
           headers: {
             'Authorization': `Bearer ${usertoken}`
           }
@@ -1274,7 +1274,7 @@ export const EditEmployee = () => {
   // useEffect(() => {
   //   const fetchUserRoleDropdown = async () => {
   //     try {
-  //       const response = await axios.get(`https://office3i.com/development/api/public/api/shiftslotlist`, {
+  //       const response = await axios.get(`https://office3i.com/user/api/public/api/shiftslotlist`, {
   //         headers: {
   //           'Authorization': `Bearer ${usertoken}`
   //         }
@@ -1303,7 +1303,7 @@ export const EditEmployee = () => {
   useEffect(() => {
     const fetchUserRoleDropdown = async () => {
       try {
-        const response = await axios.get(`https://office3i.com/development/api/public/api/employee_document_typelist`, {
+        const response = await axios.get(`https://office3i.com/user/api/public/api/employee_document_typelist`, {
           headers: {
             'Authorization': `Bearer ${usertoken}`
           }
@@ -1332,7 +1332,7 @@ export const EditEmployee = () => {
   useEffect(() => {
     const fetchUserRoleDropdown = async () => {
       try {
-        const response = await axios.get(`https://office3i.com/development/api/public/api/employee_categorylist`, {
+        const response = await axios.get(`https://office3i.com/user/api/public/api/employee_categorylist`, {
           headers: {
             'Authorization': `Bearer ${usertoken}`
           }
@@ -1362,7 +1362,7 @@ export const EditEmployee = () => {
   useEffect(() => {
     const fetchUserRoleDropdown = async () => {
       try {
-        const response = await axios.get(`https://office3i.com/development/api/public/api/getjobtype`, {
+        const response = await axios.get(`https://office3i.com/user/api/public/api/getjobtype`, {
           headers: {
             'Authorization': `Bearer ${usertoken}`
           }

@@ -42,7 +42,7 @@ function EditAssetsType() {
     useEffect(() => {
         const fetchAssetId = async () => {
             try {
-                const response = await axios.get(`https://office3i.com/development/api/public/api/edit_asset_typelist/${id}`, {
+                const response = await axios.get(`https://office3i.com/user/api/public/api/edit_asset_typelist/${id}`, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${usertoken}` // Assuming usertoken is defined somewhere
@@ -99,7 +99,7 @@ function EditAssetsType() {
         };
 
 
-        axios.put('https://office3i.com/development/api/public/api/update_asset_type', requestData, {
+        axios.put('https://office3i.com/user/api/public/api/update_asset_type', requestData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`

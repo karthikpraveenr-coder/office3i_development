@@ -71,7 +71,7 @@ function AddDocumentType() {
             created_by: userempid
         };
 
-        axios.post('https://office3i.com/development/api/public/api/empdoctypeinsert', requestData, {
+        axios.post('https://office3i.com/user/api/public/api/empdoctypeinsert', requestData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
@@ -137,7 +137,7 @@ function AddDocumentType() {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('https://office3i.com/development/api/public/api/view_empdoctype', {
+            const response = await fetch('https://office3i.com/user/api/public/api/view_empdoctype', {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -183,7 +183,7 @@ function AddDocumentType() {
             });
 
             if (reason) {
-                const response = await fetch('https://office3i.com/development/api/public/api/delete_empdoctype', {
+                const response = await fetch('https://office3i.com/user/api/public/api/delete_empdoctype', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

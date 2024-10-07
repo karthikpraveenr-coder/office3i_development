@@ -160,7 +160,7 @@ export default function OfferLetter() {
         formData.append('created_by', userData.userempid);
 
         try {
-            const response = await axios.post('https://office3i.com/development/api/public/api/add_offer_letter', formData, {
+            const response = await axios.post('https://office3i.com/user/api/public/api/add_offer_letter', formData, {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`,
                     'Content-Type': 'multipart/form-data',

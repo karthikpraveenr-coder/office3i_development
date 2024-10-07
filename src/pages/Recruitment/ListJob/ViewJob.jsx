@@ -34,7 +34,7 @@ const ViewJob = () => {
   useEffect(() => {
     const fetchJobDetails = async () => {
       try {
-        const response = await axios.get(`https://office3i.com/development/api/public/api/post_job_editlist/${id}`, {
+        const response = await axios.get(`https://office3i.com/user/api/public/api/post_job_editlist/${id}`, {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${usertoken}`

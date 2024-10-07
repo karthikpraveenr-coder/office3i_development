@@ -80,7 +80,7 @@ const PresalesAddLead = () => {
     // },[selectedCountry, selectedState, selectedCity])
     // ------------------------------------------------------------------------------------------------------------
     useEffect(() => {
-        axios.get('https://office3i.com/development/api/public/api/country_list', {
+        axios.get('https://office3i.com/user/api/public/api/country_list', {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -100,7 +100,7 @@ const PresalesAddLead = () => {
 
     useEffect(() => {
         if (selectedCountry) {
-            axios.get(`https://office3i.com/development/api/public/api/state_list/${selectedCountry.value}`, {
+            axios.get(`https://office3i.com/user/api/public/api/state_list/${selectedCountry.value}`, {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -122,7 +122,7 @@ const PresalesAddLead = () => {
 
     useEffect(() => {
         if (selectedState) {
-            axios.get(`https://office3i.com/development/api/public/api/city_list/${selectedState.value}`, {
+            axios.get(`https://office3i.com/user/api/public/api/city_list/${selectedState.value}`, {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -183,7 +183,7 @@ const PresalesAddLead = () => {
         // Fetch city list from the API
         const fetchCities = async () => {
             try {
-                const response = await axios.get('https://office3i.com/development/api/public/api/all_city_list', {
+                const response = await axios.get('https://office3i.com/user/api/public/api/all_city_list', {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }
@@ -319,7 +319,7 @@ const PresalesAddLead = () => {
 
 
 
-        axios.post('https://office3i.com/development/api/public/api/sales_addlead', formData, {
+        axios.post('https://office3i.com/user/api/public/api/sales_addlead', formData, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -390,7 +390,7 @@ const PresalesAddLead = () => {
     useEffect(() => {
         const fetchAssetId = async () => {
             try {
-                const response = await axios.get('https://office3i.com/development/api/public/api/getautogenerateLeadId', {
+                const response = await axios.get('https://office3i.com/user/api/public/api/getautogenerateLeadId', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${usertoken}` // Assuming usertoken is defined somewhere

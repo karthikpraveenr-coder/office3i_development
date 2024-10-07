@@ -65,7 +65,7 @@ function EditAttendanceType() {
         };
 
 
-        axios.put(`https://office3i.com/development/api/public/api/update_attendancetype`, requestData, {
+        axios.put(`https://office3i.com/user/api/public/api/update_attendancetype`, requestData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
@@ -117,7 +117,7 @@ function EditAttendanceType() {
     // const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get(`https://office3i.com/development/api/public/api/editview_attendancetype/${id}`, {
+        axios.get(`https://office3i.com/user/api/public/api/editview_attendancetype/${id}`, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }

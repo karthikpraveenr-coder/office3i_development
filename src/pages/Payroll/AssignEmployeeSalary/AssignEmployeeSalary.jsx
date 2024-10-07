@@ -205,7 +205,7 @@ const AssignEmployeeSalary = () => {
         formData.append('created_by', userempid);
 
 
-        axios.post('https://office3i.com/development/api/public/api/add_define_emp_salary', formData, {
+        axios.post('https://office3i.com/user/api/public/api/add_define_emp_salary', formData, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -269,7 +269,7 @@ const AssignEmployeeSalary = () => {
     useEffect(() => {
         const fetchrole = async () => {
             try {
-                const response = await axios.get('https://office3i.com/development/api/public/api/userrolelist', {
+                const response = await axios.get('https://office3i.com/user/api/public/api/userrolelist', {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }
@@ -303,7 +303,7 @@ const AssignEmployeeSalary = () => {
     useEffect(() => {
         const fetchData = async () => {
             if (!formattedSelectedDepartment) return;
-            const apiUrl = `https://office3i.com/development/api/public/api/employee_dropdown_list/${formattedSelectedDepartment}`;
+            const apiUrl = `https://office3i.com/user/api/public/api/employee_dropdown_list/${formattedSelectedDepartment}`;
             try {
                 const response = await axios.get(apiUrl, {
                     headers: {

@@ -44,7 +44,7 @@ function EditSupervisorlist() {
 
     useEffect(() => {
         // Fetch department and supervisor options from API
-        axios.get('https://office3i.com/development/api/public/api/supervisor_userrole', {
+        axios.get('https://office3i.com/user/api/public/api/supervisor_userrole', {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
@@ -85,7 +85,7 @@ function EditSupervisorlist() {
             updated_by: userempid
         };
 
-        axios.put('https://office3i.com/development/api/public/api/update_supervisor', requestData, {
+        axios.put('https://office3i.com/user/api/public/api/update_supervisor', requestData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
@@ -133,7 +133,7 @@ function EditSupervisorlist() {
     // const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get(`https://office3i.com/development/api/public/api/editview_supervisor/${id}`, {
+        axios.get(`https://office3i.com/user/api/public/api/editview_supervisor/${id}`, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }

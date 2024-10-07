@@ -34,7 +34,7 @@ const ViewDetails = () => {
 
     // Fetch data from the API
     useEffect(() => {
-        axios.get(`https://office3i.com/development/api/public/api/resume_edit_list/${id}`, {
+        axios.get(`https://office3i.com/user/api/public/api/resume_edit_list/${id}`, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -182,7 +182,7 @@ const ViewDetails = () => {
                                        width:'44px'
                                     }}
                                     onClick={() => {
-                                        const url = `https://office3i.com/development/api/storage/app/${resumeData.attached_resume}`;
+                                        const url = `https://office3i.com/user/api/storage/app/${resumeData.attached_resume}`;
                                         console.log("Opening URL:", url);
                                         window.open(url, '_blank');
                                     }}

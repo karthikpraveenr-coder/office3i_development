@@ -49,7 +49,7 @@ export default function ColoredDemo() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('https://office3i.com/development/api/public/api/orgchart_list/0', {
+                const response = await axios.get('https://office3i.com/user/api/public/api/orgchart_list/0', {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }
@@ -78,7 +78,7 @@ export default function ColoredDemo() {
             className: 'node-class bg-indigo-500 text-white',
             style: { borderRadius: '12px' },
             data: {
-                image: item.profile_img ? `https://office3i.com/development/api/storage/app/${item.profile_img}` : 'https://via.placeholder.com/150',
+                image: item.profile_img ? `https://office3i.com/user/api/storage/app/${item.profile_img}` : 'https://via.placeholder.com/150',
                 name: `${item.first_name} ${item.last_name}`,
                 title: item.department_name,
                 id: item.id
@@ -89,7 +89,7 @@ export default function ColoredDemo() {
                 className: 'node-class bg-purple-500 text-white',
                 style: { borderRadius: '12px' },
                 data: {
-                    image: sub.profile_img ? `https://office3i.com/development/api/storage/app/${sub.profile_img}` : 'https://via.placeholder.com/150',
+                    image: sub.profile_img ? `https://office3i.com/user/api/storage/app/${sub.profile_img}` : 'https://via.placeholder.com/150',
                     name: `${sub.first_name} ${sub.last_name}`,
                     title: sub.department_name,
                     id: sub.id
@@ -106,7 +106,7 @@ export default function ColoredDemo() {
     const datapop = async (id) => {
         console.log('clicked', id);
         try {
-            const response = await axios.get(`https://office3i.com/development/api/public/api/orgchart_employee_data/${id}`, {
+            const response = await axios.get(`https://office3i.com/user/api/public/api/orgchart_employee_data/${id}`, {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }

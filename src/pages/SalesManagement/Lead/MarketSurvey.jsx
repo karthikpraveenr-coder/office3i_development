@@ -30,7 +30,7 @@ const MarketSurvey = () => {
 
     useEffect(() => {
         // Fetch Plan options
-        axios.get('https://office3i.com/development/api/public/api/webproduct_list')
+        axios.get('https://office3i.com/user/api/public/api/webproduct_list')
             .then(response => {
                 if (response.data && response.data.data) {
                     setPlans(response.data.data);

@@ -75,7 +75,7 @@ function AddShiftSlot() {
         // console.log("shift--->", shift)
         // console.log("status--->", status)
 
-        axios.post('https://office3i.com/development/api/public/api/shiftslotinsert', requestData, {
+        axios.post('https://office3i.com/user/api/public/api/shiftslotinsert', requestData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
@@ -146,7 +146,7 @@ function AddShiftSlot() {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('https://office3i.com/development/api/public/api/view_shiftslot', {
+            const response = await fetch('https://office3i.com/user/api/public/api/view_shiftslot', {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -192,7 +192,7 @@ function AddShiftSlot() {
             });
 
             if (reason) {
-                const response = await fetch('https://office3i.com/development/api/public/api/delete_shiftslot', {
+                const response = await fetch('https://office3i.com/user/api/public/api/delete_shiftslot', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

@@ -42,7 +42,7 @@ const Holiday = () => {
 
   const fetchHolidayData = async () => {
     try {
-      const response = await axios.get(`https://office3i.com/development/api/public/api/viewholidaylist`, {
+      const response = await axios.get(`https://office3i.com/user/api/public/api/viewholidaylist`, {
         headers: {
           'Authorization': `Bearer ${usertoken}`
         }
@@ -259,7 +259,7 @@ const Holiday = () => {
       formDataToSend.append('created_by', formData.updated_hr_id);
 
       try {
-        const response = await fetch('https://office3i.com/development/api/public/api/add_holiday', {
+        const response = await fetch('https://office3i.com/user/api/public/api/add_holiday', {
           method: 'POST',
           body: formDataToSend,
 
@@ -382,7 +382,7 @@ const Holiday = () => {
         };
 
         try {
-          const response = await fetch('https://office3i.com/development/api/public/api/edit_holiday', {
+          const response = await fetch('https://office3i.com/user/api/public/api/edit_holiday', {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
@@ -452,7 +452,7 @@ const Holiday = () => {
         });
 
         if (reason) {
-          const response = await fetch('https://office3i.com/development/api/public/api/delete_holiday', {
+          const response = await fetch('https://office3i.com/user/api/public/api/delete_holiday', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

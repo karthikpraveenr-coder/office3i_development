@@ -88,7 +88,7 @@ function Sidebar() {
     });
 
     useEffect(() => {
-        axios.get(`https://office3i.com/development/api/public/api/editview_role/${userrole}`, {
+        axios.get(`https://office3i.com/user/api/public/api/editview_role/${userrole}`, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }

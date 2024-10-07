@@ -58,7 +58,7 @@ function SalesInvoiceList() {
     const fetchData = async () => {
         setLoading(true);
         try {
-            const response = await fetch('https://office3i.com/development/api/public/api/view_saleinvoice', {
+            const response = await fetch('https://office3i.com/user/api/public/api/view_saleinvoice', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -84,7 +84,7 @@ function SalesInvoiceList() {
 
 
     useEffect(() => {
-        fetch('https://office3i.com/development/api/public/api/view_saleinvoice', {
+        fetch('https://office3i.com/user/api/public/api/view_saleinvoice', {
             headers: {
 
                 'Authorization': `Bearer ${usertoken}`,
@@ -274,7 +274,7 @@ function SalesInvoiceList() {
             });
 
             if (reason) {
-                const response = await fetch('https://office3i.com/development/api/public/api/delete_saleinvoice', {
+                const response = await fetch('https://office3i.com/user/api/public/api/delete_saleinvoice', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

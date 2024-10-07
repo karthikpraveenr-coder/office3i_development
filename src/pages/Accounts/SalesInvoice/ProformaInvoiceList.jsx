@@ -59,7 +59,7 @@ function ProformaInvoiceList() {
     const fetchData = async () => {
         setLoading(true);
         try {
-            const response = await fetch('https://office3i.com/development/api/public/api/getbuybowpackproformainvoicelist', {
+            const response = await fetch('https://office3i.com/user/api/public/api/getbuybowpackproformainvoicelist', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

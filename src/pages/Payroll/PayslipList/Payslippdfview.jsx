@@ -29,7 +29,7 @@ export default function Payslippdfview() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`https://office3i.com/development/api/public/api/get_pdf_payslip_list/${id}`, {
+                const response = await axios.get(`https://office3i.com/user/api/public/api/get_pdf_payslip_list/${id}`, {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }

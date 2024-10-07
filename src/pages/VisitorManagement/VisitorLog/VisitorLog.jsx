@@ -20,7 +20,7 @@ function VisitorLog() {
 
     const fetchVisitors = async () => {
         try {
-            const response = await axios.get('https://office3i.com/development/api/public/api/visitor_list', {
+            const response = await axios.get('https://office3i.com/user/api/public/api/visitor_list', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${usertoken}`,
