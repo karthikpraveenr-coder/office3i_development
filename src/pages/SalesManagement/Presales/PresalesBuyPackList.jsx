@@ -62,7 +62,7 @@ function PresalesBuyPackList() {
     const fetchData = async () => {
         setLoading(true);
         try {
-            const response = await fetch('https://office3i.com/user/api/public/api/getbuynow_packlist', {
+            const response = await fetch('https://office3i.com/development/api/public/api/getbuynow_packlist', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -280,7 +280,7 @@ function PresalesBuyPackList() {
 
         console.log('payload', payload);
 
-        axios.post('https://office3i.com/user/api/public/api/sent_paylink', payload, {
+        axios.post('https://office3i.com/development/api/public/api/sent_paylink', payload, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`,

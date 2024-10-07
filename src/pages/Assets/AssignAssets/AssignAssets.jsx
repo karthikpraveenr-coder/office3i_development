@@ -83,7 +83,7 @@ const AssignAssets = () => {
         formData.append('created_by', userData.userempid);
 
         try {
-            const response = await fetch('https://office3i.com/user/api/public/api/add_assign_asset', {
+            const response = await fetch('https://office3i.com/development/api/public/api/add_assign_asset', {
                 method: 'POST',
                 body: formData,
                 headers: {
@@ -151,7 +151,7 @@ const AssignAssets = () => {
     useEffect(() => {
         const fetchDepartments = async () => {
             try {
-                const response = await axios.get('https://office3i.com/user/api/public/api/userrolelist', {
+                const response = await axios.get('https://office3i.com/development/api/public/api/userrolelist', {
                     headers: {
                         Authorization: `Bearer ${usertoken}`
                     }
@@ -175,7 +175,7 @@ const AssignAssets = () => {
     // Fetch employee dropdown options based on selected department
     useEffect(() => {
         if (department) {
-            const apiUrl = `https://office3i.com/user/api/public/api/employee_dropdown_list/${department}`;
+            const apiUrl = `https://office3i.com/development/api/public/api/employee_dropdown_list/${department}`;
             const fetchEmployees = async () => {
                 try {
                     const response = await axios.get(apiUrl, {
@@ -201,7 +201,7 @@ const AssignAssets = () => {
     useEffect(() => {
         const fetchAssetTypes = async () => {
             try {
-                const response = await axios.get('https://office3i.com/user/api/public/api/asset_name', {
+                const response = await axios.get('https://office3i.com/development/api/public/api/asset_name', {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }

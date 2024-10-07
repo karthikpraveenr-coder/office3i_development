@@ -149,7 +149,7 @@ function EditAttendancePolicy() {
 
         // console.log("requestData--->", requestData)
 
-        axios.put('https://office3i.com/user/api/public/api/update_attendancepolicy', requestData, {
+        axios.put('https://office3i.com/development/api/public/api/update_attendancepolicy', requestData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
@@ -230,7 +230,7 @@ function EditAttendancePolicy() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get(`https://office3i.com/user/api/public/api/editview_attendancepolicy/${id}`, {
+        axios.get(`https://office3i.com/development/api/public/api/editview_attendancepolicy/${id}`, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -269,7 +269,7 @@ function EditAttendancePolicy() {
 
     const fetchShiftSlot = async () => {
         try {
-            const response = await axios.get('https://office3i.com/user/api/public/api/shiftslotlist', {
+            const response = await axios.get('https://office3i.com/development/api/public/api/shiftslotlist', {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }

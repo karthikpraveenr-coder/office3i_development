@@ -196,7 +196,7 @@ const AddRole = () => {
 
     try {
       const response = await axios.post(
-        'https://office3i.com/user/api/public/api/addroleinsert',
+        'https://office3i.com/development/api/public/api/addroleinsert',
         {
           role_name: role,
           permission: checkedNames,
@@ -340,7 +340,7 @@ const AddRole = () => {
 
 
   // useEffect(() => {
-  //   axios.get(`https://office3i.com/user/api/public/api/editview_role/${userrole}`, {
+  //   axios.get(`https://office3i.com/development/api/public/api/editview_role/${userrole}`, {
   //     headers: {
   //       'Authorization': `Bearer ${usertoken}`,
   //       'Registered-Email': useremail

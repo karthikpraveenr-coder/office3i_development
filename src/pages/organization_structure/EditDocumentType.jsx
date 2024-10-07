@@ -60,7 +60,7 @@ function EditDocumentType() {
         };
 
 
-        axios.put(`https://office3i.com/user/api/public/api/update_empdoctype`, requestData, {
+        axios.put(`https://office3i.com/development/api/public/api/update_empdoctype`, requestData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
@@ -111,7 +111,7 @@ function EditDocumentType() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get(`https://office3i.com/user/api/public/api/editview_empdoctype/${id}`, {
+        axios.get(`https://office3i.com/development/api/public/api/editview_empdoctype/${id}`, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }

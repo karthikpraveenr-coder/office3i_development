@@ -54,7 +54,7 @@ function TLLeaveRequest() {
 
     // console.log("formData", formData)
 
-    fetch('https://office3i.com/user/api/public/api/tl_approval_leave_request', {
+    fetch('https://office3i.com/development/api/public/api/tl_approval_leave_request', {
       method: 'POST',
       body: formData,
       headers: {
@@ -138,7 +138,7 @@ function TLLeaveRequest() {
   const fetchData = async () => {
     setLoading(true); // Ensure loading is set before fetching
     try {
-      const response = await fetch('https://office3i.com/user/api/public/api/tl_leaverequest_list', {
+      const response = await fetch('https://office3i.com/development/api/public/api/tl_leaverequest_list', {
         method: 'POST', // Set the method to POST
         headers: {
           'Content-Type': 'application/json',

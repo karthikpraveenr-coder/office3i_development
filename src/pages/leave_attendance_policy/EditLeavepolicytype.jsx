@@ -66,7 +66,7 @@ function EditLeavepolicytype() {
         };
 
 
-        axios.put(`https://office3i.com/user/api/public/api/update_leavetype`, requestData, {
+        axios.put(`https://office3i.com/development/api/public/api/update_leavetype`, requestData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
@@ -118,7 +118,7 @@ function EditLeavepolicytype() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get(`https://office3i.com/user/api/public/api/editview_leavetype/${id}`, {
+        axios.get(`https://office3i.com/development/api/public/api/editview_leavetype/${id}`, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }

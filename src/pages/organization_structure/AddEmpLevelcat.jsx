@@ -71,7 +71,7 @@ function AddEmpLevelcat() {
             created_by: userempid
         };
 
-        axios.post('https://office3i.com/user/api/public/api/emplevelcategoryinsert', requestData, {
+        axios.post('https://office3i.com/development/api/public/api/emplevelcategoryinsert', requestData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
@@ -135,7 +135,7 @@ function AddEmpLevelcat() {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('https://office3i.com/user/api/public/api/view_emplevelcategory', {
+            const response = await fetch('https://office3i.com/development/api/public/api/view_emplevelcategory', {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -181,7 +181,7 @@ function AddEmpLevelcat() {
             });
 
             if (reason) {
-                const response = await fetch('https://office3i.com/user/api/public/api/delete_emplevelcategory', {
+                const response = await fetch('https://office3i.com/development/api/public/api/delete_emplevelcategory', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

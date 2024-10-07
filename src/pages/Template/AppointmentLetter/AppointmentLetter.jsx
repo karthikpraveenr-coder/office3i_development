@@ -140,7 +140,7 @@ export default function AppointmentLetter() {
         formData.append('created_by', userData.userempid);
 
         try {
-            const response = await axios.post('https://office3i.com/user/api/public/api/add_appointment_letter', formData, {
+            const response = await axios.post('https://office3i.com/development/api/public/api/add_appointment_letter', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'Authorization': `Bearer ${usertoken}`

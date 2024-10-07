@@ -54,7 +54,7 @@ function Supervisorlist() {
 
 
     useEffect(() => {
-        axios.get('https://office3i.com/user/api/public/api/supervisor_userrole', {
+        axios.get('https://office3i.com/development/api/public/api/supervisor_userrole', {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
@@ -114,7 +114,7 @@ function Supervisorlist() {
 
 
 
-        axios.post('https://office3i.com/user/api/public/api/addsupervisor', requestData, {
+        axios.post('https://office3i.com/development/api/public/api/addsupervisor', requestData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
@@ -182,7 +182,7 @@ function Supervisorlist() {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('https://office3i.com/user/api/public/api/view_supervisor', {
+            const response = await fetch('https://office3i.com/development/api/public/api/view_supervisor', {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -228,7 +228,7 @@ function Supervisorlist() {
             });
 
             if (reason) {
-                const response = await fetch('https://office3i.com/user/api/public/api/delete_supervisor', {
+                const response = await fetch('https://office3i.com/development/api/public/api/delete_supervisor', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

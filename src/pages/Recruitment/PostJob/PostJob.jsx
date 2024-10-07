@@ -178,7 +178,7 @@ const PostJob = () => {
         formData.append('valid_till', validTill);
         formData.append('created_by', userempid);
 
-        axios.post('https://office3i.com/user/api/public/api/add_job_post', formData, {
+        axios.post('https://office3i.com/development/api/public/api/add_job_post', formData, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -229,7 +229,7 @@ const PostJob = () => {
 
     // ------------------------------------------------------------------------------------------------------------
     useEffect(() => {
-        axios.get('https://office3i.com/user/api/public/api/country_list', {
+        axios.get('https://office3i.com/development/api/public/api/country_list', {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -249,7 +249,7 @@ const PostJob = () => {
 
     useEffect(() => {
         if (selectedCountry) {
-            axios.get(`https://office3i.com/user/api/public/api/state_list/${selectedCountry.value}`, {
+            axios.get(`https://office3i.com/development/api/public/api/state_list/${selectedCountry.value}`, {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -271,7 +271,7 @@ const PostJob = () => {
 
     useEffect(() => {
         if (selectedState) {
-            axios.get(`https://office3i.com/user/api/public/api/city_list/${selectedState.value}`, {
+            axios.get(`https://office3i.com/development/api/public/api/city_list/${selectedState.value}`, {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }

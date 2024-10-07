@@ -75,7 +75,7 @@ function OvertimeType() {
         // console.log("shift--->", shift)
         // console.log("status--->", status)
 
-        axios.post('https://office3i.com/user/api/public/api/add_ot_requesttype', requestData, {
+        axios.post('https://office3i.com/development/api/public/api/add_ot_requesttype', requestData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
@@ -146,7 +146,7 @@ function OvertimeType() {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('https://office3i.com/user/api/public/api/view_ot_requesttype', {
+            const response = await fetch('https://office3i.com/development/api/public/api/view_ot_requesttype', {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -192,7 +192,7 @@ function OvertimeType() {
             });
 
             if (reason) {
-                const response = await fetch('https://office3i.com/user/api/public/api/delete_ot_requesttype', {
+                const response = await fetch('https://office3i.com/development/api/public/api/delete_ot_requesttype', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

@@ -44,7 +44,7 @@ export default function EventList() {
 
     const fetchTableData = async () => {
 
-        const apiUrl = `https://office3i.com/user/api/public/api/view_event_list`;
+        const apiUrl = `https://office3i.com/development/api/public/api/view_event_list`;
         try {
             const response = await axios.post(apiUrl,
                 {
@@ -101,7 +101,7 @@ export default function EventList() {
             });
 
             if (reason) {
-                const response = await fetch('https://office3i.com/user/api/public/api/delete_event', {
+                const response = await fetch('https://office3i.com/development/api/public/api/delete_event', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -299,7 +299,7 @@ export default function EventList() {
             formData.append('event_status', approvalType);
             formData.append('event_reason', reason);
 
-            const response = await fetch('https://office3i.com/user/api/public/api/approval_event', {
+            const response = await fetch('https://office3i.com/development/api/public/api/approval_event', {
                 method: 'POST',
                 body: formData,
                 headers: {
@@ -383,7 +383,7 @@ export default function EventList() {
         setShow(true);
         try {
 
-            const response = await axios.get(`https://office3i.com/user/api/public/api/event_status_list/${item.id}/${status}`, {
+            const response = await axios.get(`https://office3i.com/development/api/public/api/event_status_list/${item.id}/${status}`, {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }

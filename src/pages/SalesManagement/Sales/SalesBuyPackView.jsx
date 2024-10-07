@@ -75,7 +75,7 @@ const SalesBuyPackView = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`https://office3i.com/user/api/public/api/getbuybowpacksalesviewlist/${id}`, {
+                const response = await axios.get(`https://office3i.com/development/api/public/api/getbuybowpacksalesviewlist/${id}`, {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }

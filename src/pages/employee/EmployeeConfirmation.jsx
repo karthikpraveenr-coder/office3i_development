@@ -53,7 +53,7 @@ function EmployeeConfirmation() {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('https://office3i.com/user/api/public/api/employee_confirmation_list', {
+            const response = await fetch('https://office3i.com/development/api/public/api/employee_confirmation_list', {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -260,7 +260,7 @@ function EmployeeConfirmation() {
     useEffect(() => {
         async function fetchCategories() {
             try {
-                const response = await axios.get(`https://office3i.com/user/api/public/api/employee_categorylist`, {
+                const response = await axios.get(`https://office3i.com/development/api/public/api/employee_categorylist`, {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }
@@ -302,7 +302,7 @@ function EmployeeConfirmation() {
         };
 
         try {
-            const response = await axios.put('https://office3i.com/user/api/public/api/employee_confirmation_update', requestData, {
+            const response = await axios.put('https://office3i.com/development/api/public/api/employee_confirmation_update', requestData, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${usertoken}`

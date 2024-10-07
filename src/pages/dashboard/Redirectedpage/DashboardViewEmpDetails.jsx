@@ -67,7 +67,7 @@ export default function DashboardViewEmpDetails() {
 
         const fetchData = async () => {
             try {
-                const response = await axios.get(`https://office3i.com/user/api/public/api/viewemp_Details/${aId}`, {
+                const response = await axios.get(`https://office3i.com/development/api/public/api/viewemp_Details/${aId}`, {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }

@@ -48,7 +48,7 @@ function HalfDayRequest() {
 
         console.log("formData", formData)
 
-        fetch('https://office3i.com/user/api/public/api/approval_halfday_request', {
+        fetch('https://office3i.com/development/api/public/api/approval_halfday_request', {
             method: 'POST',
             body: formData,
             headers: {
@@ -131,7 +131,7 @@ function HalfDayRequest() {
     const fetchData = async () => {
         setLoading(true);
         try {
-            const response = await fetch('https://office3i.com/user/api/public/api/hr_halfday_approvallist', {
+            const response = await fetch('https://office3i.com/development/api/public/api/hr_halfday_approvallist', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -414,7 +414,7 @@ function HalfDayRequest() {
                                                 <td>{row.permission_timefrom}</td>
                                                 <td>{row.permission_timeto}</td>
                                                 <td>{row.proof !== null ?
-                                                    <button className="btn-view" onClick={() => { window.open(`https://office3i.com/user/api/storage/app/${row.proof}`, '_blank') }}>
+                                                    <button className="btn-view" onClick={() => { window.open(`https://office3i.com/development/api/storage/app/${row.proof}`, '_blank') }}>
                                                         <FontAwesomeIcon icon={faEye} /> View
                                                     </button>
 

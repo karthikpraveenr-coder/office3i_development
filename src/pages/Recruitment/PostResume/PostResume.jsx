@@ -343,7 +343,7 @@ const ResumeForm = () => {
         formData.append('attached_resume', attachedResume || null);
         formData.append('created_by', userempid || '-');
 
-        axios.post('https://office3i.com/user/api/public/api/addhr_resume_upload', formData, {
+        axios.post('https://office3i.com/development/api/public/api/addhr_resume_upload', formData, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -394,7 +394,7 @@ const ResumeForm = () => {
 
     useEffect(() => {
         // Fetch data from the API for undergraduate degrees
-        fetch('https://office3i.com/user/api/public/api/ug_list', {
+        fetch('https://office3i.com/development/api/public/api/ug_list', {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -417,7 +417,7 @@ const ResumeForm = () => {
 
     useEffect(() => {
         // Fetch data from your API
-        fetch('https://office3i.com/user/api/public/api/pg_list', {
+        fetch('https://office3i.com/development/api/public/api/pg_list', {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -439,7 +439,7 @@ const ResumeForm = () => {
 
     useEffect(() => {
         // Fetch data from the API for industries
-        fetch('https://office3i.com/user/api/public/api/industry_list', {
+        fetch('https://office3i.com/development/api/public/api/industry_list', {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -464,7 +464,7 @@ const ResumeForm = () => {
 
     // Fetch Functional Areas
     useEffect(() => {
-        fetch('https://office3i.com/user/api/public/api/functional_list', {
+        fetch('https://office3i.com/development/api/public/api/functional_list', {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -483,7 +483,7 @@ const ResumeForm = () => {
     // Fetch Area of Specialization based on selected Functional Area
     useEffect(() => {
         if (functionalArea) {
-            fetch(`https://office3i.com/user/api/public/api/area_specialization_list/${functionalArea.value}`, {
+            fetch(`https://office3i.com/development/api/public/api/area_specialization_list/${functionalArea.value}`, {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -560,7 +560,7 @@ const ResumeForm = () => {
     // },[selectedCountry, selectedState, selectedCity])
     // ------------------------------------------------------------------------------------------------------------
     useEffect(() => {
-        axios.get('https://office3i.com/user/api/public/api/country_list', {
+        axios.get('https://office3i.com/development/api/public/api/country_list', {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -580,7 +580,7 @@ const ResumeForm = () => {
 
     useEffect(() => {
         if (selectedCountry) {
-            axios.get(`https://office3i.com/user/api/public/api/state_list/${selectedCountry.value}`, {
+            axios.get(`https://office3i.com/development/api/public/api/state_list/${selectedCountry.value}`, {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -602,7 +602,7 @@ const ResumeForm = () => {
 
     useEffect(() => {
         if (selectedState) {
-            axios.get(`https://office3i.com/user/api/public/api/city_list/${selectedState.value}`, {
+            axios.get(`https://office3i.com/development/api/public/api/city_list/${selectedState.value}`, {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -663,7 +663,7 @@ const ResumeForm = () => {
         // Fetch city list from the API
         const fetchCities = async () => {
             try {
-                const response = await axios.get('https://office3i.com/user/api/public/api/all_city_list', {
+                const response = await axios.get('https://office3i.com/development/api/public/api/all_city_list', {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }

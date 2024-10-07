@@ -65,7 +65,7 @@ function EditShiftSlot() {
         };
 
 
-        axios.put(`https://office3i.com/user/api/public/api/update_shiftslot`, requestData, {
+        axios.put(`https://office3i.com/development/api/public/api/update_shiftslot`, requestData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
@@ -117,7 +117,7 @@ function EditShiftSlot() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get(`https://office3i.com/user/api/public/api/editview_shiftslot/${id}`, {
+        axios.get(`https://office3i.com/development/api/public/api/editview_shiftslot/${id}`, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }

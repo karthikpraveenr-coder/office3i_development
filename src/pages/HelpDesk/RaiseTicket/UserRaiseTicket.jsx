@@ -77,7 +77,7 @@ function UserRaiseTicket() {
         formData.append('attachment', attachment);
         formData.append('created_by', userempid);
 
-        axios.post('https://office3i.com/user/api/public/api/addemployee_raise_ticket', formData, {
+        axios.post('https://office3i.com/development/api/public/api/addemployee_raise_ticket', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
                 'Authorization': `Bearer ${usertoken}`
@@ -140,7 +140,7 @@ function UserRaiseTicket() {
     useEffect(() => {
         const fetchAssetId = async () => {
             try {
-                const response = await axios.get('https://office3i.com/user/api/public/api/ticket_id', {
+                const response = await axios.get('https://office3i.com/development/api/public/api/ticket_id', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${usertoken}` // Assuming usertoken is defined somewhere
@@ -170,7 +170,7 @@ function UserRaiseTicket() {
     useEffect(() => {
         const fetchDepartments = async () => {
             try {
-                const response = await axios.get('https://office3i.com/user/api/public/api/issue_type_list', {
+                const response = await axios.get('https://office3i.com/development/api/public/api/issue_type_list', {
                     headers: {
                         Authorization: `Bearer ${usertoken}`
                     }

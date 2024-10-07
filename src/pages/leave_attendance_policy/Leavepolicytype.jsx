@@ -71,7 +71,7 @@ function Leavepolicytype() {
         // console.log("shift--->", leavepolicytype)
         // console.log("status--->", status)
 
-        axios.post('https://office3i.com/user/api/public/api/leavetypeinsert', requestData, {
+        axios.post('https://office3i.com/development/api/public/api/leavetypeinsert', requestData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
@@ -141,7 +141,7 @@ function Leavepolicytype() {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('https://office3i.com/user/api/public/api/view_leavetype', {
+            const response = await fetch('https://office3i.com/development/api/public/api/view_leavetype', {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -187,7 +187,7 @@ function Leavepolicytype() {
             });
 
             if (reason) {
-                const response = await fetch('https://office3i.com/user/api/public/api/delete_leavetype', {
+                const response = await fetch('https://office3i.com/development/api/public/api/delete_leavetype', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

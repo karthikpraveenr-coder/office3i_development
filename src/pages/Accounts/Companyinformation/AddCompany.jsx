@@ -55,7 +55,7 @@ const AddCompany = () => {
     const [selectedCity, setSelectedCity] = useState(null);
     // ------------------------------------------------------------------------------------------------------------
     useEffect(() => {
-        axios.get('https://office3i.com/user/api/public/api/country_list', {
+        axios.get('https://office3i.com/development/api/public/api/country_list', {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -74,7 +74,7 @@ const AddCompany = () => {
 
     useEffect(() => {
         if (selectedCountry) {
-            axios.get(`https://office3i.com/user/api/public/api/state_list/${selectedCountry.value}`, {
+            axios.get(`https://office3i.com/development/api/public/api/state_list/${selectedCountry.value}`, {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -95,7 +95,7 @@ const AddCompany = () => {
     // ------------------------------------------------------------------------------------------------------------
     useEffect(() => {
         if (selectedState) {
-            axios.get(`https://office3i.com/user/api/public/api/city_list/${selectedState.value}`, {
+            axios.get(`https://office3i.com/development/api/public/api/city_list/${selectedState.value}`, {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -153,7 +153,7 @@ const AddCompany = () => {
         // Fetch city list from the API
         const fetchCities = async () => {
             try {
-                const response = await axios.get('https://office3i.com/user/api/public/api/all_city_list', {
+                const response = await axios.get('https://office3i.com/development/api/public/api/all_city_list', {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }
@@ -272,7 +272,7 @@ const AddCompany = () => {
         formData.append('created_by', userempid);
 
 
-        axios.post('https://office3i.com/user/api/public/api/addcompany_information', formData, {
+        axios.post('https://office3i.com/development/api/public/api/addcompany_information', formData, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }

@@ -207,7 +207,7 @@ const DashboardPage = () => {
             created_by: userempid
         };
 
-        axios.post('https://office3i.com/user/api/public/api/addannouncement', requestData, {
+        axios.post('https://office3i.com/development/api/public/api/addannouncement', requestData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
@@ -272,7 +272,7 @@ const DashboardPage = () => {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('https://office3i.com/user/api/public/api/view_announcement', {
+            const response = await fetch('https://office3i.com/development/api/public/api/view_announcement', {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -314,7 +314,7 @@ const DashboardPage = () => {
 
     const fetchmoodboardData = async () => {
         try {
-            const response = await fetch('https://office3i.com/user/api/public/api/view_moodboard', {
+            const response = await fetch('https://office3i.com/development/api/public/api/view_moodboard', {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -645,7 +645,7 @@ const DashboardPage = () => {
                                         {moodboardlist.map(item => (
                                             <p className='reacted__name__emoji__popup mb-3'>
 
-                                                <img src={`https://office3i.com/user/api/storage/app/${item.profile_img}`} alt='' className='profile__popup' />
+                                                <img src={`https://office3i.com/development/api/storage/app/${item.profile_img}`} alt='' className='profile__popup' />
                                                 <span className='reacted__name__popup'>{item.emp_name}</span>
                                                 {item.mood_name === 'face_shy' && <img src={face_shy} alt="face_shy" className='emoji-icon-reacted' />}
                                                 {item.mood_name === 'happy' && <img src={happy} alt="happy" className='emoji-icon-reacted' />}

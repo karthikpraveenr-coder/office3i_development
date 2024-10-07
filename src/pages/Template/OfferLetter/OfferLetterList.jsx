@@ -53,7 +53,7 @@ export default function OfferLetterList() {
 
     const fetchTableData = async () => {
         try {
-            const response = await fetch('https://office3i.com/user/api/public/api/offer_list', {
+            const response = await fetch('https://office3i.com/development/api/public/api/offer_list', {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -102,7 +102,7 @@ export default function OfferLetterList() {
             });
 
             if (reason) {
-                const response = await fetch('https://office3i.com/user/api/public/api/delete_event', {
+                const response = await fetch('https://office3i.com/development/api/public/api/delete_event', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

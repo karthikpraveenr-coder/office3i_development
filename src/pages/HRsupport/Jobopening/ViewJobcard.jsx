@@ -37,7 +37,7 @@ function ViewJobcard() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`https://office3i.com/user/api/public/api/edit_jobopening_list/${id}`, {
+                const response = await axios.get(`https://office3i.com/development/api/public/api/edit_jobopening_list/${id}`, {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }
@@ -78,7 +78,7 @@ function ViewJobcard() {
             });
 
             if (reason) {
-                const response = await axios.post('https://office3i.com/user/api/public/api/delete_job_opening', {
+                const response = await axios.post('https://office3i.com/development/api/public/api/delete_job_opening', {
                     id: id,
                     updated_by: userempid,
                     reason: reason,

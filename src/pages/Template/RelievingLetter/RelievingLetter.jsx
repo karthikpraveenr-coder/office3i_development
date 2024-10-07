@@ -88,7 +88,7 @@ export default function RelievingLetter() {
         formData.append('created_by', userData.userempid);
 
         try {
-            const response = await fetch('https://office3i.com/user/api/public/api/add_relieving_letter', {
+            const response = await fetch('https://office3i.com/development/api/public/api/add_relieving_letter', {
                 method: 'POST',
                 body: formData,
                 headers: {

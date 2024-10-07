@@ -54,7 +54,7 @@ function SalesLeadList() {
     const fetchData = async () => {
         setLoading(true); // Ensure loading is set before fetching
         try {
-            const response = await fetch('https://office3i.com/user/api/public/api/sale_leadlist', {
+            const response = await fetch('https://office3i.com/development/api/public/api/sale_leadlist', {
                 method: 'POST', // Set the method to POST
                 headers: {
                     'Content-Type': 'application/json',
@@ -112,7 +112,7 @@ function SalesLeadList() {
             });
 
             if (reason) {
-                const response = await fetch('https://office3i.com/user/api/public/api/delete_project', {
+                const response = await fetch('https://office3i.com/development/api/public/api/delete_project', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

@@ -52,7 +52,7 @@ function CompanyList() {
     const fetchData = async () => {
         setLoading(true); // Ensure loading is set before fetching
         try {
-            const response = await fetch('https://office3i.com/user/api/public/api/view_company_information', {
+            const response = await fetch('https://office3i.com/development/api/public/api/view_company_information', {
                 method: 'GET', // Set the method to POST
                 headers: {
                     'Content-Type': 'application/json',
@@ -106,7 +106,7 @@ function CompanyList() {
             });
 
             if (reason) {
-                const response = await fetch('https://office3i.com/user/api/public/api/delete_company_information', {
+                const response = await fetch('https://office3i.com/development/api/public/api/delete_company_information', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

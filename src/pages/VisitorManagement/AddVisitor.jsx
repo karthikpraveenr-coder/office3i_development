@@ -153,7 +153,7 @@ const AddVisitor = () => {
         formData.append('profile_img', image);
         formData.append('created_by', userempid);
 
-        axios.post('https://office3i.com/user/api/public/api/add_visitor', formData, {
+        axios.post('https://office3i.com/development/api/public/api/add_visitor', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
                 'Authorization': `Bearer ${usertoken}`
@@ -248,7 +248,7 @@ const AddVisitor = () => {
     useEffect(() => {
         const fetchDepartments = async () => {
             try {
-                const response = await axios.get('https://office3i.com/user/api/public/api/userrolelist', {
+                const response = await axios.get('https://office3i.com/development/api/public/api/userrolelist', {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }
@@ -279,7 +279,7 @@ const AddVisitor = () => {
         if (selectedDepartment) {
             const fetchMembers = async () => {
                 try {
-                    const response = await axios.get(`https://office3i.com/user/api/public/api/employee_dropdown_list/${selectedDepartment}`, {
+                    const response = await axios.get(`https://office3i.com/development/api/public/api/employee_dropdown_list/${selectedDepartment}`, {
                         headers: {
                             'Authorization': `Bearer ${usertoken}`
                         }
@@ -307,7 +307,7 @@ const AddVisitor = () => {
     useEffect(() => {
         const fetchDepartments = async () => {
             try {
-                const response = await axios.get('https://office3i.com/user/api/public/api/employee_document_typelist', {
+                const response = await axios.get('https://office3i.com/development/api/public/api/employee_document_typelist', {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }

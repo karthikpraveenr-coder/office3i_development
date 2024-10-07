@@ -43,7 +43,7 @@ function AddLead() {
 
     useEffect(() => {
         // Fetch Plan options
-        axios.get('https://office3i.com/user/api/public/api/webproduct_list')
+        axios.get('https://office3i.com/development/api/public/api/webproduct_list')
             .then(response => {
                 if (response.data && response.data.data) {
                     setPlans(response.data.data);
@@ -53,7 +53,7 @@ function AddLead() {
             .catch(error => console.error('Error fetching plans:', error));
 
         // Fetch Module options
-        axios.get('https://office3i.com/user/api/public/api/webmodule_list')
+        axios.get('https://office3i.com/development/api/public/api/webmodule_list')
             .then(response => {
                 if (response.data && response.data.data) {
                     setModules(response.data.data);
@@ -84,7 +84,7 @@ function AddLead() {
 
         setFormErrors({});
 
-        axios.post('https://office3i.com/user/api/public/api/contact_add_enquiry',
+        axios.post('https://office3i.com/development/api/public/api/contact_add_enquiry',
             {
                 first_name: name,
                 description: description,

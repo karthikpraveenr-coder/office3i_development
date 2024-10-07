@@ -77,7 +77,7 @@ function EditProformaInvoiceList() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`https://office3i.com/user/api/public/api/getbuybowpackproformainvoiceviewlist/${id}`, {
+                const response = await axios.get(`https://office3i.com/development/api/public/api/getbuybowpackproformainvoiceviewlist/${id}`, {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }
@@ -142,7 +142,7 @@ function EditProformaInvoiceList() {
 
     useEffect(() => {
         // Fetch Plan options
-        axios.get('https://office3i.com/user/api/public/api/webproduct_list')
+        axios.get('https://office3i.com/development/api/public/api/webproduct_list')
             .then(response => {
                 if (response.data && response.data.data) {
                     setPlans(response.data.data);
@@ -153,7 +153,7 @@ function EditProformaInvoiceList() {
             .catch(error => console.error('Error fetching plans:', error));
 
         // Fetch Module options
-        axios.get('https://office3i.com/user/api/public/api/webmodule_list')
+        axios.get('https://office3i.com/development/api/public/api/webmodule_list')
             .then(response => {
 
 
@@ -222,7 +222,7 @@ function EditProformaInvoiceList() {
 
         };
 
-        axios.post('https://office3i.com/user/api/public/api/getbuybowpackproformainvoiceeditlist', payload, {
+        axios.post('https://office3i.com/development/api/public/api/getbuybowpackproformainvoiceeditlist', payload, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -274,7 +274,7 @@ function EditProformaInvoiceList() {
     useEffect(() => {
         const fetchrole = async () => {
             try {
-                const response = await axios.get('https://office3i.com/user/api/public/api/userrolelist', {
+                const response = await axios.get('https://office3i.com/development/api/public/api/userrolelist', {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }
@@ -302,7 +302,7 @@ function EditProformaInvoiceList() {
 
     // Fetch Employees
     useEffect(() => {
-        const apiUrl = `https://office3i.com/user/api/public/api/employee_dropdown_list/${formattedSelectedDepartment}`;
+        const apiUrl = `https://office3i.com/development/api/public/api/employee_dropdown_list/${formattedSelectedDepartment}`;
         const fetchData = async () => {
             try {
                 const response = await axios.get(apiUrl, {
@@ -343,7 +343,7 @@ function EditProformaInvoiceList() {
 
     // ------------------------------------------------------------------------------------------------------------
     useEffect(() => {
-        axios.get('https://office3i.com/user/api/public/api/office3i_country_list', {
+        axios.get('https://office3i.com/development/api/public/api/office3i_country_list', {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -360,7 +360,7 @@ function EditProformaInvoiceList() {
 
     useEffect(() => {
         if (selectedCountry) {
-            axios.get(`https://office3i.com/user/api/public/api/office3i_state_list/${selectedCountry.value || selectedCountry}`, {
+            axios.get(`https://office3i.com/development/api/public/api/office3i_state_list/${selectedCountry.value || selectedCountry}`, {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -380,7 +380,7 @@ function EditProformaInvoiceList() {
 
     useEffect(() => {
         if (selectedState) {
-            axios.get(`https://office3i.com/user/api/public/api/office3i_city_list/${selectedState.value || selectedState}`, {
+            axios.get(`https://office3i.com/development/api/public/api/office3i_city_list/${selectedState.value || selectedState}`, {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -436,7 +436,7 @@ function EditProformaInvoiceList() {
 
     useEffect(() => {
         // Fetching data from the API
-        axios.get(`https://office3i.com/user/api/public/api/webproductmodule_list/${selectedPlan}`)
+        axios.get(`https://office3i.com/development/api/public/api/webproductmodule_list/${selectedPlan}`)
             .then(response => {
                 // console.log("setProducts----->", response.data.data);
                 // console.log("First Product Price----->", response.data.data[0].price);
@@ -506,7 +506,7 @@ function EditProformaInvoiceList() {
 
 
     useEffect(() => {
-        axios.get('https://office3i.com/user/api/public/api/payment_method_status', {
+        axios.get('https://office3i.com/development/api/public/api/payment_method_status', {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -545,7 +545,7 @@ function EditProformaInvoiceList() {
 
 
     useEffect(() => {
-        axios.get('https://office3i.com/user/api/public/api/payment_type_status', {
+        axios.get('https://office3i.com/development/api/public/api/payment_type_status', {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }

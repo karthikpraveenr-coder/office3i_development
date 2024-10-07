@@ -81,7 +81,7 @@ function EditEmployeeShift() {
     useEffect(() => {
         const fetchrole = async () => {
             try {
-                const response = await axios.get('https://office3i.com/user/api/public/api/userrolelist', {
+                const response = await axios.get('https://office3i.com/development/api/public/api/userrolelist', {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }
@@ -116,7 +116,7 @@ function EditEmployeeShift() {
     // --------------------------------------- Employee Dropdown ------------------------------------------------
 
     useEffect(() => {
-        const apiUrl = `https://office3i.com/user/api/public/api/employee_dropdown_list/${formattedSelectedDepartment}`;
+        const apiUrl = `https://office3i.com/development/api/public/api/employee_dropdown_list/${formattedSelectedDepartment}`;
         const fetchData = async () => {
             try {
                 const response = await axios.get(apiUrl,
@@ -158,7 +158,7 @@ function EditEmployeeShift() {
     useEffect(() => {
         const fetchShiftSlots = async () => {
             try {
-                const response = await axios.get('https://office3i.com/user/api/public/api/shiftslotlist', {
+                const response = await axios.get('https://office3i.com/development/api/public/api/shiftslotlist', {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }
@@ -237,7 +237,7 @@ function EditEmployeeShift() {
         };
 
 
-        axios.put(`https://office3i.com/user/api/public/api/update_employeeshift`, requestData, {
+        axios.put(`https://office3i.com/development/api/public/api/update_employeeshift`, requestData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
@@ -294,7 +294,7 @@ function EditEmployeeShift() {
 
 
     useEffect(() => {
-        axios.get(`https://office3i.com/user/api/public/api/editview_employeeshift/${id}`, {
+        axios.get(`https://office3i.com/development/api/public/api/editview_employeeshift/${id}`, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
