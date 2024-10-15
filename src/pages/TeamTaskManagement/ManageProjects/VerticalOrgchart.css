@@ -1,0 +1,70 @@
+/* Custom styles for the Org Chart */
+.orgchart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+/* VerticalOrgchart.css */
+
+
+  .orgchart ul li .oc-node .oc-heading {
+    box-sizing: border-box;
+    padding: 2px;
+    margin: 0;
+    width: 130px;
+    height: 20px;
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background-color: #00275C;
+    color: #fff;
+    border-radius: 4px 4px 0 0;
+}
+.orgchart ul li .oc-node .oc-content {
+    box-sizing: border-box;
+    padding: 2px;
+    width: 130px;
+    height: 20px;
+    font-size: 0.625rem;
+    border: 1px solid #00275C;
+    border-radius: 0 0 4px 4px;
+    text-align: center;
+    background-color: #fff;
+    color: #333;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.orgchart ul li .oc-node:not(:only-child)::after {
+    content: "";
+    position: absolute;
+    bottom: -11px;
+    left: calc(50% - 1px);
+    width: 2px;
+    height: 9px;
+    background-color: #00275C;
+}
+
+.orgchart > ul > li > ul li::before {
+    content: "";
+    position: absolute;
+    top: -11px;
+    left: 0;
+    width: 100%;
+    border-top: 2px solid #00275C;
+    box-sizing: border-box;
+}
+.orgchart > ul > li > ul li > .oc-node::before {
+    content: "";
+    position: absolute;
+    top: -11px;
+    left: calc(50% - 1px);
+    width: 2px;
+    height: 9px;
+    background-color: #00275C;
+}
+  
+  

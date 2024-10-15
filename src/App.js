@@ -5,12 +5,12 @@ import LoginPage from './pages/authentication/LoginPage';
 import ForgetPasswordPage from './pages/authentication/ForgetPasswordPage';
 import OTPPage from './pages/authentication/OTPPage';
 import ResetPasswordPage from './pages/authentication/ResetPasswordPage';
-import Header from './Banner_Pages/components/header/Header';
-import Community from './Banner_Pages/body/Community';
-import Home from './Banner_Pages/body/Home';
-import BlogPage from './Banner_Pages/body/BlogPage';
-import Features from './Banner_Pages/body/Features';
-import history from './history';
+// import Header from './Banner_Pages/components/header/Header';
+// import Community from './Banner_Pages/body/Community';
+// import Home from './Banner_Pages/body/Home';
+// import BlogPage from './Banner_Pages/body/BlogPage';
+// import Features from './Banner_Pages/body/Features';
+// import history from './history';
 
 function App() {
   return (

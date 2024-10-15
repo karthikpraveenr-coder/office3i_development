@@ -201,6 +201,11 @@ import EditSalesBuyPackList from '../pages/SalesManagement/Sales/EditSalesBuyPac
 import SalesBuyPackView from '../pages/SalesManagement/Sales/SalesBuyPackView'
 import PresalesBuyPackView from '../pages/SalesManagement/Presales/PresalesBuyPackView'
 import MarketSurvey from '../pages/SalesManagement/Lead/MarketSurvey'
+import ManageProjects from '../pages/TeamTaskManagement/ManageProjects/ManageProjects'
+import ProjectsList from '../pages/TeamTaskManagement/ProjectsList/ProjectsList'
+import AttendanceDashboardPowerBIReport from '../pages/Attendance/AttendanceDashboard/AttendanceDashboard'
+import VerticalOrgChart from '../pages/TeamTaskManagement/ManageProjects/VerticalOrgChart'
+
 
 
 
@@ -455,7 +460,7 @@ function MasterLayout() {
                             <Route path="/salesbuypacklist" element={<AuthRoute><SalesBuyPackList /></AuthRoute>} />
                             <Route path="/editsalesbuypackList/:id" element={<AuthRoute><EditSalesBuyPackList /></AuthRoute>} />
                             <Route path="/salesbuypackview/:id" element={<AuthRoute><SalesBuyPackView /></AuthRoute>} />
-                            
+
                             <Route path="/saleseditlead/:id" element={<AuthRoute><SalesEditLead /></AuthRoute>} />
 
                             <Route path="/onlinetrialpacklist" element={<AuthRoute><OnlineTrialPackList /></AuthRoute>} />
@@ -478,28 +483,39 @@ function MasterLayout() {
 
 
                             <Route path="/adddailyaccounts/" element={<AuthRoute><AddDailyAccounts /></AuthRoute>} />
-                            <Route path="/editdailyaccounts/:id" element={<AuthRoute><EditDailyAccounts /></AuthRoute>}/>
-                            <Route path="/viewsalesleadlist/:id" element={<AuthRoute><ViewSalesLeadList /></AuthRoute>}/>
+                            <Route path="/editdailyaccounts/:id" element={<AuthRoute><EditDailyAccounts /></AuthRoute>} />
+                            <Route path="/viewsalesleadlist/:id" element={<AuthRoute><ViewSalesLeadList /></AuthRoute>} />
 
-                           {/* --------------------------------------------------------------------------------------------------- */}
-                            <Route path="/addpurchaseinvoice" element={<AuthRoute><AddPurchaseInvoice /></AuthRoute>}/>
-                            <Route path="/purchaseinvoicelist" element={<AuthRoute><PurchaseInvoiceList /></AuthRoute>}/>
-                            <Route path="/editpurchaseinvoice/:id" element={<AuthRoute><EditPurchaseInvoice /></AuthRoute>}/>
+                            {/* --------------------------------------------------------------------------------------------------- */}
+                            <Route path="/addpurchaseinvoice" element={<AuthRoute><AddPurchaseInvoice /></AuthRoute>} />
+                            <Route path="/purchaseinvoicelist" element={<AuthRoute><PurchaseInvoiceList /></AuthRoute>} />
+                            <Route path="/editpurchaseinvoice/:id" element={<AuthRoute><EditPurchaseInvoice /></AuthRoute>} />
+
+
+
+
+
+                            <Route path="/customerenquirylist" element={<AuthRoute><CustomerEnquiryList /></AuthRoute>} />
+                            <Route path="/editcustomerenquirylist/:id" element={<AuthRoute><EditCustomerEnquiryList /></AuthRoute>} />
+
+                            <Route path="/customerlist" element={<AuthRoute><CustomerList /></AuthRoute>} />
+                            <Route path="/addcustomer" element={<AuthRoute><AddCustomer /></AuthRoute>} />
+                            <Route path="/addcustomerotp" element={<AuthRoute><AddCustomerOTP /></AuthRoute>} />
+
+
+                            <Route path="/trialplanList" element={<AuthRoute><TrialPlanList /></AuthRoute>} />
+                            <Route path="/buynowplanlist" element={<AuthRoute><BuynowplanList /></AuthRoute>} />
+
+                            {/* --------------------------------------------------------------------------------------------------- */}
+
+                            <Route path="/manageprojects" element={<AuthRoute><ManageProjects /></AuthRoute>} />
+                            <Route path="/projectslist" element={<AuthRoute><ProjectsList /></AuthRoute>} />
+
+                            {/* --------------------------------------------------------------------------------------------------- */}
+
+                            <Route path="/attendancedashboard" element={<AuthRoute><AttendanceDashboardPowerBIReport /></AuthRoute>} />
+                            <Route path="/verticalorgchart" element={<AuthRoute><VerticalOrgChart /></AuthRoute>} />
                           
-                         
-                         
-                         
-                         
-                            <Route path="/customerenquirylist" element={<AuthRoute><CustomerEnquiryList /></AuthRoute>}/>
-                            <Route path="/editcustomerenquirylist/:id" element={<AuthRoute><EditCustomerEnquiryList /></AuthRoute>}/>
-
-                            <Route path="/customerlist" element={<AuthRoute><CustomerList /></AuthRoute>}/>
-                            <Route path="/addcustomer" element={<AuthRoute><AddCustomer /></AuthRoute>}/>
-                            <Route path="/addcustomerotp" element={<AuthRoute><AddCustomerOTP /></AuthRoute>}/>
-
-
-                            <Route path="/trialplanList" element={<AuthRoute><TrialPlanList /></AuthRoute>}/>
-                            <Route path="/buynowplanlist" element={<AuthRoute><BuynowplanList /></AuthRoute>}/>
 
 
 

@@ -1,0 +1,19 @@
+.ProjectsList__pnane {
+    background-color: #FFEAC8;
+    border-color: #FF9D00;
+    color: #A96800;
+    width: 200px; /* Set a fixed width */
+    height: 40px; /* Set a fixed height */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: font-size 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.ProjectsList__pnane:hover {
+    background-color: #FFEAC8;
+    border-color: #FF9D00;
+    color: #A96800;
+    font-size: 17px;
+}
+

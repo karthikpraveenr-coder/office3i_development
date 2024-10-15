@@ -1,0 +1,91 @@
+.accordion-header {
+    cursor: pointer;
+    padding: 30px 25px;
+    background-color: white; /* Light background color */
+    border: 1px solid #A4CED8; /* Border color */
+    border-radius: 0.25rem; /* Rounded corners */
+    display: flex;
+    align-items: center; /* Center icons and text vertically */
+    justify-content: space-between;
+  }
+  
+  .accordion-header:hover {
+    background-color: #e2e6ea; /* Darker on hover */
+  }
+  
+  .accordion-header.active {
+    background-color: #007bff; /* Active background color */
+    color: white; /* Active text color */
+  }
+  
+  .accordion-header svg {
+    margin-right: 10px; /* Space between icon and text */
+  }
+  .Teamtask__project{
+    color:#00275c;
+    font-weight: 600;
+  }
+  .Teamtask__project__subtitle{
+    color:#00275c;
+  }
+
+  /* ----------------------------- */
+  .accordion{
+    --bs-accordion-border-color: none;
+  }
+  .accordion-item{
+    margin-bottom: 35px;
+  }
+  .accordion-body{
+    border: 1px solid #A4CED8;
+  }
+  .accordion-header.active {
+    background-color: #A4CED8;
+    color: rgb(0, 39, 92);
+}
+.create__project__btn{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.accordion-header svg {
+  /* margin-right: 10px; */
+  border: 3px solid #00275c;
+  /* padding: 15px; */
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  border-radius: 23px;
+}
+.Task__detail__taskid{
+  display: flex;
+  gap: 17px;
+  align-items: baseline;
+}
+
+.Task__id{
+  background-color: #D6F7FE;
+  color: #327F92;
+  border-color: #D6F7FE;
+}
+.subtask__counts{
+  color: #00275c;
+  font-size: 20px;
+}
+
+.plus{
+  background-color: #B0CEFF;
+  border-color: #B0CEFF;
+}
+.plus:hover{
+  background-color: white;
+  border-color: #B0CEFF;
+}
+.minus{
+  background-color: white;
+  border-color: #4874BD;
+}
+.minus:hover{
+  background-color: #B0CEFF;
+  border-color: #4874BD;
+}

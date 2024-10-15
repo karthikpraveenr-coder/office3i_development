@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import './css/sidebar.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSitemap, faClipboardUser, faUser, faUserTie, faUserGroup, faHandshakeAngle, faComputer, faCalendarDays, faUsersViewfinder, faListCheck, faMoneyBill, faFaceSmileBeam, faBarsProgress, faMessage, faFile, faBusinessTime, faUsers, faScaleBalanced, faBook } from '@fortawesome/free-solid-svg-icons';
@@ -19,6 +19,17 @@ function Sidebar() {
         color: 'rgb(26, 206, 255)',
 
     };
+    const navigate = useNavigate();
+
+    const HandleclickTeamTask = (e) => {
+        e.preventDefault();
+        navigate('/admin/projectslist');
+    }
+
+    const HandleclickAttendanceCalculation = (e) => {
+        e.preventDefault();
+        navigate('/admin/attendancedashboard');
+    }
 
     // ------------------------------------------------------------------------------------------------
 
@@ -1050,7 +1061,7 @@ function Sidebar() {
 
                         {hasAccessToAttendance() && checkedNames.Attendance.length > 0 && (
                             <>
-                                <Link className="nav-link collapsed" to="#" data-bs-toggle="collapse" data-bs-target="#Attendance" aria-expanded="false" aria-controls="Attendance">
+                                <Link onClick={HandleclickAttendanceCalculation} className="nav-link collapsed" to="#" data-bs-toggle="collapse" data-bs-target="#Attendance" aria-expanded="false" aria-controls="Attendance">
                                     <div className="sb-nav-link-icon"><FontAwesomeIcon icon={faClipboardUser} /></div>
                                     Attendance Calculation
                                     <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
@@ -1400,14 +1411,14 @@ function Sidebar() {
                                                             className={`nav-link ${location.pathname === '/admin/proformainvoicelist' ? 'active' : ''}`}
                                                             style={location.pathname === '/admin/proformainvoicelist' ? activeStyle : {}}
                                                         >
-                                                           Proforma Invoice List
+                                                            Proforma Invoice List
                                                         </Link>
                                                         <Link
                                                             to="/admin/productinvoicelist"
                                                             className={`nav-link ${location.pathname === '/admin/productinvoicelist' ? 'active' : ''}`}
                                                             style={location.pathname === '/admin/productinvoicelist' ? activeStyle : {}}
                                                         >
-                                                           Product Invoice List
+                                                            Product Invoice List
                                                         </Link>
                                                     </nav>
                                                 </div>
@@ -1500,15 +1511,15 @@ function Sidebar() {
                                                             Add Enquiry
                                                         </Link>
                                                     )}
-                                                    
-                                                        <Link
-                                                            to="/admin/marketsurvey"
-                                                            className={`nav-link ${location.pathname === '/admin/marketsurvey' ? 'active' : ''}`}
-                                                            style={location.pathname === '/admin/marketsurvey' ? activeStyle : {}}
-                                                        >
-                                                           Market Survey
-                                                        </Link>
-                                                    
+
+                                                    <Link
+                                                        to="/admin/marketsurvey"
+                                                        className={`nav-link ${location.pathname === '/admin/marketsurvey' ? 'active' : ''}`}
+                                                        style={location.pathname === '/admin/marketsurvey' ? activeStyle : {}}
+                                                    >
+                                                        Market Survey
+                                                    </Link>
+
                                                     {/* {checkedNames.SalesManagement?.Lead?.LeadList?.length > 0 && (
                                                         <Link
                                                             to="/admin/leadlist"
@@ -1817,6 +1828,28 @@ function Sidebar() {
                                                 </div>
                                             </>
                                         )}
+
+
+
+                                        {/* ---------------------------------------------------------------------------------- */}
+
+                                        <>
+                                            <Link onClick={HandleclickTeamTask} className="nav-link collapsed" to="#" data-bs-toggle="collapse" data-bs-target="#TeamTask_manage" aria-expanded="false" aria-controls="TeamTask_manage">
+                                                Team Task
+                                                <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
+                                            </Link>
+                                            <div className="collapse" id="TeamTask_manage" aria-labelledby="headingThree" data-bs-parent="#TeamManagement">
+
+                                                <Link
+                                                    to="/admin/manageprojects"
+                                                    className={`nav-link ${location.pathname === '/admin/manageprojects' ? 'active' : ''}`}
+                                                    style={location.pathname === '/admin/manageprojects' ? activeStyle : {}}
+                                                >
+                                                    Manage Project
+                                                </Link>
+                                            </div>
+                                        </>
+                                        {/* ---------------------------------------------------------------------------------- */}
                                     </nav>
                                 </div>
                                 <hr />
