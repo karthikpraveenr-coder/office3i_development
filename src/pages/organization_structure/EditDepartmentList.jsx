@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { ScaleLoader } from 'react-spinners';
 
-function EditSupervisorlist() {
+function EditDepartmentList() {
 
     // ------------------------------------------------------------------------------------------------
     // Redirect to the add shiftslot page
@@ -13,7 +13,7 @@ function EditSupervisorlist() {
     const { id } = useParams();
     const navigate = useNavigate();
     const handleVisitsupervisorlist = () => {
-        navigate(`/admin/supervisorlist`);
+        navigate(`/admin/department`);
     };
     // loading state
     const [loading, setLoading] = useState(true);
@@ -30,38 +30,18 @@ function EditSupervisorlist() {
 
     // Edit Shift Slot Save
 
-    const [departmentOptions, setDepartmentOptions] = useState([]);
-    const [departmentMainOptions, setDepartmentMainOptions] = useState([]);
-    console.log("departmentOptions", departmentOptions)
+
+
+
     const [supervisorOptions, setSupervisorOptions] = useState([]);
-    const [selectedDepartment, setSelectedDepartment] = useState('');
-    const [selectedMainDepartment, setSelectedMainDepartment] = useState('');
     const [selectedSupervisor, setSelectedSupervisor] = useState('');
     const [status, setStatus] = useState('');
 
+    const [department, setDepartment] = useState('');
 
-
-
-
-
-    useEffect(() => {
-        // Fetch department and supervisor options from API
-        axios.get('https://office3i.com/development/api/public/api/supervisor_userrole', {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${usertoken}`
-            }
-        })
-            .then(response => {
-                const { data } = response.data;
-
-                setDepartmentOptions(data);
-                setSupervisorOptions(data);
-            })
-            .catch(error => {
-                console.error('Error fetching department and supervisor options:', error);
-            });
-    }, []);
+    const handleRoleChange = (e) => {
+        setDepartment(e.target.value);
+    };
 
 
     useEffect(() => {
@@ -75,7 +55,8 @@ function EditSupervisorlist() {
             .then(response => {
                 const { data } = response.data;
 
-                setDepartmentMainOptions(data);
+                // setDepartmentOptions(data);
+                setSupervisorOptions(data);
             })
             .catch(error => {
                 console.error('Error fetching department and supervisor options:', error);
@@ -91,23 +72,18 @@ function EditSupervisorlist() {
         setSelectedSupervisor(e.target.value);
     };
 
-
-
-
-
     const handleSave = (e) => {
         e.preventDefault();
 
         const requestData = {
             id: id,
-            departmentrole_id: selectedDepartment,
-            supervisor_id: selectedSupervisor,
-            depart_id: selectedMainDepartment,
+            depart_name: department,
+            sup_id: selectedSupervisor,
             status: status,
             updated_by: userempid
         };
 
-        axios.put('https://office3i.com/development/api/public/api/update_supervisor', requestData, {
+        axios.put('https://office3i.com/development/api/public/api/update_department', requestData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
@@ -137,7 +113,7 @@ function EditSupervisorlist() {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
-                    text: 'There was an error updating the Supervisor list. Please try again later.',
+                    text: 'There was an error updating the Department list. Please try again later.',
                 });
 
                 console.error('There was an error with the API:', error);
@@ -155,7 +131,7 @@ function EditSupervisorlist() {
     // const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get(`https://office3i.com/development/api/public/api/editview_supervisor/${id}`, {
+        axios.get(`https://office3i.com/development/api/public/api/editview_department/${id}`, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -165,9 +141,8 @@ function EditSupervisorlist() {
                     // setData(res.data.data);
                     console.log("setData----------->", res.data.data)
 
-                    setSelectedDepartment(res.data.data.departmentrole_id);
-                    setSelectedMainDepartment(res.data.data.depart_id);
-                    setSelectedSupervisor(res.data.data.supervisor_id);
+                    setDepartment(res.data.data.depart_name);
+                    setSelectedSupervisor(res.data.data.sup_id);
                     setStatus(res.data.data.status);
                     setLoading(false);
                 }
@@ -179,15 +154,15 @@ function EditSupervisorlist() {
 
     // ------------------------------------------------------------------------------------------------
 
-    useEffect(() => {
-        // Filter supervisor options based on the initially selected department
-        if (selectedDepartment) {
-            const filteredSupervisors = departmentOptions.filter(option => option.id !== parseInt(selectedDepartment));
-            setSupervisorOptions(filteredSupervisors);
-        } else {
-            setSupervisorOptions(departmentOptions); // Show all supervisors when no department is selected
-        }
-    }, [selectedDepartment, departmentOptions]);
+    // useEffect(() => {
+    //     // Filter supervisor options based on the initially selected department
+    //     if (selectedDepartment) {
+    //         const filteredSupervisors = departmentOptions.filter(option => option.id !== parseInt(selectedDepartment));
+    //         setSupervisorOptions(filteredSupervisors);
+    //     } else {
+    //         setSupervisorOptions(departmentOptions); // Show all supervisors when no department is selected
+    //     }
+    // }, [selectedDepartment, departmentOptions]);
 
 
 
@@ -207,49 +182,31 @@ function EditSupervisorlist() {
                 </div>
             ) : (
                 <Container fluid className='shift__container'>
-                    <h3 className='mb-5'>Edit Supervisor List</h3>
+                    <h3 className='mb-5'>Edit Department List</h3>
 
                     {/* ------------------------------------------------------------------------------------------------ */}
                     {/* Supervisor list slot add form */}
                     <div className='mb-5' style={{ background: '#ffffff', padding: '60px 10px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.43)', margin: '2px' }}>
                         <Row className='mb-2 '>
                             <Col>
-                                <Form.Group controlId="formMAinDepartmentName">
+                                <Form.Group controlId="formRole" className='mb-3'>
                                     <Form.Label style={{ fontWeight: 'bold' }}>Department Name</Form.Label>
-                                    <Form.Control as="select" value={selectedMainDepartment} onChange={(e) => setSelectedMainDepartment(e.target.value)} disabled>
-                                        <option value="">Select Department</option>
-                                        {departmentMainOptions.map(option => (
+                                    <Form.Control type="text" value={department} onChange={handleRoleChange} placeholder="Enter Department Name" disabled />
+                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Form.Group controlId="formSupervisorName">
+                                    <Form.Label style={{ fontWeight: 'bold' }}>Supervisor Name</Form.Label>
+                                    <Form.Control as="select" onChange={handleSupervisorChange} value={selectedSupervisor}>
+                                        <option value="">Select Supervisor</option>
+                                        {supervisorOptions.map(option => (
                                             <option key={option.id} value={option.id}>{option.depart_name}</option>
                                         ))}
                                     </Form.Control>
                                 </Form.Group>
                             </Col>
-                            <Col>
-                                <Form.Group controlId="formDepartmentName">
-                                    <Form.Label style={{ fontWeight: 'bold' }}>Role Name</Form.Label>
-                                    <Form.Control as="select" value={selectedDepartment} onChange={(e) => setSelectedDepartment(e.target.value)} disabled>
-                                        <option value="">Select Role</option>
-                                        {departmentOptions.map(option => (
-                                            <option key={option.id} value={option.id}>{option.role_name}</option>
-                                        ))}
-                                    </Form.Control>
-                                </Form.Group>
-                            </Col>
-
                         </Row>
                         <Row className='mb-2 '>
-
-                            <Col>
-                                <Form.Group controlId="formSupervisorName">
-                                    <Form.Label style={{ fontWeight: 'bold' }}>Supervisor Role Name</Form.Label>
-                                    <Form.Control as="select" onChange={handleSupervisorChange} value={selectedSupervisor}>
-                                        <option value="">Select Supervisor</option>
-                                        {supervisorOptions.map(option => (
-                                            <option key={option.id} value={option.id}>{option.role_name}</option>
-                                        ))}
-                                    </Form.Control>
-                                </Form.Group>
-                            </Col>
                             <Col>
                                 <Form.Group controlId="formStatus">
                                     <Form.Label style={{ fontWeight: 'bold' }}> Status</Form.Label>
@@ -281,4 +238,4 @@ function EditSupervisorlist() {
     )
 }
 
-export default EditSupervisorlist
+export default EditDepartmentList

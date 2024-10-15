@@ -114,7 +114,9 @@ export const EditEmployee = () => {
 
     // EmployeeRole fields
     userRole: { data: [] },
+    usersupervisorRole:{ data: [] },
     selectedRoleId: '',
+    selectedSupervisorRoleId: '',
     designation: '',
     isCheckBoxChecked: false,
     designationDate: '',
@@ -210,10 +212,12 @@ export const EditEmployee = () => {
 
             // EmployeeRole fields
             userRole: data.employee_details.userRole,
+            usersupervisorRole:data.employee_details.userRole,
             selectedRoleId: data.employee_details.role_id,
+            selectedSupervisorRoleId: data.employee_details.supervisor,
             designation: data.employee_details.department_name,
-            supervisor: data.employee_details.supervisor,
-            selectedsupervisorId: data.employee_details.supervisor,
+            supervisor: data.employee_details.supervisor_name,
+            selectedsupervisorId: data.employee_details.supervisor_name,
 
             officialEmail: data.employee_details.official_email,
             password: data.employee_details.password,
@@ -422,7 +426,9 @@ export const EditEmployee = () => {
 
     // EmployeeRole fields
     userRole: [],
+    usersupervisorRole: [],
     selectedRoleId: [],
+    selectedSupervisorRoleId: [],
     designation: '',
     supervisor: [],
     selectedsupervisorId: [],
@@ -884,13 +890,16 @@ export const EditEmployee = () => {
 
     // Validate EmployeeRole fields
     if (!formData.selectedRoleId) {
-      errors.selectedRoleId = 'User role is required';
+      errors.selectedRoleId = 'User Role is required';
+    }
+    if (!formData.selectedSupervisorRoleId) {
+      errors.selectedSupervisorRoleId = 'Supervisor Role is required';
     }
     if (!formData.designation) {
       errors.designation = 'Designation is required';
     }
     if (!formData.selectedsupervisorId) {
-      errors.selectedsupervisorId = 'Supervisor is required';
+      errors.selectedsupervisorId = 'Supervisor Name is required';
     }
 
     if (!formData.officialEmail) {
@@ -1039,8 +1048,9 @@ export const EditEmployee = () => {
 
     // Append EmployeeRole fields
     formDataToSend.append('role', formData.selectedRoleId);
-    formDataToSend.append('designation', formData.designation);
     formDataToSend.append('supervisor', formData.selectedsupervisorId);
+    formDataToSend.append('designation', formData.designation);
+    formDataToSend.append('supervisor_name', formData.selectedSupervisorRoleId);
     formDataToSend.append('official_email', formData.officialEmail);
     formDataToSend.append('password', formData.password);
     formDataToSend.append('emp_punch', formData.checkinCheckout);
@@ -1058,10 +1068,6 @@ export const EditEmployee = () => {
     formDataToSend.append('branch_name', formData.bankBranch);
     formDataToSend.append('ifsc_code', formData.ifscCode);
     formDataToSend.append('account_type', formData.accountType);
-
-
-
-
 
     documentIds.forEach((documentId, index) => {
       formDataToSend.append('emp_document_id[]', documentId);
@@ -1236,6 +1242,35 @@ export const EditEmployee = () => {
     fetchUserRoleDropdown();
   }, []);
 
+
+  // Fetch All user roles
+
+
+  useEffect(() => {
+    const fetchUserRoleDropdown = async () => {
+      try {
+        const response = await axios.get('https://office3i.com/development/api/public/api/supervisor_userrole', {
+          headers: {
+            'Authorization': `Bearer ${usertoken}`
+          }
+        });
+        const data = response.data
+        // console.log("Fetched userRole data:", data);
+
+        setFormData(prevFormData => ({
+          ...prevFormData,
+          usersupervisorRole: data
+        }));
+
+      } catch (error) {
+        console.error('Error fetching user roles:', error);
+      }
+    };
+
+    fetchUserRoleDropdown();
+  }, []);
+
+
   // ---------------------------------------------------------------------------------------------------
 
 
@@ -1244,7 +1279,7 @@ export const EditEmployee = () => {
   useEffect(() => {
     const fetchUserRoleDropdown = async () => {
       try {
-        const response = await axios.get(`https://office3i.com/development/api/public/api/supervisor_list/${formData.selectedRoleId}`, {
+        const response = await axios.get(`https://office3i.com/development/api/public/api/supervisorrole_list/${formData.selectedSupervisorRoleId}`, {
           headers: {
             'Authorization': `Bearer ${usertoken}`
           }
@@ -1265,7 +1300,7 @@ export const EditEmployee = () => {
     };
 
     fetchUserRoleDropdown();
-  }, [formData.selectedRoleId]);
+  }, [formData.selectedSupervisorRoleId]);
   // ----------------------------------------------------------------------------------------------------
 
 

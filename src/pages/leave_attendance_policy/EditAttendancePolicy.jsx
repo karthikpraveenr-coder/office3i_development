@@ -11,6 +11,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight, faStar, faStarOfLife } from '@fortawesome/free-solid-svg-icons';
 
 
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+
+
 
 function EditAttendancePolicy() {
 
@@ -71,7 +75,59 @@ function EditAttendancePolicy() {
     const handleChange = (e) => {
         const { id, value } = e.target;
         setFormData(prevState => ({ ...prevState, [id]: value }));
+
+
+        if (id == 'late1' || id == 'late1_deduction' || id == 'late2' || id == 'late2_deduction' || id == 'late3' || id == 'late3_deduction') {
+
+            if (value < 0) {
+                // Reset the value to 1 or clear it
+                e.target.value = '';
+                // Show alert
+                alert("You must select positive values only.");
+                setFormData(prevState => ({ ...prevState, [id]: '' }));
+                return;
+            }
+        }
     };
+
+    useEffect(() => {
+
+        if (formData.form_time && formData.to_time) {
+
+            const fromParts = formData.form_time.split(':');
+            const toParts = formData.to_time.split(':');
+
+            const from = new Date(1970, 0, 1, fromParts[0], fromParts[1], fromParts[2]);
+            const to = new Date(1970, 0, 1, toParts[0], toParts[1], toParts[2]);
+
+
+            if (to < from) {
+                to.setDate(to.getDate() + 1); // Add a day if To Time is less than From Time
+            }
+
+            const diffInMilliseconds = to - from;
+            console.log('diff', diffInMilliseconds);
+
+            const totalSeconds = Math.max(0, diffInMilliseconds / 1000);
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = Math.floor(totalSeconds % 60);
+
+            const formattedTotalHours = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+            setFormData((prevData) => ({
+                ...prevData,
+                total_hrs: formattedTotalHours
+            }));
+
+        } else {
+            setFormData((prevData) => ({
+                ...prevData,
+                total_hrs: ''
+            }));
+        }
+
+    }, [formData.form_time, formData.to_time]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -390,7 +446,19 @@ function EditAttendancePolicy() {
                             </Col>
                             <Col>
                                 <Form.Group controlId="fp_to_time">
-                                    <Form.Label style={{ fontWeight: 'bold' }}>Permission (1st Half) To <sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup></Form.Label>
+                                    <Form.Label style={{ fontWeight: 'bold' }}>Permission (1st Half) To <sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup>
+                                        <OverlayTrigger
+                                            placement="top"
+                                            overlay={
+                                                <Tooltip id="info-tooltip">
+                                                    You should select a maximum of 3 hours. If you select a higher number of hours, you may encounter a punching error.                                </Tooltip>
+                                            }
+                                        >
+                                            <span style={{ marginLeft: '5px', cursor: 'pointer' }}>
+                                                <FontAwesomeIcon icon={faInfoCircle} />
+                                            </span>
+                                        </OverlayTrigger>
+                                    </Form.Label>
                                     <Form.Control
                                         type="time"
                                         step="1"
@@ -416,8 +484,19 @@ function EditAttendancePolicy() {
                             </Col>
                             <Col>
                                 <Form.Group controlId="ap_to_time">
-                                    <Form.Label style={{ fontWeight: 'bold' }}>Permission (2nd Half) To <sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup></Form.Label>
-                                    <Form.Control
+                                    <Form.Label style={{ fontWeight: 'bold' }}>Permission (2nd Half) To <sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup>
+                                        <OverlayTrigger
+                                            placement="top"
+                                            overlay={
+                                                <Tooltip id="info-tooltip">
+                                                    You should select a maximum of 3 hours. If you select a higher number of hours, you may encounter a punching error.                                </Tooltip>
+                                            }
+                                        >
+                                            <span style={{ marginLeft: '5px', cursor: 'pointer' }}>
+                                                <FontAwesomeIcon icon={faInfoCircle} />
+                                            </span>
+                                        </OverlayTrigger>
+                                    </Form.Label>                                    <Form.Control
                                         type="time"
                                         step="1"
                                         placeholder="Permission (2nd Half) From To"
@@ -446,7 +525,19 @@ function EditAttendancePolicy() {
                             </Col>
                             <Col>
                                 <Form.Group controlId="fhalf_day_to_time">
-                                    <Form.Label style={{ fontWeight: 'bold' }}>HalfDay (1st Half) To <sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup></Form.Label>
+                                    <Form.Label style={{ fontWeight: 'bold' }}>HalfDay (1st Half) To <sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup>
+                                        <OverlayTrigger
+                                            placement="top"
+                                            overlay={
+                                                <Tooltip id="info-tooltip">
+                                                    You should select a maximum of 5 hours. If you select a higher number of hours, you may encounter a punching error.                                </Tooltip>
+                                            }
+                                        >
+                                            <span style={{ marginLeft: '5px', cursor: 'pointer' }}>
+                                                <FontAwesomeIcon icon={faInfoCircle} />
+                                            </span>
+                                        </OverlayTrigger>
+                                    </Form.Label>
                                     <Form.Control
                                         type="time"
                                         step="1"
@@ -472,8 +563,19 @@ function EditAttendancePolicy() {
                             </Col>
                             <Col>
                                 <Form.Group controlId="ahalf_day_to_time">
-                                    <Form.Label style={{ fontWeight: 'bold' }}>HalfDay (2nd Half) To <sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup></Form.Label>
-                                    <Form.Control
+                                    <Form.Label style={{ fontWeight: 'bold' }}>HalfDay (2nd Half) To <sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup>
+                                        <OverlayTrigger
+                                            placement="top"
+                                            overlay={
+                                                <Tooltip id="info-tooltip">
+                                                    You should select a maximum of 3 hours. If you select a higher number of hours, you may encounter a punching error.                                </Tooltip>
+                                            }
+                                        >
+                                            <span style={{ marginLeft: '5px', cursor: 'pointer' }}>
+                                                <FontAwesomeIcon icon={faInfoCircle} />
+                                            </span>
+                                        </OverlayTrigger>
+                                    </Form.Label>                                    <Form.Control
                                         type="time"
                                         step="1"
                                         placeholder="HalfDay (2nd Half) From To"
@@ -518,10 +620,15 @@ function EditAttendancePolicy() {
                                 <Form.Group controlId="late1">
                                     <Form.Label style={{ fontWeight: 'bold' }}>Late 1 <sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup></Form.Label>
                                     <Form.Control
-                                        type="text"
+                                        type="number"
                                         placeholder="Late 1"
                                         value={formData.late1}
                                         onChange={handleChange}
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'e' || e.key === 'E' || e.key === '+' || e.key === '-') {
+                                                e.preventDefault();
+                                            }
+                                        }}
 
                                     />
                                 </Form.Group>
@@ -531,10 +638,15 @@ function EditAttendancePolicy() {
                                 <Form.Group controlId="late1_deduction">
                                     <Form.Label style={{ fontWeight: 'bold' }}>Late 1 Deduction <sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup></Form.Label>
                                     <Form.Control
-                                        type="text"
+                                        type="number"
                                         placeholder="Late 1 Deduction"
                                         value={formData.late1_deduction}
                                         onChange={handleChange}
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'e' || e.key === 'E' || e.key === '+' || e.key === '-') {
+                                                e.preventDefault();
+                                            }
+                                        }}
 
                                     />
                                 </Form.Group>
@@ -548,10 +660,15 @@ function EditAttendancePolicy() {
                                 <Form.Group controlId="late2">
                                     <Form.Label style={{ fontWeight: 'bold' }}>Late 2 <sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup></Form.Label>
                                     <Form.Control
-                                        type="text"
+                                        type="number"
                                         placeholder="Late 2"
                                         value={formData.late2}
                                         onChange={handleChange}
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'e' || e.key === 'E' || e.key === '+' || e.key === '-') {
+                                                e.preventDefault();
+                                            }
+                                        }}
 
                                     />
                                 </Form.Group>
@@ -561,10 +678,15 @@ function EditAttendancePolicy() {
                                 <Form.Group controlId="late2_deduction">
                                     <Form.Label style={{ fontWeight: 'bold' }}>Late 2 Deduction <sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup></Form.Label>
                                     <Form.Control
-                                        type="text"
+                                        type="number"
                                         placeholder="Late 2 Deduction"
                                         value={formData.late2_deduction}
                                         onChange={handleChange}
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'e' || e.key === 'E' || e.key === '+' || e.key === '-') {
+                                                e.preventDefault();
+                                            }
+                                        }}
 
                                     />
                                 </Form.Group>
@@ -574,10 +696,15 @@ function EditAttendancePolicy() {
                                 <Form.Group controlId="late3">
                                     <Form.Label style={{ fontWeight: 'bold' }}>Late 3 <sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup></Form.Label>
                                     <Form.Control
-                                        type="text"
+                                        type="number"
                                         placeholder="Late 3"
                                         value={formData.late3}
                                         onChange={handleChange}
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'e' || e.key === 'E' || e.key === '+' || e.key === '-') {
+                                                e.preventDefault();
+                                            }
+                                        }}
 
                                     />
                                 </Form.Group>
@@ -587,10 +714,15 @@ function EditAttendancePolicy() {
                                 <Form.Group controlId="late3_deduction">
                                     <Form.Label style={{ fontWeight: 'bold' }}>Late 3 Deduction <sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup></Form.Label>
                                     <Form.Control
-                                        type="text"
+                                        type="number"
                                         placeholder="Late 3 Deduction"
                                         value={formData.late3_deduction}
                                         onChange={handleChange}
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'e' || e.key === 'E' || e.key === '+' || e.key === '-') {
+                                                e.preventDefault();
+                                            }
+                                        }}
 
                                     />
                                 </Form.Group>

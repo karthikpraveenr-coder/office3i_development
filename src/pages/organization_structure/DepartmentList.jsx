@@ -15,7 +15,7 @@ import ReactPaginate from 'react-paginate';
 import { ScaleLoader } from 'react-spinners';
 
 
-function Supervisorlist() {
+function DepartmentList() {
 
     // ------------------------------------------------------------------------------------------------
 
@@ -23,7 +23,7 @@ function Supervisorlist() {
     const navigate = useNavigate();
 
     const GoToEditPage = (id) => {
-        navigate(`/admin/editsupervisorlist/${id}`);
+        navigate(`/admin/editdepartment/${id}`);
     };
 
 
@@ -38,46 +38,22 @@ function Supervisorlist() {
     // ------------------------------------------------------------------------------------------------
     // Add Shift Slot submit
 
-    const [department, setDepartment] = useState([]);
-    const [maindepartment, setMainDepartment] = useState([]);
-    console.log("department", department)
-    const [supervisorOptions, setSupervisorOptions] = useState([]);
 
-    const [selectedDepartment, setSelectedDepartment] = useState('');
-    const [selectedMainDepartment, setSelectedMainDepartment] = useState('');
+    const [supervisorOptions, setSupervisorOptions] = useState([]);
     const [selectedSupervisor, setSelectedSupervisor] = useState('');
-    const [initialData, setInitialData] = useState({ department: [], supervisorOptions: [] });
     const [status, setStatus] = useState('');
+
+    const [department, setDepartment] = useState('');
+
+    const handleRoleChange = (e) => {
+        setDepartment(e.target.value);
+    };
 
 
 
 
     const [refreshKey, setRefreshKey] = useState(0);
 
-
-    useEffect(() => {
-        axios.get('https://office3i.com/development/api/public/api/supervisor_userrole', {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${usertoken}`
-            }
-        })
-            .then(response => {
-                const { data } = response.data;
-                console.log("department and supervisor options", response.data);
-
-                if (Array.isArray(data)) {
-                    setDepartment(data);
-                    setSupervisorOptions(data);
-                    setInitialData({ department: data, supervisorOptions: data });
-                } else {
-                    console.error("Unexpected data format:", data);
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching department and supervisor options:', error);
-            });
-    }, [usertoken]);
 
     useEffect(() => {
         axios.get('https://office3i.com/development/api/public/api/department_list', {
@@ -91,7 +67,8 @@ function Supervisorlist() {
                 console.log("department and supervisor options", response.data);
 
                 if (Array.isArray(data)) {
-                    setMainDepartment(data);
+
+                    setSupervisorOptions(data);
                 } else {
                     console.error("Unexpected data format:", data);
                 }
@@ -100,8 +77,6 @@ function Supervisorlist() {
                 console.error('Error fetching department and supervisor options:', error);
             });
     }, [usertoken]);
-
-
     const [formErrors, setFormErrors] = useState({})
 
     const handleSubmit = (e) => {
@@ -110,13 +85,8 @@ function Supervisorlist() {
 
         const errors = {};
 
-
-        // Validate shift slot
-        if (!selectedDepartment) {
-            errors.selectedDepartment = 'Role Name is required';
-        }
-        if (!selectedMainDepartment) {
-            errors.selectedMainDepartment = 'Department is required';
+        if (!department) {
+            errors.department = 'Department Name is required.';
         }
 
         if (!selectedSupervisor) {
@@ -135,16 +105,15 @@ function Supervisorlist() {
         setFormErrors({});
 
         const requestData = {
-            departmentrole_id: selectedDepartment,
-            supervisor_id: selectedSupervisor,
-            depart_id: selectedMainDepartment,
+            depart_name: department,
+            sup_id: selectedSupervisor,
             created_by: userempid,
             status: status
         };
 
 
 
-        axios.post('https://office3i.com/development/api/public/api/addsupervisor', requestData, {
+        axios.post('https://office3i.com/development/api/public/api/add_department', requestData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
@@ -161,12 +130,10 @@ function Supervisorlist() {
                         text: message,
                     });
 
-                    setSelectedDepartment('');
+                    setDepartment('');
                     setSelectedSupervisor('');
-                    setSelectedMainDepartment('');
                     setStatus('');
-                    setDepartment(initialData.department);
-                    setSupervisorOptions(initialData.supervisorOptions);
+
                     // Increment the refreshKey to trigger re-render
                     setRefreshKey(prevKey => prevKey + 1);
 
@@ -184,7 +151,7 @@ function Supervisorlist() {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
-                    text: 'There was an error creating the Supervisor List. Please try again later.',
+                    text: 'There was an error creating the Department List. Please try again later.',
                 });
 
                 console.error('There was an error with the API:', error);
@@ -193,12 +160,10 @@ function Supervisorlist() {
     };
 
     const handleCancel = () => {
-        setSelectedDepartment('');
+        setDepartment('');
         setSelectedSupervisor('');
-        setSelectedMainDepartment('');
         setStatus('');
-        setDepartment(initialData.department);
-        setSupervisorOptions(initialData.supervisorOptions);
+
         setFormErrors({});
     };
 
@@ -214,7 +179,7 @@ function Supervisorlist() {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('https://office3i.com/development/api/public/api/view_supervisor', {
+            const response = await fetch('https://office3i.com/development/api/public/api/view_department', {
                 headers: {
                     'Authorization': `Bearer ${usertoken}`
                 }
@@ -240,7 +205,7 @@ function Supervisorlist() {
         try {
             const { value: reason } = await Swal.fire({
                 title: 'Are you sure?',
-                text: 'You are about to delete this supervisor list. This action cannot be reversed.',
+                text: 'You are about to delete this Department list. This action cannot be reversed.',
                 icon: 'warning',
                 input: 'text',
                 inputPlaceholder: 'Enter reason for deletion',
@@ -260,7 +225,7 @@ function Supervisorlist() {
             });
 
             if (reason) {
-                const response = await fetch('https://office3i.com/development/api/public/api/delete_supervisor', {
+                const response = await fetch('https://office3i.com/development/api/public/api/delete_department', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -283,8 +248,8 @@ function Supervisorlist() {
                 }
             }
         } catch (error) {
-            console.error('Error deleting shift slot:', error);
-            Swal.fire('Error', 'An error occurred while deleting the supervisor list. Please try again later.', 'error');
+            console.error('Error deleting  department:', error);
+            Swal.fire('Error', 'An error occurred while deleting the department list. Please try again later.', 'error');
         }
     };
 
@@ -318,11 +283,10 @@ function Supervisorlist() {
 
 
     const handleExportCSV = () => {
-        const csvData = tableData.map(({ departlist_name, department_name, supervisor_name, status, created_name, updated_name }, index) => ({
+        const csvData = tableData.map(({ depart_name, departmentsup_name, status, created_name, updated_name }, index) => ({
             '#': index + 1,
-            departlist_name,
-            department_name,
-            supervisor_name,
+            depart_name,
+            departmentsup_name,
             status,
             created_name,
             updated_name: updated_name || '-',
@@ -330,9 +294,8 @@ function Supervisorlist() {
 
         const headers = [
             { label: 'S.No', key: '#' },
-            { label: 'Department name', key: 'departlist_name' },
-            { label: 'Role name', key: 'department_name' },
-            { label: 'Supervisor Role name', key: 'supervisor_name' },
+            { label: 'Department name', key: 'depart_name' },
+            { label: 'Supervisor name', key: 'departmentsup_name' },
             { label: 'Status', key: 'status' },
             { label: 'Created By', key: 'created_name' },
             { label: 'Updated By', key: 'updated_name' },
@@ -341,7 +304,7 @@ function Supervisorlist() {
         const csvReport = {
             data: csvData,
             headers: headers,
-            filename: 'SupervisorList.csv',
+            filename: 'DepartmentList.csv',
         };
 
         return <CSVLink {...csvReport}><i className="fas fa-file-csv" style={{ fontSize: '25px', color: '#0d6efd' }}></i></CSVLink>;
@@ -359,24 +322,23 @@ function Supervisorlist() {
         const size = 'A4'; // You can change to 'letter' or other sizes as needed
         const doc = new jsPDF('landscape', unit, size);
 
-        const data = tableData.map(({ departlist_name, department_name, supervisor_name, status, created_name, updated_name }, index) => [
+        const data = tableData.map(({ depart_name, departmentsup_name, status, created_name, updated_name }, index) => [
             index + 1,
-            departlist_name,
-            department_name,
-            supervisor_name,
+            depart_name,
+            departmentsup_name,
             status,
             created_name,
             updated_name || '-',
         ]);
 
         doc.autoTable({
-            head: [['S.No', 'Department name', 'Role Name', 'Supervisor name', 'Status', 'Created By', 'Updated By']],
+            head: [['S.No', 'Department name', 'Supervisor name', 'Status', 'Created By', 'Updated By']],
             body: data,
             // styles: { fontSize: 10 },
             // columnStyles: { 0: { halign: 'center', fillColor: [100, 100, 100] } }, 
         });
 
-        doc.save('SupervisorList.pdf');
+        doc.save('DepartmentList.pdf');
 
     };
 
@@ -430,23 +392,16 @@ function Supervisorlist() {
 
     // ===============================================
 
-    const handleDepartmentChange = (e) => {
-        const selectedDepartmentId = e.target.value;
-        console.log("selectedDepartmentId", selectedDepartmentId)
-        setSelectedDepartment(selectedDepartmentId);
+    // const handleDepartmentChange = (e) => {
+    //     const selectedDepartmentId = e.target.value;
+    //     console.log("selectedDepartmentId", selectedDepartmentId)
+    //     setSelectedDepartment(selectedDepartmentId);
 
-        // Filter supervisor options based on selected department
-        const filteredSupervisors = department.filter(option => option.id !== parseInt(selectedDepartmentId));
-        setSupervisorOptions(filteredSupervisors);
-        setSelectedSupervisor('');
-    };
-
-    const handleMainDepartmentChange = (e) => {
-        const selectedMainDepartmentId = e.target.value;
-        setSelectedMainDepartment(selectedMainDepartmentId);
-
-
-    };
+    //     // Filter supervisor options based on selected department
+    //     const filteredSupervisors = department.filter(option => option.id !== parseInt(selectedDepartmentId));
+    //     setSupervisorOptions(filteredSupervisors);
+    //     setSelectedSupervisor('');
+    // };
 
     return (
         <>
@@ -473,61 +428,51 @@ display: none !important;
             ) : (
 
                 <Container fluid className='shift__container'>
-                    <h3 className='mb-5' style={{ fontWeight: 'bold', color: '#00275c' }}>Supervisor List</h3>
+                    <h3 className='mb-5' style={{ fontWeight: 'bold', color: '#00275c' }}>Department List</h3>
 
                     {/* ------------------------------------------------------------------------------------------------ */}
                     {/* Supervisor list slot add form */}
-                    <h5 className='mb-3' style={{ fontWeight: 'bold', color: '#00275c' }}>Add Supervisor</h5>
+                    <h5 className='mb-3' style={{ fontWeight: 'bold', color: '#00275c' }}>Add Department</h5>
                     <div className='mb-5' style={{ background: '#ffffff', padding: '60px 10px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.43)', margin: '2px' }}>
                         <Row className='mb-2 '>
-                            <Col>
+                            <Col sm={12} md={6} lg={6} xl={6}>
+                                <Form.Group controlId="formRole">
+                                    <Form.Label style={{ fontWeight: 'bold' }}> Department Name</Form.Label>
+                                    <Form.Control type="text" value={department} onChange={handleRoleChange} placeholder="Enter Department Name" />
+                                    {formErrors.department && <span className="text-danger">{formErrors.department}</span>}
+                                </Form.Group>
+                            </Col>
+                            {/* <Col>
                                 <Form.Group controlId="formDepartmentName">
                                     <Form.Label style={{ fontWeight: 'bold' }}>Department Name</Form.Label>
                                     <Form.Select
-                                        name="selectedMainDepartment"
-                                        value={selectedMainDepartment}
-                                        onChange={handleMainDepartmentChange}
-                                    >
-                                        <option value="">Select Department</option>
-                                        {Array.isArray(maindepartment) && maindepartment.map(option => (
-                                            <option key={option.id} value={option.id}>{option.depart_name}</option>
-                                        ))}
-                                    </Form.Select>
-                                    {formErrors.selectedMainDepartment && <span className="text-danger">{formErrors.selectedMainDepartment}</span>}
-                                </Form.Group>
-                            </Col>
-                            <Col>
-                                <Form.Group controlId="formDepartmentName">
-                                    <Form.Label style={{ fontWeight: 'bold' }}>Role Name</Form.Label>
-                                    <Form.Select
-                                        name="selectedRole"
+                                        name="selectedDepartment"
                                         value={selectedDepartment}
                                         onChange={handleDepartmentChange}
                                     >
-                                        <option value="">Select Role</option>
+                                        <option value="">Select Department</option>
                                         {Array.isArray(department) && department.map(option => (
-                                            <option key={option.id} value={option.id}>{option.role_name}</option>
+                                            <option key={option.id} value={option.id}>{option.depart_name}</option>
                                         ))}
                                     </Form.Select>
                                     {formErrors.selectedDepartment && <span className="text-danger">{formErrors.selectedDepartment}</span>}
                                 </Form.Group>
-                            </Col>
-
-                        </Row>
-                        <Row className='mb-2 '>
+                            </Col> */}
                             <Col>
                                 <Form.Group controlId="formSupervisorName">
-                                    <Form.Label style={{ fontWeight: 'bold' }}>Supervisor Role Name</Form.Label>
-                                    <Form.Control as="select" value={selectedSupervisor} onChange={(e) => setSelectedSupervisor(e.target.value)} disabled={!selectedDepartment}>
+                                    <Form.Label style={{ fontWeight: 'bold' }}> Supervisor Name</Form.Label>
+                                    <Form.Control as="select" value={selectedSupervisor} onChange={(e) => setSelectedSupervisor(e.target.value)} disabled={!department}>
                                         <option value="">Select Supervisor</option>
                                         {Array.isArray(supervisorOptions) && supervisorOptions.map(option => (
-                                            <option key={option.id} value={option.id}>{option.role_name}</option>
+                                            <option key={option.id} value={option.id}>{option.depart_name}</option>
                                         ))}
                                     </Form.Control>
                                     {formErrors.selectedSupervisor && <span className="text-danger">{formErrors.selectedSupervisor}</span>}
                                 </Form.Group>
                             </Col>
-                            <Col>
+                        </Row>
+                        <Row className='mb-2 '>
+                            <Col mt={6}>
                                 <Form.Group controlId="formStatus">
                                     <Form.Label style={{ fontWeight: 'bold' }}>Status</Form.Label>
                                     <Form.Control as="select" value={status} onChange={(e) => setStatus(e.target.value)}>
@@ -555,7 +500,7 @@ display: none !important;
 
                     {/* ------------------------------------------------------------------------------------------------ */}
                     {/* List table */}
-                    <h5 className='mb-3' style={{ fontWeight: 'bold', color: '#00275c' }}>Supervisor List</h5>
+                    <h5 className='mb-3' style={{ fontWeight: 'bold', color: '#00275c' }}>Department List</h5>
                     <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px', justifyContent: 'space-between' }}>
                         <div>
                             <input
@@ -580,9 +525,10 @@ display: none !important;
                                 <tr>
                                     <th scope="col">S.No</th>
                                     <th scope="col">Department Name</th>
-                                    <th scope="col">Role Name</th>
-                                    <th scope="col">Supervisor Role Name</th>
+
+                                    <th scope="col">Supervisor Name</th>
                                     <th scope="col">Status</th>
+
                                     <th scope="col">Created By</th>
                                     <th scope="col">Updated By</th>
                                     <th scope="col" className='no-print'>Action</th>
@@ -604,9 +550,8 @@ display: none !important;
                                             return (
                                                 <tr key={row.id}>
                                                     <th scope="row">{serialNumber}</th>
-                                                    <td>{row.departlist_name}</td>
-                                                    <td>{row.department_name}</td>
-                                                    <td>{row.supervisor_name}</td>
+                                                    <td>{row.depart_name}</td>
+                                                    <td>{row.departmentsup_name}</td>
                                                     <td>{row.status}</td>
                                                     <td>{row.created_name}</td>
                                                     <td>{row.updated_name || '-'}</td>
@@ -667,4 +612,4 @@ display: none !important;
     )
 }
 
-export default Supervisorlist
+export default DepartmentList

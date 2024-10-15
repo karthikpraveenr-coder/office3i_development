@@ -244,7 +244,7 @@ function EditTemplate() {
                                 <Form.Group controlId="formStatus">
                                     <Form.Label style={{ fontWeight: 'bold' }}>Status</Form.Label>
                                     <Form.Control as="select" value={status} onChange={(e) => setStatus(e.target.value)}>
-                                        <option value="">Select Status</option>
+                                        <option value="" disabled>Select Status</option>
                                         <option value="Active">Active</option>
                                         <option value="In-Active">In-Active</option>
                                     </Form.Control>

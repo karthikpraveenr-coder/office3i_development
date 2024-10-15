@@ -11,6 +11,9 @@ import { useReactToPrint } from 'react-to-print';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faPen, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+
 export default function OfferLetterList() {
 
     // ------------------------------------------------------------------------------------------------
@@ -34,8 +37,8 @@ export default function OfferLetterList() {
         navigate(`/admin/editofferletter/${id}`);
     };
 
-    const GoToViewPage = (id) => {
-        navigate(`/admin/offerletterview/${id}`);
+    const GoToViewPage = (id, layout_id) => {
+        navigate(`/admin/offerletterview/${id}/${layout_id}`);
     };
 
     const [loading, setLoading] = useState(true);
@@ -163,6 +166,7 @@ export default function OfferLetterList() {
             { label: 'S.No', key: '#' },
             { label: 'Date', key: 'date' },
             { label: 'Employee Name', key: 'name' },
+            { label: 'Status', key: 'status' },
             { label: 'Designation', key: 'designation' },
         ];
 
@@ -251,6 +255,7 @@ export default function OfferLetterList() {
     };
 
 
+    console.log('Filtered Events:', filteredEvents); // Check the values before mapping
 
 
     return (
@@ -308,6 +313,7 @@ display: none !important;
                                     <th>Date</th>
                                     <th>Employee Name</th>
                                     <th>Designation</th>
+                                    <th>Status</th>
                                     <th style={{ width: '250px' }} className='no-print'>Actions</th>
 
                                 </tr>
@@ -328,13 +334,45 @@ display: none !important;
                                                 <td>{row.date}</td>
                                                 <td>{row.name}</td>
                                                 <td>{row.designation}</td>
+                                                <td>{row.offer_status == '1' ? (
+                                                    <button type="button" className="mb-2 mr-2 btn btn-success">Accepted</button>
+                                                ) : row.offer_status == '2' ? (
+                                                    <button type="button" className="mb-2 mr-2 btn btn-danger">Decline   <OverlayTrigger
+                                                        placement="top"
+                                                        overlay={
+                                                            <Tooltip id="info-tooltip">
+                                                                {/* <b>Reason</b> : {row.offer_reason == '1' ? 'Salary' : row.offer_reason == '2' ? 'Distance' : row.offer_reason == '3' ? 'Benefits' : 'Others'}
+                                                                {row.offer_reason == '4' ? (
+                                                                    <b>Additional Comments: </b>
+                                                                ) : null}
+                                                                {row.offer_reason == '4' ? row.other_reason : null} */}
+                                                                <b>Reason</b>: {row.offer_reason == '1' ? 'Salary' :
+                                                                    row.offer_reason == '2' ? 'Distance' :
+                                                                        row.offer_reason == '3' ? 'Benefits' :
+                                                                            'Others'}
+
+                                                                {row.offer_reason == '4' && (
+                                                                    <>
+                                                                        <br />
+                                                                        <b>Additional Comments: </b>
+                                                                        {row.other_reason}
+                                                                    </>
+                                                                )}
+                                                            </Tooltip>
+                                                        }
+                                                    >
+                                                        <span style={{ marginLeft: '5px', cursor: 'pointer' }}>
+                                                            <FontAwesomeIcon icon={faInfoCircle} />
+                                                        </span>
+                                                    </OverlayTrigger></button>
+                                                ) : <button type="button" class="mb-2 mr-2 btn btn-info">Pending</button>}</td>
 
                                                 <td className='no-print'>
                                                     <span style={{ display: 'flex', gap: '5px' }}>
                                                         <button className="btn-edit" onClick={() => { GoToEditPage(row.id) }}>
                                                             <FontAwesomeIcon icon={faPen} /> Edit
                                                         </button>
-                                                        <button className="btn-view" onClick={() => { GoToViewPage(row.id) }}>
+                                                        <button className="btn-view" onClick={() => { GoToViewPage(row.id, row.layout_id) }}>
                                                             <FontAwesomeIcon icon={faEye} /> View
                                                         </button>
                                                     </span>

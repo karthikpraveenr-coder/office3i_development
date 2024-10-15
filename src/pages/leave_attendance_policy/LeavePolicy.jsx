@@ -19,7 +19,6 @@ import { faChevronRight, faStar, faStarOfLife } from '@fortawesome/free-solid-sv
 function LeavePolicy() {
 
     // ------------------------------------------------------------------------------------------------
-
     // Redirect to the edit page
     const navigate = useNavigate();
 
@@ -525,15 +524,25 @@ function LeavePolicy() {
                             <Col>
                                 <Form.Group controlId="formStartDate">
                                     <Form.Label style={{ fontWeight: 'bold' }}>Start Date <sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup></Form.Label>
-                                    <Form.Control type="date" value={startDate} max="9999-12-31" onChange={(e) => setStartDate(e.target.value)} />
+                                    <Form.Control
+                                        type="date"
+                                        value={startDate}
+                                        max={endDate || "9999-12-31"}
+                                        onChange={(e) => setStartDate(e.target.value)}
+                                    />
                                     {formErrors.startDate && <span className="text-danger">{formErrors.startDate}</span>}
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group controlId="formEndDate">
                                     <Form.Label style={{ fontWeight: 'bold' }}>End Date <sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup></Form.Label>
-                                    <Form.Control type="date" value={endDate} max="9999-12-31" onChange={(e) => setEndDate(e.target.value)} />
-                                    {formErrors.endDate && <span className="text-danger">{formErrors.endDate}</span>}
+                                    <Form.Control
+                                        type="date"
+                                        value={endDate}
+                                        min={startDate || "0001-01-01"}  // Set min to start date if selected
+                                        max="9999-12-31"  // You can change this if needed
+                                        onChange={(e) => setEndDate(e.target.value)}
+                                    />                                    {formErrors.endDate && <span className="text-danger">{formErrors.endDate}</span>}
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -588,7 +597,19 @@ function LeavePolicy() {
                                         if (e.key === 'e' || e.key === 'E' || e.key === '+' || e.key === '-') {
                                             e.preventDefault();
                                         }
-                                    }} onChange={(e) => setTotalLeaveCount(e.target.value)} />
+                                    }}
+                                    onChange={(e) => {
+                                            const value = e.target.value;
+                                            setTotalLeaveCount(value);
+
+                                            // Validate against the monthly leave count
+                                            if (monthlyLeaveCount && (monthlyLeaveCount * 12) > value) {
+                                                alert(`You are unable to give ${(monthlyLeaveCount)} leaves because you only entered ${value} as the total leave count.`);
+                                                setTotalLeaveCount('');
+                                                setMonthlyLeaveCount('');
+                                            }
+                                        }}
+                                    />
                                     {formErrors.totalLeaveCount && <span className="text-danger">{formErrors.totalLeaveCount}</span>}
                                 </Form.Group>
                             </Col>
@@ -603,7 +624,24 @@ function LeavePolicy() {
                                         if (e.key === 'e' || e.key === 'E' || e.key === '+' || e.key === '-') {
                                             e.preventDefault();
                                         }
-                                    }} onChange={(e) => setMonthlyLeaveCount(e.target.value)} />
+                                    }}
+                                        onChange={(e) => {
+                                            if(totalLeaveCount){
+                                            const value = e.target.value;
+                                            setMonthlyLeaveCount(value);
+
+                                            // Validate against the total leave count
+                                            if (totalLeaveCount && (value * 12) > totalLeaveCount) {
+                                                alert(`You are unable to give ${(value)} leaves because you only entered ${totalLeaveCount} as the total leave count.`);
+                                                setMonthlyLeaveCount('')
+                                            }
+                                        }else{
+
+                                            alert('You should enter the total leave count first');
+                                        }
+                                        
+                                        }}
+                                    />
                                     {formErrors.monthlyLeaveCount && <span className="text-danger">{formErrors.monthlyLeaveCount}</span>}
                                 </Form.Group>
                             </Col>

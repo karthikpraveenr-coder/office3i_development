@@ -4,6 +4,7 @@ import { Col, Row } from 'react-bootstrap';
 import { FaTimes } from 'react-icons/fa';
 import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { ScaleLoader } from 'react-spinners';
 
 export default function EditRelievingLetter() {
 
@@ -16,11 +17,14 @@ export default function EditRelievingLetter() {
 
     const userData = JSON.parse(localStorage.getItem('userData'));
     const usertoken = userData?.token || '';
+    const userrole = userData?.userrole || '';
+    const userempid = userData?.userempid || '';
 
-    const [headerAttachment, setHeaderAttachment] = useState(null);
-    console.log("headerAttachment******************", headerAttachment)
-    const [footerAttachment, setFooterAttachment] = useState(null);
-    
+    // const [headerAttachment, setHeaderAttachment] = useState(null);
+    // console.log("headerAttachment******************", headerAttachment)
+    // const [footerAttachment, setFooterAttachment] = useState(null);
+    const [header_footer_layout_id, setheader_footer_layout_id] = useState('');
+
     const [date, setDate] = useState('');
     const [employeeName, setEmployeeName] = useState('');
     const [designation, setDesignation] = useState('');
@@ -31,19 +35,23 @@ export default function EditRelievingLetter() {
     const [authorisedPersonDesignation, setAuthorisedPersonDesignation] = useState('');
     const [formErrors, setFormErrors] = useState({});
     const today = new Date().toISOString().split('T')[0];
+
     const [refreshKey, setRefreshKey] = useState(0);
+    const [headerFooterData, setHeaderFooterData] = useState([]); // Initialize with an empty array
+    const [loading, setLoading] = useState(true);
 
     const handleSave = async (e) => {
         e.preventDefault();
 
         const errors = {};
 
-        if (!headerAttachment) {
-            errors.headerAttachment = 'Header Attachment is required.';
-        }
-        if (!footerAttachment) {
-            errors.footerAttachment = 'Footer Attachment is required.';
-        }
+        // if (!headerAttachment) {
+        //     errors.headerAttachment = 'Header Attachment is required.';
+        // }
+        // if (!footerAttachment) {
+        //     errors.footerAttachment = 'Footer Attachment is required.';
+        // }
+        if (!header_footer_layout_id) errors.header_footer_layout_attachment = 'Layout company name is required.';
         if (!date) {
             errors.date = 'Date is required.';
         }
@@ -78,18 +86,19 @@ export default function EditRelievingLetter() {
         const formData = new FormData();
         formData.append('id', id);
 
-        if (headerAttachment instanceof File) {
-            formData.append('header_attachment', headerAttachment);
-        } else {
-            formData.append('header_oldpath', headerAttachment);
-        }
-    
-        if (footerAttachment instanceof File) {
-            formData.append('footer_attached', footerAttachment);
-        } else {
-            formData.append('footer_oldpath', footerAttachment);
-        }
+        // if (headerAttachment instanceof File) {
+        //     formData.append('header_attachment', headerAttachment);
+        // } else {
+        //     formData.append('header_oldpath', headerAttachment);
+        // }
 
+        // if (footerAttachment instanceof File) {
+        //     formData.append('footer_attached', footerAttachment);
+        // } else {
+        //     formData.append('footer_oldpath', footerAttachment);
+        // }
+
+        formData.append('header_footer_layout_id', header_footer_layout_id);
         formData.append('date', date);
         formData.append('employee_name', employeeName);
         formData.append('designation', designation);
@@ -112,8 +121,9 @@ export default function EditRelievingLetter() {
             const data = await response.json();
 
             if (data.status === 'success') {
-                setHeaderAttachment(null);
-                setFooterAttachment(null);
+                // setHeaderAttachment(null);
+                // setFooterAttachment(null);
+                setheader_footer_layout_id('');
                 setDate('');
                 setEmployeeName('');
                 setDesignation('');
@@ -161,8 +171,9 @@ export default function EditRelievingLetter() {
                     console.log("setData----------->", res.data.data)
                     const data = res.data.data
 
-                    setHeaderAttachment(data.header_attachment)
-                    setFooterAttachment(data.footer_attached)
+                    // setHeaderAttachment(data.header_attachment)
+                    // setFooterAttachment(data.footer_attached)
+                    setheader_footer_layout_id(data.layout_id);
                     setDate(data.date)
                     setEmployeeName(data.employee_name)
                     setDesignation(data.designation)
@@ -179,73 +190,110 @@ export default function EditRelievingLetter() {
             });
     }, [id, usertoken]);
 
+    useEffect(() => {
+        fetchData();
+    }, [refreshKey]);
+
+    const fetchData = async () => {
+        const formdata = {
+            user_roleid: userrole,
+            emp_id: userempid
+        };
+
+        try {
+
+            const response = await fetch('https://office3i.com/development/api/public/api/headerFooter_templatelist', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${usertoken}`
+                },
+                // body: JSON.stringify(formdata)
+            });
+
+            if (response.ok) {
+                const responseData = await response.json();
+                setHeaderFooterData(responseData.data);
+                // setTableData(responseData.data);
+                // console.log('responce data for offter_letter', responseData.data);
+            } else {
+                throw new Error('Error fetching data');
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+
     // --------------------------------------------------------------------------------------------
 
-    const [imagePreviewUrl, setImagePreviewUrl] = useState('');
-    const [footerImagePreviewUrl, setFooterImagePreviewUrl] = useState('');
+    // const [imagePreviewUrl, setImagePreviewUrl] = useState('');
+    // const [footerImagePreviewUrl, setFooterImagePreviewUrl] = useState('');
 
 
 
-    useEffect(() => {
-        if (headerAttachment && headerAttachment instanceof File) {
-            setImagePreviewUrl(URL.createObjectURL(headerAttachment));
-        } else if (headerAttachment) {
-            setImagePreviewUrl(`https://office3i.com/development/api/storage/app/${headerAttachment}`);
-        }
-        // Cleanup URL when component unmounts or file changes
-        return () => {
-            if (imagePreviewUrl) {
-                URL.revokeObjectURL(imagePreviewUrl);
-            }
-        };
-    }, [headerAttachment, headerAttachment]);
-    
+    // useEffect(() => {
+    //     if (headerAttachment && headerAttachment instanceof File) {
+    //         setImagePreviewUrl(URL.createObjectURL(headerAttachment));
+    //     } else if (headerAttachment) {
+    //         setImagePreviewUrl(`https://office3i.com/development/api/storage/app/${headerAttachment}`);
+    //     }
+    //     // Cleanup URL when component unmounts or file changes
+    //     return () => {
+    //         if (imagePreviewUrl) {
+    //             URL.revokeObjectURL(imagePreviewUrl);
+    //         }
+    //     };
+    // }, [headerAttachment, headerAttachment]);
 
 
-    useEffect(() => {
-        if (footerAttachment && footerAttachment instanceof File) {
-            setFooterImagePreviewUrl(URL.createObjectURL(footerAttachment));
-        } else if (footerAttachment) {
-            setFooterImagePreviewUrl(`https://office3i.com/development/api/storage/app/${footerAttachment}`);
-        }
-        // Cleanup URL when component unmounts or file changes
-        return () => {
-            if (footerImagePreviewUrl) {
-                URL.revokeObjectURL(footerImagePreviewUrl);
-            }
-        };
-    }, [footerAttachment, footerAttachment]);
+
+    // useEffect(() => {
+    //     if (footerAttachment && footerAttachment instanceof File) {
+    //         setFooterImagePreviewUrl(URL.createObjectURL(footerAttachment));
+    //     } else if (footerAttachment) {
+    //         setFooterImagePreviewUrl(`https://office3i.com/development/api/storage/app/${footerAttachment}`);
+    //     }
+    //     // Cleanup URL when component unmounts or file changes
+    //     return () => {
+    //         if (footerImagePreviewUrl) {
+    //             URL.revokeObjectURL(footerImagePreviewUrl);
+    //         }
+    //     };
+    // }, [footerAttachment, footerAttachment]);
 
 
-    const handleHeaderAttachmentChange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setImagePreviewUrl(reader.result);
-                setHeaderAttachment(file);
-            };
-            reader.readAsDataURL(file);
-        } else {
-            setImagePreviewUrl('');
-            setHeaderAttachment(null);
-        }
-    };
+    // const handleHeaderAttachmentChange = (e) => {
+    //     const file = e.target.files[0];
+    //     if (file) {
+    //         const reader = new FileReader();
+    //         reader.onloadend = () => {
+    //             setImagePreviewUrl(reader.result);
+    //             setHeaderAttachment(file);
+    //         };
+    //         reader.readAsDataURL(file);
+    //     } else {
+    //         setImagePreviewUrl('');
+    //         setHeaderAttachment(null);
+    //     }
+    // };
 
-    const handleFooterAttachmentChange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setFooterImagePreviewUrl(reader.result);
-                setFooterAttachment(file);
-            };
-            reader.readAsDataURL(file);
-        } else {
-            setFooterImagePreviewUrl('');
-            setFooterAttachment(null);
-        }
-    };
+    // const handleFooterAttachmentChange = (e) => {
+    //     const file = e.target.files[0];
+    //     if (file) {
+    //         const reader = new FileReader();
+    //         reader.onloadend = () => {
+    //             setFooterImagePreviewUrl(reader.result);
+    //             setFooterAttachment(file);
+    //         };
+    //         reader.readAsDataURL(file);
+    //     } else {
+    //         setFooterImagePreviewUrl('');
+    //         setFooterAttachment(null);
+    //     }
+    // };
 
     return (
         <div className="container mt-5" style={{ padding: '0px 70px 0px' }}>
@@ -253,7 +301,7 @@ export default function EditRelievingLetter() {
             <div style={{ boxShadow: '#0000007d 0px 0px 10px 1px', padding: '35px 50px' }}>
                 <form onSubmit={handleSave}>
                     <Row className="mb-3">
-                        <Col md={6}>
+                        {/* <Col md={6}>
                             <div className="mb-3">
                                 <label className="form-label">Insert Header</label>
                                 <input
@@ -269,8 +317,8 @@ export default function EditRelievingLetter() {
                                     </div>
                                 )}
                             </div>
-                        </Col>
-                        <Col md={6}>
+                        </Col> */}
+                        {/* <Col md={6}>
                             <div className="mb-3">
                                 <label className="form-label">Insert Footer</label>
                                 <input
@@ -286,7 +334,26 @@ export default function EditRelievingLetter() {
                                     </div>
                                 )}
                             </div>
-                        </Col>
+                        </Col> */}
+                        <div className="mb-3">
+                            <label htmlFor="salutation" className="form-label">Select Layout</label>
+                            <select
+                                id="salutation"
+                                className="form-control"
+                                value={header_footer_layout_id}
+                                onChange={(e) => setheader_footer_layout_id(e.target.value)}
+                            >
+                                <option value="" disabled>Select Company</option>
+                                {headerFooterData.map(option => (
+                                    <option key={option.id} value={option.id}>
+                                        {option.company_title}
+                                    </option>
+                                ))}
+
+                                {/* Add more options as needed */}
+                            </select>
+                            {formErrors.header_footer_layout_attachment && <span className="text-danger">{formErrors.header_footer_layout_attachment}</span>}
+                        </div>
                     </Row>
 
                     <Row className="mb-3">
@@ -297,9 +364,14 @@ export default function EditRelievingLetter() {
                                     type="date"
                                     className="form-control"
                                     value={date}
-                                    min={today}
                                     max="9999-12-31"
-                                    onChange={(e) => setDate(e.target.value)}
+                                    onChange={(e) => {
+                                        setDate(e.target.value)
+                                        if (joiningDate || lastWorkingDay) {
+                                            setJoiningDate('');
+                                            setLastWorkingDay('');
+                                        }
+                                    }}
                                 />
                                 {formErrors.date && <span className="text-danger">{formErrors.date}</span>}
                             </div>
@@ -353,7 +425,8 @@ export default function EditRelievingLetter() {
                                     type="date"
                                     className="form-control"
                                     value={joiningDate}
-                                    max={today}
+                                    min={'0001-01-01'}
+                                    max={lastWorkingDay || '9999-12-12'}
                                     onChange={(e) => setJoiningDate(e.target.value)}
                                 />
                                 {formErrors.joiningDate && <span className="text-danger">{formErrors.joiningDate}</span>}
@@ -367,7 +440,7 @@ export default function EditRelievingLetter() {
                                     className="form-control"
                                     value={lastWorkingDay}
                                     // min={joiningDate}
-                                    max={today}
+                                    min={joiningDate || '0001-01-01'}
                                     onChange={(e) => setLastWorkingDay(e.target.value)}
                                 />
                                 {formErrors.lastWorkingDay && <span className="text-danger">{formErrors.lastWorkingDay}</span>}

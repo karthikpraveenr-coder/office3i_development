@@ -34,8 +34,8 @@ export default function RelievingLetterList() {
         navigate(`/admin/editrelievingletter/${id}`);
     };
 
-    const GoToViewPage = (id) => {
-        navigate(`/admin/relievingletterview/${id}`);
+    const GoToViewPage = (id, layout_id) => {
+        navigate(`/admin/relievingletterview/${id}/${layout_id}`);
     };
 
     const [loading, setLoading] = useState(true);
@@ -347,7 +347,7 @@ display: none !important;
                                                         <button className="btn-edit" onClick={() => { GoToEditPage(row.id) }}>
                                                             <FontAwesomeIcon icon={faPen} /> Edit
                                                         </button>
-                                                        <button className="btn-view" onClick={() => { GoToViewPage(row.id) }}>
+                                                        <button className="btn-view" onClick={() => { GoToViewPage(row.id, row.layout_id) }}>
                                                             <FontAwesomeIcon icon={faEye} /> View
                                                         </button>
                                                     </span>

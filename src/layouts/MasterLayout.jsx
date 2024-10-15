@@ -205,6 +205,12 @@ import ManageProjects from '../pages/TeamTaskManagement/ManageProjects/ManagePro
 import ProjectsList from '../pages/TeamTaskManagement/ProjectsList/ProjectsList'
 import AttendanceDashboardPowerBIReport from '../pages/Attendance/AttendanceDashboard/AttendanceDashboard'
 import VerticalOrgChart from '../pages/TeamTaskManagement/ManageProjects/VerticalOrgChart'
+import DepartmentList from '../pages/organization_structure/DepartmentList'
+import EditDepartmentList from '../pages/organization_structure/EditDepartmentList'
+
+import Head_footer_layout from '../pages/Template/Head_footer.jsx'
+import Headerfooterview from '../pages/Template/Headerfooterview.jsx'
+import Headerfooteredit from '../pages/Template/Headerfooteredit.jsx'
 
 
 
@@ -429,13 +435,18 @@ function MasterLayout() {
                             <Route path="/appointmentletter" element={<AuthRoute><AppointmentLetter /></AuthRoute>} />
                             <Route path="/editappointmentletter/:id" element={<AuthRoute><EditAppointmentLetter /></AuthRoute>} />
                             <Route path="/appointmentletterlist" element={<AuthRoute><AppointmentLetterList /></AuthRoute>} />
-                            <Route path="/appointmentletterview/:id" element={<AuthRoute><AppointmentLetterView /></AuthRoute>} />
+                            <Route path="/appointmentletterview/:id/:layout_id" element={<AuthRoute><AppointmentLetterView /></AuthRoute>} />
                             <Route path="/offerletter" element={<AuthRoute><OfferLetter /></AuthRoute>} />
                             <Route path="/offerletterList" element={<AuthRoute><OfferLetterList /></AuthRoute>} />
                             <Route path="/editofferletter/:id" element={<AuthRoute><EditOfferLetter /></AuthRoute>} />
-                            <Route path="/offerletterview/:id" element={<AuthRoute><OfferLetterView /></AuthRoute>} />
+                            <Route path="/offerletterview/:id/:layout_id" element={<AuthRoute><OfferLetterView /></AuthRoute>} />
 
-                            <Route path="/relievingletterview/:id" element={<AuthRoute><RelievingLetterview /></AuthRoute>} />
+                            <Route path="/relievingletterview/:id/:layout_id" element={<AuthRoute><RelievingLetterview /></AuthRoute>} />
+
+                            {/* New route for head_foot layout */}
+                            <Route path="/headFooter" element={<AuthRoute><Head_footer_layout /></AuthRoute>} />
+                            <Route path="/headerfooterview/:id" element={<AuthRoute><Headerfooterview /></AuthRoute>} />
+                            <Route path="/Headerfooteredit/:id" element={<AuthRoute><Headerfooteredit /></AuthRoute>} />
 
                             {/* --------------------------------------------------------------------------------- */}
                             <Route path="/leadenquirylist" element={<AuthRoute><LeadEnquiryList /></AuthRoute>} />
@@ -515,9 +526,10 @@ function MasterLayout() {
 
                             <Route path="/attendancedashboard" element={<AuthRoute><AttendanceDashboardPowerBIReport /></AuthRoute>} />
                             <Route path="/verticalorgchart" element={<AuthRoute><VerticalOrgChart /></AuthRoute>} />
-                          
 
 
+                            <Route path="/department" element={<AuthRoute><DepartmentList /></AuthRoute>} />
+                            <Route path="/editdepartment/:id" element={<AuthRoute><EditDepartmentList /></AuthRoute>} />
 
 
 

@@ -16,10 +16,11 @@ import { ScaleLoader } from 'react-spinners';
 import { faChevronRight, faStar, faStarOfLife } from '@fortawesome/free-solid-svg-icons';
 
 
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+
 function AttendancePolicy() {
-
     // ------------------------------------------------------------------------------------------------
-
     // Redirect to the edit page
     const navigate = useNavigate();
 
@@ -88,18 +89,130 @@ function AttendancePolicy() {
     });
 
     const handleChange = (e) => {
-        const { id, value } = e.target;
+        const { id, value, name } = e.target;
+        // console.log('this is selected id',id);
         setFormData(prevState => ({ ...prevState, [id]: value }));
 
+        if (id == 'late1' || id == 'late1Deduction' || id == 'late2' || id == 'late2Deduction' || id == 'late3' || id == 'late3Deduction') {
+
+            if (value < 0) {
+                // Reset the value to 1 or clear it
+                e.target.value = '';
+                // Show alert
+                alert("You must select positive values only.");
+                setFormData(prevState => ({ ...prevState, [id]: '' }));
+                return;
+            }
+
+        }
+
+        // if (id == 'permission1From' || id == 'permission1To' || id == 'permission2From' || id == 'permission2To') {
+
+        //     validateTimes(name, value);
+        //     console.log('this part running');
+
+        // }
+
     };
+
+    // const handleChange_1 = (e) => {
+    //     let { id, value, name } = e.target;
+    // }
+
+    const errors = {};
+
+
+    // const validateTimes = (changedField, changedValue) => {
+
+
+    //     const permission1From = formData.permission1From;
+    //     const permission1To = formData.permission1To;
+    //     const permission2From = formData.permission2From;
+    //     const permission2To = formData.permission2To;
+
+    //     if (permission1From || permission2From) {
+
+    //         if (permission1From == permission2From && permission1To == permission2To) {
+    //             alert('Unable to select same time in both permission');
+    //         }
+
+    //     }
+
+
+    //     // console.log('1', permission1From);
+    //     // console.log('2', permission1To);
+    //     // console.log('3', permission2From);
+    //     // console.log('4', permission2To);
+
+    //     // // If changing the first permission
+    //     // if (changedField === 'permission1From' || changedField === 'permission1To') {
+    //     //     if (permission2From && permission2To) {
+    //     //         if ((changedField === 'permission1From' && (changedValue < permission2To && changedValue >= permission2From)) ||
+    //     //             (changedField === 'permission1To' && (changedValue > permission2From && changedValue <= permission2To))) {
+    //     //             errors.permission2From = 'Time overlap detected with Permission (2nd Half).';
+    //     //         }
+    //     //     }
+    //     // }
+
+    //     // // If changing the second permission
+    //     // if (changedField === 'permission2From' || changedField === 'permission2To') {
+    //     //     if (permission1From && permission1To) {
+    //     //         if ((changedField === 'permission2From' && (changedValue < permission1To && changedValue >= permission1From)) ||
+    //     //             (changedField === 'permission2To' && (changedValue > permission1From && changedValue <= permission1To))) {
+    //     //             errors.permission1From = 'Time overlap detected with Permission (1st Half).';
+    //     //             console.log('Time overlap detected with Permission (1st Half).');
+    //     //         }
+    //     //     }
+    //     // }
+    //     setFormErrors(errors);
+    // };
+
+
+    useEffect(() => {
+
+        if (formData.fromTime && formData.toTime) {
+
+            const fromParts = formData.fromTime.split(':');
+            const toParts = formData.toTime.split(':');
+
+            const from = new Date(1970, 0, 1, fromParts[0], fromParts[1], fromParts[2]);
+            const to = new Date(1970, 0, 1, toParts[0], toParts[1], toParts[2]);
+
+
+            if (to < from) {
+                to.setDate(to.getDate() + 1); // Add a day if To Time is less than From Time
+            }
+
+            const diffInMilliseconds = to - from;
+            console.log('diff', diffInMilliseconds);
+
+            const totalSeconds = Math.max(0, diffInMilliseconds / 1000);
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = Math.floor(totalSeconds % 60);
+
+            const formattedTotalHours = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+            console.log('this is time formatter', formattedTotalHours);
+
+            setFormData((prevData) => ({
+                ...prevData,
+                totalHours: formattedTotalHours
+            }));
+
+        } else {
+            setFormData((prevData) => ({
+                ...prevData,
+                totalHours: ''
+            }));
+        }
+
+    }, [formData.fromTime, formData.toTime]);
+
     const [refreshKey, setRefreshKey] = useState(0);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-
-        const errors = {};
-
 
         // Validate shift slot
         if (!formData.shiftSlot) {
@@ -619,7 +732,7 @@ function AttendancePolicy() {
                                         onChange={handleChange}
                                         disabled={loading}
                                     >
-                                        <option value="">Select Shifts</option>
+                                        <option value="" disabled>Select Shifts</option>
                                         {/* Map over the shiftslot array to dynamically generate options */}
                                         {shiftslot.map(slot => (
                                             <option key={slot.id} value={slot.id}>{slot.shift_slot}</option>
@@ -637,6 +750,8 @@ function AttendancePolicy() {
                                         placeholder="From Time"
                                         value={formData.fromTime}
                                         onChange={handleChange}
+                                        name="fromTime"
+
 
                                     />
                                 </Form.Group>
@@ -665,6 +780,7 @@ function AttendancePolicy() {
                                         placeholder="Total Hours"
                                         value={formData.totalHours}
                                         onChange={handleChange}
+                                        readOnly
 
                                     />
                                 </Form.Group>
@@ -676,10 +792,13 @@ function AttendancePolicy() {
                         <Row className='mb-5'>
                             <Col>
                                 <Form.Group controlId="permission1From">
-                                    <Form.Label style={{ fontWeight: 'bold' }}>Permission (1st Half) From <sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup></Form.Label>
+                                    <Form.Label style={{ fontWeight: 'bold' }}>Permission (1st Half) From <sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup>
+
+                                    </Form.Label>
                                     <Form.Control
                                         type="time"
                                         step="1"
+                                        name="permission1From"
                                         placeholder="Permission (1st Half) From Time"
                                         value={formData.permission1From}
                                         onChange={handleChange}
@@ -690,10 +809,23 @@ function AttendancePolicy() {
                             </Col>
                             <Col>
                                 <Form.Group controlId="permission1To">
-                                    <Form.Label style={{ fontWeight: 'bold' }}>Permission (1st Half) To <sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup></Form.Label>
+                                    <Form.Label style={{ fontWeight: 'bold' }}>Permission (1st Half) To <sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup>
+                                        <OverlayTrigger
+                                            placement="top"
+                                            overlay={
+                                                <Tooltip id="info-tooltip">
+                                                    You should select a maximum of 3 hours. If you select a higher number of hours, you may encounter a punching error.                                </Tooltip>
+                                            }
+                                        >
+                                            <span style={{ marginLeft: '5px', cursor: 'pointer' }}>
+                                                <FontAwesomeIcon icon={faInfoCircle} />
+                                            </span>
+                                        </OverlayTrigger>
+                                    </Form.Label>
                                     <Form.Control
                                         type="time"
                                         step="1"
+                                        name="permission1To"
                                         placeholder="Permission (1st Half) From To"
                                         value={formData.permission1To}
                                         onChange={handleChange}
@@ -704,10 +836,12 @@ function AttendancePolicy() {
                             </Col>
                             <Col>
                                 <Form.Group controlId="permission2From">
-                                    <Form.Label style={{ fontWeight: 'bold' }}>Permission (2nd Half) From <sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup></Form.Label>
+                                    <Form.Label style={{ fontWeight: 'bold' }}>Permission (2nd Half) From <sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup>
+                                    </Form.Label>
                                     <Form.Control
                                         type="time"
                                         step="1"
+                                        name="permission2From"
                                         placeholder="Permission (2nd Half) From Time"
                                         value={formData.permission2From}
                                         onChange={handleChange}
@@ -718,10 +852,23 @@ function AttendancePolicy() {
                             </Col>
                             <Col>
                                 <Form.Group controlId="permission2To">
-                                    <Form.Label style={{ fontWeight: 'bold' }}>Permission (2nd Half) To <sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup></Form.Label>
+                                    <Form.Label style={{ fontWeight: 'bold' }}>Permission (2nd Half) To <sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup>
+                                        <OverlayTrigger
+                                            placement="top"
+                                            overlay={
+                                                <Tooltip id="info-tooltip">
+                                                    You should select a maximum of 3 hours. If you select a higher number of hours, you may encounter a punching error.                                </Tooltip>
+                                            }
+                                        >
+                                            <span style={{ marginLeft: '5px', cursor: 'pointer' }}>
+                                                <FontAwesomeIcon icon={faInfoCircle} />
+                                            </span>
+                                        </OverlayTrigger>
+                                    </Form.Label>
                                     <Form.Control
                                         type="time"
                                         step="1"
+                                        name="permission2To"
                                         placeholder="Permission (2nd Half) From To"
                                         value={formData.permission2To}
                                         onChange={handleChange}
@@ -750,7 +897,19 @@ function AttendancePolicy() {
                             </Col>
                             <Col>
                                 <Form.Group controlId="halfDay1To">
-                                    <Form.Label style={{ fontWeight: 'bold' }}>HalfDay (1st Half) To <sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup></Form.Label>
+                                    <Form.Label style={{ fontWeight: 'bold' }}>HalfDay (1st Half) To <sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup>
+                                        <OverlayTrigger
+                                            placement="top"
+                                            overlay={
+                                                <Tooltip id="info-tooltip">
+                                                    You should select a maximum of 5 hours only. If you select a higher number of hours, you may encounter a punching error.                                </Tooltip>
+                                            }
+                                        >
+                                            <span style={{ marginLeft: '5px', cursor: 'pointer' }}>
+                                                <FontAwesomeIcon icon={faInfoCircle} />
+                                            </span>
+                                        </OverlayTrigger>
+                                    </Form.Label>
                                     <Form.Control
                                         type="time"
                                         step="1"
@@ -778,7 +937,19 @@ function AttendancePolicy() {
                             </Col>
                             <Col>
                                 <Form.Group controlId="halfDay2To">
-                                    <Form.Label style={{ fontWeight: 'bold' }}>HalfDay (2nd Half) To <sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup></Form.Label>
+                                    <Form.Label style={{ fontWeight: 'bold' }}>HalfDay (2nd Half) To <sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup>
+                                        <OverlayTrigger
+                                            placement="top"
+                                            overlay={
+                                                <Tooltip id="info-tooltip">
+                                                    You should select a maximum of 5 hours. If you select a higher number of hours, you may encounter a punching error.                                </Tooltip>
+                                            }
+                                        >
+                                            <span style={{ marginLeft: '5px', cursor: 'pointer' }}>
+                                                <FontAwesomeIcon icon={faInfoCircle} />
+                                            </span>
+                                        </OverlayTrigger>
+                                    </Form.Label>
                                     <Form.Control
                                         type="time"
                                         step="1"
@@ -829,11 +1000,23 @@ function AttendancePolicy() {
                                 <Form.Group controlId="late1">
                                     <Form.Label style={{ fontWeight: 'bold' }}>Late 1 <sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup></Form.Label>
                                     <Form.Control
-                                        type="text"
+                                        type="number"
                                         placeholder="No of Late"
                                         value={formData.late1}
                                         onChange={handleChange}
-
+                                        // onChange={(e) => {
+                                        //     const value = Number(e.target.value); // Convert the input value to a number
+                                        //     if (value >= 1) {
+                                        //         handleChange(e); // Call your handleChange function if value is 1 or greater
+                                        //     }
+                                        // }}
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'e' || e.key === 'E' || e.key === '+' || e.key === '-') {
+                                                e.preventDefault();
+                                            }
+                                        }}
+                                        min="1"
+                                        required
                                     />
                                 </Form.Group>
                                 {formErrors.late1 && <span className="text-danger">{formErrors.late1}</span>}
@@ -842,11 +1025,16 @@ function AttendancePolicy() {
                                 <Form.Group controlId="late1Deduction">
                                     <Form.Label style={{ fontWeight: 'bold' }}>Late 1 Deduction <sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup></Form.Label>
                                     <Form.Control
-                                        type="text"
+                                        type="number"
                                         placeholder="No of Day Deduction"
                                         value={formData.late1Deduction}
                                         onChange={handleChange}
-
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'e' || e.key === 'E' || e.key === '+' || e.key === '-') {
+                                                e.preventDefault();
+                                            }
+                                        }}
+                                        min="0"
                                     />
                                 </Form.Group>
                                 {formErrors.late1Deduction && <span className="text-danger">{formErrors.late1Deduction}</span>}
@@ -859,10 +1047,16 @@ function AttendancePolicy() {
                                 <Form.Group controlId="late2">
                                     <Form.Label style={{ fontWeight: 'bold' }}>Late 2 <sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup></Form.Label>
                                     <Form.Control
-                                        type="text"
+                                        type="number"
                                         placeholder="No of Late"
                                         value={formData.late2}
+                                        min="1"
                                         onChange={handleChange}
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'e' || e.key === 'E' || e.key === '+' || e.key === '-') {
+                                                e.preventDefault();
+                                            }
+                                        }}
 
                                     />
                                 </Form.Group>
@@ -872,10 +1066,16 @@ function AttendancePolicy() {
                                 <Form.Group controlId="late2Deduction">
                                     <Form.Label style={{ fontWeight: 'bold' }}>Late 2 Deduction <sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup></Form.Label>
                                     <Form.Control
-                                        type="text"
+                                        type="number"
                                         placeholder="No of Day Deduction"
                                         value={formData.late2Deduction}
                                         onChange={handleChange}
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'e' || e.key === 'E' || e.key === '+' || e.key === '-') {
+                                                e.preventDefault();
+                                            }
+                                        }}
+                                        min="0"
 
                                     />
                                 </Form.Group>
@@ -888,10 +1088,16 @@ function AttendancePolicy() {
                                 <Form.Group controlId="late3">
                                     <Form.Label style={{ fontWeight: 'bold' }}>Late 3 <sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup></Form.Label>
                                     <Form.Control
-                                        type="text"
+                                        type="number"
                                         placeholder="No of Late"
                                         value={formData.late3}
                                         onChange={handleChange}
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'e' || e.key === 'E' || e.key === '+' || e.key === '-') {
+                                                e.preventDefault();
+                                            }
+                                        }}
+                                        min="1"
 
                                     />
                                 </Form.Group>
@@ -901,10 +1107,16 @@ function AttendancePolicy() {
                                 <Form.Group controlId="late3Deduction">
                                     <Form.Label style={{ fontWeight: 'bold' }}>Late 3 Deduction <sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup></Form.Label>
                                     <Form.Control
-                                        type="text"
+                                        type="number"
                                         placeholder="No of Day Deduction"
                                         value={formData.late3Deduction}
                                         onChange={handleChange}
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'e' || e.key === 'E' || e.key === '+' || e.key === '-') {
+                                                e.preventDefault();
+                                            }
+                                        }}
+                                        min="0"
 
                                     />
                                 </Form.Group>

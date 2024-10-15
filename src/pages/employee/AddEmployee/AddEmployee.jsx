@@ -166,7 +166,9 @@ export const AddEmployee = () => {
 
     // EmployeeRole fields
     userRole: { data: [] },
+    usersupervisorRole: { data: [] },
     selectedRoleId: '',
+    selectedSupervisorRoleId: '',
     designation: '',
     supervisor: [],
     selectedsupervisorId: '',
@@ -251,7 +253,9 @@ export const AddEmployee = () => {
     employeeEsiContribution: '',
     employerEsiContribution: '',
     userRole: { data: [] },
+    usersupervisorRole: { data:[] },
     selectedRoleId: '',
+    selectedSupervisorRoleId: '',
     designation: '',
     supervisor: [],
     selectedsupervisorId: '',
@@ -325,7 +329,9 @@ export const AddEmployee = () => {
 
     // EmployeeRole fields
     userRole: [],
+    usersupervisorRole:[],
     selectedRoleId: '',
+    selectedSupervisorRoleId: '',
     designation: '',
     supervisor: [],
     selectedsupervisorId: '',
@@ -638,6 +644,10 @@ export const AddEmployee = () => {
     if (!formData.selectedRoleId) {
       errors.selectedRoleId = 'User role is required';
     }
+    if (!formData.selectedSupervisorRoleId) {
+      errors.selectedSupervisorRoleId = 'Supervisor role is required';
+    }
+    
     if (!formData.designation) {
       errors.designation = 'Designation is required';
     }
@@ -786,8 +796,9 @@ export const AddEmployee = () => {
 
     // Append EmployeeRole fields
     formDataToSend.append('role', formData.selectedRoleId);
+    formDataToSend.append('supervisor', formData.selectedSupervisorRoleId);
     formDataToSend.append('designation', formData.designation);
-    formDataToSend.append('supervisor', formData.selectedsupervisorId);
+    formDataToSend.append('supervisor_name', formData.selectedsupervisorId);
     formDataToSend.append('official_email', formData.officialEmail);
     formDataToSend.append('password', formData.password);
     formDataToSend.append('emp_punch', formData.checkinCheckout);
@@ -966,15 +977,72 @@ export const AddEmployee = () => {
     fetchUserRoleDropdown();
   }, []);
 
+
+  // Fetch All user roles
+
+
+  useEffect(() => {
+    const fetchUserRoleDropdown = async () => {
+      try {
+        const response = await axios.get('https://office3i.com/development/api/public/api/supervisor_userrole', {
+          headers: {
+            'Authorization': `Bearer ${usertoken}`
+          }
+        });
+        const data = response.data
+        // console.log("Fetched userRole data:", data);
+
+        setFormData(prevFormData => ({
+          ...prevFormData,
+          usersupervisorRole: data
+        }));
+
+      } catch (error) {
+        console.error('Error fetching user roles:', error);
+      }
+    };
+
+    fetchUserRoleDropdown();
+  }, []);
+
   // ---------------------------------------------------------------------------------------------------
 
 
   // -------------------------------  Fetch Supervisor roles -------------------------------------------
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   const fetchUserRoleDropdown = async () => {
+  //     try {
+  //       const response = await axios.get(`https://office3i.com/development/api/public/api/supervisor_list/${formData.selectedRoleId}`, {
+  //         headers: {
+  //           'Authorization': `Bearer ${usertoken}`
+  //         }
+  //       });
+
+  //       const data = response.data.data; // Extracting data from response
+
+  //       // console.log("Fetched supervisor_list:", data);
+
+  //       setFormData(prevFormData => ({
+  //         ...prevFormData,
+  //         supervisor: data
+  //       }));
+
+  //     } catch (error) {
+  //       console.error('Error fetching user roles:', error);
+  //     }
+  //   };
+
+  //   fetchUserRoleDropdown();
+  // }, [formData.selectedRoleId]);
+  // ----------------------------------------------------------------------------------------------------
+
+   // -------------------------------  Fetch Supervisor  roles -------------------------------------------
+
+   useEffect(() => {
     const fetchUserRoleDropdown = async () => {
       try {
-        const response = await axios.get(`https://office3i.com/development/api/public/api/supervisor_list/${formData.selectedRoleId}`, {
+        const response = await axios.get(`https://office3i.com/development/api/public/api/supervisorrole_list/${formData.selectedSupervisorRoleId}`, {
           headers: {
             'Authorization': `Bearer ${usertoken}`
           }
@@ -995,8 +1063,9 @@ export const AddEmployee = () => {
     };
 
     fetchUserRoleDropdown();
-  }, [formData.selectedRoleId]);
+  }, [formData.selectedSupervisorRoleId]);
   // ----------------------------------------------------------------------------------------------------
+
 
 
   // ------------------------------------ shiftslotlist  -------------------------------------------------

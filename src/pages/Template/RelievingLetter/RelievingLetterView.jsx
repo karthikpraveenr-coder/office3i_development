@@ -9,14 +9,14 @@ import { useReactToPrint } from 'react-to-print';
 
 const RelievingLetter = () => {
 
-    const { id } = useParams();
+    const { id, layout_id  } = useParams();
     const userData = JSON.parse(localStorage.getItem('userData'));
     const usertoken = userData?.token || '';
 
     // --------------------------------------------------------------------------------------------
     const [relievingletter, setRelievingletter] = useState()
     useEffect(() => {
-        axios.get(`https://office3i.com/development/api/public/api/edit_relieving_list/${id}`, {
+        axios.get(`https://office3i.com/development/api/public/api/edit_header_footer/${layout_id}`, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -73,7 +73,7 @@ const RelievingLetter = () => {
                 <div className="a4-container">
                     <div ref={pdfContainerRef} className="content">
                         <div className="d-flex justify-content-between align-items-center mb-5 header">
-                            <img src={`https://office3i.com/development/api/storage/app/${relievingletter.header_attachment}`} alt="Stark Industries Logo" className="logo" />
+                            <img src={`https://office3i.com/development/api/storage/app/${relievingletter.header_layout}`} alt="Stark Industries Logo" className="logo" />
                         </div>
 
                         <div className='relieving__letter__boday'>
@@ -110,7 +110,7 @@ const RelievingLetter = () => {
                         
                         <div className="footer text-center">
 
-                            <img src={`https://office3i.com/development/api/storage/app/${relievingletter.footer_attached}`} alt="Offerletter_Footer" className="logo" />
+                            <img src={`https://office3i.com/development/api/storage/app/${relievingletter.footer_layout}`} alt="Offerletter_Footer" className="logo" />
                         </div>
 
                     </div>

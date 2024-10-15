@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { Container, Form, Button, Row, Col } from 'react-bootstrap';
-import './css/Templatestyle.css'
+import '../HRsupport/css/Templatestyle.css'
 import Swal from 'sweetalert2';
 import { useEffect } from 'react';
 import axios from 'axios';
@@ -15,7 +15,7 @@ import ReactPaginate from 'react-paginate';
 import { ScaleLoader } from 'react-spinners';
 
 
-function Templates() {
+function Head_footer_layout() {
 
     // ------------------------------------------------------------------------------------------------
 
@@ -23,7 +23,11 @@ function Templates() {
     const navigate = useNavigate();
 
     const GoToEditPage = (id) => {
-        navigate(`/admin/edittemplate/${id}`);
+        navigate(`/admin/Headerfooteredit/${id}`);
+    };
+
+    const GoToViewPage = (id) => {
+        navigate(`/admin/headerfooterview/${id}`);
     };
 
 
@@ -39,16 +43,30 @@ function Templates() {
     // ------------------------------------------------------------------------------------------------
     // Add Shift Slot submit
 
+    // For Header and footer
+    const headerFileInputRef = useRef(null);
+    const footerFileInputRef = useRef(null);
+
+    const [headerAttachment, setHeaderAttachment] = useState(null);
+    const [footerAttachment, setFooterAttachment] = useState(null);
     const [title, setTitle] = useState('');
-    const [status, setStatus] = useState('');
-    const [file, setFile] = useState(null);
+
+
+
+    const [imagePreviewUrl, setImagePreviewUrl] = useState('');
+    const [footerImagePreviewUrl, setFooterImagePreviewUrl] = useState('');
+    // f
+
+
+    // const [status, setStatus] = useState('');
+    // const [file, setFile] = useState(null);
 
     const [refreshKey, setRefreshKey] = useState(0);
 
-    const handleFileChange = (e) => {
-        const file = e.target.files[0];
-        setFile(file);
-    };
+    // const handleFileChange = (e) => {
+    //     const file = e.target.files[0];
+    //     setFile(file);
+    // };
 
     const [formErrors, setFormErrors] = useState({});
 
@@ -61,12 +79,20 @@ function Templates() {
         if (!title) {
             errors.title = 'Title is required.';
         }
-        if (!status) {
-            errors.status = 'Status is required.';
+
+        if (!headerAttachment) {
+            errors.headerAttachment = 'Header Attachment is required.';
         }
-        if (!file) {
-            errors.file = 'File is required.';
+
+        if (!footerAttachment) {
+            errors.footerAttachment = 'Footer Attachment is required.';
         }
+        // if (!status) {
+        //     errors.status = 'Status is required.';
+        // }
+        // if (!file) {
+        //     errors.file = 'File is required.';
+        // }
 
         if (Object.keys(errors).length > 0) {
             setFormErrors(errors);
@@ -78,13 +104,12 @@ function Templates() {
 
         const formData = new FormData();
         formData.append('created_by', userempid);
-        formData.append('status', status);
+        // formData.append('status', status);
         formData.append('title', title);
-        if (file) {
-            formData.append('template_file', file);
-        }
+        formData.append('header_attached', headerAttachment);
+        formData.append('footer_attached', footerAttachment);
 
-        axios.post('https://office3i.com/development/api/public/api/hr_addtemplates', formData, {
+        axios.post('https://office3i.com/development/api/public/api/add_header_footer', formData, {
             headers: {
                 'Authorization': `Bearer ${usertoken}`
             }
@@ -98,6 +123,7 @@ function Templates() {
                         text: message,
                     });
                     setRefreshKey(prevKey => prevKey + 1);
+                    handleCancel();
                 } else {
                     Swal.fire({
                         icon: 'error',
@@ -119,14 +145,54 @@ function Templates() {
     const fileInputRef = useRef(null);
 
     const handleCancel = () => {
-        setTitle('')
-        setStatus('')
-        setFile(null)
+        setTitle('');
+        setImagePreviewUrl('');
+        setFooterImagePreviewUrl('');
+        // setStatus('')
+        // setFile(null)
         setFormErrors({});
 
         // Reset file input
         if (fileInputRef.current) {
             fileInputRef.current.value = '';
+        }
+
+        //Header And Footer
+        headerFileInputRef.current.value = null;
+        footerFileInputRef.current.value = null;
+
+        setHeaderAttachment(null);
+        setFooterAttachment(null);
+
+    };
+
+    const handleHeaderAttachmentChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImagePreviewUrl(reader.result);
+                setHeaderAttachment(file);
+            };
+            reader.readAsDataURL(file);
+        } else {
+            setImagePreviewUrl('');
+            setHeaderAttachment(null);
+        }
+    };
+
+    const handleFooterAttachmentChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setFooterImagePreviewUrl(reader.result);
+                setFooterAttachment(file);
+            };
+            reader.readAsDataURL(file);
+        } else {
+            setFooterImagePreviewUrl('');
+            setFooterAttachment(null);
         }
     };
 
@@ -148,18 +214,20 @@ function Templates() {
         };
 
         try {
-            const response = await fetch('https://office3i.com/development/api/public/api/hr_templatelist', {
-                method: 'POST',
+ 
+            const response = await fetch('https://office3i.com/development/api/public/api/headerFooter_templatelist', {
+                method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${usertoken}`
                 },
-                body: JSON.stringify(formdata)
+                // body: JSON.stringify(formdata)
             });
+
             if (response.ok) {
                 const responseData = await response.json();
                 setTableData(responseData.data);
-                console.log(responseData.data);
+                console.log('responce data', responseData.data);
             } else {
                 throw new Error('Error fetching data');
             }
@@ -196,7 +264,7 @@ function Templates() {
                     return value;
                 }
             });
-    
+
             if (reason) {
                 const response = await fetch('https://office3i.com/development/api/public/api/hr_template_delete', {
                     method: 'POST',
@@ -210,7 +278,7 @@ function Templates() {
                         reason: reason,
                     }),
                 });
-    
+
                 if (response.ok || response.redirected) {
                     setTableData(prevData => prevData.filter(row => row.id !== id));
                     Swal.fire('Deleted!', 'Company Policy has been deleted.', 'success');
@@ -223,7 +291,7 @@ function Templates() {
             Swal.fire('Error', 'An error occurred while deleting the Company Policy. Please try again later.', 'error');
         }
     };
-    
+
 
     // ------------------------------------------------------------------------------------------------
 
@@ -398,13 +466,13 @@ function Templates() {
             ) : (
 
                 <Container fluid className='shift__container'>
-                    <h3 className='mb-5' style={{ fontWeight: 'bold', color: '#00275c' }}>Company Policy</h3>
+                    <h3 className='mb-5' style={{ fontWeight: 'bold', color: '#00275c' }}>Template</h3>
 
 
                     {/* ------------------------------------------------------------------------------------------------ */}
                     {(userrole.includes('1') || userrole.includes('2')) && (
                         <>
-                            <h5 className='mb-2'>Add Company Policy</h5>
+                            <h5 className='mb-2'>Add Header Footer</h5>
                             {/* shift slot add form */}
                             <div className='mb-5' style={{
                                 background: '#ffffff',
@@ -413,18 +481,36 @@ function Templates() {
                                 margin: '2px'
                             }}>
                                 <Row className='mb-3'>
+                                    <Form.Group controlId="formTitle">
+                                        <Form.Label style={{ fontWeight: 'bold' }}>Company Name</Form.Label>
+                                        <Form.Control type="text" placeholder="Enter company name" value={title} onChange={(e) => setTitle(e.target.value)} />
+                                        {formErrors.title && <span className="text-danger">{formErrors.title}</span>}
+                                    </Form.Group>
+                                </Row>
+
+                                <Row className='mb-3'>
                                     {/* Title Input Field */}
                                     <Col>
-                                        <Form.Group controlId="formTitle">
-                                            <Form.Label style={{ fontWeight: 'bold' }}>Title</Form.Label>
-                                            <Form.Control type="text" placeholder="Enter title" value={title} onChange={(e) => setTitle(e.target.value)} />
-                                            {formErrors.title && <span className="text-danger">{formErrors.title}</span>}
-                                        </Form.Group>
+                                        <div className="mb-3">
+                                            <label className="form-label">Insert Header</label>
+                                            <input
+                                                type="file"
+                                                accept="image/*"
+                                                ref={headerFileInputRef}
+                                                onChange={handleHeaderAttachmentChange}
+                                                className="form-control"
+                                            />
+                                            {formErrors.headerAttachment && <span className="text-danger">{formErrors.headerAttachment}</span>}
+                                            {imagePreviewUrl && (
+                                                <div style={{ marginTop: '10px' }}>
+                                                    <img src={imagePreviewUrl} alt="Header Preview" style={{ width: '30%', height: '100px', objectFit: 'contain' }} />
+                                                </div>
+                                            )}
+                                        </div>
                                     </Col>
-
                                     {/* Status Selection Dropdown */}
                                     <Col>
-                                        <Form.Group controlId="formStatus">
+                                        {/* <Form.Group controlId="formStatus">
                                             <Form.Label style={{ fontWeight: 'bold' }}>Status</Form.Label>
                                             <Form.Control as="select" value={status} onChange={(e) => setStatus(e.target.value)}>
                                                 <option value="" disabled>Select Status</option>
@@ -432,19 +518,26 @@ function Templates() {
                                                 <option value="In-Active">In-Active</option>
                                             </Form.Control>
                                             {formErrors.status && <span className="text-danger">{formErrors.status}</span>}
-                                        </Form.Group>
+                                        </Form.Group> */}
+                                        <div className="mb-3">
+                                            <label className="form-label">Insert Footer</label>
+                                            <input
+                                                type="file"
+                                                accept="image/*"
+                                                ref={footerFileInputRef}
+                                                onChange={handleFooterAttachmentChange}
+                                                className="form-control"
+                                            />
+                                            {formErrors.footerAttachment && <span className="text-danger">{formErrors.footerAttachment}</span>}
+                                            {footerImagePreviewUrl && (
+                                                <div style={{ marginTop: '10px' }}>
+                                                    <img src={footerImagePreviewUrl} alt="Footer Preview" style={{ width: '30%', height: '100px', objectFit: 'contain' }} />
+                                                </div>
+                                            )}
+                                        </div>
                                     </Col>
                                 </Row>
                                 <Row>
-                                    {/* File Upload Input */}
-                                    <Col sm={6} md={6} lg={6} xl={6}>
-                                        <Form.Group controlId="formFile">
-                                            <Form.Label style={{ fontWeight: 'bold' }}>Upload File</Form.Label>
-                                            <Form.Control type="file" onChange={handleFileChange} ref={fileInputRef} />
-                                            {formErrors.file && <span className="text-danger">{formErrors.file}</span>}
-                                        </Form.Group>
-                                    </Col>
-
 
                                     {/* Action Buttons */}
                                     <div className='mt-3 submit__cancel'>
@@ -489,9 +582,7 @@ function Templates() {
                             <thead className="thead-dark">
                                 <tr>
                                     <th scope="col">S.No</th>
-                                    <th scope="col">Title</th>
-
-                                    <th scope="col">Status</th>
+                                    <th scope="col">Company Name</th>
                                     {/* <th scope="col"  style={{ width: '20%' }}>File</th> */}
                                     <th scope="col" style={{ width: '50%' }} className="no-print">Action</th>
                                 </tr>
@@ -512,38 +603,52 @@ function Templates() {
                                             return (
                                                 <tr key={row.id}>
                                                     <th scope="row">{serialNumber}</th>
-                                                    <td>{row.title}</td>
-                                                    <td>{row.status}</td>
+                                                    <td>{row.company_title}</td>
                                                     {/* <td><img src={`https://office3i.com/development/api/storage/app/${row.template_file}`} alt='template-image' style={{ width: '30%' }} /></td> */}
 
                                                     <td style={{ display: 'flex', gap: '10px' }} className="no-print">
 
-                                                        <button className="btn-view" onClick={() => { window.open(`https://office3i.com/development/api/storage/app/${row.template_file}`, '_blank') }}>
+                                                        {/* <button className="btn-view" onClick={() => { window.open(`https://office3i.com/development/api/storage/app/${row.template_file}`, '_blank') }}>
+                                                            <FontAwesomeIcon icon={faEye} /> View
+                                                        </button> */}
+                                                        
+                                                        <button className="btn-view" onClick={() => { GoToViewPage(row.id) }}>
                                                             <FontAwesomeIcon icon={faEye} /> View
                                                         </button>
 
-
-                                                        <button
-                                                            className="btn-download"
-                                                            onClick={() => handleDownload(`https://office3i.com/development/api/storage/app/${row.template_file}`, row.template_file.split('/').pop())}
-                                                        >
-                                                            <FontAwesomeIcon icon={faDownload} /> Download
-                                                        </button>
 
                                                         {(userrole.includes('1') || userrole.includes('2')) && (
                                                             <>
                                                                 <button className="btn-edit" onClick={() => { GoToEditPage(row.id) }}>
                                                                     <FontAwesomeIcon icon={faPen} /> Edit
                                                                 </button>
-
-                                                                <button className="btn-delete" onClick={() => handleDelete(row.id)}>
-                                                                    <FontAwesomeIcon icon={faTrashCan} /> Delete
-                                                                </button>
                                                             </>
-
                                                         )}
                                                     </td>
                                                 </tr>
+
+                                                // <tr key={row.id}>
+                                                //     <th scope="row" style={{ width: '5%' }}>{serialNumber}</th>  {/* Adjust the percentage as needed */}
+                                                //     <td style={{ width: '45%' }}>{row.company_title}</td>  {/* Adjust width here */}
+
+                                                //     {/* Image with specified width */}
+                                                //     {/* <td><img src={`https://office3i.com/development/api/storage/app/${row.template_file}`} alt='template-image' style={{ width: '30%' }} /></td> */}
+
+                                                //     <td style={{ display: 'flex', gap: '10px', width: '50%' }} className="no-print">  {/* Set width for action buttons */}
+                                                //         <button className="btn-view" onClick={() => { window.open(`https://office3i.com/development/api/storage/app/${row.template_file}`, '_blank') }}>
+                                                //             <FontAwesomeIcon icon={faEye} /> View
+                                                //         </button>
+
+                                                //         {(userrole.includes('1') || userrole.includes('2')) && (
+                                                //             <>
+                                                //                 <button className="btn-edit" onClick={() => { GoToEditPage(row.id) }}>
+                                                //                     <FontAwesomeIcon icon={faPen} /> Edit
+                                                //                 </button>
+                                                //             </>
+                                                //         )}
+                                                //     </td>
+                                                // </tr>
+
                                             );
                                         })
 
@@ -552,6 +657,16 @@ function Templates() {
                         </table>
 
                     </div>
+
+                    {/* <button className="btn-delete" onClick={() => handleDelete(row.id)}>
+                                                                    <FontAwesomeIcon icon={faTrashCan} /> Delete
+                                                                </button> */}
+                    {/* <button
+                                                            className="btn-download"
+                                                            onClick={() => handleDownload(`https://office3i.com/development/api/storage/app/${row.template_file}`, row.template_file.split('/').pop())}
+                                                        >
+                                                            <FontAwesomeIcon icon={faDownload} /> Download
+                                                        </button> */}
 
                     <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
                         <ReactPaginate
@@ -592,4 +707,4 @@ function Templates() {
     )
 }
 
-export default Templates
+export default Head_footer_layout

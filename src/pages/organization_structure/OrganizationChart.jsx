@@ -49,7 +49,7 @@ export default function ColoredDemo() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('https://office3i.com/development/api/public/api/orgchart_list/0', {
+                const response = await axios.get('https://office3i.com/development/api/public/api/orgchart_emp_list/0', {
                     headers: {
                         'Authorization': `Bearer ${usertoken}`
                     }

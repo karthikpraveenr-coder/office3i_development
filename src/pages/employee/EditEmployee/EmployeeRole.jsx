@@ -8,11 +8,10 @@ const EmployeeRole = ({ formData, handleChange, prevStep, formErrors, nextStep }
 
     // const userRoleOptions = formData.userRole.data || [];
     const userRoleOptions = (formData.userRole && formData.userRole.data) || [];
+    const usersupervisorRoleOptions = formData.usersupervisorRole.data || [];
 
-    console.log("userRoleOptions:---------------------------------------------------------------->", userRoleOptions);
-    console.log("formData.userRole:", formData.userRole);
-
-
+    console.log(usersupervisorRoleOptions);
+   
     return (
         <div>
 
@@ -95,15 +94,31 @@ const EmployeeRole = ({ formData, handleChange, prevStep, formErrors, nextStep }
                     </Row>
 
                     <Row className="mb-3">
+                    <Col>
+                            <Form.Group controlId="formGridUserRole">
+                                <Form.Label>Select Supervisor Role<sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup></Form.Label>
+                                <Form.Select
+                                    name="selectedSupervisorRoleId" // Assuming you've added this field to your state
+                                    value={formData.selectedSupervisorRoleId || ''} // Ensures a controlled component
+                                    onChange={handleChange} // Make sure handleChange updates selectedRoleId correctly
+                                >
+                                    <option value="">Select Supervisor Role</option>
+                                    {usersupervisorRoleOptions.map(option => (
+                                        <option key={option.id} value={option.id}>{option.role_name}</option>
+                                    ))}
+                                </Form.Select>
+                                {formErrors.selectedSupervisorRoleId && <span className="text-danger">{formErrors.selectedSupervisorRoleId}</span>}
+                            </Form.Group>
+                        </Col>
                         <Col>
                             <Form.Group controlId="formGridSupervisor">
-                                <Form.Label>Select Supervisor<sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup></Form.Label>
+                                <Form.Label>Select Supervisor Name<sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup></Form.Label>
                                 <Form.Select
                                     name="selectedsupervisorId"
                                     value={formData.selectedsupervisorId} // Assuming formData.supervisor is an object containing id and supervisor_name
                                     onChange={handleChange}
                                 >
-                                    <option value="">Select Supervisor</option>
+                                    <option value="">Select Supervisor Name</option>
                                     {formData.supervisor.map(supervisor => (
                                         <option key={supervisor.id} value={supervisor.id}>{supervisor.supervisor_name}</option>
                                     ))}
@@ -112,7 +127,12 @@ const EmployeeRole = ({ formData, handleChange, prevStep, formErrors, nextStep }
                             </Form.Group>
                         </Col>
 
-                        <Col>
+                    </Row>
+
+                    <Row className="mb-3">
+
+                        
+                    <Col>
                             <Form.Group controlId="formGridOfficialEmail">
                                 <Form.Label>Official Email Id<sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup></Form.Label>
                                 <Form.Control
@@ -125,9 +145,6 @@ const EmployeeRole = ({ formData, handleChange, prevStep, formErrors, nextStep }
                                 {formErrors.officialEmail && <span className="text-danger">{formErrors.officialEmail}</span>}
                             </Form.Group>
                         </Col>
-                    </Row>
-
-                    <Row className="mb-3">
 
                         <Col>
                             <Form.Group controlId="formGridPassword">
@@ -143,7 +160,12 @@ const EmployeeRole = ({ formData, handleChange, prevStep, formErrors, nextStep }
                             </Form.Group>
                         </Col>
 
-                        <Col>
+                       
+                    </Row>
+
+                    <Row className="mb-3">
+
+                    <Col>
                             <Form.Group controlId="formGridCheckinCheckout">
                                 <Form.Label>Checkin/Checkout<sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup></Form.Label>
                                 <Form.Select
@@ -159,9 +181,6 @@ const EmployeeRole = ({ formData, handleChange, prevStep, formErrors, nextStep }
                                 {formErrors.checkinCheckout && <span className="text-danger">{formErrors.checkinCheckout}</span>}
                             </Form.Group>
                         </Col>
-                    </Row>
-
-                    <Row className="mb-3">
 
 
                         <Col>
@@ -180,7 +199,11 @@ const EmployeeRole = ({ formData, handleChange, prevStep, formErrors, nextStep }
                             </Form.Group>
                         </Col>
 
-                        <Col>
+                     
+                    </Row>
+
+                    <Row className="mb-3">
+                    <Col>
                             <Form.Group controlId="formGridLateAllowed">
                                 <Form.Label>Late Allowed</Form.Label>
                                 <Form.Control
@@ -193,11 +216,7 @@ const EmployeeRole = ({ formData, handleChange, prevStep, formErrors, nextStep }
                                 {formErrors.lateAllowed && <span className="text-danger">{formErrors.lateAllowed}</span>}
                             </Form.Group>
                         </Col>
-                    </Row>
-
-                    <Row className="mb-3">
-
-                        <Col lg={6}>
+                        <Col>
                             <Form.Group controlId="formGridPermissionAllowed">
                                 <Form.Label>Permission Allowed</Form.Label>
                                 <Form.Control

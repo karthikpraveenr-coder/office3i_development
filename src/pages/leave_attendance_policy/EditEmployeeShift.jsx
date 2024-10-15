@@ -395,14 +395,16 @@ function EditEmployeeShift() {
                             <Col>
                                 <Form.Group controlId="formStartDate">
                                     <Form.Label>Start Date <sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup></Form.Label>
-                                    <Form.Control type="date" value={startDate} max="9999-12-31" onChange={(e) => setStartDate(e.target.value)} />
+                                    <Form.Control type="date" value={startDate} 
+                                    max={endDate || "9999-12-31"}
+                                    onChange={(e) => setStartDate(e.target.value)} />
                                     {formErrors.startDate && <span className="text-danger">{formErrors.startDate}</span>}
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group controlId="formEndDate">
                                     <Form.Label>End Date <sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup></Form.Label>
-                                    <Form.Control type="date" value={endDate} max="9999-12-31" onChange={(e) => setEndDate(e.target.value)} />
+                                    <Form.Control type="date" value={endDate} max="9999-12-31" min={startDate || "0001-01-01"} onChange={(e) => setEndDate(e.target.value)} />
                                     {formErrors.endDate && <span className="text-danger">{formErrors.endDate}</span>}
                                 </Form.Group>
                             </Col>
@@ -414,7 +416,7 @@ function EditEmployeeShift() {
                                 <Form.Group controlId="formShiftSlots">
                                     <Form.Label>Shift Slot <sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup></Form.Label>
                                     <Form.Control as="select" value={shiftSlot} onChange={(e) => setShiftSlot(e.target.value)}>
-                                        <option value="">Select Shift Slot</option>
+                                        <option value="" disabled>Select Shift Slot</option>
                                         {shiftSlots.map(slot => (
                                             <option key={slot.id} value={slot.id}>{slot.shift_slot}</option>
                                         ))}

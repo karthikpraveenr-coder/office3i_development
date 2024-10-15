@@ -3,7 +3,10 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { FaTimes } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { ScaleLoader } from 'react-spinners';
+
 
 export default function RelievingLetter() {
     const navigate = useNavigate();
@@ -14,12 +17,16 @@ export default function RelievingLetter() {
 
     const userData = JSON.parse(localStorage.getItem('userData'));
     const usertoken = userData?.token || '';
+    const userrole = userData?.userrole || '';
+    const userempid = userData?.userempid || '';
+
 
     // const headerFileInputRef = useRef(null);
     // const footerFileInputRef = useRef(null);
     const [headerAttachment, setHeaderAttachment] = useState(null);
     const [footerAttachment, setFooterAttachment] = useState(null);
 
+    const [header_footer_layout_id, setheader_footer_layout_id] = useState('');
     const [date, setDate] = useState('');
     const [employeeName, setEmployeeName] = useState('');
     const [designation, setDesignation] = useState('');
@@ -30,6 +37,12 @@ export default function RelievingLetter() {
     const [authorisedPersonDesignation, setAuthorisedPersonDesignation] = useState('');
     const [formErrors, setFormErrors] = useState({});
     const today = new Date().toISOString().split('T')[0];
+
+    const [headerFooterData, setHeaderFooterData] = useState([]); // Initialize with an empty array
+
+
+    const [loading, setLoading] = useState(true);
+
     const [refreshKey, setRefreshKey] = useState(0);
 
     const handleSubmit = async (e) => {
@@ -37,12 +50,15 @@ export default function RelievingLetter() {
 
         const errors = {};
 
-        if (!headerAttachment) {
-            errors.headerAttachment = 'Header Attachment is required.';
-        }
-        if (!footerAttachment) {
-            errors.footerAttachment = 'Footer Attachment is required.';
-        }
+        // if (!headerAttachment) {
+        //     errors.headerAttachment = 'Header Attachment is required.';
+        // }
+        // if (!footerAttachment) {
+        //     errors.footerAttachment = 'Footer Attachment is required.';
+        // }
+
+        if (!header_footer_layout_id) errors.header_footer_layout_attachment = 'Layout company name is required.';
+
         if (!date) {
             errors.date = 'Date is required.';
         }
@@ -75,6 +91,7 @@ export default function RelievingLetter() {
         setFormErrors({});
 
         const formData = new FormData();
+        formData.append('header_footer_layout_id', header_footer_layout_id);
         formData.append('header_attach', headerAttachment);
         formData.append('footer_attached', footerAttachment);
         formData.append('date', date);
@@ -99,12 +116,12 @@ export default function RelievingLetter() {
             const data = await response.json();
 
             if (data.status === 'success') {
-                setHeaderAttachment(null);
-                setFooterAttachment(null);
-                setImagePreviewUrl('');
-                setFooterImagePreviewUrl('');
-                headerFileInputRef.current.value = null;
-                footerFileInputRef.current.value = null;
+                // setHeaderAttachment(null);
+                // setFooterAttachment(null);
+                // setImagePreviewUrl('');
+                // setFooterImagePreviewUrl('');
+                // headerFileInputRef.current.value = null;
+                // footerFileInputRef.current.value = null;
                 setDate('');
                 setEmployeeName('');
                 setDesignation('');
@@ -135,16 +152,17 @@ export default function RelievingLetter() {
 
     const headerFileInputRef = useRef(null);
     const footerFileInputRef = useRef(null);
-    
-    
+
+
 
 
     const handleCancel = () => {
 
-        setHeaderAttachment(null);
-        setFooterAttachment(null);
-        setImagePreviewUrl('');
-        setFooterImagePreviewUrl('');
+        setheader_footer_layout_id('');
+        // setHeaderAttachment(null);
+        // setFooterAttachment(null);
+        // setImagePreviewUrl('');
+        // setFooterImagePreviewUrl('');
         setDate('');
         setEmployeeName('');
         setDesignation('');
@@ -155,14 +173,51 @@ export default function RelievingLetter() {
         setAuthorisedPersonDesignation('');
         setFormErrors({});
 
-        if (headerFileInputRef.current) {
-            headerFileInputRef.current.value = '';
-        }
-        if (footerFileInputRef.current) {
-            footerFileInputRef.current.value = '';
-        }
+        // if (headerFileInputRef.current) {
+        //     headerFileInputRef.current.value = '';
+        // }
+        // if (footerFileInputRef.current) {
+        //     footerFileInputRef.current.value = '';
+        // }
     };
 
+
+
+    useEffect(() => {
+        fetchData();
+    }, [refreshKey]);
+
+    const fetchData = async () => {
+        const formdata = {
+            user_roleid: userrole,
+            emp_id: userempid
+        };
+
+        try {
+
+            const response = await fetch('https://office3i.com/development/api/public/api/headerFooter_templatelist', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${usertoken}`
+                },
+                // body: JSON.stringify(formdata)
+            });
+
+            if (response.ok) {
+                const responseData = await response.json();
+                setHeaderFooterData(responseData.data);
+                // setTableData(responseData.data);
+                // console.log('responce data for offter_letter', responseData.data);
+            } else {
+                throw new Error('Error fetching data');
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
     // --------------------------------------------------------------------------------------------
 
     const [imagePreviewUrl, setImagePreviewUrl] = useState('');
@@ -199,12 +254,26 @@ export default function RelievingLetter() {
     };
 
     return (
-        <div className="container mt-5" style={{ padding: '0px 70px 0px' }}>
-            <h3 className='mb-5' style={{ fontWeight: 'bold', color: '#00275c' }}>Add Relieving Letter</h3>
-            <div style={{ boxShadow: '#0000007d 0px 0px 10px 1px', padding: '35px 50px' }}>
-                <form onSubmit={handleSubmit}>
-                    <Row className="mb-3">
-                        <Col md={6}>
+
+        <>
+
+            {loading ? (
+                <div style={{
+                    height: '100vh',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    background: '#f6f6f6'
+                }}>
+                    <ScaleLoader color="rgb(20 166 249)" />
+                </div>
+            ) : (
+                <div className="container mt-5" style={{ padding: '0px 70px 0px' }}>
+                    <h3 className='mb-5' style={{ fontWeight: 'bold', color: '#00275c' }}>Add Relieving Letter</h3>
+                    <div style={{ boxShadow: '#0000007d 0px 0px 10px 1px', padding: '35px 50px' }}>
+                        <form onSubmit={handleSubmit}>
+                            <Row className="mb-3">
+                                {/* <Col md={6}>
                             <div className="mb-3">
                                 <label className="form-label">Insert Header</label>
                                 <input
@@ -221,8 +290,8 @@ export default function RelievingLetter() {
                                     </div>
                                 )}
                             </div>
-                        </Col>
-                        <Col md={6}>
+                        </Col> */}
+                                {/* <Col md={6}>
                             <div className="mb-3">
                                 <label className="form-label">Insert Footer</label>
                                 <input
@@ -239,125 +308,158 @@ export default function RelievingLetter() {
                                     </div>
                                 )}
                             </div>
-                        </Col>
-                    </Row>
+                        </Col> */}
+                                <Col md={12}>
+                                    {/* Select Salutation */}
+                                    <div className="mb-3">
+                                        <label htmlFor="salutation" className="form-label">Select Layout</label>
+                                        <select
+                                            id="salutation"
+                                            className="form-control"
+                                            value={header_footer_layout_id}
+                                            onChange={(e) => setheader_footer_layout_id(e.target.value)}
+                                        >
+                                            <option value="" disabled>Select Company</option>
+                                            {headerFooterData.map(option => (
+                                                <option key={option.id} value={option.id}>
+                                                    {option.company_title}
+                                                </option>
+                                            ))}
 
-                    <Row className="mb-3">
-                        <Col md={6}>
-                            <div className="mb-3">
-                                <label className="form-label">Date</label>
-                                <input
-                                    type="date"
-                                    className="form-control"
-                                    value={date}
-                                    max="9999-12-31"
-                                    onChange={(e) => setDate(e.target.value)}
-                                />
-                                {formErrors.date && <span className="text-danger">{formErrors.date}</span>}
-                            </div>
-                        </Col>
-                        <Col md={6}>
-                            <div className="mb-3">
-                                <label className="form-label">Employee Name</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    value={employeeName}
-                                    onChange={(e) => setEmployeeName(e.target.value)}
-                                />
-                                {formErrors.employeeName && <span className="text-danger">{formErrors.employeeName}</span>}
-                            </div>
-                        </Col>
-                    </Row>
+                                            {/* Add more options as needed */}
+                                        </select>
+                                        {formErrors.header_footer_layout_attachment && <span className="text-danger">{formErrors.header_footer_layout_attachment}</span>}
+                                    </div>
+                                </Col>
+                            </Row>
 
-                    <Row className="mb-3">
-                        <Col md={6}>
-                            <div className="mb-3">
-                                <label className="form-label">Designation</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    value={designation}
-                                    onChange={(e) => setDesignation(e.target.value)}
-                                />
-                                {formErrors.designation && <span className="text-danger">{formErrors.designation}</span>}
-                            </div>
-                        </Col>
-                        <Col md={6}>
-                            <div className="mb-3">
-                                <label className="form-label">Company Name</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    value={companyName}
-                                    onChange={(e) => setCompanyName(e.target.value)}
-                                />
-                                {formErrors.companyName && <span className="text-danger">{formErrors.companyName}</span>}
-                            </div>
-                        </Col>
-                    </Row>
+                            <Row className="mb-3">
+                                <Col md={6}>
+                                    <div className="mb-3">
+                                        <label className="form-label">Date</label>
+                                        <input
+                                            type="date"
+                                            className="form-control"
+                                            value={date}
+                                            max="9999-12-31"
+                                            onChange={(e) => {
+                                                setDate(e.target.value)
+                                                if (joiningDate || lastWorkingDay) {
+                                                    setJoiningDate('');
+                                                    setLastWorkingDay('');
+                                                }
+                                            }
 
-                    <Row className="mb-3">
-                        <Col md={6}>
-                            <div className="mb-3">
-                                <label className="form-label">Joining Date</label>
-                                <input
-                                    type="date"
-                                    className="form-control"
-                                    value={joiningDate}
-                                    max={today}
-                                    onChange={(e) => setJoiningDate(e.target.value)}
-                                />
-                                {formErrors.joiningDate && <span className="text-danger">{formErrors.joiningDate}</span>}
-                            </div>
-                        </Col>
-                        <Col md={6}>
-                            <div className="mb-3">
-                                <label className="form-label">Last Working Day</label>
-                                <input
-                                    type="date"
-                                    className="form-control"
-                                    value={lastWorkingDay}
-                                    // min={joiningDate}
-                                    max={today}
-                                    onChange={(e) => setLastWorkingDay(e.target.value)}
-                                />
-                                {formErrors.lastWorkingDay && <span className="text-danger">{formErrors.lastWorkingDay}</span>}
-                            </div>
-                        </Col>
-                    </Row>
+                                            }
+                                        />
+                                        {formErrors.date && <span className="text-danger">{formErrors.date}</span>}
+                                    </div>
+                                </Col>
+                                <Col md={6}>
+                                    <div className="mb-3">
+                                        <label className="form-label">Employee Name</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            value={employeeName}
+                                            onChange={(e) => setEmployeeName(e.target.value)}
+                                        />
+                                        {formErrors.employeeName && <span className="text-danger">{formErrors.employeeName}</span>}
+                                    </div>
+                                </Col>
+                            </Row>
 
-                    <Row className="mb-3">
-                        <Col md={6}>
-                            <div className="mb-3">
-                                <label className="form-label">Authorised Person Name</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    value={authorisedPersonName}
-                                    onChange={(e) => setAuthorisedPersonName(e.target.value)}
-                                />
-                                {formErrors.authorisedPersonName && <span className="text-danger">{formErrors.authorisedPersonName}</span>}
-                            </div>
-                        </Col>
-                        <Col md={6}>
-                            <div className="mb-3">
-                                <label className="form-label">Authorised Person Designation</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    value={authorisedPersonDesignation}
-                                    onChange={(e) => setAuthorisedPersonDesignation(e.target.value)}
-                                />
-                                {formErrors.authorisedPersonDesignation && <span className="text-danger">{formErrors.authorisedPersonDesignation}</span>}
-                            </div>
-                        </Col>
-                    </Row>
+                            <Row className="mb-3">
+                                <Col md={6}>
+                                    <div className="mb-3">
+                                        <label className="form-label">Designation</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            value={designation}
+                                            onChange={(e) => setDesignation(e.target.value)}
+                                        />
+                                        {formErrors.designation && <span className="text-danger">{formErrors.designation}</span>}
+                                    </div>
+                                </Col>
+                                <Col md={6}>
+                                    <div className="mb-3">
+                                        <label className="form-label">Company Name</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            value={companyName}
+                                            onChange={(e) => setCompanyName(e.target.value)}
+                                        />
+                                        {formErrors.companyName && <span className="text-danger">{formErrors.companyName}</span>}
+                                    </div>
+                                </Col>
+                            </Row>
 
-                    <button type="submit" className="btn btn-primary" style={{ marginRight: '10px' }}>Add Relieving Letter</button>
-                    <button type="button" className="btn btn-secondary" style={{ background: 'white', color: '#0d6efd' }} onClick={handleCancel}>Cancel</button>
-                </form>
-            </div>
-        </div>
+                            <Row className="mb-3">
+                                <Col md={6}>
+                                    <div className="mb-3">
+                                        <label className="form-label">Joining Date</label>
+                                        <input
+                                            type="date"
+                                            className="form-control"
+                                            value={joiningDate}
+                                            min={'0001-01-01'}
+                                            max={lastWorkingDay || '9999-12-12'}
+                                            onChange={(e) => setJoiningDate(e.target.value)}
+                                        />
+                                        {formErrors.joiningDate && <span className="text-danger">{formErrors.joiningDate}</span>}
+                                    </div>
+                                </Col>
+                                <Col md={6}>
+                                    <div className="mb-3">
+                                        <label className="form-label">Last Working Day</label>
+                                        <input
+                                            type="date"
+                                            className="form-control"
+                                            value={lastWorkingDay}
+                                            // min={joiningDate}
+                                            min={joiningDate || '0001-01-01'}
+                                            onChange={(e) => setLastWorkingDay(e.target.value)}
+                                        />
+                                        {formErrors.lastWorkingDay && <span className="text-danger">{formErrors.lastWorkingDay}</span>}
+                                    </div>
+                                </Col>
+                            </Row>
+
+                            <Row className="mb-3">
+                                <Col md={6}>
+                                    <div className="mb-3">
+                                        <label className="form-label">Authorised Person Name</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            value={authorisedPersonName}
+                                            onChange={(e) => setAuthorisedPersonName(e.target.value)}
+                                        />
+                                        {formErrors.authorisedPersonName && <span className="text-danger">{formErrors.authorisedPersonName}</span>}
+                                    </div>
+                                </Col>
+                                <Col md={6}>
+                                    <div className="mb-3">
+                                        <label className="form-label">Authorised Person Designation</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            value={authorisedPersonDesignation}
+                                            onChange={(e) => setAuthorisedPersonDesignation(e.target.value)}
+                                        />
+                                        {formErrors.authorisedPersonDesignation && <span className="text-danger">{formErrors.authorisedPersonDesignation}</span>}
+                                    </div>
+                                </Col>
+                            </Row>
+
+                            <button type="submit" className="btn btn-primary" style={{ marginRight: '10px' }}>Add Relieving Letter</button>
+                            <button type="button" className="btn btn-secondary" style={{ background: 'white', color: '#0d6efd' }} onClick={handleCancel}>Cancel</button>
+                        </form>
+                    </div>
+                </div>
+            )}
+        </>
     );
 }

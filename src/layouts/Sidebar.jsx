@@ -732,6 +732,11 @@ function Sidebar() {
 
                                                     <div className="collapse" id="ORGStructure_sidebar" aria-labelledby="headingOne" data-bs-parent="#Employee_Management">
                                                         <nav className="sb-sidenav-menu-nested nav">
+                                                            <Link
+                                                                to="/admin/department"
+                                                                className={`nav-link ${location.pathname === '/admin/department' ? 'active' : ''}`}
+                                                                style={location.pathname === '/admin/department' ? activeStyle : {}}
+                                                            >Department List</Link>
                                                             {checkedNames.EmployeeManagement.ORGStructure.includes('add_Role') && (
                                                                 <Link
                                                                     to="/admin/addrole"
@@ -904,6 +909,8 @@ function Sidebar() {
                                             )}
 
                                             {/* --------------------------------------------------------------- */}
+
+
                                             {hasAccessToTemplate() && (
                                                 <>
                                                     <Link className="nav-link collapsed" to="#" data-bs-toggle="collapse" data-bs-target="#TemplateSection" aria-expanded="false" aria-controls="TemplateSection">
@@ -914,6 +921,12 @@ function Sidebar() {
 
                                                     <div className="collapse" id="TemplateSection" aria-labelledby="headingFour" data-bs-parent="#Employee_Management">
                                                         <nav className="sb-sidenav-menu-nested nav">
+
+                                                            <Link
+                                                                to="/admin/headFooter"
+                                                                className={`nav-link ${location.pathname === '/admin/headFooter' ? 'active' : ''}`}
+                                                                style={location.pathname === '/admin/headFooter' ? activeStyle : {}}
+                                                            >Header & Footer</Link>
 
                                                             {/* Offer Letter Section */}
                                                             {templatePermissions.OfferLetter.some(permission => checkedNames.EmployeeManagement.Template.OfferLetter.includes(permission)) && (
