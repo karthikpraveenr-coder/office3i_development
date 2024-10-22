@@ -31,6 +31,11 @@ function Sidebar() {
         navigate('/admin/attendancedashboard');
     }
 
+    const HandleclickEmployeeManagement = (e) => {
+        e.preventDefault();
+        navigate('/admin/employeedashboard');
+    }
+
     // ------------------------------------------------------------------------------------------------
 
     //  Retrieve userData from local storage
@@ -682,6 +687,23 @@ function Sidebar() {
                             </>
                         )}
 
+                        {/* -------------------------------------------------------------------------------------------------------- */}
+                        <>
+                            {checkedNames.Dashboard.includes('Dashboard') && (
+                                <Link
+                                    to="/admin/maindashboard"
+                                    className={`nav-link ${location.pathname === '/admin/maindashboard' ? 'active' : ''}`}
+                                    style={location.pathname === '/admin/maindashboard' ? activeStyle : {}}
+                                >
+                                    <div className="sb-nav-link-icon"><i className="fas fa-tachometer-alt"></i></div>
+                                    Main Dashboard
+                                </Link>
+                            )}
+                            <hr />
+                        </>
+
+                        {/* -------------------------------------------------------------------------------------------------------- */}
+
 
 
 
@@ -710,7 +732,7 @@ function Sidebar() {
                         ) && (
                                 <>
                                     {/* ---------------------------------------------------------------------------------------- */}
-                                    <Link className="nav-link collapsed" to="#" data-bs-toggle="collapse" data-bs-target="#Employee_Management" aria-expanded="false" aria-controls="Employee_Management">
+                                    <Link onClick={HandleclickEmployeeManagement} className="nav-link collapsed" to="#" data-bs-toggle="collapse" data-bs-target="#Employee_Management" aria-expanded="false" aria-controls="Employee_Management">
                                         <div className="sb-nav-link-icon"><FontAwesomeIcon icon={faUser} /></div>
                                         Employee Management
                                         <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
@@ -764,9 +786,9 @@ function Sidebar() {
 
                                                             {checkedNames.EmployeeManagement.ORGStructure.includes('org_Chart') && (
                                                                 <Link
-                                                                    to="/admin/organizationchart"
-                                                                    className={`nav-link ${location.pathname === '/admin/organizationchart' ? 'active' : ''}`}
-                                                                    style={location.pathname === '/admin/organizationchart' ? activeStyle : {}}
+                                                                    to="/admin/verticalorgchart"
+                                                                    className={`nav-link ${location.pathname === '/admin/verticalorgchart' ? 'active' : ''}`}
+                                                                    style={location.pathname === '/admin/verticalorgchart' ? activeStyle : {}}
                                                                 >ORG Chart</Link>
                                                             )}
 

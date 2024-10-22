@@ -1,0 +1,158 @@
+.MainDashboard__container {
+    display: grid;
+    margin: 20px;
+    grid-template-columns: repeat(3, 1fr); 
+    grid-template-rows: repeat(4, 100px) 150px;
+    grid-auto-rows: 100px;
+    gap: 20px;
+}
+
+.box {
+    /* background-color: #1086f6; */
+    box-shadow: 
+    1px 1px 4px rgba(0, 0, 0, 0.1), 
+    -1px -1px 4px rgba(0, 0, 0, 0.1), 
+    -1px 1px 4px rgba(0, 0, 0, 0.1), 
+    1px -1px 4px rgba(0, 0, 0, 0.1);
+    color: black;
+    font-size: 15px;
+    display: flex; /* Center content using flexbox */
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    
+}
+.Userimage__greetings{
+    width: 65px;
+    border-radius: 35px;
+    height: 65px;
+    object-fit: cover;
+    border: 1px solid #0A62F1;
+}
+
+/* Header spans 2 columns on larger screens */
+.Header__quote {
+    grid-column: 1 / 3;
+    
+}
+
+/* Other boxes as per original layout */
+.Checkin__checkout {
+    grid-row: 1 / 3;
+}
+
+.Birthday__workAnniversary {
+    grid-column: 1 / 2;
+    grid-row: 2 / 5;
+}
+
+.Post {
+    grid-column: 2 / 3;
+    grid-row: 2 / 9;
+    width: 29rem;
+}
+
+.Employee__Moodboard {
+    grid-column: 3 / 4;
+    grid-row: 3 / 5;
+}
+
+.SkillDevelopment__Training {
+    grid-column: 3 / 4;
+    grid-row: 5 / 7;
+}
+
+.Rewards__Recognition {
+    grid-column: 3 / 4;
+    grid-row: 7 / 9;
+}
+
+
+/* Media queries for responsiveness */
+
+/* On medium screens (e.g., tablets), change to 2 columns */
+@media (max-width: 768px) {
+    .MainDashboard__container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns */
+        grid-auto-rows: auto; /* Let rows adjust automatically */
+    }
+
+    .Header__quote {
+        grid-column: 1 / 3; /* Still spans 2 columns */
+    }
+
+    .Post {
+        grid-column: 1 / 3; /* Span across 2 columns for more space */
+        grid-row: auto; /* Adjust based on content */
+        width: auto;
+    }
+}
+
+/* On small screens (e.g., mobile), switch to a single column */
+@media (max-width: 480px) {
+    .MainDashboard__container {
+        grid-template-columns: 1fr; /* 1 column */
+        grid-auto-rows: auto; /* Automatic row height */
+    }
+
+    .Header__quote, 
+    .Checkin__checkout, 
+    .Birthday__workAnniversary, 
+    .Post, 
+    .Employee__Moodboard, 
+    .SkillDevelopment__Training, 
+    .Rewards__Recognition {
+        grid-column: 1 / 2; /* All elements occupy the full width */
+        grid-row: auto; /* Adjust rows based on content */
+    }
+}
+
+/* ---------------------------------------------- */
+
+.Header__quote__container{
+    display: flex;
+    align-items: center;
+    z-index: 1;
+    gap: 15px;
+    padding-left: 20px;
+    
+}
+.Header__quote{
+    justify-content: flex-start;
+}
+.greeting{
+    color: #0A62F1;
+    font-size: 21px;
+    font-weight: 500;
+}
+.greeting__title{
+    font-size: 18px;
+    
+}
+.Header__quote {
+    position: relative; /* Ensure the container is the positioning context */
+}
+
+.gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0; /* Cover the entire parent container */
+    background: linear-gradient(to right, rgb(255, 255, 255), rgba(255, 255, 255, 0)); 
+    pointer-events: none; /* Allow clicks to pass through to underlying elements */
+    border-radius: 10px;
+}
+.Birthday__workAnniversary{
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+
+}
+.Holidays{
+    text-align: top;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    background: linear-gradient(98.57deg, #E1EFFF 0%, #C4E8FF 100%);
+}

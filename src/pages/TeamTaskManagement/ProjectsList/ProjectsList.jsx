@@ -9,10 +9,12 @@ import { useReactToPrint } from 'react-to-print';
 import 'jspdf-autotable';
 import ReactPaginate from 'react-paginate';
 import { ScaleLoader } from 'react-spinners';
-import { useNavigate } from 'react-router-dom';
+import { Form, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAnglesRight, faPen, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { faAnglesRight, faCircleInfo, faPen, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import './ProjectsList.css'
+import { Dropdown } from 'react-bootstrap';
+import axios from 'axios';
 
 
 function ProjectsList() {
@@ -43,43 +45,54 @@ function ProjectsList() {
     // Table list view api
 
     const [refreshKey, setRefreshKey] = useState(0);
-
-
     const [tableData, setTableData] = useState([]);
+    const [selectedMenuItem, setSelectedMenuItem] = useState('');
 
     useEffect(() => {
         fetchData();
-    }, [refreshKey]); // Ensure refreshKey is defined in parent and changes to trigger re-fetch
+    }, [refreshKey, selectedMenuItem]); // Ensure refreshKey is defined in parent and changes to trigger re-fetch
 
     const fetchData = async () => {
         setLoading(true); // Ensure loading is set before fetching
         try {
-            const response = await fetch('https://office3i.com/development/api/public/api/view_project_list', {
+            // Define the payload based on user role
+            let payload = {};
+
+            if (userrole === '1') {
+                payload = {
+                    user_roleid: userrole,
+                };
+            } else {
+                payload = {
+                    emp_id: userempid,
+                    btn_type: selectedMenuItem,
+                };
+            }
+
+            // Make the fetch request
+            const response = await fetch('https://office3i.com/development/api/public/api/view_teamproject_list', {
                 method: 'POST', // Set the method to POST
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${usertoken}`,
                 },
-                body: JSON.stringify({
-                    user_roleid: userrole,
-                    emp_id: userempid,
-                })
+                body: JSON.stringify(payload) // Convert payload to JSON
             });
 
             if (response.ok) {
                 const responseData = await response.json();
                 setTableData(responseData.data);
-                console.log("setTableData", responseData.data)
-
-                setLoading(false);
+                console.log("setTableData", responseData.data);
             } else {
                 throw new Error('Failed to fetch data');
             }
         } catch (error) {
             console.error('Error fetching data:', error);
-            setLoading(false);
+        } finally {
+            setLoading(false); // Ensure loading is false whether the request succeeds or fails
         }
     };
+
 
     // ------------------------------------------------------------------------------------------------
 
@@ -339,7 +352,41 @@ function ProjectsList() {
         setModalContent('');
     };
 
+    // -----------------------------------------------------------------------------------------------------
 
+    const [menuItems, setMenuItems] = useState([]);
+    // Track selected menu item
+
+    useEffect(() => {
+        const fetchMenuItems = async () => {
+            try {
+                const response = await axios.get(`https://office3i.com/development/api/public/api/btn_menu_show/${userempid}`, {
+                    headers: {
+                        Authorization: `Bearer ${usertoken}`, // Replace with your token
+                    },
+                });
+
+                if (response.data.status === "success") {
+                    const items = response.data.data;
+                    setMenuItems(items);
+
+                    // Set "AssignedToMe" as default if it's in the response
+                    if (items.includes("AssignedToMe")) {
+                        setSelectedMenuItem("AssignedToMe");
+                    }
+                }
+            } catch (error) {
+                console.error("Error fetching menu items:", error);
+            }
+        };
+
+        fetchMenuItems();
+    }, []);
+
+    const handleSelect = (eventKey) => {
+        setSelectedMenuItem(eventKey); // Update state with selected menu item
+        console.log("Selected Menu Item:", eventKey);
+    };
 
 
     return (
@@ -368,7 +415,10 @@ function ProjectsList() {
             ) : (
 
                 <Container fluid className='shift__container'>
-                    <h3 className='mb-5' style={{ fontWeight: 'bold', color: '#00275c' }}>Project List</h3>
+                    <span className='mb-5' style={{ fontWeight: 'bold', color: '#00275c', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <h3>Project List</h3>
+                        <span className='project-details'><FontAwesomeIcon icon={faCircleInfo} style={{ fontSize: '20px' }} /> Click on the Project Name to view Tasks List</span>
+                    </span>
 
 
 
@@ -376,7 +426,7 @@ function ProjectsList() {
                     {/* List table */}
 
                     <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px', justifyContent: 'space-between' }}>
-                        <div>
+                        <div style={{ display: 'flex' }}>
                             <input
                                 type="text"
                                 placeholder="Search..."
@@ -384,6 +434,35 @@ function ProjectsList() {
                                 onChange={(e) => setSearchTerm(e.target.value)}
                                 style={myStyles1}
                             />
+
+                            {/* ----------------------------- */}
+                            {menuItems.length >= 2 && userrole !== '1' ? (
+                                <Dropdown onSelect={handleSelect}>
+                                    <Dropdown.Toggle className='menu-dropdown-btn' id="dropdown-basic">
+                                        {selectedMenuItem || "Dropdown Button"}
+                                    </Dropdown.Toggle>
+
+                                    <Dropdown.Menu>
+                                        {menuItems.length > 0 ? (
+                                            menuItems.map((menuItem, index) => (
+                                                <Dropdown.Item
+                                                    key={index}
+                                                    eventKey={menuItem}
+                                                    active={menuItem === selectedMenuItem}
+                                                >
+                                                    {menuItem}
+                                                </Dropdown.Item>
+                                            ))
+                                        ) : (
+                                            <Dropdown.Item disabled>No items available</Dropdown.Item>
+                                        )}
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                            ) : null}
+
+
+
+                            {/* ----------------------------- */}
 
                         </div>
                         <div>
@@ -399,7 +478,7 @@ function ProjectsList() {
                                 <tr>
                                     <th>S.No</th>
                                     <th>Project Name</th>
-                                    <th scope="col" style={{ width: '200px' }}>Project Type</th> 
+                                    <th scope="col" style={{ width: '200px' }}>Project Type</th>
                                     <th>Project Category</th>
                                     <th>Project Status</th>
                                     <th>Project Priority</th>
@@ -411,7 +490,7 @@ function ProjectsList() {
                                     <th>Finish Date</th>
                                     <th>Notes/Description</th>
                                     <th>Attachment</th>
-                                 
+
                                     {(userrole.includes('1') || userrole.includes('2')) && (<th className='no-print'>Action</th>)}
 
 
@@ -430,15 +509,21 @@ function ProjectsList() {
                                             <tr key={row.id}>
                                                 <td>{serialNumber}</td>
                                                 <td><Button className='ProjectsList__pnane'>{row.p_name} <FontAwesomeIcon icon={faAnglesRight} /></Button></td>
-                                                <td style={Projecttype} onClick={() => handleOpenModal(row.p_type)}>{row.p_type}</td>
+                                                {/* <td style={Projecttype} onClick={() => handleOpenModal(row.p_type)}>{row.p_type}</td> */}
+                                                <td>{row.p_type}</td>
                                                 <td>{row.p_category}</td>
-                                                <td>{row.p_work_type}</td>
-                                                <td>{row.client_company}</td>
-                                                <td>{row.department}</td>
+                                                <td>{row.project_status_name}</td>
+                                                <td>{row.p_priority}</td>
+                                                <td>{row.department_name}</td>
+                                                <td>{row.teams_name}</td>
                                                 <td>{row.membername}</td>
-                                                <td>{row.from_date}</td>
-                                                <td>{row.to_date}</td>
-                                                <td>{row.status}</td>
+                                                <td>{row.p_duration}</td>
+                                                <td>{row.start_date}</td>
+                                                <td>{row.finish_date}</td>
+                                                <td>{row.p_description}</td>
+                                                <td>{row.p_attachment}</td>
+
+
                                                 {(userrole.includes('1') || userrole.includes('2')) && (
                                                     <td style={{ display: 'flex', gap: '10px' }} className='no-print'>
                                                         <button className="btn-edit" onClick={() => { GoToEditPage(row.id) }}>

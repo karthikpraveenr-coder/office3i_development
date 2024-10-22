@@ -204,13 +204,16 @@ import MarketSurvey from '../pages/SalesManagement/Lead/MarketSurvey'
 import ManageProjects from '../pages/TeamTaskManagement/ManageProjects/ManageProjects'
 import ProjectsList from '../pages/TeamTaskManagement/ProjectsList/ProjectsList'
 import AttendanceDashboardPowerBIReport from '../pages/Attendance/AttendanceDashboard/AttendanceDashboard'
-import VerticalOrgChart from '../pages/TeamTaskManagement/ManageProjects/VerticalOrgChart'
+// import VerticalOrgChart from '../pages/TeamTaskManagement/ManageProjects/VerticalOrgChart'
 import DepartmentList from '../pages/organization_structure/DepartmentList'
 import EditDepartmentList from '../pages/organization_structure/EditDepartmentList'
 
 import Head_footer_layout from '../pages/Template/Head_footer.jsx'
 import Headerfooterview from '../pages/Template/Headerfooterview.jsx'
 import Headerfooteredit from '../pages/Template/Headerfooteredit.jsx'
+import VerticalOrgChart from '../pages/organization_structure/VerticalOrgChart'
+import EmployeeDashboardPowerBIReport from '../pages/employee/EmployeeDashboard/EmployeeDashboard'
+import MainDashboard from '../pages/dashboard/MainDashboard/MainDashboard'
 
 
 
@@ -231,6 +234,9 @@ function MasterLayout() {
                             <Route path="/" element={<AuthRoute><Dashboard /></AuthRoute>} />
                             <Route path="/admindashboard" element={<AuthRoute><AdminDashboard /></AuthRoute>} />
                             <Route path="/userdashboard" element={<AuthRoute><UserDashboard /></AuthRoute>} />
+                            <Route path="/maindashboard" element={<AuthRoute><MainDashboard /></AuthRoute>} />
+
+
                             <Route path="/addrole" element={<AuthRoute><AddRole /></AuthRoute>} />
                             <Route path="/addshiftslot" element={<AuthRoute><AddShiftSlot /></AuthRoute>} />
                             <Route path="/editshiftslot/:id" element={<AuthRoute><EditShiftSlot /></AuthRoute>} />
@@ -525,6 +531,7 @@ function MasterLayout() {
                             {/* --------------------------------------------------------------------------------------------------- */}
 
                             <Route path="/attendancedashboard" element={<AuthRoute><AttendanceDashboardPowerBIReport /></AuthRoute>} />
+                            <Route path="/employeedashboard" element={<AuthRoute><EmployeeDashboardPowerBIReport /></AuthRoute>} />
                             <Route path="/verticalorgchart" element={<AuthRoute><VerticalOrgChart /></AuthRoute>} />
 
 

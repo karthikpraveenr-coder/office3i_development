@@ -1,0 +1,77 @@
+.card__container__powerbi {
+    box-shadow: 0px 0px 5px rgb(0 0 0 / 20%);
+    /* border-radius: 16px; */
+    width: 130px;
+    height: 127px;
+    background-color: white;
+    
+}
+
+.custom-grid{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    /* background: #f5f5f5; */
+    margin-left: 13px;
+    padding: 28px 8px 0px 11px;
+}
+
+@media (max-width: 768px) {
+    .custom-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .custom-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.image__container {
+    display: flex;
+    justify-content: center;
+}
+
+.dash-img-power {
+    width: 60%;
+}
+
+.dash-img-power-onduty {
+    width: 52%;
+}
+
+.dash-img-power-Manualentry {
+    width: 50%;
+}
+
+.feild__container {
+    margin-top: -11px;
+    padding-bottom: 1px;
+}
+
+.feild__container__onduty {
+    margin-top: 5px;
+    padding-bottom: 1px;
+}
+
+.feild__container__Manualentry {
+    margin-top: 9px;
+    padding-bottom: 1px;
+}
+
+.feild__title {
+    text-align: center;
+}
+
+.feild__value {
+    text-align: center;
+    font-weight: 700;
+}
+
+
+.card__container__powerbi:hover {
+    background-image: linear-gradient(to bottom, #14a7f994, #0a63f1);
+    color: white;
+    cursor: pointer
+}

@@ -16,4 +16,15 @@
     color: #A96800;
     font-size: 17px;
 }
-
+.menu-dropdown-btn{
+    background-color: #3E5173;
+    border: #3E5173;
+}
+.project-details{
+    color: #0A62F1;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}

@@ -1,0 +1,82 @@
+.Birthday.active {
+    background-color: #0A62F1;
+    color: white;
+}
+
+.Work__Anniversary.active {
+    background-color: #0A62F1;
+    color: white;
+}
+
+
+.BirthdayworkAnniversary__container{
+    width: 93%;
+}
+.Birthday{
+    font-size: 15px;
+    /* padding: 7px 20px; */
+    width: 44%;
+    color: #6B6B6B;
+    background: #F4F4F4;
+    border-color: #D0D0D0;
+}
+.Work__Anniversary{
+    font-size: 15px;
+    color: #6B6B6B;
+    background: #F4F4F4;
+    border-color: #D0D0D0;
+   
+}
+.Birthday__Work__Anniversary{
+    display: flex;
+    gap: 10px;
+}
+.userimage{
+    width: 47px;
+    border-radius: 25px;
+    height: 47px;
+    /* background-position: top; */
+    object-fit: cover;
+}
+.Birthdaylist{
+    display: flex;
+    gap: 10px;
+}
+.Birthdaylist__container{
+    display: flex;
+    border: 2px solid #A9CAFF;
+    border-radius: 6px;
+    padding: 8px 6px;
+    justify-content: space-between;
+}
+.thismonth{
+    color: #6B6B6B;
+}
+.Birthdaylist__content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.User__name{
+    color: #4F4F4F;
+    font-weight: 700;
+    font-family: Segoe UI;
+}
+.User__Designation{
+    color: #6B6B6B;
+    font-size: 13px;
+}
+.Event__day{
+    font-weight: 500;
+    color: #0A62F1;
+}
+.viewmore{
+    text-align: center;
+    color: #0A62F1;
+    font-weight: 500;
+   text-decoration: underline;
+}
+.viewmore:hover{
+    color: black;
+    cursor: pointer;
+}
