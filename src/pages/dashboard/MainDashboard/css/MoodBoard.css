@@ -1,0 +1,118 @@
+/* --------------- Employee Mood Board ------------ */
+
+
+.Employee__mood__board__mainadmin {
+    /* box-shadow: 0px 0px 10px rgb(0 0 0 / 43%); */
+    padding: 20px;
+    border-radius: 20px;
+    position: relative;
+}
+.mood__title{
+    text-align: center;
+    color: #001f55;
+    font-weight: 700;
+}
+.mood__rule{
+    padding: 10px;
+}
+.mood__reactions{
+    padding: 3px 25px;
+}
+.updated__mood{
+    padding: 3px 25px;
+}
+.Mood_update_btn{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.emoji-icon{
+    width: 100%;
+    cursor: pointer;
+}
+.mood__all{
+    text-decoration: underline;
+    text-underline-offset: 10px;
+}
+.Reacted__emoji{
+    text-align: right;
+}
+.reacted__name{
+    font-weight: bold;
+}
+.emoji-icon-reacted{
+    width: 10%;
+}
+.reacted__name__emoji{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.show__more__mainadmin{
+    justify-content: center;
+    position: absolute;
+    padding: -5px 11px;
+    width: 90%;
+    bottom: 0px;
+    left: 0px;
+    text-align: center;
+    padding: 8px;
+    cursor: pointer;
+    color: #0A62F1;
+    border: 1px solid #0A62F1;
+    margin: 0px 0px 0px 15px;
+    font-weight: 500;
+}
+
+/* popup */
+
+.mood__reactions__popup{
+    padding: 3px 25px;
+}
+
+.mood__all__popup{
+    text-decoration: underline;
+    text-underline-offset: 13px;
+}
+
+.emoji-icon__popup{
+    width: 70%;
+}
+
+.mood__reactions__popup{
+    padding: 3px 25px;
+}
+.Reacted__emoji__popup{
+    text-align: right;
+}
+.reacted__name__popup{
+    font-weight: bold;
+}
+.emoji-icon-reacted__popup{
+    width: 8%;
+}
+.reacted__name__emoji__popup{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.ALL__design{
+    display: flex;
+    align-items: center;
+}
+.profile__popup{
+    width: 17%;
+    border-radius: 50%;
+    height: 7vh;
+    object-fit: cover;
+}
+.emoji__count{
+    display: flex;
+    align-items: center;
+}
+.emoji__count__value{
+    padding-top: 6px;
+    padding-left: 4px;
+}
+

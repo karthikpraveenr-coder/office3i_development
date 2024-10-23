@@ -1,0 +1,79 @@
+
+  
+  .date-section h4 {
+    color: #0A62F1;
+    margin-bottom: 10px;
+  }
+  
+  .progress-bar {
+    margin: 20px 0;
+  }
+  
+  .hours-indicator {
+    position: relative;
+    /* top: -10px; */
+    color: green;
+    font-size: 14px;
+    background-color: #dff0d8;
+    display: inline-block;
+    padding: 2px 5px;
+    border-radius: 5px;
+  }
+  
+  .bar {
+    background-color: #eee;
+    border-radius: 10px;
+    height: 10px;
+    position: relative;
+    margin: 10px 0;
+  }
+  
+  .filled-bar {
+    background-color: green;
+    height: 100%;
+    border-radius: 10px;
+  }
+  
+  .shift-info {
+    color: gray;
+    font-size: 14px;
+  }
+  
+  .button-section {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .checkin-btn {
+    background-color: #C5D5F0;
+    border: none;
+    color: #7089B2;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .checkin-btn:hover{
+    background-color: #7089B2;
+    color: #C5D5F0;
+  }
+  
+  .checkout-btn {
+    background-color: #CF0000;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .checkout-btn:hover{
+    background-color: #817b7b;
+    color: white;
+  }
+  
+  button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  

@@ -2,8 +2,9 @@
     display: grid;
     margin: 20px;
     grid-template-columns: repeat(3, 1fr); 
-    grid-template-rows: repeat(4, 100px) 150px;
-    grid-auto-rows: 100px;
+    /* grid-template-rows: repeat(4, 100px) 150px; */
+    grid-template-rows: 100px 100px 100px 150px;
+    grid-auto-rows: 150px;
     gap: 20px;
 }
 
@@ -150,9 +151,11 @@
 
 }
 .Holidays{
-    text-align: top;
     display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
+    flex-direction: column;
+    padding: 24px;
+    text-align: top;
+    /* align-items: flex-start;
+    justify-content: flex-start; */
     background: linear-gradient(98.57deg, #E1EFFF 0%, #C4E8FF 100%);
 }

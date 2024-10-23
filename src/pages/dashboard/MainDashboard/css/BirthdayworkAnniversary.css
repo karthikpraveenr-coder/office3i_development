@@ -61,10 +61,23 @@
     color: #4F4F4F;
     font-weight: 700;
     font-family: Segoe UI;
+    width: 111px; /* Adjust the width as needed */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.User__name__popup{
+    color: #4F4F4F;
+    font-weight: 700;
+    font-family: Segoe UI; 
 }
 .User__Designation{
     color: #6B6B6B;
     font-size: 13px;
+    width: 111px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .Event__day{
     font-weight: 500;
@@ -79,4 +92,10 @@
 .viewmore:hover{
     color: black;
     cursor: pointer;
+}
+.Event__day__container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
 }

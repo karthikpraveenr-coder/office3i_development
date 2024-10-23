@@ -279,7 +279,7 @@ export default function ApprovalRequest() {
     // Attendance shift
 
     const [isShift, setIsShift] = useState([{ "id": "0", "shift_slot": "Select Shift" }]);
-    const [selectedshift, setSelectedshift] = useState('');
+   // const [selectedshift, setSelectedshift] = useState('');
 
 
     useEffect(() => {
@@ -523,7 +523,7 @@ export default function ApprovalRequest() {
         setSelectedMember('');
         setSelectedattendancetype('');
         setSelectedattendancelocation('');
-        setSelectedshift('');
+       // setSelectedshift('');
         setFormData({
             ...formData,
             request_date: "",
@@ -560,9 +560,9 @@ export default function ApprovalRequest() {
         if (!selectedattendancelocation) {
             errors.selectedattendancelocation = 'Location is required.';
         }
-        if (!selectedshift) {
-            errors.selectedshift = 'Shift is required.';
-        }
+        // if (!selectedshift) {
+        //     errors.selectedshift = 'Shift is required.';
+        // }
         if (!formData.request_date) {
             errors.request_date = 'Date is required.';
         }
@@ -609,7 +609,7 @@ export default function ApprovalRequest() {
         formDataToSend.append('request_totime', request_totimeUpdated);
         formDataToSend.append('request_type', selectedattendancetype);
         formDataToSend.append('request_location', selectedattendancelocation);
-        formDataToSend.append('shiftslot_id', selectedshift);
+       // formDataToSend.append('shiftslot_id', selectedshift);
         formDataToSend.append('request_reason', formData.attendance_reason);
 
         try {
@@ -630,7 +630,7 @@ export default function ApprovalRequest() {
                 setSelectedMember('');
                 setSelectedattendancetype('');
                 setSelectedattendancelocation('');
-                setSelectedshift('');
+                //setSelectedshift('');
                 setFormData({
                     ...formData,
                     request_date: "",
@@ -696,7 +696,7 @@ export default function ApprovalRequest() {
         setSelectedMember('');
         setSelectedoverTimetype('')
         setSelectedattendancelocation('')
-        setSelectedshift('')
+     //   setSelectedshift('')
         setFormDataOT({
             ...formDataOT,
             request_date: "",
@@ -729,9 +729,9 @@ export default function ApprovalRequest() {
         if (!selectedattendancelocation) {
             errors.selectedattendancelocation = 'Location is required.';
         }
-        if (!selectedshift) {
-            errors.selectedshift = 'Shift is required.';
-        }
+        // if (!selectedshift) {
+        //     errors.selectedshift = 'Shift is required.';
+        // }
         if (!formDataOT.request_date) {
             errors.request_date = 'Date is required.';
         }
@@ -777,7 +777,7 @@ export default function ApprovalRequest() {
         formDataToSend.append('request_totime', request_totimeUpdated);
         formDataToSend.append('reqhours_type', selectedoverTimetype);
         formDataToSend.append('request_location', selectedattendancelocation);
-        formDataToSend.append('shiftslot_id', selectedshift);
+        //formDataToSend.append('shiftslot_id', selectedshift);
         formDataToSend.append('request_reason', formDataOT.attendance_reason);
 
         try {
@@ -955,6 +955,21 @@ export default function ApprovalRequest() {
                             {formErrors.selectedMember && <span className="text-danger">{formErrors.selectedMember}</span>}
                         </Form.Group>
 
+                        <Form.Group controlId="selectType" className='mb-2'>
+                            <Form.Label style={{ fontWeight: "bold", color: '#4b5c72' }}>Select Category<sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup></Form.Label>
+                            <Form.Control
+                                as="select"
+                                name="selectType"
+                                value={type}
+                                onChange={(e) => setType(e.target.value)}
+                            >
+                                {isCategory.map((option) => (
+                                    <option key={option.id} value={option.id}>{option.leave_category_name}</option>
+                                ))}
+                            </Form.Control>
+                            {formErrors.type && <span className="text-danger">{formErrors.type}</span>}
+                        </Form.Group>
+
                         <Form.Group controlId="selectCategory" className='mb-2'>
                             <Form.Label style={{ fontWeight: "bold", color: '#4b5c72' }}>Select Type<sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup></Form.Label>
                             <Form.Control
@@ -971,20 +986,7 @@ export default function ApprovalRequest() {
                         </Form.Group>
 
 
-                        <Form.Group controlId="selectType" className='mb-2'>
-                            <Form.Label style={{ fontWeight: "bold", color: '#4b5c72' }}>Select Category<sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup></Form.Label>
-                            <Form.Control
-                                as="select"
-                                name="selectType"
-                                value={type}
-                                onChange={(e) => setType(e.target.value)}
-                            >
-                                {isCategory.map((option) => (
-                                    <option key={option.id} value={option.id}>{option.leave_category_name}</option>
-                                ))}
-                            </Form.Control>
-                            {formErrors.type && <span className="text-danger">{formErrors.type}</span>}
-                        </Form.Group>
+                       
 
                         {type == 2 || type == 3 ?
                             <div className='mb-2'>
@@ -1172,7 +1174,7 @@ export default function ApprovalRequest() {
                         </Form.Group>
 
 
-                        <Form.Group controlId="shift" className='mb-2'>
+                        {/* <Form.Group controlId="shift" className='mb-2'>
                             <Form.Label style={{ fontWeight: "bold", color: '#4b5c72' }}>Select Shift<sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup></Form.Label>
                             <Form.Control
                                 as="select"
@@ -1185,7 +1187,7 @@ export default function ApprovalRequest() {
                                 ))}
                             </Form.Control>
                             {formErrors.selectedshift && <span className="text-danger">{formErrors.selectedshift}</span>}
-                        </Form.Group>
+                        </Form.Group> */}
 
 
 
@@ -1332,7 +1334,7 @@ export default function ApprovalRequest() {
                         </Form.Group>
 
 
-                        <Form.Group controlId="shift" className='mb-2'>
+                        {/* <Form.Group controlId="shift" className='mb-2'>
                             <Form.Label style={{ fontWeight: "bold", color: '#4b5c72' }}>Select Shift<sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup></Form.Label>
                             <Form.Control
                                 as="select"
@@ -1345,7 +1347,7 @@ export default function ApprovalRequest() {
                                 ))}
                             </Form.Control>
                             {formErrors.selectedshift && <span className="text-danger">{formErrors.selectedshift}</span>}
-                        </Form.Group>
+                        </Form.Group> */}
 
 
 

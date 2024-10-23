@@ -56,6 +56,7 @@ function BirthdayworkAnniversary() {
                 const data = response.data;
                 setBirthdayData(data.current_month_birthday_list || []);
                 setAnniversaryData(data.work_anniversary_list || []);
+                console.log("data for holiday", response.data.holiday_list.current_holiday);
 
             } catch (error) {
                 console.error('Error fetching employee events:', error);
@@ -92,7 +93,7 @@ function BirthdayworkAnniversary() {
 
     return (
         <div className='BirthdayworkAnniversary__container mt-2'>
-            <div className='Birthday__Work__Anniversary mt-2 mb-2'>
+            <div className='Birthday__Work__Anniversary mt-2 mb-3'>
                 <Button className={`Birthday ${activeView === 'birthday' ? 'active' : ''}`}
                     onClick={() => setActiveView('birthday')}>
                     Birthdays
@@ -104,7 +105,7 @@ function BirthdayworkAnniversary() {
             </div>
 
             <div>
-                <p className='thismonth mb-2'>This Month</p>
+                <p className='thismonth mb-4'>This Month</p>
 
                 {/* Conditionally render the birthday or work anniversary lists */}
                 {activeData.slice(0, 3).map(item => (
@@ -116,15 +117,20 @@ function BirthdayworkAnniversary() {
                                 <p className='User__Designation'>{item.department_name}</p>
                             </span>
                         </span>
-                        <span>
-                            <p className='Event__day'>{item.formatted_date}</p>
+                        <span className='Event__day__container'>
+                            <span>
+                                <p className='Event__day'>{item.formatted_date}</p>
+                            </span>
+                            <span>
+                                <p className='Event__day'>{item.years_worked}</p>
+                            </span>
                         </span>
                     </div>
                 ))}
             </div>
 
             {/* "View More" Link that opens the modal */}
-            <p className='viewmore' onClick={handleShowModal}>View More</p>
+            <p className='viewmore mt-3' onClick={handleShowModal}>View More</p>
 
             {/* Scrollable Modal for "View More" */}
             <Modal show={showModal} onHide={handleCloseModal} centered>
@@ -135,15 +141,21 @@ function BirthdayworkAnniversary() {
                     {activeData.map(item => (
                         <div className='Birthdaylist__container mb-2' key={item.id}>
                             <span className='Birthdaylist'>
-                            <img src={`https://office3i.com/development/api/storage/app/${item.profile_img}`} alt='userimage' className='userimage' />
+                                <img src={`https://office3i.com/development/api/storage/app/${item.profile_img}`} alt='userimage' className='userimage' />
                                 <span className='Birthdaylist__content'>
-                                    <p className='User__name'>{item.first_name} {item.last_name}</p>
+                                    <p className='User__name__popup'>{item.first_name} {item.last_name}</p>
                                     <p className='User__Designation'>{item.department_name}</p>
                                 </span>
                             </span>
-                            <span>
-                                <p className='Event__day'>{item.formatted_date}</p>
+                            <span className='Event__day__container'>
+                                <span>
+                                    <p className='Event__day'>{item.formatted_date}</p>
+                                </span>
+                                <span>
+                                    <p className='Event__day'>{item.years_worked}</p>
+                                </span>
                             </span>
+
                         </div>
                     ))}
                 </Modal.Body>

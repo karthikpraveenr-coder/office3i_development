@@ -211,9 +211,9 @@ function MonthlyAttendanceCount(props) {
       errors.request_location = 'Request Location required';
     }
 
-    if (!selectedshift) {
-      errors.request_shift = 'Request Shift required';
-    }
+    // if (!selectedshift) {
+    //   errors.request_shift = 'Request Shift required';
+    // }
 
     if (!formData.request_date) {
       errors.request_date = 'Request Date required';
@@ -256,7 +256,7 @@ function MonthlyAttendanceCount(props) {
     formDataToSend.append('request_fromtime', request_fromtimeUpdated);
     formDataToSend.append('request_totime', request_totimeUpdated);
     formDataToSend.append('request_reason', formData.request_reason);
-    formDataToSend.append('shift_slot', selectedshift);
+  //  formDataToSend.append('shift_slot', selectedshift);
 
     try {
       const response = await fetch('https://office3i.com/development/api/public/api/add_employee_attendance_request', {
@@ -294,7 +294,7 @@ function MonthlyAttendanceCount(props) {
           Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: 'Failed to submit form',
+            text: data.message,
           });
         }
       } else {
@@ -733,9 +733,9 @@ function MonthlyAttendanceCount(props) {
       errors.selectedOvertimelocation = 'Request Location required';
     }
 
-    if (!selectedshift) {
-      errors.selectedshift = 'Request Location required';
-    }
+    // if (!selectedshift) {
+    //   errors.selectedshift = 'Request Location required';
+    // }
 
     if (!formDataOT.request_date) {
       errors.request_date = 'Request date required';
@@ -771,7 +771,7 @@ function MonthlyAttendanceCount(props) {
     formDataToSend.append('request_fromtime', request_fromtimeUpdated);
     formDataToSend.append('request_totime', request_totimeUpdated);
     formDataToSend.append('request_reason', formDataOT.ot_reason);
-    formDataToSend.append('shift_slot', selectedshift);
+    //formDataToSend.append('shift_slot', selectedshift);
 
     try {
       const response = await fetch('https://office3i.com/development/api/public/api/add_employee_ot_request', {
@@ -959,7 +959,7 @@ console.log("props.formattedCenterDate", props.formattedCenterDate)
                 {formErrors.request_location && <span className="text-danger">{formErrors.request_location}</span>}
               </Form.Group>
 
-              <Form.Group controlId="shift" className='mb-2'>
+              {/* <Form.Group controlId="shift" className='mb-2'>
                 <Form.Label style={{ fontWeight: "bold", color: '#4b5c72' }}>Select Shift:</Form.Label>
                 <Form.Control
                   as="select"
@@ -972,7 +972,7 @@ console.log("props.formattedCenterDate", props.formattedCenterDate)
                   ))}
                 </Form.Control>
                 {formErrors.request_shift && <span className="text-danger">{formErrors.request_shift}</span>}
-              </Form.Group>
+              </Form.Group> */}
 
               <Form.Group controlId="request_date">
                 <Form.Label style={{ fontWeight: "bold", color: '#4b5c72' }}>Date</Form.Label>
@@ -1289,7 +1289,7 @@ console.log("props.formattedCenterDate", props.formattedCenterDate)
               </Form.Group>
 
 
-              <Form.Group controlId="shift" className='mb-2'>
+              {/* <Form.Group controlId="shift" className='mb-2'>
                 <Form.Label style={{ fontWeight: "bold", color: '#4b5c72' }}>Select Shift:</Form.Label>
                 <Form.Control
                   as="select"
@@ -1302,7 +1302,7 @@ console.log("props.formattedCenterDate", props.formattedCenterDate)
                   ))}
                 </Form.Control>
                 {formErrors.selectedshift && <span className="text-danger">{formErrors.selectedshift}</span>}
-              </Form.Group>
+              </Form.Group> */}
 
               <Form.Group controlId="request_date">
                 <Form.Label style={{ fontWeight: "bold", color: '#4b5c72' }}>Date</Form.Label>
