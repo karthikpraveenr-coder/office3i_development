@@ -50,19 +50,23 @@ const Loginpage = () => {
     
     try {
       // Validation
-      if (!employeeId) {
-        setEmployeeIdError('Employee Email ID is required');
+      if (!employeeId || !password) {
+        if (!employeeId) {
+          setEmployeeIdError('Employee Email ID is required');
+        } else {
+          setEmployeeIdError('');
+        }
+      
+        if (!password) {
+          setPasswordError('Password is required');
+        } else {
+          setPasswordError('');
+        }
+      
         setLoading(false);
         return;
       } else {
         setEmployeeIdError('');
-      }
-
-      if (!password) {
-        setPasswordError('Password is required');
-        setLoading(false);
-        return;
-      } else {
         setPasswordError('');
       }
 

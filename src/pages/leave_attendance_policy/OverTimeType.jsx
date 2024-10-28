@@ -416,7 +416,7 @@ function OvertimeType() {
                     {/* ------------------------------------------------------------------------------------------------ */}
                     {/* List table */}
                     <h3 className='mb-5'>Overtime Type List</h3>
-                    <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px', justifyContent: 'space-between' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px', justifyContent: 'space-between', flexWrap:'wrap', gap:'17px' }}>
 
                         <div>
                             <input
@@ -434,7 +434,7 @@ function OvertimeType() {
                         </div>
                     </div>
 
-                    <div ref={componentRef}>
+                    <div ref={componentRef} style={{ overflowX: 'auto', width: '100%' }}>
 
                         <table className="table">
                             <thead className="thead-dark">

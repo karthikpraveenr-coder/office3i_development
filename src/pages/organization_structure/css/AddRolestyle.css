@@ -54,7 +54,7 @@
   }
   .list__title{
     font-weight: 700;
-    white-space: nowrap;
+    /* white-space: nowrap; */
    
   }
   .checklist__submit__btn:hover{
@@ -68,7 +68,7 @@
   }
   .checklist{
     background: #ffffff3d;
-    padding: 35px 45px;
+    padding: 35px 15px;
     box-shadow: 0px 0px 10px rgb(0 0 0 / 43%);
   }
 

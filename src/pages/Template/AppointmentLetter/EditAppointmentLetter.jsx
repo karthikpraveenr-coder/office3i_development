@@ -6,6 +6,12 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { ScaleLoader } from 'react-spinners';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+
 
 export default function EditAppointmentLetter() {
 
@@ -532,15 +538,27 @@ export default function EditAppointmentLetter() {
                                 <Col md={6}>
 
                                     <div className="mb-3">
-                                        <label className="form-label">Probation Period</label>
+                                        <label className="form-label">Probation Period
+                                            <OverlayTrigger
+                                                placement="top"
+                                                overlay={
+                                                    <Tooltip id="info-tooltip">
+                                                        Please enter the probation period in words (e.g., "two months"). Do not type numbers.
+                                                    </Tooltip>
+                                                }
+                                            >
+                                                <span style={{ marginLeft: '5px', cursor: 'pointer' }}>
+                                                    <FontAwesomeIcon icon={faInfoCircle} />
+                                                </span>
+                                            </OverlayTrigger></label>
                                         <input
-                                            type="number"
+                                            type="text"
                                             className="form-control"
                                             value={probationPeriod}
                                             min={'1'}
                                             onKeyDown={(e) => {
                                                 // Prevent entering 'e', 'E', '+', '-'
-                                                if (e.key === 'e' || e.key === 'E' || e.key === '+' || e.key === '-') {
+                                                if (e.key === '+' || e.key === '-') {
                                                     e.preventDefault();
                                                 }
                                             }}
@@ -566,9 +584,21 @@ export default function EditAppointmentLetter() {
                                 <Col md={6}>
 
                                     <div className="mb-3">
-                                        <label className="form-label">Notice Period</label>
+                                        <label className="form-label">Notice Period
+                                            <OverlayTrigger
+                                                placement="top"
+                                                overlay={
+                                                    <Tooltip id="info-tooltip">
+                                                        Please enter the notice  period in words (e.g., "two months"). Do not type numbers.
+                                                    </Tooltip>
+                                                }
+                                            >
+                                                <span style={{ marginLeft: '5px', cursor: 'pointer' }}>
+                                                    <FontAwesomeIcon icon={faInfoCircle} />
+                                                </span>
+                                            </OverlayTrigger></label>
                                         <input
-                                            type="number"
+                                            type="text"
                                             className="form-control"
                                             value={noticePeriodinword}
                                             onChange={(e) => setNoticePeriodinword(e.target.value)}

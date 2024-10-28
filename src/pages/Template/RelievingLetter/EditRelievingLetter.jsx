@@ -24,6 +24,10 @@ export default function EditRelievingLetter() {
     // console.log("headerAttachment******************", headerAttachment)
     // const [footerAttachment, setFooterAttachment] = useState(null);
     const [header_footer_layout_id, setheader_footer_layout_id] = useState('');
+    const [salutation, setSalutation] = useState('');
+    const [annualCTC, setAnnualCTC] = useState('');
+
+
 
     const [date, setDate] = useState('');
     const [employeeName, setEmployeeName] = useState('');
@@ -52,6 +56,12 @@ export default function EditRelievingLetter() {
         //     errors.footerAttachment = 'Footer Attachment is required.';
         // }
         if (!header_footer_layout_id) errors.header_footer_layout_attachment = 'Layout company name is required.';
+
+        if (!salutation) errors.salutation = 'Salutation is required.';
+
+        if (!annualCTC) errors.annualCTC = 'Annual CTC is required.';
+
+
         if (!date) {
             errors.date = 'Date is required.';
         }
@@ -99,6 +109,9 @@ export default function EditRelievingLetter() {
         // }
 
         formData.append('header_footer_layout_id', header_footer_layout_id);
+        formData.append('salutation', salutation);
+        formData.append('annual_ctc', annualCTC);
+
         formData.append('date', date);
         formData.append('employee_name', employeeName);
         formData.append('designation', designation);
@@ -124,6 +137,7 @@ export default function EditRelievingLetter() {
                 // setHeaderAttachment(null);
                 // setFooterAttachment(null);
                 setheader_footer_layout_id('');
+                setSalutation('');
                 setDate('');
                 setEmployeeName('');
                 setDesignation('');
@@ -132,6 +146,8 @@ export default function EditRelievingLetter() {
                 setLastWorkingDay('');
                 setAuthorisedPersonName('');
                 setAuthorisedPersonDesignation('');
+                setAnnualCTC('');
+
                 setRefreshKey(prevKey => prevKey + 1);
 
                 Swal.fire({
@@ -174,6 +190,8 @@ export default function EditRelievingLetter() {
                     // setHeaderAttachment(data.header_attachment)
                     // setFooterAttachment(data.footer_attached)
                     setheader_footer_layout_id(data.layout_id);
+                    setSalutation(data.salutation)
+                    setAnnualCTC(data.annual_ctc);
                     setDate(data.date)
                     setEmployeeName(data.employee_name)
                     setDesignation(data.designation)
@@ -301,59 +319,65 @@ export default function EditRelievingLetter() {
             <div style={{ boxShadow: '#0000007d 0px 0px 10px 1px', padding: '35px 50px' }}>
                 <form onSubmit={handleSave}>
                     <Row className="mb-3">
-                        {/* <Col md={6}>
+                        <Col md={12}>
                             <div className="mb-3">
-                                <label className="form-label">Insert Header</label>
-                                <input
-                                    type="file"
-                                    accept="image/*"
-                                    onChange={handleHeaderAttachmentChange}
+                                <label htmlFor="header_footer_layout" className="form-label">Select Layout</label>
+                                <select
+                                    id="header_footer_layout"
                                     className="form-control"
-                                />
-                                {formErrors.headerAttachment && <span className="text-danger">{formErrors.headerAttachment}</span>}
-                                {imagePreviewUrl && (
-                                    <div style={{ marginTop: '10px' }}>
-                                        <img src={imagePreviewUrl} alt="Header Preview" style={{ width: '25%', height: 'auto' }} />
-                                    </div>
-                                )}
-                            </div>
-                        </Col> */}
-                        {/* <Col md={6}>
-                            <div className="mb-3">
-                                <label className="form-label">Insert Footer</label>
-                                <input
-                                    type="file"
-                                    accept="image/*"
-                                    onChange={handleFooterAttachmentChange}
-                                    className="form-control"
-                                />
-                                {formErrors.footerAttachment && <span className="text-danger">{formErrors.footerAttachment}</span>}
-                                {footerImagePreviewUrl && (
-                                    <div style={{ marginTop: '10px' }}>
-                                        <img src={footerImagePreviewUrl} alt="Footer Preview" style={{ width: '30%', height: '100px', objectFit: 'contain' }} />
-                                    </div>
-                                )}
-                            </div>
-                        </Col> */}
-                        <div className="mb-3">
-                            <label htmlFor="salutation" className="form-label">Select Layout</label>
-                            <select
-                                id="salutation"
-                                className="form-control"
-                                value={header_footer_layout_id}
-                                onChange={(e) => setheader_footer_layout_id(e.target.value)}
-                            >
-                                <option value="" disabled>Select Company</option>
-                                {headerFooterData.map(option => (
-                                    <option key={option.id} value={option.id}>
-                                        {option.company_title}
-                                    </option>
-                                ))}
+                                    value={header_footer_layout_id}
+                                    onChange={(e) => setheader_footer_layout_id(e.target.value)}
+                                >
+                                    <option value="" disabled>Select Company</option>
+                                    {headerFooterData.map(option => (
+                                        <option key={option.id} value={option.id}>
+                                            {option.company_title}
+                                        </option>
+                                    ))}
 
-                                {/* Add more options as needed */}
-                            </select>
-                            {formErrors.header_footer_layout_attachment && <span className="text-danger">{formErrors.header_footer_layout_attachment}</span>}
-                        </div>
+                                    {/* Add more options as needed */}
+                                </select>
+                                {formErrors.header_footer_layout_attachment && <span className="text-danger">{formErrors.header_footer_layout_attachment}</span>}
+                            </div>
+                        </Col>
+                    </Row>
+
+                    <Row>
+                        <Col md={6}>
+
+                            {/* Annual CTC */}
+                            <div className="mb-3">
+                                <label htmlFor="annualCTC" className="form-label">Annual CTC</label>
+                                <input
+                                    type="number"
+                                    className="form-control"
+                                    id="annualCTC"
+                                    value={annualCTC}
+                                    onChange={(e) => setAnnualCTC(e.target.value)}
+                                />
+                                {formErrors.annualCTC && <span className="text-danger">{formErrors.annualCTC}</span>}
+                            </div>
+                        </Col>
+
+                        <Col md={6}>
+                            {/* Select Salutation */}
+                            <div className="mb-3">
+                                <label htmlFor="salutation" className="form-label">Select Salutation</label>
+                                <select
+                                    id="salutation"
+                                    className="form-control"
+                                    value={salutation}
+                                    onChange={(e) => setSalutation(e.target.value)}
+                                >
+                                    <option value="" disabled>Select Salutation</option>
+                                    <option value="Mr.">Mr.</option>
+                                    <option value="Ms.">Ms.</option>
+                                    <option value="Mrs.">Mrs.</option>
+                                    {/* Add more options as needed */}
+                                </select>
+                                {formErrors.salutation && <span className="text-danger">{formErrors.salutation}</span>}
+                            </div>
+                        </Col>
                     </Row>
 
                     <Row className="mb-3">

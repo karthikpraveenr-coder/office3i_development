@@ -159,3 +159,22 @@
     justify-content: flex-start; */
     background: linear-gradient(98.57deg, #E1EFFF 0%, #C4E8FF 100%);
 }
+
+.SkillDevelopment__Training{
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+.Rewards__Recognition{
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+.Post{
+    display: flex;
+    /* gap: 10px; */
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: auto;    
+  scrollbar-width: none; 
+}

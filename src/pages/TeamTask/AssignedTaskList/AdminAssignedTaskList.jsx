@@ -612,7 +612,7 @@ function AdminAssignedTaskList() {
                     {/* ------------------------------------------------------------------------------------------------ */}
                     {/* List table */}
 
-                    <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px', justifyContent: 'space-between' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px', justifyContent: 'space-between', flexWrap:'wrap', gap:'17px' }}>
                         <div className='filter-container'>
                             <Button onClick={() => setShowFilterModal(true)}><FontAwesomeIcon icon={faFilter} /> Filter</Button>
 

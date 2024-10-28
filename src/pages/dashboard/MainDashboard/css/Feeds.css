@@ -1,0 +1,136 @@
+.Feeds__container {
+    width: 100%;
+    padding: 10px 10px;
+  }
+  
+  .Feeds__btn {
+    border-radius: 15px;
+    padding: 3px 18px;
+    margin-right: 5px;
+    border: 1px solid #0A62F1;
+    cursor: pointer;
+  }
+  
+  /* Active button styles */
+  .Feeds__btn.active {
+    background-color: #0A62F1;
+    color: white;
+  }
+  
+  /* Inactive button styles */
+  .Feeds__btn:not(.active) {
+    background-color: white;
+    color: #0A62F1;
+  }
+  
+
+
+  /* ----------------------------------------------- */
+  /* Feeds List */
+  .Feeds__List__container{
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1), -1px 1px 2px rgba(0, 0, 0, 0.1), 1px -1px 2px rgba(0, 0, 0, 0.1);
+    padding: 15px 10px;
+    border-radius: 10px;
+  }
+
+  .Feeds__list__header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .Feeds__list__header__image{
+    display: flex;
+    gap: 10px;
+  }
+  .Feeds__List__name{
+    color: #4F4F4F;
+    font-weight: 500;
+  }
+  .Feeds__List__department{
+    color: #6B6B6B;
+    font-weight: 400;
+    font-size: 14px;
+  }
+  .Feeds__List__time{
+    color: #6B6B6B;
+    font-weight: 400;
+    font-size: 14px;
+  }
+  .Feeds__list__title{
+    color: #3F3F3F;
+  }
+  .feedimg{
+    width: 100%;
+  }
+
+  .Like_user{
+    background: white;
+    border: none;
+    color: #646464;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .Love_user{
+    background: white;
+    border: none;
+    color: #646464;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .Celebrate_user{
+    background: white;
+    border: none;
+    color: #646464;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .Thoughtful_user{
+    background: white;
+    border: none;
+    color: #646464;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .Funny_user{
+    background: white;
+    border: none;
+    color: #646464;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .user__reactions__container{
+    display: flex;
+  }
+  .user__reactions__counts{
+    color: #6B6B6B;
+  }
+
+  .user__reactions__counts {
+    display: flex;
+    align-items: center;
+}
+
+.reaction__image {
+    width: 24px; /* adjust size as needed */
+    height: 24px;
+    margin-left: -8px; /* overlap the images */
+    border-radius: 50%;
+    border: 2px solid white; /* optional border for a cleaner look */
+    position: relative;
+}
+
+.reaction__image:nth-child(1) { z-index: 5; }
+.reaction__image:nth-child(2) { z-index: 4; }
+.reaction__image:nth-child(3) { z-index: 3; }
+.reaction__image:nth-child(4) { z-index: 2; }
+.reaction__image:nth-child(5) { z-index: 1; }

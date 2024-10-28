@@ -265,7 +265,9 @@ function EmployeeConfirmation() {
                         'Authorization': `Bearer ${usertoken}`
                     }
                 });
-                setCategories(response.data.data);
+                // setCategories(response.data.data);
+                const filteredCategories = response.data.data.filter(category => category.employee_category !== 'Probation');
+                setCategories(filteredCategories);
             } catch (error) {
                 console.error('Oops! There was an error fetching categories:', error);
             }
@@ -385,7 +387,7 @@ display: none !important;
                 {/* ------------------------------------------------------------------------------------------------ */}
                 {/* List table */}
 
-                <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px', justifyContent: 'space-between' }}>
+                <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px', justifyContent: 'space-between', flexWrap:'wrap', gap:'17px' }}>
                     <div>
                         <input
                             type="text"
@@ -402,7 +404,7 @@ display: none !important;
                     </div>
                 </div>
 
-                <div ref={componentRef}>
+                <div ref={componentRef} style={{ overflowX: 'auto', width: '100%' }}>
 
                     <table className="table">
                         <thead className="thead-dark">

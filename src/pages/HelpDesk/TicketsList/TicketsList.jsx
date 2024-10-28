@@ -305,7 +305,7 @@ function TicketsList() {
                 {/* ------------------------------------------------------------------------------------------------ */}
                 {/* List table */}
 
-                <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px', justifyContent: 'space-between' }}>
+                <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px', justifyContent: 'space-between', flexWrap:'wrap', gap:'17px' }}>
                     <div>
                         <input
                             type="text"
@@ -322,7 +322,7 @@ function TicketsList() {
                     </div>
                 </div>
 
-                <div ref={componentRef} style={{ width: '100%', overflowX: 'auto' }}>
+                <div ref={componentRef} style={{ overflowX: 'auto', width: '100%' }} style={{ width: '100%', overflowX: 'auto' }}>
 
                     <table className="table" style={{ minWidth: '100%', width: 'max-content' }}>
                         <thead className="thead-dark">

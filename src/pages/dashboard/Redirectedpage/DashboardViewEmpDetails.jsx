@@ -290,7 +290,7 @@ export default function DashboardViewEmpDetails() {
                 <div style={{ display: 'grid', maxWidth: '1035px', margin: '0 auto', paddingTop: '7vh' }}>
 
                     <h3 className="mb-5" style={{ fontWeight: 'bold', color: '#00275c' }}>Daily Attendance List - {statusvalue}</h3>
-                    <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px', justifyContent: 'space-between' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px', justifyContent: 'space-between', flexWrap:'wrap', gap:'17px' }}>
                         <div>
                             <input
                                 type="text"
@@ -311,7 +311,7 @@ export default function DashboardViewEmpDetails() {
                             <button style={myStyles} onClick={handlePrint}><i className="fas fa-print" style={{ fontSize: '25px', color: '#0d6efd' }}></i></button>
                         </div>
                     </div>
-                    <div ref={componentRef} style={{ width: '100%', overflowX: 'auto' }}>
+                    <div ref={componentRef} style={{ overflowX: 'auto', width: '100%' }} style={{ width: '100%', overflowX: 'auto' }}>
                         <table className="table" style={{ minWidth: '100%', width: 'max-content' }}>
                             <thead className="thead-dark">
                                 <tr>

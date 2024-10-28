@@ -584,7 +584,7 @@ function Attendancelocation() {
                         <Row>
                             <Col>
                                 <Form.Group controlId="formRole">
-                                    <Form.Label style={{ fontWeight: 'bold' }}>Department Name <sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup></Form.Label>
+                                    <Form.Label style={{ fontWeight: 'bold' }}>Role Name <sup><FontAwesomeIcon icon={faStarOfLife} style={{ color: '#fb1816', fontSize: '8px' }} /></sup></Form.Label>
                                     <MultiSelect
                                         options={formattedDepartmentDropdown}
                                         value={formattedDepartmentDropdown.filter(option => selectedDepartment.includes(option.value))}
@@ -693,7 +693,7 @@ function Attendancelocation() {
                 {/* ------------------------------------------------------------------------------------------------ */}
                 {/* List table */}
                 <h3 className='mb-5'> Employee Shift List</h3>
-                <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px', justifyContent: 'space-between' }}>
+                <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px', justifyContent: 'space-between', flexWrap:'wrap', gap:'17px' }}>
                     <div>
                         <input
                             type="text"
@@ -710,7 +710,7 @@ function Attendancelocation() {
                     </div>
                 </div>
 
-                <div ref={componentRef}>
+                <div ref={componentRef} style={{ overflowX: 'auto', width: '100%' }}>
 
                     <table className="table">
                         <thead className="thead-dark">

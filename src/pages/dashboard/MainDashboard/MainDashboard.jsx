@@ -9,6 +9,9 @@ import MoodBoard from './Components/MoodBoard';
 import UserMoodBoard from './Components/UserMoodBoard';
 import { useState } from 'react';
 import { Button } from 'react-bootstrap';
+import RewardsRecognition from './Components/RewardsRecognition';
+import Post from './Components/Post';
+import Feeds from './Components/Feeds';
 
 function MainDashboard() {
 
@@ -20,7 +23,7 @@ function MainDashboard() {
     const username = userData?.username || '';
     const userrole = userData.userrole || '';
     // ---------------------------------------------------------------------------------------------------------------
- 
+
     return (
         <div className='MainDashboard__container' >
             <div className='box Header__quote' style={{
@@ -49,7 +52,12 @@ function MainDashboard() {
 
                 <BirthdayworkAnniversary />
             </div>
-            <div className='box Post'>4</div>
+
+            <div className='box Post'>
+                <Post />
+                <Feeds />
+            </div>
+
             <div className='box Employee__Moodboard'>
                 {userrole === '1' && <MoodBoard />}
                 {!['1', '2'].includes(userrole) && <UserMoodBoard />}
@@ -62,7 +70,9 @@ function MainDashboard() {
                 <SkillsDevelopmentTraining />
             </div>
             <div className='box Chat'>8</div>
-            <div className='box Rewards__Recognition'>9</div>
+            <div className='box Rewards__Recognition'>
+                <RewardsRecognition />
+            </div>
         </div>
     );
 }

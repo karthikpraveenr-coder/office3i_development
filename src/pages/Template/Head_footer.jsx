@@ -559,7 +559,7 @@ function Head_footer_layout() {
                     {/* ------------------------------------------------------------------------------------------------ */}
                     {/* List table */}
 
-                    <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px', justifyContent: 'space-between' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px', justifyContent: 'space-between', flexWrap:'wrap', gap:'17px' }}>
                         <div>
                             <input
                                 type="text"
@@ -576,7 +576,7 @@ function Head_footer_layout() {
                         </div>
                     </div>
 
-                    <div ref={componentRef}>
+                    <div ref={componentRef} style={{ overflowX: 'auto', width: '100%' }}>
 
                         <table className="table">
                             <thead className="thead-dark">

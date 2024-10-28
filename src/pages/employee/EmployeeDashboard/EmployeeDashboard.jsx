@@ -1,7 +1,7 @@
 import React from "react";
 
 const EmployeeDashboardPowerBIReport = () => {
-  const embedUrl = "https://app.powerbi.com/reportEmbed?reportId=e2a27c0b-919d-422f-bac3-7c3c221b54fa&autoAuth=true&ctid=00cb49fd-707f-455b-add1-922f945adba5"; 
+  const embedUrl = "https://app.powerbi.com/view?r=eyJrIjoiMzAzYWFjNzItMGY0MS00ZTE2LWI1OTUtYWQwMzE5YzRmMmI4IiwidCI6IjAwY2I0OWZkLTcwN2YtNDU1Yi1hZGQxLTkyMmY5NDVhZGJhNSJ9"; 
 
   return (
     <div style={{ width: "100%", height: "100vh" }}>

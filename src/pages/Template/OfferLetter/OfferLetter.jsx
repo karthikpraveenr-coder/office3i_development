@@ -6,6 +6,12 @@ import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import { FaTimes } from 'react-icons/fa';
 import { ScaleLoader } from 'react-spinners';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+
+
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 
 export default function OfferLetter() {
@@ -516,7 +522,8 @@ export default function OfferLetter() {
                                             type="number"
                                             className="form-control"
                                             id="workingDays"
-                                            min={'1'}
+                                            min={1}
+                                            max={7}
                                             value={workingDays}
                                             onKeyDown={(e) => {
                                                 // Prevent entering 'e', 'E', '+', '-'
@@ -540,16 +547,29 @@ export default function OfferLetter() {
 
                                     {/* Probation period */}
                                     <div className="mb-3">
-                                        <label htmlFor="probationPeriod" className="form-label">Probation period</label>
+                                        <label htmlFor="probationPeriod" className="form-label">
+                                            Probation period
+                                            <OverlayTrigger
+                                                placement="top"
+                                                overlay={
+                                                    <Tooltip id="info-tooltip">
+                                                        Please enter the probation period in words (e.g., "two months"). Do not type numbers.
+                                                    </Tooltip>
+                                                }
+                                            >
+                                                <span style={{ marginLeft: '5px', cursor: 'pointer' }}>
+                                                    <FontAwesomeIcon icon={faInfoCircle} />
+                                                </span>
+                                            </OverlayTrigger>
+                                        </label>
                                         <input
-                                            type="number"
+                                            type="text"
                                             className="form-control"
                                             id="probationPeriod"
                                             value={probationPeriod}
-                                            min={'1'}
                                             onKeyDown={(e) => {
                                                 // Prevent entering 'e', 'E', '+', '-'
-                                                if (e.key === 'e' || e.key === 'E' || e.key === '+' || e.key === '-') {
+                                                if (e.key === '+' || e.key === '-') {
                                                     e.preventDefault();
                                                 }
                                             }}
@@ -563,135 +583,148 @@ export default function OfferLetter() {
 
                                     {/* Notice Period */}
                                     <div className="mb-3">
-                                        <label htmlFor="noticePeriod" className="form-label">Notice Period</label>
-                                        <input
-                                            type="number"
-                                            className="form-control"
-                                            id="noticePeriod"
-                                            value={noticePeriod}
-                                            min={'1'}
-                                            onKeyDown={(e) => {
-                                                // Prevent entering 'e', 'E', '+', '-'
-                                                if (e.key === 'e' || e.key === 'E' || e.key === '+' || e.key === '-') {
-                                                    e.preventDefault();
+                                        <label htmlFor="noticePeriod" className="form-label">Notice Period
+                                            <OverlayTrigger
+                                                placement="top"
+                                                overlay={
+                                                    <Tooltip id="info-tooltip">
+                                                        Please enter the notice period in words (e.g., "two months"). Do not type numbers.
+                                                    </Tooltip>
                                                 }
-                                            }}
-                                            onChange={(e) => setNoticePeriod(e.target.value)}
-                                        />
-                                        {formErrors.noticePeriod && <span className="text-danger">{formErrors.noticePeriod}</span>}
-                                    </div>
-                                </Col>
-                            </Row>
+                                            >
+                                                <span style={{ marginLeft: '5px', cursor: 'pointer' }}>
+                                                    <FontAwesomeIcon icon={faInfoCircle} />
+                                                </span>
+                                            </OverlayTrigger>
+                                        </label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="noticePeriod"
+                                        value={noticePeriod}
+                                        onKeyDown={(e) => {
+                                            // Prevent entering 'e', 'E', '+', '-'
+                                            if (e.key === '+' || e.key === '-') {
+                                                e.preventDefault();
+                                            }
+                                        }}
+                                        onChange={(e) => setNoticePeriod(e.target.value)}
+                                    />
+                                    {formErrors.noticePeriod && <span className="text-danger">{formErrors.noticePeriod}</span>}
+                                </div>
+                            </Col>
+                        </Row>
 
-                            <Row className="mb-3">
-                                <Col md={6}>
+                        <Row className="mb-3">
+                            <Col md={6}>
 
-                                    {/* Benefits */}
-                                    <div className="mb-3">
-                                        <label htmlFor="benefits" className="form-label">Benefits</label>
-                                        <textarea
-                                            className="form-control"
-                                            id="benefits"
-                                            rows="3"
-                                            value={benefits}
-                                            onChange={(e) => setBenefits(e.target.value)}
-                                        ></textarea>
-                                        {formErrors.benefits && <span className="text-danger">{formErrors.benefits}</span>}
-                                    </div>
-                                </Col>
-                                <Col md={6}>
+                                {/* Benefits */}
+                                <div className="mb-3">
+                                    <label htmlFor="benefits" className="form-label">Benefits</label>
+                                    <textarea
+                                        className="form-control"
+                                        id="benefits"
+                                        rows="3"
+                                        value={benefits}
+                                        onChange={(e) => setBenefits(e.target.value)}
+                                    ></textarea>
+                                    {formErrors.benefits && <span className="text-danger">{formErrors.benefits}</span>}
+                                </div>
+                            </Col>
+                            <Col md={6}>
 
-                                    {/* Starting Date */}
-                                    <div className="mb-3">
-                                        <label htmlFor="startingDate" className="form-label">Starting Date</label>
-                                        <input
-                                            type="date"
-                                            className="form-control"
-                                            id="startingDate"
-                                            value={startingDate}
-                                            min={date || "0001-01-01"}
-                                            max={lastDateForAcceptance || "9999-12-31"}
-                                            onChange={(e) => setStartingDate(e.target.value)}
-                                        />
-                                        {formErrors.startingDate && <span className="text-danger">{formErrors.startingDate}</span>}
-                                    </div>
-                                </Col>
-                            </Row>
+                                {/* Starting Date */}
+                                <div className="mb-3">
+                                    <label htmlFor="startingDate" className="form-label">Starting Date</label>
+                                    <input
+                                        type="date"
+                                        className="form-control"
+                                        id="startingDate"
+                                        value={startingDate}
+                                        min={date || "0001-01-01"}
+                                        max={lastDateForAcceptance || "9999-12-31"}
+                                        onChange={(e) => setStartingDate(e.target.value)}
+                                    />
+                                    {formErrors.startingDate && <span className="text-danger">{formErrors.startingDate}</span>}
+                                </div>
+                            </Col>
+                        </Row>
 
-                            <Row className="mb-3">
-                                <Col md={6}>
+                        <Row className="mb-3">
+                            <Col md={6}>
 
-                                    {/* Supervisor Name */}
-                                    <div className="mb-3">
-                                        <label htmlFor="supervisorName" className="form-label">Supervisor Name</label>
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            id="supervisorName"
-                                            value={supervisorName}
-                                            onChange={(e) => setSupervisorName(e.target.value)}
-                                        />
-                                        {formErrors.supervisorName && <span className="text-danger">{formErrors.supervisorName}</span>}
-                                    </div>
-                                </Col>
-                                <Col md={6}>
-                                    {/* Last Date for Offer Acceptance */}
-                                    <div className="mb-3">
-                                        <label htmlFor="lastDateForAcceptance" className="form-label">Last Date for Offer Acceptance</label>
-                                        <input
-                                            type="date"
-                                            className="form-control"
-                                            id="lastDateForAcceptance"
-                                            value={lastDateForAcceptance}
-                                            // min={today}
-                                            min={startingDate || date || "0001-01-01"}
-                                            max="9999-12-31"
-                                            onChange={(e) => setLastDateForAcceptance(e.target.value)}
-                                        />
-                                        {formErrors.lastDateForAcceptance && <span className="text-danger">{formErrors.lastDateForAcceptance}</span>}
-                                    </div>
-                                </Col>
-                            </Row>
+                                {/* Supervisor Name */}
+                                <div className="mb-3">
+                                    <label htmlFor="supervisorName" className="form-label">Supervisor Name</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="supervisorName"
+                                        value={supervisorName}
+                                        onChange={(e) => setSupervisorName(e.target.value)}
+                                    />
+                                    {formErrors.supervisorName && <span className="text-danger">{formErrors.supervisorName}</span>}
+                                </div>
+                            </Col>
+                            <Col md={6}>
+                                {/* Last Date for Offer Acceptance */}
+                                <div className="mb-3">
+                                    <label htmlFor="lastDateForAcceptance" className="form-label">Last Date for Offer Acceptance</label>
+                                    <input
+                                        type="date"
+                                        className="form-control"
+                                        id="lastDateForAcceptance"
+                                        value={lastDateForAcceptance}
+                                        // min={today}
+                                        min={startingDate || date || "0001-01-01"}
+                                        max="9999-12-31"
+                                        onChange={(e) => setLastDateForAcceptance(e.target.value)}
+                                    />
+                                    {formErrors.lastDateForAcceptance && <span className="text-danger">{formErrors.lastDateForAcceptance}</span>}
+                                </div>
+                            </Col>
+                        </Row>
 
-                            <Row className="mb-3">
-                                <Col md={6}>
+                        <Row className="mb-3">
+                            <Col md={6}>
 
-                                    {/* Authorised Person Name */}
-                                    <div className="mb-3">
-                                        <label htmlFor="authorisedPersonName" className="form-label">Authorised Person Name</label>
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            id="authorisedPersonName"
-                                            value={authorisedPersonName}
-                                            onChange={(e) => setAuthorisedPersonName(e.target.value)}
-                                        />
-                                        {formErrors.authorisedPersonName && <span className="text-danger">{formErrors.authorisedPersonName}</span>}
-                                    </div>
-                                </Col>
-                                <Col md={6}>
+                                {/* Authorised Person Name */}
+                                <div className="mb-3">
+                                    <label htmlFor="authorisedPersonName" className="form-label">Authorised Person Name</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="authorisedPersonName"
+                                        value={authorisedPersonName}
+                                        onChange={(e) => setAuthorisedPersonName(e.target.value)}
+                                    />
+                                    {formErrors.authorisedPersonName && <span className="text-danger">{formErrors.authorisedPersonName}</span>}
+                                </div>
+                            </Col>
+                            <Col md={6}>
 
-                                    {/* Authorised Person Designation */}
-                                    <div className="mb-3">
-                                        <label htmlFor="authorisedPersonDesignation" className="form-label">Authorised Person Designation</label>
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            id="authorisedPersonDesignation"
-                                            value={authorisedPersonDesignation}
-                                            onChange={(e) => setAuthorisedPersonDesignation(e.target.value)}
-                                        />
-                                        {formErrors.authorisedPersonDesignation && <span className="text-danger">{formErrors.authorisedPersonDesignation}</span>}
-                                    </div>
-                                </Col>
-                            </Row>
+                                {/* Authorised Person Designation */}
+                                <div className="mb-3">
+                                    <label htmlFor="authorisedPersonDesignation" className="form-label">Authorised Person Designation</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="authorisedPersonDesignation"
+                                        value={authorisedPersonDesignation}
+                                        onChange={(e) => setAuthorisedPersonDesignation(e.target.value)}
+                                    />
+                                    {formErrors.authorisedPersonDesignation && <span className="text-danger">{formErrors.authorisedPersonDesignation}</span>}
+                                </div>
+                            </Col>
+                        </Row>
 
-                            <button type="submit" className="btn btn-primary" style={{ marginRight: '10px' }}>Add Offer Letter</button>
-                            <button type="button" className="btn btn-secondary" style={{ background: 'white', color: '#0d6efd' }} onClick={handleCancel}>Cancel</button>
-                        </form>
-                    </div>
+                        <button type="submit" className="btn btn-primary" style={{ marginRight: '10px' }}>Add Offer Letter</button>
+                        <button type="button" className="btn btn-secondary" style={{ background: 'white', color: '#0d6efd' }} onClick={handleCancel}>Cancel</button>
+                    </form>
                 </div>
-            )}
+                </div >
+            )
+}
         </>
     );
 }

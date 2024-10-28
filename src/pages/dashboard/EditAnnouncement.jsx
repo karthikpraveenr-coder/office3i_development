@@ -456,7 +456,7 @@ function EditAnnouncement() {
                     {/* ------------------------------------------------------------------------------------------------ */}
                     {/* List table */}
 
-                    <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px', justifyContent: 'space-between' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px', justifyContent: 'space-between', flexWrap:'wrap', gap:'17px' }}>
                         <div>
                             <input
                                 type="text"
@@ -473,7 +473,7 @@ function EditAnnouncement() {
                         </div>
                     </div>
 
-                    <div ref={componentRef} className="table-responsive">
+                    <div ref={componentRef} style={{ overflowX: 'auto', width: '100%' }} className="table-responsive">
 
                         <table className="table">
                             <thead className="thead-dark">

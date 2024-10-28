@@ -256,7 +256,7 @@ function MonthlyAttendanceCount(props) {
     formDataToSend.append('request_fromtime', request_fromtimeUpdated);
     formDataToSend.append('request_totime', request_totimeUpdated);
     formDataToSend.append('request_reason', formData.request_reason);
-  //  formDataToSend.append('shift_slot', selectedshift);
+    //  formDataToSend.append('shift_slot', selectedshift);
 
     try {
       const response = await fetch('https://office3i.com/development/api/public/api/add_employee_attendance_request', {
@@ -584,7 +584,7 @@ function MonthlyAttendanceCount(props) {
           setCategory('');
           setType('');
           setNoactiveshift('')
-          
+
           Swal.fire({
             icon: 'success',
             title: 'Success',
@@ -821,8 +821,8 @@ function MonthlyAttendanceCount(props) {
   // ----------------------------------------------------------------------------------------------------
 
   // ==================================== OVER TIME START ===============================================
-console.log("props.username", props.username)
-console.log("props.formattedCenterDate", props.formattedCenterDate)
+  console.log("props.username", props.username)
+  console.log("props.formattedCenterDate", props.formattedCenterDate)
   return (
     <>
       <div className="container" style={{ padding: '5px 38px' }}>
@@ -848,14 +848,14 @@ console.log("props.formattedCenterDate", props.formattedCenterDate)
           <div style={{ display: 'flex', alignItems: 'center' }}>
 
 
-            {(!userrole.includes('1')) && 
+            {(!userrole.includes('1')) &&
               <>
                 <Button style={{ marginRight: '15px' }} onClick={openTimeOff}>
-                  Leave
+                L / P / H
                 </Button>
 
                 <Button style={{ marginRight: '15px' }} onClick={handleApplyAttendance}>
-                  Apply
+                  Attendance
                 </Button>
 
                 <Button onClick={handleopenOverTime}>

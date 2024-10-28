@@ -5,6 +5,12 @@ import { FaTimes } from 'react-icons/fa';
 import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { ScaleLoader } from 'react-spinners';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+
 
 
 export default function EditOfferLetter() {
@@ -632,7 +638,8 @@ export default function EditOfferLetter() {
                                             type="number"
                                             className="form-control"
                                             id="workingDays"
-                                            min={'1'}
+                                            min={1}
+                                            max={7}
                                             onKeyDown={(e) => {
                                                 // Prevent entering 'e', 'E', '+', '-'
                                                 if (e.key === 'e' || e.key === 'E' || e.key === '+' || e.key === '-') {
@@ -652,16 +659,28 @@ export default function EditOfferLetter() {
 
                                     {/* Probation period */}
                                     <div className="mb-3">
-                                        <label htmlFor="probationPeriod" className="form-label">Probation period</label>
-                                        <input
-                                            type="number"
+                                        <label htmlFor="probationPeriod" className="form-label">
+                                            Probation period
+                                            <OverlayTrigger
+                                                placement="top"
+                                                overlay={
+                                                    <Tooltip id="info-tooltip">
+                                                        Please enter the probation period in words (e.g., "two months"). Do not type numbers.
+                                                    </Tooltip>
+                                                }
+                                            >
+                                                <span style={{ marginLeft: '5px', cursor: 'pointer' }}>
+                                                    <FontAwesomeIcon icon={faInfoCircle} />
+                                                </span>
+                                            </OverlayTrigger>
+                                        </label>                                        <input
+                                            type="text"
                                             className="form-control"
                                             id="probationPeriod"
                                             value={probationPeriod}
-                                            min={'1'}
                                             onKeyDown={(e) => {
                                                 // Prevent entering 'e', 'E', '+', '-'
-                                                if (e.key === 'e' || e.key === 'E' || e.key === '+' || e.key === '-') {
+                                                if (e.key === '+' || e.key === '-') {
                                                     e.preventDefault();
                                                 }
                                             }}
@@ -674,16 +693,28 @@ export default function EditOfferLetter() {
 
                                     {/* Notice Period */}
                                     <div className="mb-3">
-                                        <label htmlFor="noticePeriod" className="form-label">Notice Period</label>
+                                        <label htmlFor="noticePeriod" className="form-label">Notice Period
+                                        <OverlayTrigger
+                                                placement="top"
+                                                overlay={
+                                                    <Tooltip id="info-tooltip">
+                                                        Please enter the notice  period in words (e.g., "two months"). Do not type numbers.
+                                                    </Tooltip>
+                                                }
+                                            >
+                                                <span style={{ marginLeft: '5px', cursor: 'pointer' }}>
+                                                    <FontAwesomeIcon icon={faInfoCircle} />
+                                                </span>
+                                            </OverlayTrigger>
+                                        </label>
                                         <input
-                                            type="number"
+                                            type="text"
                                             className="form-control"
                                             id="noticePeriod"
-                                            min={'1'}
                                             value={noticePeriod}
                                             onKeyDown={(e) => {
                                                 // Prevent entering 'e', 'E', '+', '-'
-                                                if (e.key === 'e' || e.key === 'E' || e.key === '+' || e.key === '-') {
+                                                if (e.key === '+' || e.key === '-') {
                                                     e.preventDefault();
                                                 }
                                             }}

@@ -329,7 +329,7 @@ function SalesInvoiceList() {
                     {/* ------------------------------------------------------------------------------------------------ */}
                     {/* List table */}
 
-                    <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px', justifyContent: 'space-between' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px', justifyContent: 'space-between', flexWrap:'wrap', gap:'17px' }}>
                         <div>
                             <input
                                 type="text"

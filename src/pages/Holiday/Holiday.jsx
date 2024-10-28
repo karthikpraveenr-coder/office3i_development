@@ -677,7 +677,7 @@ const Holiday = () => {
 
           {/* --------------------------------------------------------------------------------------------------------------- */}
           {/* Table search and download */}
-          <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px', justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px', justifyContent: 'space-between', flexWrap:'wrap', gap:'17px' }}>
             {/* Search */}
             <div>
               <input
@@ -703,7 +703,7 @@ const Holiday = () => {
           </div>
 
           {/* Table */}
-          <div ref={componentRef}>
+          <div ref={componentRef} style={{ overflowX: 'auto', width: '100%' }}>
             <table className="table">
               <thead className="thead-dark">
                 <tr>

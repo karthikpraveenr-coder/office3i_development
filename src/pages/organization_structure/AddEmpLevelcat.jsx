@@ -415,7 +415,7 @@ function AddEmpLevelcat() {
                     {/* ------------------------------------------------------------------------------------------------ */}
                     {/* List table */}
                     <h5 className='mb-3' style={{ fontWeight: 'bold', color: '#00275c' }}>Employee Level Category List</h5>
-                    <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px', justifyContent: 'space-between' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px', justifyContent: 'space-between', flexWrap:'wrap', gap:'17px' }}>
                         <div>
                             <input
                                 type="text"
@@ -432,7 +432,7 @@ function AddEmpLevelcat() {
                         </div>
                     </div>
 
-                    <div ref={componentRef}>
+                    <div ref={componentRef} style={{ overflowX: 'auto', width: '100%' }}>
 
                         <table className="table">
                             <thead className="thead-dark">

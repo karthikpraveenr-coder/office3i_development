@@ -22,7 +22,8 @@
 
 .a4-container-appointment {
   width: 8.27in;
-  height: 15.69in;
+  /* height: 15.69in; */
+  height:auto;
   margin: auto;
   padding: 0.5in 1in 1in 1in;
   border: 1px solid #ddd;
@@ -77,6 +78,18 @@
   /* Adjust the width as needed */
 }
 
+/* Hide the number input's spin buttons */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none; /* For Chrome/Safari */
+    margin: 0; /* Remove default margin */
+}
+
+input[type="number"] {
+    -moz-appearance: textfield; /* For Firefox */
+}
+
+
 /* -------------------------------------------------------------------- */
 /* RelievingLetter.css */
 
@@ -126,4 +139,9 @@
   padding-top: 240px;
 }
 
+}
+
+.line__height .item {
+  display: block;      /* Makes the span behave like a block element */
+  margin-bottom: 10px;  /* Adds 5px space below each item */
 }

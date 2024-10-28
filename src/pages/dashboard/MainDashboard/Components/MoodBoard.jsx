@@ -8,11 +8,13 @@ import sad_smiley from '../../../../assets/admin/assets/img/emoji/sad_smiley.png
 import { useState } from 'react';
 import { useEffect } from 'react';
 import '../css/MoodBoard.css'
+import { isNull } from 'lodash';
 
 function MoodBoard() {
 
     const [moodboardlist, setModboardlist] = useState([]);
     const [loading, setLoading] = useState(true);
+    console.log("moodboardlist", moodboardlist)
 
 
     //  Retrieve userData from local storage
@@ -126,10 +128,16 @@ function MoodBoard() {
                     </Row>
 
                 </div>
+                {moodboardlist && moodboardlist.length > 0 ? (
+                    <div className='show__more__mainadmin'>
+                        <span onClick={handleShowmoodboard}>View All</span>
+                    </div>
+                ) : (
+                    <div className='No__Employee__Reactions'>
+                        <p>No Employee Reactions</p>
+                    </div>
+                )}
 
-                <div className='show__more__mainadmin'>
-                    <span onClick={handleShowmoodboard}>View All</span>
-                </div>
 
             </div>
 
@@ -137,7 +145,7 @@ function MoodBoard() {
 
             {/* Modal for showing mood board */}
 
-            <Modal show={moodboardModel} onHide={handleClosemoodboard}>
+            <Modal show={moodboardModel} onHide={handleClosemoodboard} centered>
                 <Modal.Header closeButton>
                     <Modal.Title>Employee's Mood Board</Modal.Title>
                 </Modal.Header>
@@ -179,9 +187,10 @@ function MoodBoard() {
                             <Col sm={12} md={12} lg={12} xl={12} className='mb-3 Reacted__emoji__popup'>
                                 {moodboardlist.map(item => (
                                     <p className='reacted__name__emoji__popup mb-3'>
-
-                                        <img src={`https://office3i.com/development/api/storage/app/${item.profile_img}`} alt='' className='profile__popup' />
-                                        <span className='reacted__name__popup'>{item.emp_name}</span>
+                                        <div className='UserImage__Name'>
+                                            <img src={`https://office3i.com/development/api/storage/app/${item.profile_img}`} alt='' className='profile__popup__maindashboard' />
+                                            <span className='reacted__name__popup'>{item.emp_name}</span>
+                                        </div>
                                         {item.mood_name === 'face_shy' && <img src={face_shy} alt="face_shy" className='emoji-icon-reacted' />}
                                         {item.mood_name === 'happy' && <img src={happy} alt="happy" className='emoji-icon-reacted' />}
                                         {item.mood_name === 'happy_positive' && <img src={happy_positive} alt="happy_positive" className='emoji-icon-reacted' />}
@@ -197,6 +206,12 @@ function MoodBoard() {
                         {/* ======================================= */}
                     </div>
                 </Modal.Body>
+                {/* Modal Footer */}
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClosemoodboard}>
+                        Close
+                    </Button>
+                </Modal.Footer>
 
             </Modal>
 

@@ -1,0 +1,39 @@
+.Development__training__container{
+    width: 100%;
+    padding: 10px 15px;
+}
+.Skill__Development__title{
+    font-weight: 600;
+    color: #00275C;
+    font-size: 18px;
+}
+.horizontal__rule{
+    width: 100%;
+    margin: 0px 0px;
+}
+.Development__training__text__container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.Development__training__name{
+    color: #0A60F1;
+    font-weight: 500;
+}
+.Development__training__date{
+    color: #00275C;
+    font-weight: 600;
+}
+.Development__training__status{
+    background: #D9F4FF;
+    padding: 5px 8px;
+    color: #007BAE;
+    font-weight: 500;
+    border-radius: 5px;
+}
+.training__download{
+    cursor: pointer;
+}
+.training__download:hover{
+    color: #00B928;
+}

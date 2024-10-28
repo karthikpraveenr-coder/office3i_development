@@ -1,0 +1,14 @@
+.RewardsRecognition__container{
+    width: 100%;
+    padding: 10px 15px;
+}
+
+.RewardsRecognition__title{
+    font-weight: 600;
+    color: #00275C;
+    font-size: 18px;
+}
+.horizontal__rule{
+    width: 100%;
+    margin: 0px 0px;
+}

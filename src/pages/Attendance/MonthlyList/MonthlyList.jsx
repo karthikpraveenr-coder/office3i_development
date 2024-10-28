@@ -320,15 +320,17 @@ function MonthlyList() {
                     {/* ------------------------------------------------------------------------------------------------ */}
                     {/* List table */}
 
-                    <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px', justifyContent: 'space-between' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px', justifyContent: 'space-between', flexWrap:'wrap', gap:'17px' }}>
                         <div>
-                            <input
-                                type="text"
-                                placeholder="Search..."
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                                style={myStyles1}
-                            />
+                            {['1', '2'].includes(userrole) &&
+                                <input
+                                    type="text"
+                                    placeholder="Search..."
+                                    value={searchTerm}
+                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                    style={myStyles1}
+                                />
+                            }
                             <input
                                 type="month"
                                 style={myStyles1}
@@ -439,11 +441,18 @@ function MonthlyList() {
                         </table>
                     </div>
 
-                    <div style={{ display: 'flex', justifyContent: 'center', gap: '3%' }} className='mt-5 mb-2'>
+                    <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            gap: '1.5%',
+                            flexWrap: 'wrap'
+                        }}
+                        className='mt-5 mb-2'>
                         <h6 style={{ color: '#404040', fontWeight: 'bold', borderRadius: '13px' }}>Present - P</h6>
                         <h6 style={{ color: '#FB5A00', fontWeight: 'bold', borderRadius: '13px' }}>Late - LA</h6>
                         <h6 style={{ color: '#9BB500', fontWeight: 'bold', borderRadius: '13px' }}>Permission - PR</h6>
-                        <h6 style={{ color: '#6B057B', fontWeight: 'bold', borderRadius: '13px' }}>half Day - HL</h6>
+                        <h6 style={{ color: '#6B057B', fontWeight: 'bold', borderRadius: '13px' }}>Half Day - HL</h6>
                         <h6 style={{ color: '#0d6efd', fontWeight: 'bold', borderRadius: '13px' }}>Leave - L</h6>
                         <h6 style={{ color: '#C20076', fontWeight: 'bold', borderRadius: '13px' }}>Absent - A</h6>
                         <h6 style={{ color: '#028A00', fontWeight: 'bold', borderRadius: '13px' }}>Holiday - H</h6>

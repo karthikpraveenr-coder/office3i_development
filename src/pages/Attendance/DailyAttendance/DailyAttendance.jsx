@@ -302,17 +302,17 @@ function DailyAttendance() {
     const submitData = async () => {
         const errors = {};
         let fromTimeUpdated, toTimeUpdated, categorydata;
-    
+
         // Check if 'type' is provided
         if (!type) {
             errors.type = 'Category is required';
         }
-    
+
         // Check if 'category' is required based on 'type'
         if (['1', '2', '3', '4'].includes(type) && !category) {
             errors.category = 'Type is required';
         }
-    
+
         // Check if 'fromTime' and 'toTime' are required based on 'type'
         if (type !== '1' && type !== '4') {
             if (!fromTime) {
@@ -321,19 +321,19 @@ function DailyAttendance() {
             if (!toTime) {
                 errors.toTime = 'Check-Out Time is required';
             }
-    
-            fromTimeUpdated = `${fromTime}:00`;
-            toTimeUpdated = `${toTime}:00`;
+
+            fromTimeUpdated = `${fromTime}`;
+            toTimeUpdated = `${toTime}`;
         } else {
             fromTimeUpdated = '';
             toTimeUpdated = '';
         }
-    
+
         // Check if there are any validation errors
         if (Object.keys(errors).length > 0) {
             // Collect all error messages to display in Swal alert
             const errorMessages = Object.values(errors).join('\n');
-    
+
             // Show error alert with all validation messages
             Swal.fire({
                 icon: 'error',
@@ -342,14 +342,14 @@ function DailyAttendance() {
             });
             return; // Stop further execution if there are validation errors
         }
-    
+
         // If no validation errors, proceed with processing the form
         if (type === '0') {
             categorydata = '0';
         } else {
             categorydata = category;
         }
-    
+
         const payload = {
             id: String(missedcounuserid),
             category: String(categorydata),
@@ -358,7 +358,7 @@ function DailyAttendance() {
             check_outtime: String(toTimeUpdated),
             updated_by: String(userempid)
         };
-    
+
         try {
             const response = await fetch('https://office3i.com/development/api/public/api/dailyattendance_update', {
                 method: 'PUT',
@@ -368,10 +368,10 @@ function DailyAttendance() {
                 },
                 body: JSON.stringify(payload)
             });
-    
+
             if (response.ok) {
                 const data = await response.json();
-    
+
                 if (data.status === 'success') {
                     // Clear the form fields upon successful submission
                     setCategory('');
@@ -408,8 +408,8 @@ function DailyAttendance() {
             });
         }
     };
-    
-    
+
+
     // const [noactiveshift, setNoactiveshift] = useState('');
     const handleSubmitTimeoff = (e) => {
         e.preventDefault();
@@ -623,15 +623,17 @@ display: none !important;
                     {/* ------------------------------------------------------------------------------------------------ */}
                     {/* List table */}
 
-                    <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px', justifyContent: 'space-between' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px', justifyContent: 'space-between', flexWrap:'wrap', gap:'17px' }}>
                         <div>
-                            <input
-                                type="text"
-                                placeholder="Search..."
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                                style={myStyles1}
-                            />
+                            {['1', '2'].includes(userrole) &&
+                                <input
+                                    type="text"
+                                    placeholder="Search..."
+                                    value={searchTerm}
+                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                    style={myStyles1}
+                                />
+                            }
                             <input
                                 type="date"
                                 style={myStyles1}

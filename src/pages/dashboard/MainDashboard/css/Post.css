@@ -1,0 +1,131 @@
+.Post__container {
+    width: 100%;
+    padding: 10px 10px;
+    max-width: 600px; /* Optional: Set a max-width for better control on larger screens */
+    margin: 0 auto; /* Center the container on larger screens */
+}
+
+.post__textbox__container {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1), 
+    -1px -1px 4px rgba(0, 0, 0, 0.1), 
+    -1px 1px 4px rgba(0, 0, 0, 0.1), 
+    1px -1px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px 10px;
+    border-radius: 10px;
+}
+
+.Userimage__post {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #0A62F1;
+}
+
+.custom-textarea {
+    background-color: #F4F4F4;
+    color: #6B6B6B;
+    width: 100%; /* Adjust width to take full space in small screens */
+    min-height: 80px; /* Adjust height for smaller screens if needed */
+    padding-left: 20px;
+    padding-top: 8px;
+    border: none;
+    border-radius: 5px;
+    resize: none; /* Disable resizing */
+}
+
+.post__button__container {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap; /* Allow wrapping */
+    justify-content: space-between; /* Space out buttons */
+}
+
+.post__Announcement__Poll__container,
+.Upload__Cancel__container {
+    display: flex;
+    gap: 7px;
+    flex-wrap: wrap; /* Allow wrapping for small screens */
+}
+
+/* Button styling */
+.Post__btn, .Announcement__btn, .Poll__btn, .Upload__btn, .Cancel__btn {
+    padding: 5px 10px;
+    font-size: 11px;
+    font-weight: 700;
+    border: none;
+    border-radius: 5px;
+}
+
+.Post__btn {
+    background-color: #FFDADA;
+    color: #890000;
+}
+
+.Announcement__btn {
+    background-color: #D9FFD9;
+    color: #006500;
+}
+
+.Poll__btn {
+    background-color: #D9F4FF;
+    color: #004967;
+}
+
+.Upload__btn {
+    background-color: #0A62F1;
+    color: #FFFFFF;
+}
+
+.Cancel__btn {
+    background-color: #A9CAFF;
+    color: white;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .custom-textarea {
+        width: 100%; /* Full width on smaller screens */
+    }
+
+    .post__button__container {
+        flex-direction: column;
+        gap: 10px; /* More spacing on smaller screens */
+    }
+
+    .post__Announcement__Poll__container,
+    .Upload__Cancel__container {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .post__textbox__container {
+        flex-direction: column; /* Stack image and textarea vertically */
+        align-items: center; /* Center items */
+    }
+
+    .Userimage__post {
+        margin-bottom: 10px;
+    }
+
+    .custom-textarea {
+        width: 100%; /* Full width on small screens */
+    }
+
+    .post__button__container {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .post__Announcement__Poll__container,
+    .Upload__Cancel__container {
+        flex-direction: column;
+        width: 100%;
+    }
+}

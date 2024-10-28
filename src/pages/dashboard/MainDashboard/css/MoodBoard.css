@@ -33,12 +33,20 @@
 .mood__all{
     text-decoration: underline;
     text-underline-offset: 10px;
+    color: #4F4F4F;
 }
 .Reacted__emoji{
     text-align: right;
 }
 .reacted__name{
     font-weight: bold;
+    color: #4F4F4F;
+}
+.reacted__name__popup{
+    color: #4F4F4F;
+}
+.mood__all__popup{
+    color: #4F4F4F;
 }
 .emoji-icon-reacted{
     width: 10%;
@@ -101,11 +109,12 @@
     display: flex;
     align-items: center;
 }
-.profile__popup{
-    width: 17%;
+.profile__popup__maindashboard{
+    width: 45px;
     border-radius: 50%;
-    height: 7vh;
+    /* height: 7vh; */
     object-fit: cover;
+    height: 45px;
 }
 .emoji__count{
     display: flex;
@@ -116,3 +125,16 @@
     padding-left: 4px;
 }
 
+/* ------------------ */
+
+.UserImage__Name{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.No__Employee__Reactions{
+    text-align: center;
+    color: #001f55;
+    font-weight: 500;
+}

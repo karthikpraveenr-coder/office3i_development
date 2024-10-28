@@ -1426,8 +1426,295 @@ export const EditEmployee = () => {
 
 
 
-  const nextStep = () => {
-    setStep(step + 1);
+  const nextStep = (e) => {
+    e.preventDefault();
+
+    // Clear previous errors
+    setFormErrors({});
+    const errors = {};
+
+    // Step 1: Validate Basic Details fields
+    if (step === 1) {
+
+      // Validate BasicDetails fields
+      if (!formData.employeeId) {
+        errors.employeeId = 'Employee ID is required';
+      }
+      if (!formData.employeePicture) {
+        errors.employeePicture = 'Employee picture is required';
+      }
+      if (!formData.firstName) {
+        errors.firstName = 'First name is required';
+      }
+      if (!formData.lastName) {
+        errors.lastName = 'Last name is required';
+      }
+      if (!formData.gender) {
+        errors.gender = 'Gender is required';
+      }
+      if (!formData.status) {
+        errors.status = 'Status is required';
+      }
+
+      if (!formData.phoneNumber) {
+        errors.phoneNumber = 'Phone number is required';
+      } else if (!/^\d{10}$/.test(formData.phoneNumber)) {
+        errors.phoneNumber = 'Phone number must be 10 digits';
+      }
+      if (!formData.whatsappNumber) {
+        errors.whatsappNumber = 'WhatsApp number is required';
+      } else if (!/^\d{10}$/.test(formData.whatsappNumber)) {
+        errors.whatsappNumber = 'WhatsApp number must be 10 digits';
+      }
+      // if (!formData.email) {
+      //   errors.email = 'Email is required';
+      // } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      //   errors.email = 'Invalid email address';
+      // }
+
+      if (!formData.email) {
+        errors.email = 'Email field is empty';
+      } else if (!/^[a-zA-Z]+[a-zA-Z0-9._%+-]*@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(formData.email)) {
+        errors.email = 'Invalid email address';
+      }
+
+
+
+
+      if (!formData.dob) {
+        errors.dob = 'Date of birth is required';
+      }
+      if (!formData.currentAddress) {
+        errors.currentAddress = 'Current address is required';
+      }
+      if (!formData.permanentAddress) {
+        errors.permanentAddress = 'Permanent address is required';
+      }
+      if (!formData.parentName) {
+        errors.parentName = 'Parent name is required';
+      }
+      if (!formData.maritalStatus) {
+        errors.maritalStatus = 'Marital status is required';
+      }
+      if (formData.maritalStatus === 'Married' && !formData.spouseName) {
+        errors.spouseName = 'Spouse name is required for married employees';
+      }
+      if (!formData.aadharNumber) {
+        errors.aadharNumber = 'Aadhar number is required';
+      } else if (!/^\d{12}$/.test(formData.aadharNumber)) {
+        errors.aadharNumber = 'Aadhar number must be 12 digits';
+      }
+      if (!formData.panNumber) {
+        errors.panNumber = 'PAN number is required';
+      } else if (!/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(formData.panNumber.toUpperCase())) {
+        errors.panNumber = 'Invalid PAN number';
+      }
+
+
+      if (Object.keys(errors).length > 0) {
+        setFormErrors(errors);
+        console.log("Validation Errors in Step 1:", errors);
+        return;
+      } else {
+        setStep(2);
+        return;
+      }
+    }
+
+    // Step 2: Validate Employee Job Type
+    if (step === 2) {
+
+      // Validate EmployeeDetails fields
+      if (!formData.selectedemployeeJobType) {
+        errors.selectedemployeeJobType = 'Employee Job Type is required';
+      }
+      if (!formData.selectedemployeeCategory) {
+        errors.selectedemployeeCategory = 'Employee Category is required';
+      }
+      if (!formData.dateOfJoining) {
+        errors.dateOfJoining = 'Date of joining is required';
+      }
+      // if (!formData.probationPeriod) {
+      //   errors.probationPeriod = 'Probation period is required';
+      // }
+      // if (!formData.confirmationDate) {
+      //   errors.confirmationDate = 'Confirmation date is required';
+      // }
+      // if (!formData.employeeAgreementPeriod) {
+      //   errors.employeeAgreementPeriod = 'Employee agreement period is required';
+      // }
+      if (!formData.noticePeriod) {
+        errors.noticePeriod = 'Notice period is required';
+      }
+      if (!formData.ctc) {
+        errors.ctc = 'CTC is required';
+      }
+      if (!formData.grossSalary) {
+        errors.grossSalary = 'Gross salary is required';
+      }
+      if (!formData.netSalary) {
+        errors.netSalary = 'Net salary is required';
+      }
+      // if (!formData.lastWorkingDay) {
+      //   errors.lastWorkingDay = 'Last working day is required';
+      // }
+      if (!formData.providentFund) {
+        errors.providentFund = 'Provident fund is required';
+      }
+
+      if (formData.providentFund == "Applicable") {
+        if (!formData.uanNumber) {
+          errors.uanNumber = 'UAN number is required';
+        }
+        if (!formData.employeePfContribution) {
+          errors.employeePfContribution = 'Employee PF contribution is required';
+        }
+        if (!formData.employerPfContribution) {
+          errors.employerPfContribution = 'Employer PF contribution is required';
+        }
+      }
+
+      if (!formData.esi) {
+        errors.esi = 'ESI is required';
+      }
+
+
+
+      if (formData.esi == "Applicable") {
+        if (!formData.esiNumber) {
+          errors.esiNumber = 'ESI number is required';
+        }
+        if (!formData.employeeEsiContribution) {
+          errors.employeeEsiContribution = 'Employee ESI contribution is required';
+        }
+        if (!formData.employerEsiContribution) {
+          errors.employerEsiContribution = 'Employer ESI contribution is required';
+        }
+      }
+
+
+      if (Object.keys(errors).length > 0) {
+        setFormErrors(errors);
+        console.log("Validation Errors in Step 2:", errors);
+        return;
+      } else {
+        setStep(3);
+        return;
+      }
+    }
+
+    // Step 3: Validate Designation
+    if (step === 3) {
+
+      // Validate EmployeeRole fields
+      if (!formData.selectedRoleId) {
+        errors.selectedRoleId = 'User role is required';
+      }
+      if (!formData.selectedSupervisorRoleId) {
+        errors.selectedSupervisorRoleId = 'Supervisor role is required';
+      }
+
+      if (!formData.designation) {
+        errors.designation = 'Designation is required';
+      }
+      if (!formData.selectedsupervisorId) {
+        errors.selectedsupervisorId = 'Supervisor is required';
+      }
+
+      // if (!formData.officialEmail) {
+      //   errors.officialEmail = 'Official email is required';
+      // } else if (!/\S+@\S+\.\S+/.test(formData.officialEmail)) {
+      //   errors.officialEmail = 'Invalid official email address';
+      // }
+
+      if (!formData.officialEmail) {
+        errors.officialEmail = 'Official email is required';
+      } else if (!/^[a-zA-Z]+[a-zA-Z0-9._%+-]*@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(formData.officialEmail)) {
+        errors.officialEmail = 'Invalid official email address';
+      }
+
+      // if (!formData.password) {
+      //   errors.password = 'Password is required';
+      // }
+
+
+      if (!formData.password) {
+        errors.password = 'Password is required.';
+      } else {
+        if (formData.password.length < 8) {
+          errors.password = 'Password must be at least 8 characters long';
+        }
+        // Check if password contains at least one number
+        if (!/\d/.test(formData.password)) {
+          errors.password = 'Password must contain at least one number';
+        }
+        // Check if password contains at least one uppercase letter
+        if (!/[A-Z]/.test(formData.password)) {
+          errors.password = 'Password must contain at least one uppercase letter';
+        }
+        // Check if password contains at least one special character
+        if (!/[!@#$%^&*]/.test(formData.password)) {
+          errors.password = 'Password must contain at least one special character';
+        }
+      }
+
+      if (!formData.checkinCheckout) {
+        errors.checkinCheckout = 'Check-in/Check-out time is required';
+      }
+      // if (!formData.overtime) {
+      //   errors.overtime = 'Overtime details are required';
+      // }
+      // if (!formData.lateAllowed) {
+      //   errors.lateAllowed = 'Late allowed details are required';
+      // }
+      // if (!formData.permissionAllowed) {
+      //   errors.permissionAllowed = 'Permission allowed details are required';
+      // }
+
+
+      if (Object.keys(errors).length > 0) {
+        setFormErrors(errors);
+        console.log("Validation Errors in Step 3:", errors);
+        return;
+      } else {
+        setStep(4);
+        return;
+      }
+    }
+
+    // Step 4: Validate Bank Account Number
+    if (step === 4) {
+
+      // Validate Bank Details fields
+      if (!formData.bankAccountNumber) {
+        errors.bankAccountNumber = 'Bank account number is required';
+      }
+      if (!formData.bankName) {
+        errors.bankName = 'Bank name is required';
+      }
+      if (!formData.bankBranch) {
+        errors.bankBranch = 'Bank branch is required';
+      }
+      if (!formData.ifscCode) {
+        errors.ifscCode = 'IFSC code is required';
+      }
+      if (!formData.accountType) {
+        errors.accountType = 'Account type is required';
+      }
+
+
+
+      if (Object.keys(errors).length > 0) {
+        setFormErrors(errors);
+        console.log("Validation Errors in Step 4:", errors);
+        return;
+      } else {
+        setStep(5);
+        return;
+      }
+    }
+
+
   };
 
 
