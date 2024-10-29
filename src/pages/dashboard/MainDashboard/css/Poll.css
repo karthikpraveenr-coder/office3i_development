@@ -1,0 +1,48 @@
+.poll-container {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+    background: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .poll-option {
+    margin: 15px 0;
+  }
+  
+  .vote-button {
+    background-color: #004A78;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    transition: background-color 0.3s;
+  }
+  
+  .vote-button:disabled {
+    background-color: #2D2D2D;
+    cursor: not-allowed;
+  }
+  
+  .progress-bar {
+    background-color: #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 24px;
+  }
+  
+  .progress {
+    background-color: #004A78;
+    height: 100%;
+    color: white;
+    text-align: center;
+    padding: 2px 0;
+    font-size: 14px;
+    transition: width 0.3s ease;
+  }
+  

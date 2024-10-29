@@ -23,6 +23,7 @@ import Love from '../images/post/footerimage/Love.svg';
 import Celebrate from '../images/post/footerimage/Celebrate.svg';
 import Thoughtful from '../images/post/footerimage/Thoughtful.svg';
 import Funny from '../images/post/footerimage/Funny.svg';
+import Polls from './Polls';
 
 function Feeds() {
     const [activeButton, setActiveButton] = useState('All');
@@ -167,6 +168,7 @@ function Feeds() {
                     </div>
                 </div>
             ))}
+            <Polls />
         </div>
     );
 }

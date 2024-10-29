@@ -214,6 +214,7 @@ import Headerfooteredit from '../pages/Template/Headerfooteredit.jsx'
 import VerticalOrgChart from '../pages/organization_structure/VerticalOrgChart'
 import EmployeeDashboardPowerBIReport from '../pages/employee/EmployeeDashboard/EmployeeDashboard'
 import MainDashboard from '../pages/dashboard/MainDashboard/MainDashboard'
+import Polls from '../pages/dashboard/MainDashboard/Components/Polls'
 
 
 
@@ -235,6 +236,7 @@ function MasterLayout() {
                             <Route path="/admindashboard" element={<AuthRoute><AdminDashboard /></AuthRoute>} />
                             <Route path="/userdashboard" element={<AuthRoute><UserDashboard /></AuthRoute>} />
                             <Route path="/maindashboard" element={<AuthRoute><MainDashboard /></AuthRoute>} />
+                            <Route path="/polls" element={<AuthRoute><Polls /></AuthRoute>} />
 
 
                             <Route path="/addrole" element={<AuthRoute><AddRole /></AuthRoute>} />

@@ -12,3 +12,28 @@
     width: 100%;
     margin: 0px 0px;
 }
+.RewardsRecongnitionimg{
+    width: 47px;
+    border-radius: 25px;
+    height: 47px;
+    /* background-position: top; */
+    object-fit: cover;
+}
+.RewardsRecognitionlist__container{
+    display: flex;
+    gap: 10px;
+    display: flex;
+    border: 2px solid #A9CAFF;
+    border-radius: 6px;
+    padding: 8px 6px;
+    /* justify-content: space-between; */
+}
+.RewardsRecognition__name{
+    color: #003657;
+    font-weight: 600;
+}
+.RewardsRecognition__count{
+    color: #003657;
+    font-size: 18px;
+    font-weight: 700;
+}
