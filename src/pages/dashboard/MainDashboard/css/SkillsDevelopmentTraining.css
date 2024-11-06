@@ -7,6 +7,18 @@
     color: #00275C;
     font-size: 18px;
 }
+.Skill__Development__title_container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.Add_plus{
+    background: #1772FF;
+    color: white;
+    padding: 2px 7px;
+    border-radius: 7px;
+    border: none;
+}
 .horizontal__rule{
     width: 100%;
     margin: 0px 0px;
@@ -23,6 +35,7 @@
 .Development__training__date{
     color: #00275C;
     font-weight: 600;
+    font-size: 13px;
 }
 .Development__training__status{
     background: #D9F4FF;

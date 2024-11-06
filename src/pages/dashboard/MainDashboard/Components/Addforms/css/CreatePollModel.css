@@ -1,0 +1,27 @@
+.createpoll__List__name{
+    color: #4F4F4F;
+    font-weight: 500;
+}
+.createpoll__List__department{
+    color: #6B6B6B;
+    font-weight: 400;
+    font-size: 14px;
+}
+.Create_Poll{
+    color: #004967;
+    background-color: #D9F4FF;
+    border: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.Create_Poll:hover{
+    color: #004967;
+    background-color: #D9F4FF;
+    border: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}

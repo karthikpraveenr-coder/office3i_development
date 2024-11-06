@@ -215,6 +215,9 @@ import VerticalOrgChart from '../pages/organization_structure/VerticalOrgChart'
 import EmployeeDashboardPowerBIReport from '../pages/employee/EmployeeDashboard/EmployeeDashboard'
 import MainDashboard from '../pages/dashboard/MainDashboard/MainDashboard'
 import Polls from '../pages/dashboard/MainDashboard/Components/Polls'
+import AddSkillsDevelopmentTraining from '../pages/dashboard/MainDashboard/Components/Addforms/AddSkillsDevelopmentTraining'
+import CreatePostModal from '../pages/dashboard/MainDashboard/Components/Addforms/CreatePostModal'
+import CreatePollModel from '../pages/dashboard/MainDashboard/Components/Addforms/CreatePollModel'
 
 
 
@@ -539,6 +542,9 @@ function MasterLayout() {
 
                             <Route path="/department" element={<AuthRoute><DepartmentList /></AuthRoute>} />
                             <Route path="/editdepartment/:id" element={<AuthRoute><EditDepartmentList /></AuthRoute>} />
+                            <Route path="/addSkillsdevelopmenttraining" element={<AuthRoute><AddSkillsDevelopmentTraining /></AuthRoute>} />
+                            <Route path="/createpostmodal" element={<AuthRoute><CreatePostModal /></AuthRoute>} />
+                            <Route path="/createpollmodel" element={<AuthRoute><CreatePollModel /></AuthRoute>} />
 
 
 

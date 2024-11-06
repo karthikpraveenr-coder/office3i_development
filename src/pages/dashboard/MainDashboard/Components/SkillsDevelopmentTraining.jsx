@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import '../css/SkillsDevelopmentTraining.css';
 import { Button, Modal } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDownload } from '@fortawesome/free-solid-svg-icons';
+import { faDownload, faPlus } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function SkillsDevelopmentTraining() {
 
@@ -19,6 +20,13 @@ function SkillsDevelopmentTraining() {
   //   { name: 'Cloud Computing Basics', date: 'Oct - Dec 2026', status: 'Upcoming' },
   //   { name: 'Machine Learning Techniques', date: 'Jan - Mar 2027', status: 'In Progress' },
   // ];
+
+  // Redirect to the edit page
+  const navigate = useNavigate();
+
+  const GoToEditPage = (id) => {
+      navigate(`/admin/addSkillsdevelopmenttraining`);
+  };
 
   // ---------------------------------------------------------------------------------------------------------------
   //  Retrieve userData from local storage
@@ -63,6 +71,8 @@ function SkillsDevelopmentTraining() {
         return { backgroundColor: '#D1FFD0', color: '#00B928' }; // Light green for Upcoming
       case 'Completed':
         return { backgroundColor: '#FFEAC4', color: '#E99800' }; // Light orange for Completed
+      case 'Tomorrow':
+        return { backgroundColor: '#FFDADA', color: '#890000' }; // Light orange for Completed
       default:
         return {};
     }
@@ -78,18 +88,21 @@ function SkillsDevelopmentTraining() {
 
   return (
     <div className='Development__training__container'>
-      <p className='Skill__Development__title mt-3 mb-2'>Skill Development / Training</p>
+      <div className='Skill__Development__title_container'>
+        <p className='Skill__Development__title mt-3 mb-2'>Skill Development / Training</p>
+        <button className='Add_plus' onClick={GoToEditPage}><FontAwesomeIcon icon={faPlus} /></button>
+      </div>
       <hr className='horizontal__rule' />
-      {trainingData.slice(0, 3).map((training, index) => (
+      {trainingData.slice(0, 4).map((training, index) => (
         <div key={index} className='Development__training__text__container mt-2'>
           <div>
             <p className='Development__training__name'>{training.event_name} <FontAwesomeIcon icon={faDownload} className='training__download' /></p>
-            <p className='Development__training__date'>{training.day}</p>
+            <p className='Development__training__date'>{training.formatted_date}</p>
           </div>
           <p className='Development__training__status' style={getStatusStyle(training.status)}>{training.status}</p>
         </div>
       ))}
-      <p className='viewmore mt-3' onClick={handleShowModal}>View More</p>
+      <p className='viewmore mt-2' onClick={handleShowModal}>View More</p>
 
       {/* Scrollable Modal for "View More" */}
       <Modal show={showModal} onHide={handleCloseModal} centered>
@@ -101,7 +114,7 @@ function SkillsDevelopmentTraining() {
             <div key={index} className='Development__training__text__container mt-2'>
               <div>
                 <p className='Development__training__name'>{training.event_name} <FontAwesomeIcon icon={faDownload} className='training__download' /></p>
-                <p className='Development__training__date'>{training.day}</p>
+                <p className='Development__training__date'>{training.formatted_date}</p>
               </div>
               <p className='Development__training__status' style={getStatusStyle(training.status)}>{training.status}</p>
             </div>

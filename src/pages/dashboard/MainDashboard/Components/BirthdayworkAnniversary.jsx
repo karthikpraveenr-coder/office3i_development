@@ -3,6 +3,8 @@ import { Button, Modal } from 'react-bootstrap';
 import '../css/BirthdayworkAnniversary.css';
 import { useEffect } from 'react';
 import axios from 'axios';
+import Balloon from '../images/birthdayworkanniversary/Balloons.svg'
+import StrawberryCake from '../images/birthdayworkanniversary/StrawberryCake.svg'
 
 function BirthdayworkAnniversary() {
     // State to toggle between Birthday and Work Anniversary views
@@ -107,30 +109,45 @@ function BirthdayworkAnniversary() {
             <div>
                 <p className='thismonth mb-4'>This Month</p>
 
-                {/* Conditionally render the birthday or work anniversary lists */}
-                {activeData.slice(0, 3).map(item => (
-                    <div className='Birthdaylist__container mb-2' key={item.id}>
-                        <span className='Birthdaylist'>
-                            <img src={`https://office3i.com/development/api/storage/app/${item.profile_img}`} alt='userimage' className='userimage' />
-                            <span className='Birthdaylist__content'>
-                                <p className='User__name'>{item.first_name}</p>
-                                <p className='User__Designation'>{item.department_name}</p>
-                            </span>
-                        </span>
-                        <span className='Event__day__container'>
-                            <span>
-                                <p className='Event__day'>{item.formatted_date}</p>
-                            </span>
-                            <span>
-                                <p className='Event__day'>{item.years_worked}</p>
-                            </span>
-                        </span>
+                {activeData && activeData.length > 0 ?
+                    <>
+                        {activeData.slice(0, 3).map(item => (
+                            <div className='Birthdaylist__container mb-2' key={item.id}>
+                                <span className='Birthdaylist'>
+                                    <img src={`https://office3i.com/development/api/storage/app/${item.profile_img}`} alt='userimage' className='userimage' />
+                                    <span className='Birthdaylist__content'>
+                                        <p className='User__name'>{item.first_name}</p>
+                                        <p className='User__Designation'>{item.department_name}</p>
+                                    </span>
+                                </span>
+                                <span className='Event__day__container'>
+                                    <span>
+                                        <p className='Event__day'>{item.formatted_date}</p>
+                                    </span>
+                                    <span>
+                                        <p className='Event__day'>{item.years_worked}</p>
+                                    </span>
+                                </span>
+                            </div>
+                        ))}
+                    </>
+                    :
+                    <div className='No_Birthdays_container mt-6'>
+                        <img src={activeView === 'birthday' ? StrawberryCake : Balloon} alt={activeView === 'birthday' ? 'StrawberryCake' : 'Balloon'} />
+                        <p className='No_Birthdays_text'>
+                            {activeView === 'birthday' ? 'No Birthdays in this month' : 'No Work Anniversaries in this month'}
+                        </p>
                     </div>
-                ))}
-            </div>
 
-            {/* "View More" Link that opens the modal */}
-            <p className='viewmore mt-3' onClick={handleShowModal}>View More</p>
+                }
+            </div>
+            {activeData && activeData.length > 0 ?
+                <>
+                    <p className='viewmore mt-3' onClick={handleShowModal}>View More</p>
+                </> :
+                null
+            }
+
 
             {/* Scrollable Modal for "View More" */}
             <Modal show={showModal} onHide={handleCloseModal} centered>

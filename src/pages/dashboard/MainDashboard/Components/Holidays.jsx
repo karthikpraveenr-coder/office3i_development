@@ -26,7 +26,15 @@ function Holidays() {
                     },
                 });
 
-                const mappedFestivals = response.data.holiday_list.current_holiday.map(festival => {
+                // Choose either current_holiday or futured_holiday based on length of current_holiday
+                // Combine current_holiday and futured_holiday into a single array
+                const holidayList = [
+                    ...response.data.holiday_list.current_holiday,
+                    ...response.data.holiday_list.futured_holiday,
+                ];
+
+
+                const mappedFestivals = holidayList.map(festival => {
                     const dateParts = festival.h_date.split(' ');
                     let parsedDate = null;
                     if (dateParts.length === 3) {
@@ -43,6 +51,7 @@ function Holidays() {
                 });
 
                 setFestivals(mappedFestivals);
+                console.log("mappedFestivals",)
             } catch (error) {
                 console.error('Error fetching employee events:', error);
             }

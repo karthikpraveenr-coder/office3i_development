@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../css/Feeds.css';
 import feedimg from '../images/post/feedimage.png';
 import feedimg1 from '../images/post/rcb.jpg';
@@ -24,6 +24,8 @@ import Celebrate from '../images/post/footerimage/Celebrate.svg';
 import Thoughtful from '../images/post/footerimage/Thoughtful.svg';
 import Funny from '../images/post/footerimage/Funny.svg';
 import Polls from './Polls';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 function Feeds() {
     const [activeButton, setActiveButton] = useState('All');
@@ -37,72 +39,134 @@ function Feeds() {
     const userimage = userData?.userimage || '';
     const username = userData?.username || '';
     const userrole = userData.userrole || '';
+    const usertoken = userData?.token || '';
 
     // Track each feed's active reaction
     const [reactions, setReactions] = useState({});
+    const [animatedReaction, setAnimatedReaction] = useState(null);
 
-    const handleReactionClick = (feedId, reaction) => {
+    const handleReactionClick = async (feedId, reaction) => {
+        // Check if the reaction is the same as the current one, if yes, remove it
         setReactions((prevReactions) => ({
             ...prevReactions,
             [feedId]: prevReactions[feedId] === reaction ? '' : reaction,
         }));
+    
+        // Create a unique identifier based on feedId and reactionType
+        const uniqueReactionId = `${feedId}-${reaction}`;
+        setAnimatedReaction(uniqueReactionId);
+    
+        // Send the reaction to the backend
+        try {
+            const response = await axios.post('https://office3i.com/development/api/public/api/reactToPost', {
+                post_id: feedId,
+                likeable_type: 'post',
+                reaction: reaction,
+                user_emp_id: 2, // Assuming the user_emp_id is 2. Replace it with the actual user ID from the context
+            }, {
+                headers: {
+                    Authorization: `Bearer ${usertoken}`, // Add token for authentication
+                },
+            });
+    
+            if (response.data.status === "success") {
+                console.log(response.data.message);  // Reaction updated
+                Swal.fire("Success",
+                response.data.message,
+                    "success");
+            } else {
+                console.error('Error updating reaction:', response.data.message);
+                Swal.fire("Error",
+                response.data.message,
+                    "error");
+                
+            }
+        } catch (error) {
+            console.error('Error reacting to post:', error);
+        }
+    
+        // Remove the animation class after the animation completes
+        setTimeout(() => setAnimatedReaction(null), 300);
     };
+    
 
-    const feedsData = [
-        {
-            id: 1,
-            name: 'Jarvis',
-            department: 'HR Recruiter',
-            time: '2hrs ago',
-            title: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.",
-            feedimg: `${feedimg}`,
-            reactions: 20,
-        },
-        {
-            id: 2,
-            name: 'Karthik',
-            department: 'Web Developer',
-            time: '2hrs ago',
-            title: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-            feedimg: `${feedimg1}`,
-            reactions: 10,
-        },
-        {
-            id: 3,
-            name: 'Jarvis',
-            department: 'HR Recruiter',
-            time: '2hrs ago',
-            title: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.",
-            feedimg: `${feedimg2}`,
-            reactions: 5,
-        },
-        {
-            id: 4,
-            name: 'Vijay',
-            department: 'TVK Head',
-            time: '2hrs ago',
-            title: "த.வெ.க மாநாடு நடைபெறும் இடத்தை ஆய்வு செய்த் பிறகு செய்தியாளர்களுக்கு பேட்டியளித்த விழுப்புரம் மாவட்ட டிஎஸ்பி சொன்னதற்கு அதிகமாகவே தண்ணீர் வசதி கழிவறை வசதி தயார் செய்து வைக்கப்பட்டுள்ளதாக தெரிவித்தார்.",
-            feedimg: `${feedimg3}`,
-            reactions: 5,
-        },
-        {
-            id: 5,
-            name: 'Vijay',
-            department: 'TVK Head',
-            time: '2hrs ago',
-            title: "த.வெ.க மாநாடு நடைபெறும் இடத்தை ஆய்வு செய்த் பிறகு செய்தியாளர்களுக்கு பேட்டியளித்த விழுப்புரம் மாவட்ட டிஎஸ்பி சொன்னதற்கு அதிகமாகவே தண்ணீர் வசதி கழிவறை வசதி தயார் செய்து வைக்கப்பட்டுள்ளதாக தெரிவித்தார்.",
-            reactions: 5,
-        },
-        {
-            id: 6,
-            name: 'Jarvis',
-            department: 'HR Recruiter',
-            time: '2hrs ago',
-            title: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.",
-            feedimg: `${feedimg4}`,
-            reactions: 5,
-        },
-    ];
+    // const feedsData = [
+    //     {
+    //         id: 1,
+    //         name: 'Jarvis',
+    //         department: 'HR Recruiter',
+    //         time: '2hrs ago',
+    //         title: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.",
+    //         feedimg: `${feedimg}`,
+    //         reactions: 20,
+    //     },
+    //     {
+    //         id: 2,
+    //         name: 'Karthik',
+    //         department: 'Web Developer',
+    //         time: '2hrs ago',
+    //         title: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    //         feedimg: `${feedimg1}`,
+    //         reactions: 10,
+    //     },
+    //     {
+    //         id: 3,
+    //         name: 'Jarvis',
+    //         department: 'HR Recruiter',
+    //         time: '2hrs ago',
+    //         title: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.",
+    //         feedimg: `${feedimg2}`,
+    //         reactions: 5,
+    //     },
+    //     {
+    //         id: 4,
+    //         name: 'Vijay',
+    //         department: 'TVK Head',
+    //         time: '2hrs ago',
+    //         title: "த.வெ.க மாநாடு நடைபெறும் இடத்தை ஆய்வு செய்த் பிறகு செய்தியாளர்களுக்கு பேட்டியளித்த விழுப்புரம் மாவட்ட டிஎஸ்பி சொன்னதற்கு அதிகமாகவே தண்ணீர் வசதி கழிவறை வசதி தயார் செய்து வைக்கப்பட்டுள்ளதாக தெரிவித்தார்.",
+    //         feedimg: `${feedimg3}`,
+    //         reactions: 5,
+    //     },
+    //     {
+    //         id: 5,
+    //         name: 'Vijay',
+    //         department: 'TVK Head',
+    //         time: '2hrs ago',
+    //         title: "த.வெ.க மாநாடு நடைபெறும் இடத்தை ஆய்வு செய்த் பிறகு செய்தியாளர்களுக்கு பேட்டியளித்த விழுப்புரம் மாவட்ட டிஎஸ்பி சொன்னதற்கு அதிகமாகவே தண்ணீர் வசதி கழிவறை வசதி தயார் செய்து வைக்கப்பட்டுள்ளதாக தெரிவித்தார்.",
+    //         reactions: 5,
+    //     },
+    //     {
+    //         id: 6,
+    //         name: 'Jarvis',
+    //         department: 'HR Recruiter',
+    //         time: '2hrs ago',
+    //         title: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.",
+    //         feedimg: `${feedimg4}`,
+    //         reactions: 5,
+    //     },
+    // ];
+
+
+    // ------------------------------------------------------------------------------------------
+    const [feedsData, setFeedsData] = useState([])
+
+    useEffect(() => {
+        const fetchFeeds = async () => {
+            try {
+                const response = await axios.get('https://office3i.com/development/api/public/api/getUserFeed', {
+                    headers: {
+                        Authorization: `Bearer ${usertoken}`,
+                    },
+                });
+                setFeedsData(Object.values(response.data.feed));
+                console.log("setFeedsData", Object.values(response.data.feed))
+            } catch (error) {
+                console.error('Error fetching feeds:', error);
+            }
+        };
+        fetchFeeds();
+    }, []);
+    // ------------------------------------------------------------------------------------------
 
     return (
         <div className='Feeds__container'>
@@ -117,15 +181,15 @@ function Feeds() {
                     </button>
                 ))}
             </div>
-            
+
             {feedsData.map((feed) => (
                 <div className='Feeds__List__container mb-3' key={feed.id}>
                     <div className='Feeds__list__header mb-2'>
                         <span className='Feeds__list__header__image'>
-                            <img src={`https://office3i.com/development/api/storage/app/${userimage}`} alt='Userimage' className='Userimage__post' />
+                            <img src={`https://office3i.com/development/api/storage/app/${feed.created_by.profile_img}`} alt='Userimage' className='Userimage__post' />
                             <span>
-                                <p className='Feeds__List__name'>{feed.name}</p>
-                                <p className='Feeds__List__department'>{feed.department}</p>
+                                <p className='Feeds__List__name'>{feed.created_by.first_name}</p>
+                                <p className='Feeds__List__department'>{feed.created_by.hrms_emp_id}</p>
                             </span>
                         </span>
                         <span>
@@ -134,8 +198,8 @@ function Feeds() {
                     </div>
 
                     <div className='Feeds__list__body'>
-                        <p className='Feeds__list__title mb-2'>{feed.title}</p>
-                        {feed.feedimg && <img src={feed.feedimg} alt='feedimg' className='feedimg' />}
+                        <p className='Feeds__list__title mb-2'>{feed.description}</p>
+                        {feed.image && <img src={`https://office3i.com/development/api/storage/app/${feed.image}`} alt='feedimg' className='feedimg' />}
                         <div className='mt-2'>
                             <p className='user__reactions__counts'>
                                 <img src={Like} alt='Like' className='reaction__image' />
@@ -147,24 +211,30 @@ function Feeds() {
                             </p>
                         </div>
 
-                        <div className='mt-3 user__reactions__container'>
-                            {['Like', 'Love', 'Celebrate', 'Thoughtful', 'Funny'].map((reactionType) => (
-                                <button
-                                    key={reactionType}
-                                    className={`${reactionType}_user`}
-                                    onClick={() => handleReactionClick(feed.id, reactionType)}
-                                    style={{
-                                        color: reactions[feed.id] === reactionType ? getColorForReaction(reactionType) : 'inherit',
-                                    }}
-                                >
-                                    <img
-                                        src={reactions[feed.id] === reactionType ? getActiveImage(reactionType) : getDefaultImage(reactionType)}
-                                        alt={`${reactionType}_user`}
-                                    />
-                                    {reactionType}
-                                </button>
-                            ))}
+                        <div className="mt-3 user__reactions__container">
+                            {['Like', 'Love', 'Celebrate', 'Thoughtful', 'Funny'].map((reactionType) => {
+                                const uniqueReactionId = `${feed.id}-${reactionType}`;
+
+                                return (
+                                    <button
+                                        key={reactionType}
+                                        className={`${reactionType}_user`}
+                                        onClick={() => handleReactionClick(feed.id, reactionType)}
+                                        style={{
+                                            color: reactions[feed.id] === reactionType ? getColorForReaction(reactionType) : 'inherit',
+                                        }}
+                                    >
+                                        <img
+                                            src={reactions[feed.id] === reactionType ? getActiveImage(reactionType) : getDefaultImage(reactionType)}
+                                            alt={`${reactionType}_user`}
+                                            className={`${animatedReaction === uniqueReactionId ? 'reaction-button-pop' : ''}`}
+                                        />
+                                        {reactionType}
+                                    </button>
+                                );
+                            })}
                         </div>
+
                     </div>
                 </div>
             ))}
