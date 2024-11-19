@@ -9,85 +9,9 @@ function CheckinCheckout() {
   const [checkedOut, setCheckedOut] = useState(false);
   const [timeWorked, setTimeWorked] = useState({ hours: 0, minutes: 0, seconds: 0 });
 
-  useEffect(() => {
-    const savedCheckInTime = localStorage.getItem('checkinTime');
-    if (savedCheckInTime && !checkedOut) {
-      const elapsedTime = calculateElapsedTime(new Date(savedCheckInTime), new Date());
-      setTimeWorked(elapsedTime);
-      setCheckedIn(true);
-    }
-  }, [checkedOut]);
-
-  useEffect(() => {
-    let interval;
-
-    if (checkedIn && !checkedOut) {
-      // Start an interval to update time every second
-      interval = setInterval(() => {
-        setTimeWorked(prevTime => {
-          const { hours, minutes, seconds } = prevTime;
-
-          if (seconds < 59) {
-            return { ...prevTime, seconds: seconds + 1 };
-          } else if (minutes < 59) {
-            return { hours, minutes: minutes + 1, seconds: 0 };
-          } else if (hours < 8) {
-            return { hours: hours + 1, minutes: 0, seconds: 0 };
-          } else {
-            clearInterval(interval); // Stop at 8 hours (end of shift)
-            return prevTime;
-          }
-        });
-      }, 1000); // Update every second
-    }
-
-    return () => clearInterval(interval); // Cleanup interval on unmount
-  }, [checkedIn, checkedOut]);
-
-  // const handleCheckIn = () => {
-  // setCheckedIn(true);
-  // setCheckedOut(false);
-  // setTimeWorked({ hours: 0, minutes: 0, seconds: 0 }); 
-  // };
-
-  // const handleCheckOut = () => {
-  //   setCheckedOut(true);
-  //   setCheckedIn(false);
-  // };
-
-  const calculateElapsedTime = (checkInTime, currentTime) => {
-    const diff = Math.abs(currentTime - checkInTime);
-    const hours = Math.floor(diff / 1000 / 3600);
-    const minutes = Math.floor((diff / 1000 / 60) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
-    return { hours, minutes, seconds };
-  };
-
-  // Calculate total time in seconds for the progress bar (max 8 hours * 3600 seconds)
-  const totalSecondsWorked = timeWorked.hours * 3600 + timeWorked.minutes * 60 + timeWorked.seconds;
-  const maxShiftSeconds = 8 * 3600; // 8-hour shift
-
-  // ===========================================================================
-
-  //  Retrieve userData from local storage
-  const userData = JSON.parse(localStorage.getItem('userData'));
-
-  const usertoken = userData?.token || '';
-  const userempid = userData?.userempid || '';
-  const userrole = userData?.userrole || '';
-
-  // ===========================================================================
-  // ===========================================================================
-
-  // loading state
   const [loading, setLoading] = useState(false);
   const [loadingcheckin, setLoadingcheckin] = useState(false);
   const [loadingcheckout, setLloadingcheckout] = useState(false);
-  // ===========================================================================
-
-  // ===========================================================================
-
-  // dashboard  values
 
   const [checkintime, setCheckintime] = useState('');
   const [checkouttime, setCheckouttime] = useState('');
@@ -95,6 +19,15 @@ function CheckinCheckout() {
   const [attendanceType, setAttendanceType] = useState('');
 
   const [refreshKey, setRefreshKey] = useState(0);
+
+  // Retrieve userData from local storage
+  const userData = JSON.parse(localStorage.getItem('userData'));
+  const usertoken = userData?.token || '';
+  const userempid = userData?.userempid || '';
+  const userrole = userData?.userrole || '';
+
+  // Max shift time set to 12 hours for the progress bar
+  const maxShiftSeconds = 12 * 3600; // 12-hour shift
 
   useEffect(() => {
     userCheckInCheckOutCount();
@@ -117,44 +50,31 @@ function CheckinCheckout() {
 
       if (response.ok) {
         const responseData = await response.json();
-        // setAnnouncementList(responseData.data);
-        console.log("responseData--->", responseData);
-
-        // Assuming responseData.data contains these fields
         setAttendanceType(responseData.attendance_type);
         setCheckintime(responseData.userempcheckintime);
         setCheckouttime(responseData.userempcheckouttime);
         setWorkingHours(responseData.userempchecktotaltime);
-
       } else {
         throw new Error('Failed to fetch data');
       }
     } catch (error) {
       console.error('Error fetching data:', error);
-
     } finally {
       setLoading(false);
     }
   };
 
-  // ===========================================================================
-
-  // ===========================================================================
-  // To Fetch User Device Name
+  // To fetch User Device Name
   const browser = detect();
 
   const getDeviceName = () => {
     if (browser) {
-      console.log("browser:", browser)
       return `${browser.name} ${browser.version}`;
     }
     return 'Unknown Device';
   };
 
-  // ===========================================================================
-
-  // ===========================================================================
-  //To Fetch Use Ip Address
+  // To fetch User IP Address
   const [userIP, setUserIP] = useState('');
 
   const getUserIP = async () => {
@@ -176,13 +96,8 @@ function CheckinCheckout() {
     fetchIP();
   }, []);
 
-  // ===========================================================================
-
-  // ===========================================================================
-  // check In
-
+  // Check In Handler
   const handleCheckIn = () => {
-    // handleCheckInsingle()
     const checkInTime = new Date();
     localStorage.setItem('checkinTime', checkInTime); // Save check-in time
 
@@ -218,7 +133,6 @@ function CheckinCheckout() {
           setTimeWorked({ hours: 0, minutes: 0, seconds: 0 });
           setCheckintime(checkInTime.toLocaleTimeString());
           setRefreshKey((prevKey) => prevKey + 1);
-
         } else {
           Swal.fire({
             icon: 'error',
@@ -239,14 +153,8 @@ function CheckinCheckout() {
       });
   };
 
-  // ===========================================================================
-
-
-  // ===========================================================================
-  //Check out
-
+  // Check Out Handler
   const handleCheckOut = () => {
-
     setLloadingcheckout(true);
 
     const checkOutData = {
@@ -295,7 +203,34 @@ function CheckinCheckout() {
         setLloadingcheckout(false);
       });
   };
-  // ===========================================================================
+
+  // Timer and Progress Bar Updates
+  useEffect(() => {
+    let interval;
+
+    if (checkedIn && !checkedOut) {
+      interval = setInterval(() => {
+        setTimeWorked(prevTime => {
+          const { hours, minutes, seconds } = prevTime;
+
+          if (seconds < 59) {
+            return { ...prevTime, seconds: seconds + 1 };
+          } else if (minutes < 59) {
+            return { hours, minutes: minutes + 1, seconds: 0 };
+          } else if (hours < 12) {
+            return { hours: hours + 1, minutes: 0, seconds: 0 };
+          } else {
+            clearInterval(interval); // Stop at 12 hours (end of shift)
+            return prevTime;
+          }
+        });
+      }, 1000);
+    }
+
+    return () => clearInterval(interval);
+  }, [checkedIn, checkedOut]);
+
+  const totalSecondsWorked = timeWorked.hours * 3600 + timeWorked.minutes * 60 + timeWorked.seconds;
 
   return (
     <div className="checkin-checkout-container">
@@ -309,7 +244,6 @@ function CheckinCheckout() {
         <div className='checkinandcheckout'>
           <p>{checkintime}</p>
           <p>{checkouttime}</p>
-
         </div>
         <div className="bar">
           <div
@@ -317,35 +251,33 @@ function CheckinCheckout() {
             style={{ width: `${(totalSecondsWorked / maxShiftSeconds) * 100}%` }}
           ></div>
         </div>
-        <div className="shift-info">Shift Timing - 9am to 6pm</div>
+        <div className="shift-info">Shift Timing - 9am to 9pm</div>
       </div>
       <div className="button-section">
         <button
           className="checkin-btn"
           onClick={handleCheckIn}
-          disabled={attendanceType == '0'}
+          disabled={attendanceType === '0'}
         >
           {loadingcheckin ? (
             <span style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
-              <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-              Check-in
+              <i className="fa fa-circle-notch fa-spin" style={{ fontSize: '16px' }}></i> Checking In...
             </span>
           ) : (
-            'Check-in'
+            'Check In'
           )}
         </button>
         <button
           className="checkout-btn"
           onClick={handleCheckOut}
-          disabled={checkouttime !== '00:00:00'}
+          disabled={!checkedIn || checkedOut || loadingcheckout}
         >
           {loadingcheckout ? (
             <span style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
-              <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-              Check-out
+              <i className="fa fa-circle-notch fa-spin" style={{ fontSize: '16px' }}></i> Checking Out...
             </span>
           ) : (
-            'Check-out'
+            'Check Out'
           )}
         </button>
       </div>

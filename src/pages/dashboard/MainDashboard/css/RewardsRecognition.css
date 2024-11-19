@@ -37,3 +37,29 @@
     font-size: 18px;
     font-weight: 700;
 }
+.RewardsRecognition__title_container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.Add_plus{
+    background: #1772FF;
+    color: white;
+    padding: 2px 7px;
+    border-radius: 7px;
+    border: none;
+}
+.EmployeeDetails{
+    display: flex;
+    gap: 10px;
+    color: #4F4F4F;
+    font-weight: 500;
+}
+.EmployeeDetails__department{
+    font-weight: 400;
+}
+.RewardsRecongnitionimg__title{
+    display: flex;
+    gap: 10px;
+    color: #003657;
+}

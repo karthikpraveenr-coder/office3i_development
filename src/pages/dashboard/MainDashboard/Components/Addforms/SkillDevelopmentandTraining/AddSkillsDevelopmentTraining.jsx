@@ -5,7 +5,7 @@ import { Container, Form, Button, Row, Col } from 'react-bootstrap';
 import { ScaleLoader } from 'react-spinners';
 import { useReactToPrint } from 'react-to-print';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPen, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faFolderOpen, faPen, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { CSVLink } from 'react-csv';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
@@ -24,7 +24,7 @@ function AddSkillsDevelopmentTraining() {
     const navigate = useNavigate();
 
     const GoToEditPage = (id) => {
-        navigate(`/admin/editdepartment/${id}`);
+        navigate(`/admin/editskillsdevelopmenttraining/${id}`);
     };
 
 
@@ -148,7 +148,7 @@ function AddSkillsDevelopmentTraining() {
         try {
             const { value: reason } = await Swal.fire({
                 title: 'Are you sure?',
-                text: 'You are about to delete this Department list. This action cannot be reversed.',
+                text: 'You are about to delete this Skill Development / Training List. This action cannot be reversed.',
                 icon: 'warning',
                 input: 'text',
                 inputPlaceholder: 'Enter reason for deletion',
@@ -168,7 +168,7 @@ function AddSkillsDevelopmentTraining() {
             });
 
             if (reason) {
-                const response = await fetch('https://office3i.com/development/api/public/api/delete_department', {
+                const response = await fetch('https://office3i.com/development/api/public/api/delete_skill_dev', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -176,8 +176,8 @@ function AddSkillsDevelopmentTraining() {
                     },
                     body: JSON.stringify({
                         id: id,
-                        updated_by: userempid,
-                        reason: reason,
+                        user_emp_id: userempid,
+                        comment: reason,
                     }),
                 });
 
@@ -191,8 +191,8 @@ function AddSkillsDevelopmentTraining() {
                 }
             }
         } catch (error) {
-            console.error('Error deleting  department:', error);
-            Swal.fire('Error', 'An error occurred while deleting the department list. Please try again later.', 'error');
+            console.error('Error deleting  Skill Development / Training:', error);
+            Swal.fire('Error', 'An error occurred while deleting the Skill Development / Training. Please try again later.', 'error');
         }
     };
 
@@ -484,7 +484,13 @@ display: none !important;
                                                     <td>{row.event_name}</td>
                                                     <td>{row.from_date}</td>
                                                     <td>{row.to_date}</td>
-                                                    <td>{row.created_name}</td>
+                                                    <td>{row.attachment !== null ?
+                                                        <button className="btn-view" onClick={() => { window.open(`https://office3i.com/development/api/storage/app/${row.attachment}`, '_blank') }}>
+                                                            <FontAwesomeIcon icon={faEye} /> View
+                                                        </button>
+
+                                                        : <FontAwesomeIcon icon={faFolderOpen} />}
+                                                    </td>
                                                     <td style={{ display: 'flex', gap: '10px' }} className='no-print'>
                                                         <button className="btn-edit" onClick={() => { GoToEditPage(row.id) }}>
                                                             <FontAwesomeIcon icon={faPen} />

@@ -113,7 +113,7 @@ export default function EditMeeting() {
     }));
 
     const handleSelectEmployeeChange = (selectedOptions) => {
-        const selectedIds = selectedOptions.map(option => option.value);
+        const selectedIds = selectedOptions.map(option => String(option.value));
         setSelectedEmployee(selectedIds);
     };
 
@@ -284,7 +284,7 @@ export default function EditMeeting() {
                                 <label htmlFor="selectedDepartment" className="form-label">Select Teams</label>
                                 <MultiSelect
                                     options={formattedDepartmentDropdown}
-                                    value={formattedDepartmentDropdown.filter(option => selectedDepartment.includes(option.value))}
+                                    value={formattedDepartmentDropdown.filter(option => selectedDepartment.includes(String(option.value)))}
                                     onChange={handleSelectDepartmentChange}
                                     labelledBy="Select"
                                 />

@@ -149,8 +149,110 @@
       transform: scale(1);
   }
 }
+/* ----------------------------------------------- */
+/* ellips edit and delete popupover */
 
+/* Popover and Button Styles */
+.popover .popover-body {
+  padding: 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  background-color: #f8f9fa; /* Light background */
+}
+
+/* Button inside Popover */
+.popover .popover-body .dropdown-item {
+  width: 100%;
+  text-align: left;
+  padding: 8px 16px;
+  font-size: 14px;
+  color: #004A78; /* Dark blue for text */
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.popover .popover-body .dropdown-item:hover {
+  background-color: #004A78; /* Dark blue */
+  color: white;
+}
+
+/* Divider Line */
+.faEllipsisVertical__rule {
+  width: 100%;
+  margin: 8px 0;
+  border: 0.5px solid #ccc;
+}
+
+/* Ellipsis Icon Styles */
+.faEllipsisVertical {
+  cursor: pointer;
+  font-size: 1.2em;
+  color: #2D2D2D; /* Dark gray */
+  transition: color 0.2s ease;
+}
+
+.faEllipsisVertical:hover {
+  color: #004A78; /* Dark blue */
+}
+
+/* Flexbox Alignment */
+.createdat__ellips {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Pop Animation */
 .reaction-button-pop {
   animation: pop 0.3s ease;
 }
+
+@keyframes pop {
+  0% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ---------------------------------------------- */
+
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.template-image {
+  display: block;
+  width: 100%; /* Adjust as needed */
+}
+
+.feedimg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 35%; /* Adjust size as needed */
+  height: auto;
+}
+.feed_user_name{
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 600;
+  color: #301500;
+}
+.feed_department{
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-31%, -50%);
+  font-weight: 400;
+  color: #301500;
+}
+
 

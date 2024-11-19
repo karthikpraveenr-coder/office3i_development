@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import './css/CreatePostModal.css';
 import createpost from './Images/createpost.svg';
@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 import { DashboardContext } from '../../../../../context/DashboardContext';
 import { useContext } from 'react';
 
-const CreatePostModal = ({ show, setShow,postType }) => {
+const EditPostModal = ({ show, setShow,postType, postid }) => {
     // const handleClose = () => setShow(false);
 
     // Retrieve userData from local storage
@@ -50,12 +50,12 @@ const CreatePostModal = ({ show, setShow,postType }) => {
         fileInputRef.current.value = ''; // Reset file input value
     };
 
-    const handleSubmit = async (e) => {
+    const handleUpdate = async (e) => {
         e.preventDefault();
 
 
         const formData = new FormData();
-        // formData.append('title', 'Testing One1');
+        formData.append('id', postid);
         formData.append('description', description);
         formData.append('image', fileInputRef.current.files[0]); 
         formData.append('post_type', postType);
@@ -63,7 +63,7 @@ const CreatePostModal = ({ show, setShow,postType }) => {
         formData.append('user_emp_id', userempid);
 
         try {
-            const response = await axios.post('https://office3i.com/development/api/public/api/createPost', formData, {
+            const response = await axios.post('https://office3i.com/development/api/public/api/update_post', formData, {
                 headers: {
                     Authorization: `Bearer ${usertoken}`,
                 },
@@ -94,6 +94,33 @@ const CreatePostModal = ({ show, setShow,postType }) => {
         fileInputRef.current.value = '';
     }
 
+    useEffect(() => {
+        const fetchPostDetails = async () => {
+          try {
+            
+            const response = await axios.get(`https://office3i.com/development/api/public/api/edit_post/${postid}`,
+              {
+                headers: {
+                  Authorization: `Bearer ${usertoken}`,
+                },
+              }
+            );
+            // setPostDetails(response.data.message);
+            console.log("response.data.message***************************************************", response.data.message)
+           const data = response.data.message
+            setDescription(data.description)  
+           // Prepend base URL for the image
+           setSelectedImage(
+            data.image ? `https://office3i.com/development/api/storage/app/${data.image}` : null
+        );
+        } catch (err) {
+            console.log(err.message);
+          }
+        };
+    
+        fetchPostDetails();
+      }, [usertoken, postid]);
+
     return (
         <Modal show={show} onHide={handleClose} centered>
             <Modal.Header closeButton>
@@ -114,7 +141,7 @@ const CreatePostModal = ({ show, setShow,postType }) => {
                     {postType === 'post' ? 'Create Post' : 'Create Announcement'}
                 </Button>
 
-                <Form onSubmit={handleSubmit}>
+                <Form onSubmit={handleUpdate}>
                     <Form.Group controlId="postDescription">
                         <Form.Label>Description</Form.Label>
                         <Form.Control
@@ -176,7 +203,7 @@ const CreatePostModal = ({ show, setShow,postType }) => {
                 <Button variant="secondary" onClick={handleClose}>
                     Cancel
                 </Button>
-                <Button variant="primary" type="submit" onClick={handleSubmit}>
+                <Button variant="primary" type="submit" onClick={handleUpdate}>
                     Submit
                 </Button>
             </Modal.Footer>
@@ -184,4 +211,4 @@ const CreatePostModal = ({ show, setShow,postType }) => {
     );
 };
 
-export default CreatePostModal;
+export default EditPostModal;

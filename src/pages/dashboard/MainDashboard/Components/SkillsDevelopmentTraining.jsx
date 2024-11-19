@@ -24,8 +24,8 @@ function SkillsDevelopmentTraining() {
   // Redirect to the edit page
   const navigate = useNavigate();
 
-  const GoToEditPage = (id) => {
-      navigate(`/admin/addSkillsdevelopmenttraining`);
+  const GoToEditPage = () => {
+    navigate(`/admin/addSkillsdevelopmenttraining`);
   };
 
   // ---------------------------------------------------------------------------------------------------------------
@@ -61,6 +61,7 @@ function SkillsDevelopmentTraining() {
 
     fetchEmployeeEvents();
   }, []);
+  console.log("trainingData--------->", trainingData)
 
   // Function to apply background color based on status
   const getStatusStyle = (status) => {
@@ -86,6 +87,23 @@ function SkillsDevelopmentTraining() {
   // Function to handle closing the modal
   const handleCloseModal = () => setShowModal(false);
 
+
+  // ----------------------------------------------------------------------------------------------------
+
+  const handleDownload = (url, filename) => {
+    fetch(url)
+      .then(response => response.blob())
+      .then(blob => {
+        const link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      })
+      .catch(console.error);
+  };
+
   return (
     <div className='Development__training__container'>
       <div className='Skill__Development__title_container'>
@@ -96,7 +114,12 @@ function SkillsDevelopmentTraining() {
       {trainingData.slice(0, 4).map((training, index) => (
         <div key={index} className='Development__training__text__container mt-2'>
           <div>
-            <p className='Development__training__name'>{training.event_name} <FontAwesomeIcon icon={faDownload} className='training__download' /></p>
+            <p className='Development__training__name'>{training.event_name}
+              {training.attachment !== null &&
+                <FontAwesomeIcon icon={faDownload} className='training__download ml-1'
+                  onClick={() => handleDownload(`https://office3i.com/development/api/storage/app/${training.attachment}`, training.attachment.split('/').pop())} />
+              }
+            </p>
             <p className='Development__training__date'>{training.formatted_date}</p>
           </div>
           <p className='Development__training__status' style={getStatusStyle(training.status)}>{training.status}</p>
@@ -113,7 +136,12 @@ function SkillsDevelopmentTraining() {
           {trainingData.map((training, index) => (
             <div key={index} className='Development__training__text__container mt-2'>
               <div>
-                <p className='Development__training__name'>{training.event_name} <FontAwesomeIcon icon={faDownload} className='training__download' /></p>
+                <p className='Development__training__name'>{training.event_name}
+                  {training.attachment !== null &&
+                    <FontAwesomeIcon icon={faDownload} className='training__download ml-1'
+                      onClick={() => handleDownload(`https://office3i.com/development/api/storage/app/${training.attachment}`, training.attachment.split('/').pop())} />
+                  }
+                </p>
                 <p className='Development__training__date'>{training.formatted_date}</p>
               </div>
               <p className='Development__training__status' style={getStatusStyle(training.status)}>{training.status}</p>

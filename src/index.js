@@ -9,6 +9,7 @@ import admindashboard from './Features/admindashboard_state'
 import forget from './Features/forgotpassword_state'
 import dateReducer from './Features/salarycalculationcurrentdate_state'
 import { FormProvider } from './context/FormContext';
+import { DashboardProvider } from './context/DashboardContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -27,7 +28,9 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <FormProvider>
-        <App />
+        <DashboardProvider>
+          <App />
+        </DashboardProvider>
       </FormProvider>
     </Provider>
   </React.StrictMode>

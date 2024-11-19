@@ -215,9 +215,15 @@ import VerticalOrgChart from '../pages/organization_structure/VerticalOrgChart'
 import EmployeeDashboardPowerBIReport from '../pages/employee/EmployeeDashboard/EmployeeDashboard'
 import MainDashboard from '../pages/dashboard/MainDashboard/MainDashboard'
 import Polls from '../pages/dashboard/MainDashboard/Components/Polls'
-import AddSkillsDevelopmentTraining from '../pages/dashboard/MainDashboard/Components/Addforms/AddSkillsDevelopmentTraining'
+
 import CreatePostModal from '../pages/dashboard/MainDashboard/Components/Addforms/CreatePostModal'
 import CreatePollModel from '../pages/dashboard/MainDashboard/Components/Addforms/CreatePollModel'
+import AddSkillsDevelopmentTraining from '../pages/dashboard/MainDashboard/Components/Addforms/SkillDevelopmentandTraining/AddSkillsDevelopmentTraining'
+import EditSkillsdevelopmenttraining from '../pages/dashboard/MainDashboard/Components/Addforms/SkillDevelopmentandTraining/EditSkillsdevelopmenttraining'
+import AddRewardsRecognition from '../pages/dashboard/MainDashboard/Components/Addforms/RewardsRecognition/AddRewardsRecognition'
+import AddNewTitle from '../pages/dashboard/MainDashboard/Components/Addforms/RewardsRecognition/AddNewTitle'
+import EditNewTitle from '../pages/dashboard/MainDashboard/Components/Addforms/RewardsRecognition/EditNewTitle'
+import EditRewardsRecognition from '../pages/dashboard/MainDashboard/Components/Addforms/RewardsRecognition/EditRewardsRecognition'
 
 
 
@@ -545,6 +551,15 @@ function MasterLayout() {
                             <Route path="/addSkillsdevelopmenttraining" element={<AuthRoute><AddSkillsDevelopmentTraining /></AuthRoute>} />
                             <Route path="/createpostmodal" element={<AuthRoute><CreatePostModal /></AuthRoute>} />
                             <Route path="/createpollmodel" element={<AuthRoute><CreatePollModel /></AuthRoute>} />
+                            
+                            
+                            {/* ----------------------------------------------------------------------------------------------- */}
+
+                            <Route path="/editskillsdevelopmenttraining/:id" element={<AuthRoute><EditSkillsdevelopmenttraining /></AuthRoute>} />
+                            <Route path="/addrewardsrecognition" element={<AuthRoute><AddRewardsRecognition /></AuthRoute>} />
+                            <Route path="/addnewtitle" element={<AuthRoute><AddNewTitle /></AuthRoute>} />
+                            <Route path="/editnewtitle/:id" element={<AuthRoute><EditNewTitle /></AuthRoute>} />
+                            <Route path="/editrewardsrecognition/:id" element={<AuthRoute><EditRewardsRecognition /></AuthRoute>} />
 
 
 
