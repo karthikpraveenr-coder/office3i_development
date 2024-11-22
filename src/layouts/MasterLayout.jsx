@@ -560,6 +560,7 @@ function MasterLayout() {
                             <Route path="/addnewtitle" element={<AuthRoute><AddNewTitle /></AuthRoute>} />
                             <Route path="/editnewtitle/:id" element={<AuthRoute><EditNewTitle /></AuthRoute>} />
                             <Route path="/editrewardsrecognition/:id" element={<AuthRoute><EditRewardsRecognition /></AuthRoute>} />
+                            {/* check */}
 
 
 
