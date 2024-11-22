@@ -1,3 +1,7 @@
+.Holiday__list__container{
+    width: 100%;
+    padding: 10px 15px;
+}
 .Holidays__container {
     /* padding: 24px; */
     max-width: 600px; /* Set a max-width for the container */
@@ -6,7 +10,7 @@
 }
 .Holidays_text__container{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     width: 100%;
 }
 .Holidays_more{
@@ -40,6 +44,7 @@
 .Holiday__list {
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .faAngleLeft, .faAngleRight {

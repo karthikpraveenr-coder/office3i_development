@@ -34,6 +34,7 @@ function SkillsDevelopmentTraining() {
 
   const usertoken = userData?.token || '';
   const userempid = userData?.userempid || '';
+  const userrole = userData?.userrole || '';
   // ---------------------------------------------------------------------------------------------------------------
 
 
@@ -108,7 +109,9 @@ function SkillsDevelopmentTraining() {
     <div className='Development__training__container'>
       <div className='Skill__Development__title_container'>
         <p className='Skill__Development__title mt-3 mb-2'>Skill Development / Training</p>
+        {(userrole === '1') && (
         <button className='Add_plus' onClick={GoToEditPage}><FontAwesomeIcon icon={faPlus} /></button>
+        )}
       </div>
       <hr className='horizontal__rule' />
       {trainingData.slice(0, 4).map((training, index) => (

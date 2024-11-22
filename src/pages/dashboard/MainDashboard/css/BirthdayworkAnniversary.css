@@ -30,6 +30,7 @@
 .Birthday__Work__Anniversary{
     display: flex;
     gap: 10px;
+    justify-content: space-between;
 }
 .userimage{
     width: 47px;

@@ -1,6 +1,6 @@
 import React from 'react';
 import './css/MainDashboard.css';
-import img1 from './images/header_greeting1.jpeg'
+import img1 from './images/sunset.jpg'
 import BirthdayworkAnniversary from './Components/BirthdayworkAnniversary';
 import Holidays from './Components/Holidays';
 import CheckinCheckout from './Components/CheckinCheckout';
@@ -39,7 +39,7 @@ function MainDashboard() {
                         <img src={`https://office3i.com/development/api/storage/app/${userimage}`} alt='Userimage' className='Userimage__greetings' />
                     </span>
                     <span>
-                        <p className='greeting'>Good Morning, {username} !!</p>
+                        <p className='greeting'>Good Day, {username} !!</p>
                         <p className='greeting__title'>Welcome! We’re excited to have you with us on this journey!</p>
                     </span>
                 </div>

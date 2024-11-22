@@ -227,20 +227,20 @@
 
 .template-image {
   display: block;
-  width: 100%; /* Adjust as needed */
+  width: 100%; 
 }
 
-.feedimg {
+.feedimg_user {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 35%; /* Adjust size as needed */
+  width: 35%; 
   height: auto;
 }
 .feed_user_name{
   position: absolute;
-  top: 75%;
+  top: 74%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-weight: 600;
@@ -248,11 +248,116 @@
 }
 .feed_department{
   position: absolute;
-  top: 80%;
+  top: 79%;
   left: 50%;
-  transform: translate(-31%, -50%);
+  transform: translate(-50%, -50%);
   font-weight: 400;
   color: #301500;
+}
+
+/* -------- */
+.employee-of-the-month{
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 35%;
+  height: auto;
+  border-radius: 88px;
+}
+.employee-of-the-month-name{
+  position: absolute;
+  top: 76%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 600;
+  color: #FFFFFF;
+}
+.employee-of-the-month-department{
+  position: absolute;
+  top: 81%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 400;
+  color: #FFFFFF;
+}
+/* --------------------------- */
+.attendance-champions {
+  position: absolute;
+  top: 53%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 35%;
+  height: auto;
+  border-radius: 100px;
+}
+.attendance-champions-name{
+  position: absolute;
+  top: 76%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 600;
+  color: #613E00;
+}
+.attendance-champions-department{
+  position: absolute;
+  top: 81%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 400;
+  color: #613E00;
+}
+
+/* ------------- */
+.leadership-excellence {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 35%; 
+  height: auto;
+}
+.leadership-excellence-name {
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 600;
+  color: #FFFFFF;
+}
+.leadership-excellence-department {
+  position: absolute;
+  top: 86%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 400;
+  color: #FFFFFF;
+}
+/* ------------------ */
+.rising-stars {
+  position: absolute;
+  top: 58%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 35%;
+  height: auto;
+  border-radius: 90px;
+}
+.rising-stars-name {
+  position: absolute;
+  top: 81%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 600;
+  color: #5A0070;
+}
+.rising-stars-department {
+  position: absolute;
+  top: 86%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 400;
+  color: #5A0070;
 }
 
 

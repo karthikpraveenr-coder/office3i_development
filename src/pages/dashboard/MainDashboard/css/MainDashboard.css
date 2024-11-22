@@ -58,6 +58,7 @@
     grid-row: 3 / 5;
 }
 
+
 .SkillDevelopment__Training {
     grid-column: 3 / 4;
     grid-row: 5 / 7;
@@ -128,6 +129,7 @@
 }
 .greeting__title{
     font-size: 18px;
+    color: #00275C;
     
 }
 .Header__quote {
@@ -148,27 +150,48 @@
     display: flex;
     align-items: flex-start;
     gap: 10px;
+    overflow: auto;
+    scrollbar-width: none;
+
+}
+.Checkin__checkout{
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    overflow: auto;
+    scrollbar-width: none;
 
 }
 .Holidays{
-    display: flex;
-    flex-direction: column;
-    padding: 24px;
-    text-align: top;
+    /* display: flex;
+    flex-direction: column; */
+    /* padding: 24px;
+    text-align: top; */
     /* align-items: flex-start;
     justify-content: flex-start; */
     background: linear-gradient(98.57deg, #E1EFFF 0%, #C4E8FF 100%);
 }
 
+.Holidays{
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    /* overflow: auto;
+    scrollbar-width: none; */
+}
 .SkillDevelopment__Training{
     display: flex;
     align-items: flex-start;
     gap: 10px;
+    overflow: auto;
+    scrollbar-width: none;
 }
 .Rewards__Recognition{
     display: flex;
     align-items: flex-start;
     gap: 10px;
+    overflow: auto;
+    scrollbar-width: none;
 }
 .Post{
     display: flex;

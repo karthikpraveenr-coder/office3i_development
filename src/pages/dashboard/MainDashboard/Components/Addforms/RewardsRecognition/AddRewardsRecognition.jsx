@@ -55,7 +55,7 @@ function AddRewardsRecognition() {
         e.preventDefault();
 
         // Check if the selections are empty or not in array format
-        if (!Array.isArray(taskDepartment) || taskDepartment.length === 0) {
+        if (!Array.isArray(selectedDepartment) || selectedDepartment.length === 0) {
             Swal.fire({
                 icon: 'error',
                 title: 'Validation Error',
@@ -66,7 +66,7 @@ function AddRewardsRecognition() {
             return;
         }
 
-        if (!Array.isArray(taskTeam) || taskTeam.length === 0) {
+        if (!Array.isArray(selectedTeam) || selectedTeam.length === 0) {
             Swal.fire({
                 icon: 'error',
                 title: 'Validation Error',
@@ -77,7 +77,7 @@ function AddRewardsRecognition() {
             return;
         }
 
-        if (!Array.isArray(assignedTo) || assignedTo.length === 0) {
+        if (!Array.isArray(selectedMember) || selectedMember.length === 0) {
             Swal.fire({
                 icon: 'error',
                 title: 'Validation Error',
@@ -89,9 +89,9 @@ function AddRewardsRecognition() {
         }
 
         // Extract selected IDs and keep them in array format
-        const selectedDepartmentIds = taskDepartment.map((dept) => dept.value);
-        const selectedTeamIds = taskTeam.map((team) => team.value);
-        const selectedMemberIds = assignedTo.map((member) => member.value);
+        const selectedDepartmentIds = selectedDepartment.map((dept) => dept.value);
+        const selectedTeamIds = selectedTeam.map((team) => team.value);
+        const selectedMemberIds = selectedMember.map((member) => member.value);
 
         // Prepare payload in JSON format
         const payload = {
@@ -177,15 +177,17 @@ function AddRewardsRecognition() {
 
     // ---------------------------------------------------------------------------------------------------------------
     // ---------------------------------------------------------------------------------------------------------------
-    // State variables for dropdown selections
-    const [taskDepartment, setTaskDepartment] = useState([]); // For selected departments
-    const [taskTeam, setTaskTeam] = useState([]); // For selected teams
-    const [assignedTo, setAssignedTo] = useState([]); // For selected members
+    // State variables for dropdown options (globally)
+    const [departmentOptions, setDepartmentOptions] = useState([]); // For departments dropdown
+    const [teamOptions, setTeamOptions] = useState([]); // For teams dropdown
+    const [memberOptions, setMemberOptions] = useState([]); // For members dropdown
 
-    // State variables for dropdown options
-    const [departments, setDepartments] = useState([]); // Dropdown options for departments
-    const [teams, setTeams] = useState([]); // Dropdown options for teams
-    const [members, setMembers] = useState([]); // Dropdown options for members
+
+    // State variables for selected dropdown values
+    const [selectedDepartment, setSelectedDepartment] = useState([]); // For selected departments
+    const [selectedTeam, setSelectedTeam] = useState([]); // For selected teams
+    const [selectedMember, setSelectedMember] = useState([]); // For selected members
+
 
 
     // Fetch departments on component mount
@@ -200,15 +202,15 @@ function AddRewardsRecognition() {
                     label: department.depart_name, // Assuming 'depart_name' is the department name
                     value: department.id, // Assuming 'id' is the department ID
                 }));
-                setDepartments(formattedDepartments);
+                setDepartmentOptions(formattedDepartments);
             })
             .catch((error) => console.error("Error fetching departments:", error));
     }, [usertoken]);
 
     // Fetch teams based on selected departments
     useEffect(() => {
-        if (taskDepartment.length) {
-            const selectedIds = taskDepartment.map((dept) => dept.value).join(",");
+        if (selectedDepartment.length) {
+            const selectedIds = selectedDepartment.map((dept) => dept.value).join(",");
             axios
                 .get(`https://office3i.com/development/api/public/api/teams_drop_down/${selectedIds}`, {
                     headers: { Authorization: `Bearer ${usertoken}` },
@@ -219,18 +221,18 @@ function AddRewardsRecognition() {
                         label: team.role_name, // Assuming 'role_name' is the team role name
                         value: team.id, // Assuming 'id' is the team ID
                     }));
-                    setTeams(formattedTeams);
+                    setTeamOptions(formattedTeams);
                 })
                 .catch((error) => console.error("Error fetching teams:", error));
         } else {
-            setTeams([]); // Reset teams if no department is selected
+            setTeamOptions([]); // Reset teams if no department is selected
         }
-    }, [taskDepartment, usertoken]);
+    }, [selectedDepartment, usertoken]);
 
     // Fetch members based on selected teams
     useEffect(() => {
-        if (taskTeam.length) {
-            const selectedIds = taskTeam.map((team) => team.value).join(",");
+        if (selectedTeam.length) {
+            const selectedIds = selectedTeam.map((team) => team.value).join(",");
             axios
                 .get(`https://office3i.com/development/api/public/api/member_drop_down/${selectedIds}`, {
                     headers: { Authorization: `Bearer ${usertoken}` },
@@ -241,13 +243,14 @@ function AddRewardsRecognition() {
                         label: member.emp_name, // Assuming 'emp_name' is the member name
                         value: member.emp_id, // Assuming 'emp_id' is the member ID
                     }));
-                    setMembers(formattedMembers);
+                    setMemberOptions(formattedMembers);
                 })
                 .catch((error) => console.error("Error fetching members:", error));
         } else {
-            setMembers([]); // Reset members if no team is selected
+            setMemberOptions([]); // Reset members if no team is selected
         }
-    }, [taskTeam, usertoken]);
+    }, [selectedTeam, usertoken]);
+
     // ---------------------------------------------------------------------------------------------------------------
 
 
@@ -549,9 +552,9 @@ display: none !important;
                                 <Form.Group controlId="taskDepartment">
                                     <Form.Label>Select Department</Form.Label>
                                     <MultiSelect
-                                        options={departments}
-                                        value={taskDepartment}
-                                        onChange={setTaskDepartment}
+                                        options={departmentOptions}
+                                        value={selectedDepartment}
+                                        onChange={setSelectedDepartment}
                                         labelledBy="Select Departments"
                                     />
                                     {formErrors.taskDepartment && (
@@ -564,11 +567,11 @@ display: none !important;
                                 <Form.Group controlId="taskTeam">
                                     <Form.Label>Select Team</Form.Label>
                                     <MultiSelect
-                                        options={teams}
-                                        value={taskTeam}
-                                        onChange={setTaskTeam}
+                                        options={teamOptions}
+                                        value={selectedTeam}
+                                        onChange={setSelectedTeam}
                                         labelledBy="Select Teams"
-                                        isDisabled={!taskDepartment.length}
+                                        isDisabled={!selectedDepartment.length}
                                     />
                                     {formErrors.taskTeam && (
                                         <span className="text-danger">{formErrors.taskTeam}</span>
@@ -582,11 +585,11 @@ display: none !important;
                                 <Form.Group controlId="assignedTo">
                                     <Form.Label>Select Member</Form.Label>
                                     <MultiSelect
-                                        options={members}
-                                        value={assignedTo}
-                                        onChange={setAssignedTo}
+                                        options={memberOptions}
+                                        value={selectedMember}
+                                        onChange={setSelectedMember}
                                         labelledBy="Select Members"
-                                        isDisabled={!taskTeam.length}
+                                        isDisabled={!selectedTeam.length}
                                     />
                                     {formErrors.assignedTo && (
                                         <span className="text-danger">{formErrors.assignedTo}</span>
@@ -594,6 +597,7 @@ display: none !important;
                                 </Form.Group>
                             </Col>
                         </Row>
+
                         <Row className="justify-content-left mt-4">
                             <Col xs="auto">
                                 <Button variant="primary" type="submit" className='shift__submit__btn' onClick={handleSubmit}>

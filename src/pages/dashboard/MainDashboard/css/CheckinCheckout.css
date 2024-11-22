@@ -1,8 +1,12 @@
-
+.checkin-checkout-container{
+  width: 100%;
+  padding: 10px 15px;
+}
   
-  .date-section h4 {
+  .date-section h5 {
     color: #0A62F1;
     margin-bottom: 10px;
+    text-align: center;
   }
   
   .progress-bar {
@@ -41,7 +45,7 @@
   
   .button-section {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
   }
   
   .checkin-btn {

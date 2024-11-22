@@ -30,6 +30,7 @@ function RewardsRecognition() {
 
   const usertoken = userData?.token || '';
   const userempid = userData?.userempid || '';
+  const userrole = userData?.userrole || '';
   // ---------------------------------------------------------------------------------------------------------------
 
 
@@ -83,7 +84,9 @@ const [selectedimage, setSelectedimage] = useState('')
     <div className='RewardsRecognition__container'>
       <div className='RewardsRecognition__title_container'>
         <p className='RewardsRecognition__title mt-3 mb-2'>Rewards & Recognition</p>
+        {(userrole === '1') && (
         <button className='Add_plus' onClick={GoToEditPage}><FontAwesomeIcon icon={faPlus} /></button>
+        )}
       </div>
       <hr className='horizontal__rule' />
 

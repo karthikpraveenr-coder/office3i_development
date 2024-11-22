@@ -118,9 +118,11 @@ function Post() {
                             <button className='Post__btn' onClick={() => handleShow('post')}>
                                 <img src={post} alt='post' /> Post
                             </button>
+                            {(userrole === '1') && (
                             <button className='Announcement__btn' onClick={() => handleShow('announcement')}>
                                 <img src={announcement} alt='announcement' /> Announcement
                             </button>
+                            )}
                             <button className='Poll__btn' onClick={handleShowpoll}>
                                 <img src={poll} alt='poll' /> Poll
                             </button>

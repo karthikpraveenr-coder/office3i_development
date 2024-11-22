@@ -18,6 +18,8 @@ function Polls({ pollData }) {
     color: option.color || defaultColors[index % defaultColors.length], // Assign a default color if not provided
   }));
 
+  const hasPollEnded = new Date() > new Date(pollData.end_date);
+
   const [pollOptions, setPollOptions] = useState(enrichedOptions);  // Ensure the state is populated from pollData
   const [currentVote, setCurrentVote] = useState(null);
   const [showProgress, setShowProgress] = useState(!!pollData.current_user_polled || false);
@@ -30,11 +32,14 @@ function Polls({ pollData }) {
 
   const totalVotes = pollData.options.reduce((total, option) => total + option.response_count, 0);
 
+
+
 console.log("pollDetails-------------------id", pollDetails)
 
 const handleVote = async (id) => {  // Make the function async
   const userData = JSON.parse(localStorage.getItem('userData'));  // Assuming you are storing user data in localStorage
   const userEmpId = userData?.emp_id;  // Get employee ID from the user data
+  if (hasPollEnded) return; // Prevent voting if poll has ended
 
   if (currentVote === id) {
     // If user clicks on the same option again, remove the vote
@@ -127,17 +132,17 @@ const handleVote = async (id) => {  // Make the function async
         <div className='Polls__list__header mb-3'>
           <span className='Polls__list__header__image'>
             <img
-              src={`https://office3i.com/development/api/storage/app/${userImage}`}
+              src={`https://office3i.com/development/api/storage/app/${pollData.created_by.profile_img}`}
               alt='User profile'
               className='Userimage__post rounded-circle'
             />
             <span>
-              <p className='Polls__List__name'>Jarvis</p>
-              <p className='Polls__List__department'>HR Recruiter</p>
+              <p className='Polls__List__name'>{pollData.created_by.first_name}</p>
+              <p className='Polls__List__department'>{pollData.created_by.hrms_emp_id}</p>
             </span>
           </span>
           <span>
-            <p className='Polls__List__time text-muted'>2 hrs ago</p>
+            <p className='Polls__List__time text-muted'>{pollData.created_at}</p>
           </span>
         </div>
 
@@ -190,7 +195,7 @@ const handleVote = async (id) => {  // Make the function async
         </div>
 
         <div className='Polls__list__footer'>
-          <p className='Poll__ends__on'>Poll ends on 27 Oct 2024 14:30</p>
+          <p className='Poll__ends__on'>Poll ends on {pollData.end_date}</p>
           <p className='View__response' onClick={() => handleShowModal(pollData.id)}>
             View Responses
           </p>

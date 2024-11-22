@@ -50,6 +50,7 @@ function Feeds() {
     const userrole = userData.userrole || '';
     const usertoken = userData?.token || '';
     const userempid = userData?.userempid || '';
+    const user_loginid = userData?.user_loginid || '';
 
     // Track each feed's active reaction
     const [reactions, setReactions] = useState({});
@@ -330,6 +331,7 @@ function Feeds() {
                                 <span className="createdat__ellips">
                                     <p className="Feeds__List__time">{feed.created_at}</p>
                                     {/* Vertical Ellipsis and Popover */}
+                                    {(userrole === '1' || user_loginid === feed.created_by.hrms_emp_id) && (
                                     <OverlayTrigger
                                         trigger="click"
                                         placement="bottom"
@@ -350,6 +352,8 @@ function Feeds() {
                                     >
                                         <FontAwesomeIcon icon={faEllipsisVertical} className="faEllipsisVertical" />
                                     </OverlayTrigger>
+                                    )}
+                        
                                 </span>
                             </div>
 
@@ -364,38 +368,75 @@ function Feeds() {
                                     </ReadMoreArea>
                                 </p>
 
-                                {/* {feed.image && (
+
+                                {/* {feed.reward?.template && (
                                     <img
-                                        src={`https://office3i.com/development/api/storage/app/${feed.image}`}
-                                        alt="feedimg"
-                                        className="feedimg"
-                                    />
-                                )}
-                                {feed.template_image_url && (
-                                    <img
-                                        src={`https://office3i.com/development/api/storage/app/${feed.template_image_url}`}
+                                        src={`https://office3i.com/development/api/storage/app/${feed.reward.template}`}
                                         alt="template_image_url"
                                         className="feedimg"
                                     />
                                 )} */}
-                                {feed.template_image_url && (
-                                    <div className="image-container">
+                                {/* 
+                                <div className="image-container">
+                                    {feed.reward?.template && (
                                         <img
-                                            src={`https://office3i.com/development/api/storage/app/${feed.template_image_url}`}
+                                            src={`https://office3i.com/development/api/storage/app/${feed.reward.template}`}
                                             alt="template_image_url"
                                             className="template-image"
                                         />
-                                        {feed.image && (
-                                            <img
-                                                src={`https://office3i.com/development/api/storage/app/${feed.image}`}
-                                                alt="feedimg"
-                                                className="feedimg"
-                                            />
-                                        )}
-                                        <p className='feed_user_name'>{feed.user_name}</p>
-                                        <p className='feed_department'>{feed.department}</p>
-                                    </div>
-                                )}
+                                    )}
+                                    {feed?.image && (
+                                        <img
+                                            src={`https://office3i.com/development/api/storage/app/${feed.image}`}
+                                            alt="feedimg"
+                                            className="feedimg"
+                                        />
+                                    )}
+                                    <p className='feed_user_name'>{feed.user_name}</p>
+                                    <p className='feed_department'>{feed.department}</p>
+                                </div> */}
+
+                                <div className="image-container">
+                                    {feed.reward?.template && (
+                                        <img
+                                            src={`https://office3i.com/development/api/storage/app/${feed.reward.template}`}
+                                            alt="template_image_url"
+                                            className="template-image"
+                                        />
+                                    )}
+
+                                    {feed.image && (
+                                        <img
+                                            src={`https://office3i.com/development/api/storage/app/${feed.image}`}
+                                            alt="feedimg"
+                                            className={`${feed.reward?.template ? "feedimg_user" : "feedimg"} 
+                                            ${feed.reward?.event_name === "Employee Of The Month" ? "employee-of-the-month" : ""}
+                                            ${feed.reward?.event_name === "Attendance Champions" ? "attendance-champions" : ""}
+                                            ${feed.reward?.event_name === "Leadership Excellence" ? "leadership-excellence" : ""}
+                                            ${feed.reward?.event_name === "Rising Stars" ? "rising-stars" : ""}
+                                            `
+                                        }
+                                        />
+                                    )}
+
+                                    <p className={`feed_user_name 
+                                    ${feed.reward?.event_name === "Employee Of The Month" ? "employee-of-the-month-name" : ""}
+                                    ${feed.reward?.event_name === "Attendance Champions" ? "attendance-champions-name" : ""}
+                                    ${feed.reward?.event_name === "Leadership Excellence" ? "leadership-excellence-name" : ""}
+                                    ${feed.reward?.event_name === "Rising Stars" ? "rising-stars-name" : ""}
+                                    `}>
+                                        {feed.auto_post_b_w_r_employee?.first_name}
+                                    </p>
+                                    <p className={`feed_department 
+                                    ${feed.reward?.event_name === "Employee Of The Month" ? "employee-of-the-month-department" : ""}
+                                    ${feed.reward?.event_name === "Attendance Champions" ? "attendance-champions-department" : ""}
+                                    ${feed.reward?.event_name === "Leadership Excellence" ? "leadership-excellence-department" : ""}
+                                    ${feed.reward?.event_name === "Rising Stars" ? "rising-stars-department" : ""}
+                                    `}>
+                                        {feed.auto_post_b_w_r_employee?.department_name}
+                                    </p>
+
+                                </div>
 
                                 <div className="mt-2">
                                     <p className="user__reactions__counts">

@@ -105,55 +105,57 @@ function Holidays() {
 
     return (
         <>
-            {!showCalendar && (
-                <span className='Holidays_text__container'>
-                    <p className='Holidays_text mb-2'>Holidays</p>
-                    <p className='Holidays_more' onClick={handleMoreClick}>
-                        <FontAwesomeIcon icon={faCalendarWeek} />
-                    </p>
-                </span>
-            )}
-
-            <div className='Holidays__container'>
-                {!showCalendar ? (
-                    <div className='Holiday__list'>
-                        <span className='faAngleLeft' onClick={handlePrev}>
-                            <FontAwesomeIcon icon={faAngleLeft} />
-                        </span>
-                        <div className='Festival__content'>
-                            <p className='Festival__name'>{name}</p>
-                            <p className='Festival__date'>{date}</p>
-                        </div>
-                        <span className='faAngleRight' onClick={handleNext}>
-                            <FontAwesomeIcon icon={faAngleRight} />
-                        </span>
-                    </div>
-                ) : (
-                    <div className='Calendar__container'>
-                        <div className='Calendar__header'>
-                            <Button variant="secondary" onClick={closeCalendar} style={{ borderRadius: '50px' }}>
-                                <FontAwesomeIcon icon={faXmark} />
-                            </Button>
-                        </div>
-                        <DatePicker
-                            inline
-                            selected={selectedDate}
-                            onChange={handleDateChange}
-                            highlightDates={festivals.map(festival => festival.dateObject)}
-                        />
-
-                        {/* Tooltip for clicked holiday date */}
-                        {showTooltip && (
-                            <Overlay target={tooltipTarget} show={showTooltip} placement="top">
-                                {(props) => (
-                                    <Tooltip id="holiday-tooltip" {...props}>
-                                        <strong>{name}</strong> - {date}
-                                    </Tooltip>
-                                )}
-                            </Overlay>
-                        )}
-                    </div>
+            <div className='Holiday__list__container'>
+                {!showCalendar && (
+                    <span className='Holidays_text__container'>
+                        <p className='Holidays_text mb-2'>Holidays</p>
+                        <p className='Holidays_more' onClick={handleMoreClick}>
+                            <FontAwesomeIcon icon={faCalendarWeek} />
+                        </p>
+                    </span>
                 )}
+
+                <div className='Holidays__container'>
+                    {!showCalendar ? (
+                        <div className='Holiday__list'>
+                            <span className='faAngleLeft' onClick={handlePrev}>
+                                <FontAwesomeIcon icon={faAngleLeft} />
+                            </span>
+                            <div className='Festival__content'>
+                                <p className='Festival__name'>{name}</p>
+                                <p className='Festival__date'>{date}</p>
+                            </div>
+                            <span className='faAngleRight' onClick={handleNext}>
+                                <FontAwesomeIcon icon={faAngleRight} />
+                            </span>
+                        </div>
+                    ) : (
+                        <div className='Calendar__container'>
+                            <div className='Calendar__header'>
+                                <Button variant="secondary" onClick={closeCalendar} style={{ borderRadius: '50px' }}>
+                                    <FontAwesomeIcon icon={faXmark} />
+                                </Button>
+                            </div>
+                            <DatePicker
+                                inline
+                                selected={selectedDate}
+                                onChange={handleDateChange}
+                                highlightDates={festivals.map(festival => festival.dateObject)}
+                            />
+
+                            {/* Tooltip for clicked holiday date */}
+                            {showTooltip && (
+                                <Overlay target={tooltipTarget} show={showTooltip} placement="top">
+                                    {(props) => (
+                                        <Tooltip id="holiday-tooltip" {...props}>
+                                            <strong>{name}</strong> - {date}
+                                        </Tooltip>
+                                    )}
+                                </Overlay>
+                            )}
+                        </div>
+                    )}
+                </div>
             </div>
         </>
     );

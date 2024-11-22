@@ -109,7 +109,7 @@ function BirthdayworkAnniversary() {
             <div>
                 <p className='thismonth mb-4'>This Month</p>
 
-                {activeData && activeData.length > 0 ?
+                {activeData && activeData.length >= 3 ?
                     <>
                         {activeData.slice(0, 3).map(item => (
                             <div className='Birthdaylist__container mb-2' key={item.id}>

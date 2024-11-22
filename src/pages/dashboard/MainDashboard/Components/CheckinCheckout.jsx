@@ -232,10 +232,21 @@ function CheckinCheckout() {
 
   const totalSecondsWorked = timeWorked.hours * 3600 + timeWorked.minutes * 60 + timeWorked.seconds;
 
+
+  // ----------------------------------------------------------------------------------------------
+  const currentDate = new Date();
+
+  // Extract the required components
+  const day = currentDate.getDate(); // Get the day of the month
+  const month = currentDate.toLocaleString("en-US", { month: "short" }); // Get short month (e.g., "Nov")
+  const dayName = currentDate.toLocaleString("en-US", { weekday: "long" }); // Get full day name (e.g., "Wednesday")
+  const year = currentDate.getFullYear(); // Get the year
+
+
   return (
     <div className="checkin-checkout-container">
       <div className="date-section">
-        <h4>15 Oct, Tuesday, 2024</h4>
+        <h5> {day} {month}, {dayName}, {year}</h5>
       </div>
       <div className="progress-bar">
         <div className="hours-indicator">
@@ -261,7 +272,7 @@ function CheckinCheckout() {
         >
           {loadingcheckin ? (
             <span style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
-              <i className="fa fa-circle-notch fa-spin" style={{ fontSize: '16px' }}></i> Checking In...
+              <i className="fa fa-circle-notch fa-spin" style={{ fontSize: '16px' }}></i> Check In
             </span>
           ) : (
             'Check In'
@@ -274,7 +285,7 @@ function CheckinCheckout() {
         >
           {loadingcheckout ? (
             <span style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
-              <i className="fa fa-circle-notch fa-spin" style={{ fontSize: '16px' }}></i> Checking Out...
+              <i className="fa fa-circle-notch fa-spin" style={{ fontSize: '16px' }}></i> Check Out
             </span>
           ) : (
             'Check Out'
